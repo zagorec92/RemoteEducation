@@ -1,0 +1,34 @@
+﻿<Window x:Class="RemoteEducationThesis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBox Name="txtBoxTest" 
+                 Width="100" 
+                 Height="50"
+                 Grid.Row="0">
+        </TextBox>
+        <TextBlock Name="txtBlockExample" 
+                   Background="Yellow"
+                   Width="100" 
+                   Height="50"
+                   Grid.Row="1">
+        </TextBlock>
+        <Button Name="bttnChangeText"
+                Width="100"
+                Height="25"
+                Click="bttnChangeText_Click"
+                Grid.Row="2"
+                Content="Change text">
+        </Button>
+        <TextBox Name="txtBoxAnotherTest" 
+                 Grid.Row="3">
+        </TextBox>
+    </Grid>
+</Window>
