@@ -78,5 +78,13 @@ namespace RemoteDesktopThesisServer
         }
 
         #endregion
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            base.OnInitialized(e);
+
+            ApplicationManager appManager = new ApplicationManager(this);
+            appManager.Start();
+        }
     }
 }

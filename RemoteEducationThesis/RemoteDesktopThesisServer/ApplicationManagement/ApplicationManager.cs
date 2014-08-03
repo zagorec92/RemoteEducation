@@ -27,6 +27,8 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
 
         #region Properties
 
+        public MainWindow AppWindow { get; set; }
+
         /// <summary>
         /// ConnectedClients
         /// </summary>
@@ -51,6 +53,19 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
         /// 
         /// </summary>
         public string WarningMessage { get; set; }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mainWindow"></param>
+        public ApplicationManager(MainWindow mainWindow)
+        {
+            AppWindow = mainWindow;
+        }
 
         #endregion
 
@@ -82,7 +97,7 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
 
             while (!Server.IsClosing)
             {
-                Console.WriteLine("Checking if there is a pending connection");
+                Console.WriteLine("Checking if there is a pending connection.");
                 if (Server.Pending())
                 {
                     if (ConnectedClients.Count < (int)Server.MaxConnections)
@@ -98,8 +113,8 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
                     }
                 }
                 else
-                {
-                    Console.WriteLine("Waiting {0} seconds", (int)ConnectionHelper.ServerSleepTime.Moderate / 1000);
+                {  
+                    Console.WriteLine("Waiting {0} seconds.", (int)ConnectionHelper.ServerSleepTime.Moderate / 1000);
                     await Task.Delay((int)ConnectionHelper.ServerSleepTime.Moderate);
                 }
             }
@@ -111,7 +126,7 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
             {
                 foreach (ClientHandler client in ConnectedClients)
                 {
-                    Console.WriteLine("Getting desktop image from {0}:", client.LocalEndPoint);
+                    Console.WriteLine("Getting desktop image from {0}.", client.LocalEndPoint);
                 }
             }
         }

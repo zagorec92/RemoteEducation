@@ -23,17 +23,6 @@
                        VerticalAlignment="Center"
                        FontSize="16"
                        Margin="10, 0, 0, 0"/>
-            <!--<Image Source="Resources/Images/close.png" 
-                   HorizontalAlignment="Right"
-                   Height="30"
-                   Tag="Close"
-                   MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-            <Image Source="Resources/Images/minimize.png" 
-                   HorizontalAlignment="Right"
-                   Height="30"
-                   Tag="Minimize"
-                   Margin="0, 0, 30, 0"
-                   MouseLeftButtonDown="Image_MouseLeftButtonDown" />-->
             <Rectangle Fill="White"
                        Width="30"
                        Height="30"
