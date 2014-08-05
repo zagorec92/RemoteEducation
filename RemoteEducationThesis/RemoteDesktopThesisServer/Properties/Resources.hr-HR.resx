@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LoginPageClearButton" xml:space="preserve">
-    <value>Clear</value>
+    <value>Obriši</value>
   </data>
   <data name="LoginPageLoginButton" xml:space="preserve">
-    <value>Login</value>
+    <value>Prijava</value>
   </data>
   <data name="LoginPagePasswordTextBlock" xml:space="preserve">
-    <value>Password:</value>
+    <value>Zaporka:</value>
   </data>
   <data name="LoginPageUsernameTextBlock" xml:space="preserve">
-    <value>Username:</value>
+    <value>Korisničko ime:</value>
   </data>
 </root>
