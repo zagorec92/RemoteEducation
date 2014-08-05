@@ -112,10 +112,7 @@ namespace RemoteDesktopThesisServer.Server
         public ServerHandler(int port)
             : base(port)
         {
-            if (port < 0)
-                throw new ArgumentException("Port cannot be 0 or less.");
-
-            Port = port;
+             Port = port;
         }
 
         /// <summary>
@@ -134,9 +131,6 @@ namespace RemoteDesktopThesisServer.Server
         public ServerHandler(int port, IPAddress address)
             : base(address, port)
         {
-            if (port < 0)
-                throw new ArgumentException("Port cannot be 0 or less.");
-
             Port = port;
             IpAddress = address;
         }
