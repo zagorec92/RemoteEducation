@@ -27,7 +27,7 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
 
         #region Properties
 
-        public MainWindow AppWindow { get; set; }
+        public Window AppWindow { get; set; }
 
         /// <summary>
         /// ConnectedClients
@@ -62,7 +62,7 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
         /// 
         /// </summary>
         /// <param name="mainWindow"></param>
-        public ApplicationManager(MainWindow mainWindow)
+        public ApplicationManager(Window mainWindow)
         {
             AppWindow = mainWindow;
         }
