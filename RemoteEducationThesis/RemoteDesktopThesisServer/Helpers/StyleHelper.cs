@@ -1,37 +1,19 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
+using System.Xaml;
+using System.Xml;
+using System.Linq;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
+
 
 namespace RemoteDesktopThesisServer.Helpers
 {
     public static class StyleHelper
     {
-        #region Struct
-
-        /// <summary>
-        /// Contains keys for brushes.
-        /// </summary>
-        public struct BrushResourceKeys
-        {
-            public static string BetterWhiteBrush = "BetterWhiteBrush";
-            public static string ApplicationMenuHoverBrush = "ApplicationMenuHoverBrush";
-        }
-
-        /// <summary>
-        /// Contains keys for fonts.
-        /// </summary>
-        public struct FontResourceKeys
-        {
-            public static string ExtraTiny = "ExtraTinyFont";
-            public static string Tiny = "TinyFont";
-            public static string Small = "SmallFont";
-            public static string Medium = "MediumFont";
-            public static string Large = "LargeFont";
-            public static string Larger = "LargerFont";
-            public static string ExtraLarge = "ExtraLargeFont";
-        }
-
-        #endregion
-
         #region Methods
 
         /// <summary>

@@ -26,12 +26,14 @@ namespace RemoteDesktopThesisServer.Authentication
         /// <returns>Bool indicating if authentication is successful.</returns>
         public static bool AuthenticateUser(string username, string password)
         {
+            if(username == String.Empty && password == String.Empty)
+                throw new ArgumentException("Error message.", AuthenticateExParameters.IsParametersEmpty);
+
             bool isAuthenticated = false;
 
             //check validity of given parameters
             //if given parameters are not valid
             //  throw ArgumentException with message and param name (use AuthenticateExParameters struct)
-            throw new ArgumentException("Error message.", AuthenticateExParameters.IsUsername);
 
             return isAuthenticated;
         }

@@ -72,6 +72,7 @@
     <Compile Include="ApplicationManagement\ApplicationManager.cs" />
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
+    <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Server\ServerHandler.cs" />

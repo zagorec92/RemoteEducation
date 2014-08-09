@@ -10,43 +10,91 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using RemoteDesktopThesisServer;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace RemoteDesktopThesisServer.Views.Login
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : Window, INotifyPropertyChanged
     {
         #region Fields
 
-        private const int _validationSleepTime = 5000;
+        private string _usernameValidationMessage;
+        private string _passwordValidationMessage;
+        private string _capsLockMessage;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// Font size used for regular text.
+        /// Gets or sets the message to be displayed for username TextBox.
         /// </summary>
-        public double TextFontSize { get; set; }
+        public string UsernameValidationMessage 
+        {
+            get 
+            {
+                return _usernameValidationMessage; 
+            }
+            set 
+            {
+                _usernameValidationMessage = value;
+                NotifyPropertyChanged("UsernameValidationMessage");
+            } 
+        }
 
         /// <summary>
-        /// Font size used for validation text.
+        /// Gets or sets the message to be displayed for PasswordBox.
         /// </summary>
-        public double ValidationFontSize { get; set; }
+        public string PasswordValidationMessage
+        {
+            get
+            {
+                return _passwordValidationMessage;
+            }
+            set
+            {
+                _passwordValidationMessage = value;
+                NotifyPropertyChanged("PasswordValidationMessage");
+            }
+        }
+
+        public string CapsLockMessage
+        {
+            get
+            {
+                return _capsLockMessage;
+            }
+            set
+            {
+                _capsLockMessage = value;
+                NotifyPropertyChanged("CapsLockMessage");
+            }
+        }
+
+        #endregion
+
+        #region Events
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
         #region Constructor
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Login()
         {
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
-            TextFontSize = StyleHelper.GetFontSize(StyleHelper.FontResourceKeys.Medium);
-            ValidationFontSize = StyleHelper.GetFontSize(StyleHelper.FontResourceKeys.Small);
 
             DataContext = this;
         }
@@ -79,6 +127,41 @@ namespace RemoteDesktopThesisServer.Views.Login
         }
 
         /// <summary>
+        /// Raises the PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">Name of the changed property.</param>
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pbxPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordValidationMessage = String.Empty;
+
+            if (Keyboard.GetKeyStates(Key.CapsLock) == KeyStates.Toggled)
+                CapsLockMessage = "CAPS LOCK is on.";
+            else
+                CapsLockMessage = String.Empty;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UsernameValidationMessage = String.Empty;
+        }
+
+        /// <summary>
         /// Handles the MouseLeftButtonDown event of Rectangle control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -92,9 +175,9 @@ namespace RemoteDesktopThesisServer.Views.Login
             {
                 string commandName = rectangle.Tag.ToString();
 
-                if (commandName == "Close")
+                if (commandName == ApplicationManager.Commands.Close)
                     ApplicationManager.Close();
-                else if (commandName == "Minimize")
+                else if (commandName == ApplicationManager.Commands.Minimite)
                     ApplicationManager.Minimize();
             }
         }
@@ -111,8 +194,8 @@ namespace RemoteDesktopThesisServer.Views.Login
 
             if (rectangle != null)
             {
-                rectangle.Fill = 
-                    FindResource(StyleHelper.BrushResourceKeys.ApplicationMenuHoverBrush) as SolidColorBrush;
+                rectangle.Fill =
+                    FindResource("ApplicationMenuHoverBrush") as SolidColorBrush;
             }
         }
 
@@ -129,7 +212,7 @@ namespace RemoteDesktopThesisServer.Views.Login
             if (rectangle != null)
             {
                 rectangle.Fill = 
-                    FindResource(StyleHelper.BrushResourceKeys.BetterWhiteBrush) as SolidColorBrush;
+                    FindResource("BetterWhiteBrush") as SolidColorBrush;
             }
         }
 
@@ -138,18 +221,19 @@ namespace RemoteDesktopThesisServer.Views.Login
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
+            CapsLockMessage = String.Empty;
             Button bttn = sender as Button;
 
             if (bttn != null)
             {
-                if (bttn.CommandParameter.ToString() == "Clear")
+                if (bttn.CommandParameter.ToString() == ApplicationManager.Commands.Clear)
                 {
                     tbxUsername.Text = String.Empty;
                     pbxPassword.Password = String.Empty;
                 }
-                else if (bttn.CommandParameter.ToString() == "Login")
+                else if (bttn.CommandParameter.ToString() == ApplicationManager.Commands.Login)
                 {
                     try
                     {
@@ -164,17 +248,12 @@ namespace RemoteDesktopThesisServer.Views.Login
                         string message = ex.Message.Substring(0, ex.Message.IndexOf('\r'));
 
                         if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
-                            tbkValidationUsername.Text = message;
+                            UsernameValidationMessage = message;
                         else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsPassword)
-                            tbkValidationPassword.Text = message;
+                            PasswordValidationMessage = message;
                         else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParametersEmpty)
-                            tbkValidationUsername.Text = tbkValidationPassword.Text = message;
+                            UsernameValidationMessage = PasswordValidationMessage = message;
                     }
-
-                    await Task.Delay(_validationSleepTime);
-
-                    tbkValidationUsername.Text = String.Empty;
-                    tbkValidationPassword.Text = String.Empty;
                 }
             }
         }

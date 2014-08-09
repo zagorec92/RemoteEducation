@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace RemoteDesktopThesisServer.Helpers
 {
-    public static class ConnectionHelper
+    public abstract class ConnectionHelper : ApplicationHelper
     {
         #region Enum
 
@@ -17,18 +17,6 @@ namespace RemoteDesktopThesisServer.Helpers
             Thirty = 30,
             Forty = 40,
             Fifty = 50,
-        }
-
-        /// <summary>
-        /// Sleep time during connection listening in milliseconds.
-        /// </summary>
-        public enum ServerSleepTime
-        {
-            Shortest = 2500,
-            Short = 5000,
-            Moderate = 10000,
-            Long = 20000,
-            Longest = 40000
         }
 
         #endregion

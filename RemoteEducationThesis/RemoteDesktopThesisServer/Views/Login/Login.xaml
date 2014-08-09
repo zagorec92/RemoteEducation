@@ -57,10 +57,11 @@
             <TextBlock Text="{x:Static global:Resources.LoginPageUsername}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1" 
-                     Name="tbxUsername" 
-                     Style="{StaticResource TextBoxLoginStyle}"/>
+                     Name="tbxUsername"
+                     Style="{StaticResource TextBoxLoginStyle}"
+                     TextChanged="TextBox_TextChanged"/>
             <TextBlock Grid.Column="1"
-                       Name="tbkValidationUsername"
+                       Text="{Binding UsernameValidationMessage}"
                        Style="{StaticResource ValidationTextBlockLoginStyle}"/>
 
             <!--second row-->
@@ -72,12 +73,19 @@
                          Grid.Row="1"
                          Name="pbxPassword"
                          Style="{StaticResource TextBoxLoginStyle}"
-                         Margin="5, 0, 0, 10"/>
+                         Margin="5, 0, 0, 10"
+                         PasswordChanged="pbxPassword_PasswordChanged"/>
             <TextBlock Grid.Column="1"
                        Grid.Row="1"
-                       Name="tbkValidationPassword"
-                       Style="{StaticResource ValidationTextBlockLoginStyle}"/>
-            
+                       Text="{Binding PasswordValidationMessage}"
+                       Style="{StaticResource ValidationTextBlockLoginStyle}"
+                       Margin="5, 0, 0, 8"/>
+            <TextBlock Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding CapsLockMessage}"
+                       Style="{StaticResource ValidationTextBlockLoginStyle}"
+                       Margin="5, 0, 0, 8"/>
+
             <!--third row-->
             <Button Grid.Row="2"
                     Grid.Column="1"
