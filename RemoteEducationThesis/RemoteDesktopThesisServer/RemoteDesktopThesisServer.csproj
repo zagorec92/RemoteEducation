@@ -74,11 +74,6 @@
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
-    <Compile Include="Properties\Resources.hr-HR.Designer.cs">
-      <DependentUpon>Resources.hr-HR.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Server\ServerManager.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
@@ -97,6 +92,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Brushes\Brushes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\LoginStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,10 +119,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.hr-HR.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.hr-HR.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -135,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Global\" />
-    <Folder Include="Resources\Style\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\close.png" />

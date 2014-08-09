@@ -3,51 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="Views/Login/Login.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="LightBlackBrush" Color="#333" />
-        
-        <!--LOGIN-->
-        <Style x:Key="LoginPageStyle" TargetType="Window">
-            <Setter Property="Width" Value="425" />
-            <Setter Property="Height" Value="250" />
-            <Setter Property="WindowStyle" Value="None" />
-            <Setter Property="FontFamily" Value="Calibri" />
-            <Setter Property="ResizeMode" Value="NoResize" />
-            <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
-            <Setter Property="BorderThickness" Value="5" />
-        </Style>
-        <Style x:Key="TextBlockLoginStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="0, 0, 5, 0" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style x:Key="TextBoxLoginStyle" TargetType="Control">
-            <Setter Property="Margin" Value="5, 5, 0, 0" />
-            <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
-            <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
-            <Setter Property="Height" Value="25" />
-            <Setter Property="Width" Value="150" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Background" Value="#EFEFEF" />
-        </Style>
-        <Style x:Key="RectangleLoginStyle" TargetType="Rectangle">
-            <Setter Property="Height" Value="30" />
-            <Setter Property="Width" Value="30" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="Fill" Value="#EEE" />
-        </Style>
-        <Style x:Key="ButtonLoginStyle" TargetType="Button">
-            <Setter Property="Width" Value="75" />
-            <Setter Property="Height" Value="25" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="Foreground" Value="#EEE" />
-            <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
-            <Setter Property="BorderBrush" Value="Transparent" />
-        </Style>
-        <Style x:Key="ValidationTextBlockLoginStyle" TargetType="TextBlock">
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Margin" Value="5, 0, 0, 0" />
-            <Setter Property="Foreground" Value="#EF0000" />
-            <Setter Property="FontSize" Value="{Binding ValidationFontSize}" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\Style\LoginStyle.xaml" />
+                <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

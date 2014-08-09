@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using RemoteDesktopThesisServer;
+using System.Collections.ObjectModel;
 
 namespace RemoteDesktopThesisServer.Views.Login
 {
@@ -61,8 +63,8 @@ namespace RemoteDesktopThesisServer.Views.Login
             base.OnInitialized(e);
 
             //for testing
-            ApplicationManager appManager = new ApplicationManager(this);
-            appManager.Start();
+            //ApplicationManager appManager = new ApplicationManager(this);
+            //appManager.Start();
         }
 
         /// <summary>
@@ -80,9 +82,9 @@ namespace RemoteDesktopThesisServer.Views.Login
                 string commandName = rectangle.Tag.ToString();
 
                 if (commandName == "Close")
-                    Application.Current.Shutdown();
+                    ApplicationManager.Close();
                 else if (commandName == "Minimize")
-                    Application.Current.MainWindow.WindowState = WindowState.Minimized;
+                    ApplicationManager.Minimize();
             }
         }
 
@@ -97,7 +99,13 @@ namespace RemoteDesktopThesisServer.Views.Login
             Rectangle rectangle = sender as Rectangle;
 
             if (rectangle != null)
-                rectangle.Fill = new SolidColorBrush(Colors.Red);
+            {
+                SolidColorBrush solidColorBrush = 
+                    FindResource(StyleHelper.BrushesResourceKeys.ApplicationMenuHoverBrush) as SolidColorBrush;
+
+                if(solidColorBrush != null)
+                    rectangle.Fill = solidColorBrush;
+            }
         }
 
         /// <summary>
@@ -111,7 +119,13 @@ namespace RemoteDesktopThesisServer.Views.Login
             Rectangle rectangle = sender as Rectangle;
 
             if (rectangle != null)
-                rectangle.Fill = new SolidColorBrush(Colors.White);
+            {
+                SolidColorBrush solidColorBrush = 
+                    FindResource(StyleHelper.BrushesResourceKeys.BetterWhiteBrush) as SolidColorBrush;
+
+                if (solidColorBrush != null)
+                    rectangle.Fill = solidColorBrush;
+            }
         }
 
         /// <summary>

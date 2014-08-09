@@ -130,5 +130,25 @@ namespace RemoteDesktopThesisServer.ApplicationManagement
                 }
             }
         }
+   
+        #region BasicAppCommands
+
+        /// <summary>
+        /// Closes the application.
+        /// </summary>
+        public static void Close()
+        {
+            Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// Minimizes main window.
+        /// </summary>
+        public static void Minimize()
+        {
+            Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        #endregion
     }
 }

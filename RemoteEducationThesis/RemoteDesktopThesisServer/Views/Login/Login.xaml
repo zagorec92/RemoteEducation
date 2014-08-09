@@ -12,15 +12,15 @@
         </Grid.RowDefinitions>
 
         <!--menu bar-->
-        <Grid Background="#333333">
+        <Grid Background="{StaticResource LightBlackBrush}">
             <TextBlock Text="RemoteEducation LOGIN" 
                        Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
-                       Foreground="#EEE"
+                       Foreground="{StaticResource BetterWhiteBrush}"
                        Margin="10, 0, 0, 0"/>
             <Rectangle Style="{StaticResource RectangleLoginStyle}"
-                       Tag="Close"
-                       ToolTip="Close"
+                       Tag="{x:Static global:Resources.ApplicationMenuCloseToolTip}"
+                       ToolTip="{x:Static global:Resources.ApplicationMenuCloseToolTip}"
                        MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                        MouseEnter="Rectangle_MouseEnter"
                        MouseLeave="Rectangle_MouseLeave">
@@ -30,8 +30,8 @@
             </Rectangle>
             <Rectangle Style="{StaticResource RectangleLoginStyle}"
                        Margin="0, 0, 30, 0"
-                       Tag="Minimize"
-                       ToolTip="Minimize"
+                       Tag="{x:Static global:Resources.ApplicationMenuMinimizeToolTip}"
+                       ToolTip="{x:Static global:Resources.ApplicationMenuMinimizeToolTip}"
                        MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                        MouseEnter="Rectangle_MouseEnter"
                        MouseLeave="Rectangle_MouseLeave">
@@ -42,7 +42,7 @@
         </Grid>
 
         <!--content-->
-        <Grid Grid.Row="1" Background="#EFEFEF">
+        <Grid Grid.Row="1" Background="{StaticResource BetterWhiteBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="1.5*" />
@@ -52,7 +52,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
+            
             <!--first row-->
             <TextBlock Text="{x:Static global:Resources.LoginPageUsernameTextBlock}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>

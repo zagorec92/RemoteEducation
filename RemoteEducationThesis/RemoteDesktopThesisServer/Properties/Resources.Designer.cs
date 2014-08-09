@@ -61,6 +61,24 @@ namespace RemoteDesktopThesisServer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string ApplicationMenuCloseToolTip {
+            get {
+                return ResourceManager.GetString("ApplicationMenuCloseToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize.
+        /// </summary>
+        public static string ApplicationMenuMinimizeToolTip {
+            get {
+                return ResourceManager.GetString("ApplicationMenuMinimizeToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string LoginPageClearButton {

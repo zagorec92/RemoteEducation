@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Light black brush-->
+    <SolidColorBrush x:Key="LightBlackBrush" Color="#333" />
+    
+    <!--Better white-->
+    <SolidColorBrush x:Key="BetterWhiteBrush" Color="#EEE" />
+    
+    <!--Validation-->
+    <SolidColorBrush x:Key="ValidationBrush" Color="#EF0000" />
+    
+    <!--ApplicationMenuHoverBrush-->
+    <SolidColorBrush x:Key="ApplicationMenuHoverBrush" Color="Red" />
+    
+    <!--Windows 8 brushes-->
+    <SolidColorBrush x:Key="LightGreenWin8Brush" Color="#99B433" />
+    <SolidColorBrush x:Key="GreenWin8Brush" Color="#00A300" />
+    <SolidColorBrush x:Key="DarkGreenWin8Brush" Color="#1E7145" />
+    <SolidColorBrush x:Key="PurpleWin8Brush" Color="#7E3878" />
+    <SolidColorBrush x:Key="DarkPurpleWin8Brush" Color="#603CBA" />
+    <SolidColorBrush x:Key="DarkenWin8Brush" Color="#1D1D1D" />
+    <SolidColorBrush x:Key="TealWin8Brush" Color="#00ABA9" />
+    <SolidColorBrush x:Key="BlueWin8Brush" Color="#2D89EF" />
+    <SolidColorBrush x:Key="DarkBlueWin8Brush" Color="#2B5797" />
+    <SolidColorBrush x:Key="YellowWin8Brush" Color="#FFC40D" />
+    <SolidColorBrush x:Key="OrangeWin8Brush" Color="#E3A21A" />
+    <SolidColorBrush x:Key="DarkOrangeWin8Brush" Color="#DA532C" />
+    <SolidColorBrush x:Key="DarkRedWin8Brush" Color="#B91D47" />
+    
+</ResourceDictionary>

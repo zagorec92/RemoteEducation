@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System;
+using System.Windows;
+using System.Dynamic;
 
 namespace RemoteDesktopThesisServer.Helpers
 {
     public static class StyleHelper
     {
+        #region Enum
+
         /// <summary>
-        /// Font sizes.
+        /// Predefined font sizes.
         /// </summary>
         public enum FontSize
         {
@@ -48,5 +49,20 @@ namespace RemoteDesktopThesisServer.Helpers
             /// </summary>
             ExtraLarge = 28
         }
+
+        #endregion
+
+        #region Struct
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public struct BrushesResourceKeys
+        {
+            public static string BetterWhiteBrush = "BetterWhiteBrush";
+            public static string ApplicationMenuHoverBrush = "ApplicationMenuHoverBrush";
+        }
+
+        #endregion
     }
 }
