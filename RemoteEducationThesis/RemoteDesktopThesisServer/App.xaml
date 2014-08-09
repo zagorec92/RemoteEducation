@@ -5,8 +5,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources\Style\LoginStyle.xaml" />
+                <!--non view resource dictionaries-->
+                <ResourceDictionary Source="Resources\Fonts\Fonts.xaml" />
                 <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
+                
+                <!--view resource dictionaries-->
+                <ResourceDictionary Source="Resources\Style\LoginStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

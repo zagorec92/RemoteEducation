@@ -31,6 +31,7 @@ namespace RemoteDesktopThesisServer.Authentication
             //check validity of given parameters
             //if given parameters are not valid
             //  throw ArgumentException with message and param name (use AuthenticateExParameters struct)
+            throw new ArgumentException("Error message.", AuthenticateExParameters.IsUsername);
 
             return isAuthenticated;
         }

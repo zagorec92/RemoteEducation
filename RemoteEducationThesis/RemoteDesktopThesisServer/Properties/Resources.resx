@@ -117,22 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationMenuCloseToolTip" xml:space="preserve">
+  <data name="ApplicationMenuClose" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="ApplicationMenuMinimizeToolTip" xml:space="preserve">
+  <data name="ApplicationMenuMinimize" xml:space="preserve">
     <value>Minimize</value>
   </data>
-  <data name="LoginPageClearButton" xml:space="preserve">
+  <data name="LoginPageClear" xml:space="preserve">
     <value>Clear</value>
   </data>
-  <data name="LoginPageLoginButton" xml:space="preserve">
+  <data name="LoginPageLogin" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="LoginPagePasswordTextBlock" xml:space="preserve">
+  <data name="LoginPagePassword" xml:space="preserve">
     <value>Password:</value>
   </data>
-  <data name="LoginPageUsernameTextBlock" xml:space="preserve">
+  <data name="LoginPageRecovery" xml:space="preserve">
+    <value>Forgot username or password?</value>
+  </data>
+  <data name="LoginPageUsername" xml:space="preserve">
     <value>Username:</value>
   </data>
 </root>

@@ -13,6 +13,9 @@
     <!--ApplicationMenuHoverBrush-->
     <SolidColorBrush x:Key="ApplicationMenuHoverBrush" Color="Red" />
     
+    <!--Inner menu brush-->
+    <SolidColorBrush x:Key="InnerMenuBrush" Color="#444" />
+    
     <!--Windows 8 brushes-->
     <SolidColorBrush x:Key="LightGreenWin8Brush" Color="#99B433" />
     <SolidColorBrush x:Key="GreenWin8Brush" Color="#00A300" />

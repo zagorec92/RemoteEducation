@@ -29,12 +29,12 @@ namespace RemoteDesktopThesisServer.Views.Login
         /// <summary>
         /// Font size used for regular text.
         /// </summary>
-        public int TextFontSize { get; set; }
+        public double TextFontSize { get; set; }
 
         /// <summary>
         /// Font size used for validation text.
         /// </summary>
-        public int ValidationFontSize { get; set; }
+        public double ValidationFontSize { get; set; }
 
         #endregion
 
@@ -42,10 +42,11 @@ namespace RemoteDesktopThesisServer.Views.Login
 
         public Login()
         {
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
-            TextFontSize = (int)StyleHelper.FontSize.Medium;
-            ValidationFontSize = (int)StyleHelper.FontSize.Small;
+            TextFontSize = StyleHelper.GetFontSize(StyleHelper.FontResourceKeys.Medium);
+            ValidationFontSize = StyleHelper.GetFontSize(StyleHelper.FontResourceKeys.Small);
 
             DataContext = this;
         }
@@ -65,6 +66,16 @@ namespace RemoteDesktopThesisServer.Views.Login
             //for testing
             //ApplicationManager appManager = new ApplicationManager(this);
             //appManager.Start();
+        }
+
+        /// <summary>
+        /// Handles the MouseLeftButtonDown event of the Window control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/>
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
 
         /// <summary>
@@ -100,11 +111,8 @@ namespace RemoteDesktopThesisServer.Views.Login
 
             if (rectangle != null)
             {
-                SolidColorBrush solidColorBrush = 
-                    FindResource(StyleHelper.BrushesResourceKeys.ApplicationMenuHoverBrush) as SolidColorBrush;
-
-                if(solidColorBrush != null)
-                    rectangle.Fill = solidColorBrush;
+                rectangle.Fill = 
+                    FindResource(StyleHelper.BrushResourceKeys.ApplicationMenuHoverBrush) as SolidColorBrush;
             }
         }
 
@@ -120,11 +128,8 @@ namespace RemoteDesktopThesisServer.Views.Login
 
             if (rectangle != null)
             {
-                SolidColorBrush solidColorBrush = 
-                    FindResource(StyleHelper.BrushesResourceKeys.BetterWhiteBrush) as SolidColorBrush;
-
-                if (solidColorBrush != null)
-                    rectangle.Fill = solidColorBrush;
+                rectangle.Fill = 
+                    FindResource(StyleHelper.BrushResourceKeys.BetterWhiteBrush) as SolidColorBrush;
             }
         }
 
@@ -156,7 +161,7 @@ namespace RemoteDesktopThesisServer.Views.Login
                     }
                     catch (ArgumentException ex)
                     {
-                        string message = ex.Message.Substring(0, ex.Message.IndexOf('.') + 1);
+                        string message = ex.Message.Substring(0, ex.Message.IndexOf('\r'));
 
                         if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
                             tbkValidationUsername.Text = message;

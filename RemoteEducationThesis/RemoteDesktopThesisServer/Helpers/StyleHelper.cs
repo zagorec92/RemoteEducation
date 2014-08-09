@@ -1,66 +1,54 @@
-﻿using System.Collections.Generic;
-using System;
+﻿using System;
 using System.Windows;
-using System.Dynamic;
 
 namespace RemoteDesktopThesisServer.Helpers
 {
     public static class StyleHelper
     {
-        #region Enum
+        #region Struct
 
         /// <summary>
-        /// Predefined font sizes.
+        /// Contains keys for brushes.
         /// </summary>
-        public enum FontSize
+        public struct BrushResourceKeys
         {
-            /// <summary>
-            /// Font size 6.
-            /// </summary>
-            ExtraTiny = 6,
+            public static string BetterWhiteBrush = "BetterWhiteBrush";
+            public static string ApplicationMenuHoverBrush = "ApplicationMenuHoverBrush";
+        }
 
-            /// <summary>
-            /// Font size 8.
-            /// </summary>
-            Tiny = 8,
-
-            /// <summary>
-            /// Font size 12.
-            /// </summary>
-            Small = 12,
-
-            /// <summary>
-            /// Font size 16.
-            /// </summary>
-            Medium = 16,
-
-            /// <summary>
-            /// Font size 18.
-            /// </summary>
-            Large = 18,
-
-            /// <summary>
-            /// Font size 22.
-            /// </summary>
-            Larger = 22,
-
-            /// <summary>
-            /// Font size 28.
-            /// </summary>
-            ExtraLarge = 28
+        /// <summary>
+        /// Contains keys for fonts.
+        /// </summary>
+        public struct FontResourceKeys
+        {
+            public static string ExtraTiny = "ExtraTinyFont";
+            public static string Tiny = "TinyFont";
+            public static string Small = "SmallFont";
+            public static string Medium = "MediumFont";
+            public static string Large = "LargeFont";
+            public static string Larger = "LargerFont";
+            public static string ExtraLarge = "ExtraLargeFont";
         }
 
         #endregion
 
-        #region Struct
+        #region Methods
 
         /// <summary>
-        /// 
+        /// Gets the font size.
         /// </summary>
-        public struct BrushesResourceKeys
+        /// <param name="key">Key.</param>
+        /// <returns></returns>
+        public static double GetFontSize(string key)
         {
-            public static string BetterWhiteBrush = "BetterWhiteBrush";
-            public static string ApplicationMenuHoverBrush = "ApplicationMenuHoverBrush";
+            double retVal = 0;
+
+            ResourceDictionary resourceDictionary = Application.Current.Resources.MergedDictionaries[0];
+
+            object fontSize = resourceDictionary[key];
+            retVal = Convert.ToDouble(fontSize);
+
+            return retVal;
         }
 
         #endregion

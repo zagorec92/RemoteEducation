@@ -4,7 +4,7 @@
         xmlns:global="clr-namespace:RemoteDesktopThesisServer.Properties"
         Title="RemoteEducation LOGIN" 
         Style="{StaticResource LoginPageStyle}"
-        FontSize="{Binding TextFontSize}">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -19,8 +19,8 @@
                        Foreground="{StaticResource BetterWhiteBrush}"
                        Margin="10, 0, 0, 0"/>
             <Rectangle Style="{StaticResource RectangleLoginStyle}"
-                       Tag="{x:Static global:Resources.ApplicationMenuCloseToolTip}"
-                       ToolTip="{x:Static global:Resources.ApplicationMenuCloseToolTip}"
+                       Tag="{x:Static global:Resources.ApplicationMenuClose}"
+                       ToolTip="{x:Static global:Resources.ApplicationMenuClose}"
                        MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                        MouseEnter="Rectangle_MouseEnter"
                        MouseLeave="Rectangle_MouseLeave">
@@ -30,8 +30,8 @@
             </Rectangle>
             <Rectangle Style="{StaticResource RectangleLoginStyle}"
                        Margin="0, 0, 30, 0"
-                       Tag="{x:Static global:Resources.ApplicationMenuMinimizeToolTip}"
-                       ToolTip="{x:Static global:Resources.ApplicationMenuMinimizeToolTip}"
+                       Tag="{x:Static global:Resources.ApplicationMenuMinimize}"
+                       ToolTip="{x:Static global:Resources.ApplicationMenuMinimize}"
                        MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                        MouseEnter="Rectangle_MouseEnter"
                        MouseLeave="Rectangle_MouseLeave">
@@ -54,7 +54,7 @@
             </Grid.RowDefinitions>
             
             <!--first row-->
-            <TextBlock Text="{x:Static global:Resources.LoginPageUsernameTextBlock}" 
+            <TextBlock Text="{x:Static global:Resources.LoginPageUsername}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1" 
                      Name="tbxUsername" 
@@ -65,12 +65,14 @@
 
             <!--second row-->
             <TextBlock Grid.Row="1" 
-                       Text="{x:Static global:Resources.LoginPagePasswordTextBlock}" 
-                       Style="{StaticResource TextBlockLoginStyle}"/>
+                       Text="{x:Static global:Resources.LoginPagePassword}" 
+                       Style="{StaticResource TextBlockLoginStyle}"
+                       Margin="0, 0, 5, 10"/>
             <PasswordBox Grid.Column="1"
                          Grid.Row="1"
                          Name="pbxPassword"
-                         Style="{StaticResource TextBoxLoginStyle}"/>
+                         Style="{StaticResource TextBoxLoginStyle}"
+                         Margin="5, 0, 0, 10"/>
             <TextBlock Grid.Column="1"
                        Grid.Row="1"
                        Name="tbkValidationPassword"
@@ -79,17 +81,24 @@
             <!--third row-->
             <Button Grid.Row="2"
                     Grid.Column="1"
-                    Content="{x:Static global:Resources.LoginPageClearButton}"
+                    Content="{x:Static global:Resources.LoginPageClear}"
                     Style="{StaticResource ButtonLoginStyle}"
                     HorizontalAlignment="Left"
-                    CommandParameter="Clear"
+                    CommandParameter="{x:Static global:Resources.LoginPageClear}"
                     Click="Button_Click"/>
             <Button Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
-                    Content="{x:Static global:Resources.LoginPageLoginButton}" 
-                    CommandParameter="Login"
+                    Content="{x:Static global:Resources.LoginPageLogin}" 
+                    CommandParameter="{x:Static global:Resources.LoginPageLogin}"
                     Click="Button_Click"/>
+            <TextBlock Grid.Row="2"
+                       Grid.Column="2"
+                       Style="{StaticResource UsernamePasswordRecoveryLinkStyle}">
+                <Hyperlink>
+                    <TextBlock Text="{x:Static global:Resources.LoginPageRecovery}"/>
+                </Hyperlink>
+            </TextBlock>
         </Grid>
 
     </Grid>

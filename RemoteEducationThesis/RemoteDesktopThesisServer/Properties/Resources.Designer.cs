@@ -63,54 +63,63 @@ namespace RemoteDesktopThesisServer.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string ApplicationMenuCloseToolTip {
+        public static string ApplicationMenuClose {
             get {
-                return ResourceManager.GetString("ApplicationMenuCloseToolTip", resourceCulture);
+                return ResourceManager.GetString("ApplicationMenuClose", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Minimize.
         /// </summary>
-        public static string ApplicationMenuMinimizeToolTip {
+        public static string ApplicationMenuMinimize {
             get {
-                return ResourceManager.GetString("ApplicationMenuMinimizeToolTip", resourceCulture);
+                return ResourceManager.GetString("ApplicationMenuMinimize", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
-        public static string LoginPageClearButton {
+        public static string LoginPageClear {
             get {
-                return ResourceManager.GetString("LoginPageClearButton", resourceCulture);
+                return ResourceManager.GetString("LoginPageClear", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
-        public static string LoginPageLoginButton {
+        public static string LoginPageLogin {
             get {
-                return ResourceManager.GetString("LoginPageLoginButton", resourceCulture);
+                return ResourceManager.GetString("LoginPageLogin", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Password:.
         /// </summary>
-        public static string LoginPagePasswordTextBlock {
+        public static string LoginPagePassword {
             get {
-                return ResourceManager.GetString("LoginPagePasswordTextBlock", resourceCulture);
+                return ResourceManager.GetString("LoginPagePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot username or password?.
+        /// </summary>
+        public static string LoginPageRecovery {
+            get {
+                return ResourceManager.GetString("LoginPageRecovery", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Username:.
         /// </summary>
-        public static string LoginPageUsernameTextBlock {
+        public static string LoginPageUsername {
             get {
-                return ResourceManager.GetString("LoginPageUsernameTextBlock", resourceCulture);
+                return ResourceManager.GetString("LoginPageUsername", resourceCulture);
             }
         }
     }

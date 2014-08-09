@@ -3,6 +3,7 @@
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
+        <ResourceDictionary Source="..\Fonts\Fonts.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="LoginPageStyle" TargetType="Window">
@@ -13,6 +14,7 @@
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
         <Setter Property="BorderThickness" Value="5" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
     </Style>
     
     <Style x:Key="TextBlockLoginStyle" TargetType="TextBlock">
@@ -41,7 +43,7 @@
     <Style x:Key="ButtonLoginStyle" TargetType="Button">
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="25" />
-        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
         <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -52,6 +54,12 @@
         <Setter Property="Margin" Value="5, 0, 0, 0" />
         <Setter Property="Foreground" Value="{StaticResource ValidationBrush}" />
         <Setter Property="FontSize" Value="{Binding ValidationFontSize}" />
+    </Style>
+    
+    <Style x:Key="UsernamePasswordRecoveryLinkStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
+        <Setter Property="Margin" Value="0, 20, 0, 0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     
 </ResourceDictionary>
