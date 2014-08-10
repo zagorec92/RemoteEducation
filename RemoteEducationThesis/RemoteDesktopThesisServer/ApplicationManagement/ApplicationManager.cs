@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace RemoteDesktopThesisServer.ApplicationManagement
+namespace RemoteEducationApplication.ApplicationManagement
 {
     public class ApplicationManager
     {

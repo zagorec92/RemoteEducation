@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Net.Sockets;
 
-namespace RemoteDesktopThesisServer.Shared
+namespace RemoteEducationApplication.Shared
 {
     /// <summary>
     /// Shared properties of <see cref="System.Net.Sockets.Socket"/> instances.

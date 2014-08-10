@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteEducationApplication.Server
+namespace RemoteEducationModel
 {
-    class ServerManager
+    public class Class1
     {
     }
 }

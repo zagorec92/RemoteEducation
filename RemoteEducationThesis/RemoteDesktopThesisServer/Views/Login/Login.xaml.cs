@@ -1,6 +1,6 @@
-﻿using RemoteDesktopThesisServer.ApplicationManagement;
-using RemoteDesktopThesisServer.Authentication;
-using RemoteDesktopThesisServer.Helpers;
+﻿using RemoteEducationApplication.ApplicationManagement;
+using RemoteEducationApplication.Authentication;
+using RemoteEducationApplication.Helpers;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,13 +8,13 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using RemoteDesktopThesisServer;
+using RemoteEducationApplication;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Collections.Generic;
-using RemoteDesktopThesisServer.Extensions;
+using RemoteEducationApplication.Extensions;
 
-namespace RemoteDesktopThesisServer.Views.Login
+namespace RemoteEducationApplication.Views.Login
 {
     /// <summary>
     /// Interaction logic for Login.xaml
@@ -230,22 +230,22 @@ namespace RemoteDesktopThesisServer.Views.Login
             CapsLockMessage = String.Empty;
             Button bttn = sender as Button;
 
+            
+
             if (bttn != null)
             {
                 if (bttn.GetCommandParameter() == ApplicationManager.Commands.Clear)
                 {
-                    tbxUsername.Text = String.Empty;
-                    pbxPassword.Password = String.Empty;
+                    tbxUsername.Text = pbxPassword.Password = String.Empty;
                 }
                 else if (bttn.GetCommandParameter() == ApplicationManager.Commands.Login)
                 {
                     try
                     {
-                        bool isAuthenticated = AuthenticationManager.AuthenticateUser
+                        AuthenticationManager.AuthenticateUser
                             (tbxUsername.Text, pbxPassword.Password);
 
-                        if (isAuthenticated)
-                        { /*redirect*/ }
+                        //redirect
                     }
                     catch (ArgumentException ex)
                     {
@@ -255,7 +255,7 @@ namespace RemoteDesktopThesisServer.Views.Login
                             UsernameValidationMessage = message;
                         else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsPassword)
                             PasswordValidationMessage = message;
-                        else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParametersEmpty)
+                        else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParameters)
                             UsernameValidationMessage = PasswordValidationMessage = message;
                     }
                 }

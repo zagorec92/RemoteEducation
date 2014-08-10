@@ -1,4 +1,4 @@
-﻿namespace RemoteDesktopThesisServer.Helpers
+﻿namespace RemoteEducationApplication.Helpers
 {
     public abstract class ApplicationHelper
     {

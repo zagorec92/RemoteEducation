@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationThesis", "RemoteEducationThesis\RemoteEducationThesis.csproj", "{5F3CFF39-6C79-4D58-9A41-DEF070B9CC9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationApplication", "RemoteDesktopThesisServer\RemoteEducationApplication.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationThesisClient", "RemoteEducationThesisClient\RemoteEducationThesisClient.csproj", "{1578D0FD-9311-41EF-BCB3-359233D02DF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducation.DAL", "RemoteEducation.DAL\RemoteEducation.DAL.csproj", "{12268AB2-E999-43EF-87F5-CDE16E7A1556}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteDesktopThesisServer", "RemoteDesktopThesisServer\RemoteDesktopThesisServer.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducation.Model", "RemoteEducation.Model\RemoteEducation.Model.csproj", "{888B25B7-D27F-4F39-9DB4-9C66A223B489}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5F3CFF39-6C79-4D58-9A41-DEF070B9CC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F3CFF39-6C79-4D58-9A41-DEF070B9CC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F3CFF39-6C79-4D58-9A41-DEF070B9CC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F3CFF39-6C79-4D58-9A41-DEF070B9CC9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1578D0FD-9311-41EF-BCB3-359233D02DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1578D0FD-9311-41EF-BCB3-359233D02DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1578D0FD-9311-41EF-BCB3-359233D02DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1578D0FD-9311-41EF-BCB3-359233D02DF4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AED2748-6B5C-48DF-917F-9451D9F33735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AED2748-6B5C-48DF-917F-9451D9F33735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AED2748-6B5C-48DF-917F-9451D9F33735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AED2748-6B5C-48DF-917F-9451D9F33735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12268AB2-E999-43EF-87F5-CDE16E7A1556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12268AB2-E999-43EF-87F5-CDE16E7A1556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12268AB2-E999-43EF-87F5-CDE16E7A1556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12268AB2-E999-43EF-87F5-CDE16E7A1556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

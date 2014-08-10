@@ -1,7 +1,7 @@
-﻿<Window x:Class="RemoteDesktopThesisServer.Views.Login.Login"
+﻿<Window x:Class="RemoteEducationApplication.Views.Login.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:global="clr-namespace:RemoteDesktopThesisServer.Properties"
+        xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
         Title="RemoteEducation LOGIN" 
         Style="{StaticResource LoginPageStyle}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown">

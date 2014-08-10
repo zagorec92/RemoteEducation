@@ -7,9 +7,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using RemoteDesktopThesisServer.Shared;
+using RemoteEducationApplication.Shared;
 
-namespace RemoteDesktopThesisServer.Client
+namespace RemoteEducationApplication.Client
 {
     public class ClientHandler : TcpClient, ITcpConnectionBase
     {

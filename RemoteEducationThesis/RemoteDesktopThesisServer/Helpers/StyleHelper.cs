@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Reflection;
 
 
-namespace RemoteDesktopThesisServer.Helpers
+namespace RemoteEducationApplication.Helpers
 {
     public static class StyleHelper
     {

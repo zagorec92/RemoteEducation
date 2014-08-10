@@ -1,6 +1,6 @@
-﻿using RemoteDesktopThesisServer.Client;
-using RemoteDesktopThesisServer.Helpers;
-using RemoteDesktopThesisServer.Server;
+﻿using RemoteEducationApplication.Client;
+using RemoteEducationApplication.Helpers;
+using RemoteEducationApplication.Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RemoteDesktopThesisServer
+namespace RemoteEducationApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -1,13 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RemoteEducation.DAL;
+using RemoteEducation.Model;
+using RemoteEducation.DAL.Repositories;
 
-namespace RemoteDesktopThesisServer.Authentication
+namespace RemoteEducationApplication.Authentication
 {
     public class AuthenticationManager
     {
+        public enum ErrorCodes
+        {
+            UsernameError = 1,
+            PasswordError = 2
+        }
+
+        #region Struct
+
+        /// <summary>
+        /// Exception error messages.
+        /// </summary>
+        private struct ErrorMessages
+        {
+            public const string InvalidParameters = "Parameter is empty.";
+            public const string InvalidUsername = "Incorrect username.";
+            public const string InvalidPassword = "Incorrect password.";
+        }
+
         /// <summary>
         /// Authentication exception parameters.
         /// </summary>
@@ -15,27 +38,33 @@ namespace RemoteDesktopThesisServer.Authentication
         {
             public static string IsUsername = "Username";
             public static string IsPassword = "Password";
-            public static string IsParametersEmpty = "Empty";
+            public static string IsParameters = "Empty";
         }
+
+        #endregion
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="username">Username.</param>
         /// <param name="password">Password.</param>
-        /// <returns>Bool indicating if authentication is successful.</returns>
-        public static bool AuthenticateUser(string username, string password)
+        public static void AuthenticateUser(string username, string password)
         {
             if(username == String.Empty && password == String.Empty)
-                throw new ArgumentException("Error message.", AuthenticateExParameters.IsParametersEmpty);
+                throw new ArgumentException(ErrorMessages.InvalidParameters, AuthenticateExParameters.IsParameters);
 
-            bool isAuthenticated = false;
+            using(RemoteEducationDbContext context = new RemoteEducationDbContext())
+            {
+                UserRepository userRepository = new UserRepository(context);
+                User user = userRepository.Get(username);
 
-            //check validity of given parameters
-            //if given parameters are not valid
-            //  throw ArgumentException with message and param name (use AuthenticateExParameters struct)
+                if (user == null)
+                    throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
 
-            return isAuthenticated;
+                //test
+                if (!user.UserDetail.Password.Equals(password))
+                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+            }
         }
     }
 }
