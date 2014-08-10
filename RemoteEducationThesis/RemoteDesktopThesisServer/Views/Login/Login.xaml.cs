@@ -12,6 +12,7 @@ using RemoteDesktopThesisServer;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Collections.Generic;
+using RemoteDesktopThesisServer.Extensions;
 
 namespace RemoteDesktopThesisServer.Views.Login
 {
@@ -62,6 +63,9 @@ namespace RemoteDesktopThesisServer.Views.Login
             }
         }
 
+        /// <summary>
+        /// Gets or sets the message to be displayed when Caps Lock is toggled.
+        /// </summary>
         public string CapsLockMessage
         {
             get
@@ -89,7 +93,7 @@ namespace RemoteDesktopThesisServer.Views.Login
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the Login class.
         /// </summary>
         public Login()
         {
@@ -177,7 +181,7 @@ namespace RemoteDesktopThesisServer.Views.Login
 
                 if (commandName == ApplicationManager.Commands.Close)
                     ApplicationManager.Close();
-                else if (commandName == ApplicationManager.Commands.Minimite)
+                else if (commandName == ApplicationManager.Commands.Minimize)
                     ApplicationManager.Minimize();
             }
         }
@@ -228,12 +232,12 @@ namespace RemoteDesktopThesisServer.Views.Login
 
             if (bttn != null)
             {
-                if (bttn.CommandParameter.ToString() == ApplicationManager.Commands.Clear)
+                if (bttn.GetCommandParameter() == ApplicationManager.Commands.Clear)
                 {
                     tbxUsername.Text = String.Empty;
                     pbxPassword.Password = String.Empty;
                 }
-                else if (bttn.CommandParameter.ToString() == ApplicationManager.Commands.Login)
+                else if (bttn.GetCommandParameter() == ApplicationManager.Commands.Login)
                 {
                     try
                     {
@@ -245,7 +249,7 @@ namespace RemoteDesktopThesisServer.Views.Login
                     }
                     catch (ArgumentException ex)
                     {
-                        string message = ex.Message.Substring(0, ex.Message.IndexOf('\r'));
+                        string message = ExceptionHelper.GetMessage(ex);
 
                         if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
                             UsernameValidationMessage = message;

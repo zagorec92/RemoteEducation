@@ -114,6 +114,11 @@ namespace RemoteDesktopThesisServer.Client
         /// </summary>
         public int UpdateInterval { get; set; }
 
+        /// <summary>
+        /// Precedence
+        /// </summary>
+        public int Precedence { get; set; }
+
         #endregion
 
         #region EventHandlers
@@ -154,14 +159,17 @@ namespace RemoteDesktopThesisServer.Client
         /// <summary>
         /// Initializes a new instance of ClientHandler class.
         /// </summary>
-        /// <param name="name">Name.</param>
+        /// <param name="name">Client name.</param>
         /// <param name="updateInterval">Refresh interval in milliseconds. Optional.</param>
-        public ClientHandler(string name, int updateInterval = -1)
+        /// <param name="precedence">Client precedence. Optional.</param>
+        public ClientHandler(string name, int updateInterval = -1, int precedence = 0)
             : base()
         {
             Name = name;
             UpdateInterval = updateInterval;
+            Precedence = precedence;
         }
+
 
         #region base
 
