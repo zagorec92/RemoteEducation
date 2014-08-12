@@ -19,5 +19,23 @@ namespace RemoteEducationApplication.Extensions
         {
             return bttn.CommandParameter.ToString();
         }
+
+        /// <summary>
+        /// Checks if byte arrays are equal by compairing every byte.
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="arrayToCompare">Array to compare.</param>
+        /// <returns>True if arrays are equal.</returns>
+        public static bool EqualsByByte(this byte[] array, byte[] arrayToCompare)
+        {
+            if (array.Length != arrayToCompare.Length)
+                return false;
+
+            for (int i = 0; i < array.Length; i++)
+                if (array[i] != arrayToCompare[i])
+                    return false;
+
+            return true;
+        }
     }
 }
