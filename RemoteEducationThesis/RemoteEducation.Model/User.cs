@@ -9,16 +9,40 @@ namespace RemoteEducation.Model
 {
     public class User : EntityBase
     {
+        /// <summary>
+        /// UserDetails ID.
+        /// </summary>
         [ForeignKey("UserDetail")]
         public int UserDetailsID { get; set; }
+
+        /// <summary>
+        /// The <see cref="RemoteEducation.Model.UserDetails"/> instance.
+        /// </summary>
         public virtual UserDetails UserDetail { get; set; }
+
+        /// <summary>
+        /// First name.
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Last name.
+        /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// First and last name combined.
+        /// </summary>
         public string FullName 
         {
             get { return String.Format("{0} {1}", FirstName, LastName); }
         }
+
         public virtual ICollection<Role> Roles { get; set; }
+
+        /// <summary>
+        /// Is active.
+        /// </summary>
         public bool Active { get; set; }
     }
 }

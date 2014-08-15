@@ -66,15 +66,15 @@ namespace RemoteEducationApplication.Authentication
                     throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
 
                 if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
-                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);              
+                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
             }
         }
 
         /// <summary>
-        /// 
+        /// Creates authentication data for the <see cref="RemoteEducation.Model.User"/> instance.
         /// </summary>
         /// <param name="user"></param>
-        public static void CreateUser(User user)
+        public static void CreateUserAuthentication(User user)
         {
             user.UserDetail.PasswordSalt = GenerateSalt();
             user.UserDetail.Password = CreateSaltedPasswordHash(user.UserDetail.Password,
@@ -84,34 +84,29 @@ namespace RemoteEducationApplication.Authentication
             using (RemoteEducationDbContext context = new RemoteEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
-                userRepository.InsertOrUpdate(user);
 
-                //userRepository.Save();
+                userRepository.InsertOrUpdate(user);
+                userRepository.Save();
             }
         }  
 
         /// <summary>
         /// Checks if the given password is equal to the current user password.
         /// </summary>
-        /// <param name="enteredPassword"></param>
-        /// <param name="salt"></param>
-        /// <param name="userPassword"></param>
+        /// <param name="enteredPassword">Entered password.</param>
+        /// <param name="salt">Password salt.</param>
+        /// <param name="userPassword">User password.</param>
         /// <returns></returns>
         private static bool CheckPassword(string enteredPassword, string salt, string userPassword)
         {
-            byte[] enteredPasswordBytes = System.Text.UTF8Encoding.Default.GetBytes(enteredPassword.ToCharArray());
-            byte[] saltBytes = System.Text.UTF8Encoding.Default.GetBytes(salt.ToCharArray());
-            byte[] enteredPasswordBytesWithSalt = new byte[enteredPasswordBytes.Length + saltBytes.Length];
-            byte[] userPasswordBytes = System.Text.UTF8Encoding.Default.GetBytes(userPassword.ToCharArray());
-
-            for (int i = 0; i < enteredPasswordBytes.Length; i++)
-                enteredPasswordBytesWithSalt[i] = enteredPasswordBytes[i];
-
-            for (int i = 0; i < saltBytes.Length; i++)
-                enteredPasswordBytesWithSalt[enteredPasswordBytes.Length + i] = saltBytes[i];
-
+            byte[] enteredPasswordWithSaltBytes = UTF8Encoding.Default.GetBytes(enteredPassword + salt);
+            byte[] userPasswordBytes = UTF8Encoding.Default.GetBytes(userPassword);
+            
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] enteredPasswordWithSaltHashed = md5.ComputeHash(enteredPasswordBytesWithSalt);
+            byte[] enteredPasswordWithSaltHashed = md5.ComputeHash(enteredPasswordWithSaltBytes);
+
+            enteredPasswordWithSaltHashed = UTF8Encoding.Default.GetBytes(
+                Convert.ToBase64String(enteredPasswordWithSaltHashed));
 
             return userPasswordBytes.EqualsByByte(enteredPasswordWithSaltHashed);
         }
@@ -131,18 +126,21 @@ namespace RemoteEducationApplication.Authentication
         }
 
         /// <summary>
-        /// 
+        /// Creates hashed password with salt.
         /// </summary>
         /// <param name="password"></param>
         /// <param name="salt"></param>
         /// <returns></returns>
         private static string CreateSaltedPasswordHash(string password, string salt)
         {
-            string passwordHash = String.Empty;
+            string passwordWithSalt = password + salt;
 
-            //TODO
+            byte[] passwordAndSaltBytes = UTF8Encoding.Default.GetBytes(passwordWithSalt);
 
-            return passwordHash;
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] passwordWithSaltHashed = md5.ComputeHash(passwordAndSaltBytes);
+
+            return Convert.ToBase64String(passwordWithSaltHashed);
         }
 
         #endregion

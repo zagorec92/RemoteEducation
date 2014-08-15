@@ -1,18 +1,14 @@
 ﻿using RemoteEducationApplication.ApplicationManagement;
 using RemoteEducationApplication.Authentication;
+using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using System;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using RemoteEducationApplication;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Collections.Generic;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -107,6 +103,8 @@ namespace RemoteEducationApplication.Views.Login
 
         #region EventHandlers
 
+        #region Window
+
         /// <summary>
         /// Overrides the OnInitialized event of the Login window.
         /// </summary>
@@ -131,6 +129,21 @@ namespace RemoteEducationApplication.Views.Login
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                AuthenticateUser();
+        }
+
+        #endregion
+
+        #region NotifyPropertyChanged
+
+        /// <summary>
         /// Raises the PropertyChanged event.
         /// </summary>
         /// <param name="propertyName">Name of the changed property.</param>
@@ -139,6 +152,10 @@ namespace RemoteEducationApplication.Views.Login
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
+        #region TextControl
 
         /// <summary>
         /// 
@@ -164,6 +181,10 @@ namespace RemoteEducationApplication.Views.Login
         {
             UsernameValidationMessage = String.Empty;
         }
+
+        #endregion
+
+        #region LoginMenu
 
         /// <summary>
         /// Handles the MouseLeftButtonDown event of Rectangle control.
@@ -220,6 +241,10 @@ namespace RemoteEducationApplication.Views.Login
             }
         }
 
+        #endregion
+
+        #region Button
+
         /// <summary>
         /// Handles the Click event of the Button control.
         /// </summary>
@@ -230,35 +255,43 @@ namespace RemoteEducationApplication.Views.Login
             CapsLockMessage = String.Empty;
             Button bttn = sender as Button;
 
-            
-
             if (bttn != null)
             {
                 if (bttn.GetCommandParameter() == ApplicationManager.Commands.Clear)
-                {
                     tbxUsername.Text = pbxPassword.Password = String.Empty;
-                }
                 else if (bttn.GetCommandParameter() == ApplicationManager.Commands.Login)
-                {
-                    try
-                    {
-                        AuthenticationManager.AuthenticateUser
-                            (tbxUsername.Text, pbxPassword.Password);
+                    AuthenticateUser();
+            }
+        }
 
-                        //redirect
-                    }
-                    catch (ArgumentException ex)
-                    {
-                        string message = ExceptionHelper.GetMessage(ex);
+        #endregion
 
-                        if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
-                            UsernameValidationMessage = message;
-                        else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsPassword)
-                            PasswordValidationMessage = message;
-                        else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParameters)
-                            UsernameValidationMessage = PasswordValidationMessage = message;
-                    }
-                }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Authenticates user.
+        /// </summary>
+        private void AuthenticateUser()
+        {
+            try
+            {
+                AuthenticationManager.AuthenticateUser
+                    (tbxUsername.Text, pbxPassword.Password);
+
+                //redirect
+            }
+            catch (ArgumentException ex)
+            {
+                string message = ExceptionHelper.GetMessage(ex);
+
+                if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
+                    UsernameValidationMessage = message;
+                else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsPassword)
+                    PasswordValidationMessage = message;
+                else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParameters)
+                    UsernameValidationMessage = PasswordValidationMessage = message;
             }
         }
 

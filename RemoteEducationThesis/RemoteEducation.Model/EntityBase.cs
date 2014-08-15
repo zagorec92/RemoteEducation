@@ -6,18 +6,18 @@ namespace RemoteEducation.Model
     public abstract class EntityBase
     {
         /// <summary>
-        /// ID
+        /// Entity ID.
         /// </summary>
         [Key]
         public int ID { get; set; }
 
         /// <summary>
-        /// DateCreated
+        /// DateCreated.
         /// </summary>
         public DateTime? DateCreated { get; set; }
 
         /// <summary>
-        /// DateModified
+        /// DateModified.
         /// </summary>
         public DateTime? DateModified { get; set; }
     }

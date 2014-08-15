@@ -1,4 +1,5 @@
 ﻿using RemoteEducation.Model;
+using System;
 using System.Linq;
 
 namespace RemoteEducation.DAL.Repositories
@@ -32,6 +33,22 @@ namespace RemoteEducation.DAL.Repositories
         {
             return base.GetAll()
                 .FirstOrDefault(x => x.UserDetail.Username == username);
+        }
+
+        public bool InsertOrUpdate(User user)
+        {
+            try
+            {
+                user.UserDetail.DateCreated = user.UserDetail.DateModified = DateTime.Now;
+                user.Active = true;
+                base.InsertOrUpdate(user);
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

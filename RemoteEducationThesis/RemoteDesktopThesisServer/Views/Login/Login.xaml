@@ -4,7 +4,8 @@
         xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
         Title="RemoteEducation LOGIN" 
         Style="{StaticResource LoginPageStyle}"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        KeyDown="Window_KeyDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
