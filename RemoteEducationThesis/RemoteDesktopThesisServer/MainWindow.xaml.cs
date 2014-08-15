@@ -72,7 +72,7 @@ namespace RemoteEducationApplication
             IPAddress address = ConnectionHelper.GetLocalIPAddress();
 
             Server = new ServerHandler(2000, address);
-            Server.MaxConnections = (int)ConnectionHelper.MaxConnection.Twenty;
+            Server.MaxConnections = (int)ConnectionHelper.MaxConnections.Twenty;
             Server.Start();
 
             Task[] tasks = new Task[]

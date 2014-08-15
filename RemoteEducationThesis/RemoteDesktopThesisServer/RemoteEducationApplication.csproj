@@ -77,7 +77,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ApplicationManagement\ApplicationManager.cs" />
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
@@ -88,6 +87,9 @@
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Server\ServerManager.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
+    <Compile Include="Views\Dialog\AuthenticationDataRecovery.xaml.cs">
+      <DependentUpon>AuthenticationDataRecovery.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -112,6 +114,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\LoginStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\MainWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\WindowBaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Dialog\AuthenticationDataRecovery.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

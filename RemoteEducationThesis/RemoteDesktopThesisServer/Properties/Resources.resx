@@ -123,6 +123,9 @@
   <data name="ApplicationMenuMinimize" xml:space="preserve">
     <value>Minimize</value>
   </data>
+  <data name="ApplicationWindowLoginTitle" xml:space="preserve">
+    <value>RemoteEducation LOGIN</value>
+  </data>
   <data name="LoginPageClear" xml:space="preserve">
     <value>Clear</value>
   </data>

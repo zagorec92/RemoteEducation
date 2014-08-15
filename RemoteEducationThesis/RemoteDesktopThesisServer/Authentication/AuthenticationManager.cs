@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RemoteEducation.DAL;
-using RemoteEducation.Model;
+﻿using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
-using System.Security.Cryptography;
+using RemoteEducation.Model;
 using RemoteEducationApplication.Extensions;
+using System;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -133,9 +128,7 @@ namespace RemoteEducationApplication.Authentication
         /// <returns></returns>
         private static string CreateSaltedPasswordHash(string password, string salt)
         {
-            string passwordWithSalt = password + salt;
-
-            byte[] passwordAndSaltBytes = UTF8Encoding.Default.GetBytes(passwordWithSalt);
+            byte[] passwordAndSaltBytes = UTF8Encoding.Default.GetBytes(password + salt);
 
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             byte[] passwordWithSaltHashed = md5.ComputeHash(passwordAndSaltBytes);

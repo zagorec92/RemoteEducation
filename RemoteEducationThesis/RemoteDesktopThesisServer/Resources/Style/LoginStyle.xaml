@@ -4,16 +4,20 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
         <ResourceDictionary Source="..\Fonts\Fonts.xaml" />
+        <ResourceDictionary Source="WindowBaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
-    <Style x:Key="LoginPageStyle" TargetType="Window">
+    <Style x:Key="LoginWindowStyle" TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
         <Setter Property="Width" Value="425" />
         <Setter Property="Height" Value="250" />
-        <Setter Property="WindowStyle" Value="None" />
-        <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+        
+        <!--for design view-->
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="BorderThickness" Value="5" />
+        <Setter Property="Background" Value="{StaticResource BetterWhiteBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
     </Style>
     

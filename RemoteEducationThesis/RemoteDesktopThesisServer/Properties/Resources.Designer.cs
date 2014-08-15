@@ -79,6 +79,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RemoteEducation LOGIN.
+        /// </summary>
+        public static string ApplicationWindowLoginTitle {
+            get {
+                return ResourceManager.GetString("ApplicationWindowLoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string LoginPageClear {

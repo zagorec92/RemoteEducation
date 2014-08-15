@@ -1,7 +1,7 @@
-﻿using RemoteEducationApplication.ApplicationManagement;
-using RemoteEducationApplication.Authentication;
+﻿using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
+using RemoteEducationApplication.Views.Dialog;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -80,7 +80,7 @@ namespace RemoteEducationApplication.Views.Login
         #region Events
         
         /// <summary>
-        /// 
+        /// The <see cref="System.ComponentModel.PropertyChangedEventHandler"/> delegate.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -106,19 +106,6 @@ namespace RemoteEducationApplication.Views.Login
         #region Window
 
         /// <summary>
-        /// Overrides the OnInitialized event of the Login window.
-        /// </summary>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        protected override void OnInitialized(EventArgs e)
-        {
-            base.OnInitialized(e);
-
-            //for testing
-            //ApplicationManager appManager = new ApplicationManager(this);
-            //appManager.Start();
-        }
-
-        /// <summary>
         /// Handles the MouseLeftButtonDown event of the Window control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -129,10 +116,11 @@ namespace RemoteEducationApplication.Views.Login
         }
 
         /// <summary>
-        /// 
+        /// Handles the KeyDown event of the Window control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.KeyEventArgs"/>
+        /// instance containing the event data.</param>
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -158,10 +146,11 @@ namespace RemoteEducationApplication.Views.Login
         #region TextControl
 
         /// <summary>
-        /// 
+        /// Handles the PasswordChanged event of the pbxPassword control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
+        /// instance containing the event data.</param>
         private void pbxPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordValidationMessage = String.Empty;
@@ -173,10 +162,11 @@ namespace RemoteEducationApplication.Views.Login
         }
 
         /// <summary>
-        /// 
+        /// Handles the TextChanged event of the TextBox control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.TextChangedEventArgs"/>
+        /// instance containing the event data.</param>
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UsernameValidationMessage = String.Empty;
@@ -200,10 +190,10 @@ namespace RemoteEducationApplication.Views.Login
             {
                 string commandName = rectangle.Tag.ToString();
 
-                if (commandName == ApplicationManager.Commands.Close)
-                    ApplicationManager.Close();
-                else if (commandName == ApplicationManager.Commands.Minimize)
-                    ApplicationManager.Minimize();
+                if (commandName == ApplicationHelper.Commands.Close)
+                    ApplicationHelper.Close();
+                else if (commandName == ApplicationHelper.Commands.Minimize)
+                    ApplicationHelper.Minimize();
             }
         }
 
@@ -249,7 +239,8 @@ namespace RemoteEducationApplication.Views.Login
         /// Handles the Click event of the Button control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
+        /// instance containing the event data.</param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CapsLockMessage = String.Empty;
@@ -257,11 +248,26 @@ namespace RemoteEducationApplication.Views.Login
 
             if (bttn != null)
             {
-                if (bttn.GetCommandParameter() == ApplicationManager.Commands.Clear)
+                if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Clear)
                     tbxUsername.Text = pbxPassword.Password = String.Empty;
-                else if (bttn.GetCommandParameter() == ApplicationManager.Commands.Login)
+                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Login)
                     AuthenticateUser();
             }
+        }
+
+        #endregion
+
+        #region HyperLink
+
+        /// <summary>
+        /// Handles the Click event of the HyperLink control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
+        /// instance containing the event data.</param>
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigateTo(new AuthenticationDataRecovery(), false);
         }
 
         #endregion
@@ -277,10 +283,11 @@ namespace RemoteEducationApplication.Views.Login
         {
             try
             {
-                AuthenticationManager.AuthenticateUser
-                    (tbxUsername.Text, pbxPassword.Password);
+                ///commented out for testing purposes
+                //AuthenticationManager.AuthenticateUser
+                //    (tbxUsername.Text, pbxPassword.Password);
 
-                //redirect
+                this.NavigateTo(new MainWindow(), true);
             }
             catch (ArgumentException ex)
             {

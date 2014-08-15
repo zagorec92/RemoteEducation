@@ -2,8 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-        Title="RemoteEducation LOGIN" 
-        Style="{StaticResource LoginPageStyle}"
+        Style="{StaticResource LoginWindowStyle}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         KeyDown="Window_KeyDown">
     <Grid>
@@ -14,7 +13,7 @@
 
         <!--menu bar-->
         <Grid Background="{StaticResource LightBlackBrush}">
-            <TextBlock Text="RemoteEducation LOGIN" 
+            <TextBlock Text="{x:Static global:Resources.ApplicationWindowLoginTitle}" 
                        Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
                        Foreground="{StaticResource BetterWhiteBrush}"
@@ -43,7 +42,7 @@
         </Grid>
 
         <!--content-->
-        <Grid Grid.Row="1" Background="{StaticResource BetterWhiteBrush}">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="1.5*" />
@@ -104,7 +103,7 @@
             <TextBlock Grid.Row="2"
                        Grid.Column="2"
                        Style="{StaticResource UsernamePasswordRecoveryLinkStyle}">
-                <Hyperlink>
+                <Hyperlink Click="Hyperlink_Click">
                     <TextBlock Text="{x:Static global:Resources.LoginPageRecovery}"/>
                 </Hyperlink>
             </TextBlock>

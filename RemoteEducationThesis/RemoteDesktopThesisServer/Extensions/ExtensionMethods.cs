@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace RemoteEducationApplication.Extensions
@@ -36,6 +37,20 @@ namespace RemoteEducationApplication.Extensions
                     return false;
 
             return true;
+        }
+
+        /// <summary>
+        /// Navigates to a new <see cref="System.Windows.Window"/> instance.
+        /// </summary>
+        /// <param name="window">The <see cref="System.Windows.Window"/>.</param>
+        /// <param name="navigateToWindow">The <see cref="System.Windows.Window"/>.</param>
+        /// <param name="isClosing"></param>
+        public static void NavigateTo(this Window window, Window navigateToWindow, bool isClosing)
+        {
+            if(isClosing)
+                window.Close();
+
+            navigateToWindow.Show();
         }
     }
 }

@@ -1,14 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
 using System.Windows;
-using System.Xaml;
-using System.Xml;
-using System.Linq;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
-
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -20,7 +11,7 @@ namespace RemoteEducationApplication.Helpers
         /// Gets the font size.
         /// </summary>
         /// <param name="key">Key.</param>
-        /// <returns></returns>
+        /// <returns>Font size.</returns>
         public static double GetFontSize(string key)
         {
             double retVal = 0;
