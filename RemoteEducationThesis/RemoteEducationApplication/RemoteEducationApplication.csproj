@@ -71,6 +71,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsInput">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -81,6 +84,7 @@
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
+    <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />

@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace RemoteEducationApplication.Helpers
 {
-    public sealed class ConnectionHelper : ApplicationHelper
+    public abstract class ConnectionHelper : BaseHelper
     {
         #region Enum
 

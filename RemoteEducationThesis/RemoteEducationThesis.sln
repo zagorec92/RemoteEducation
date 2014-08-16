@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationApplication", "RemoteDesktopThesisServer\RemoteEducationApplication.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationApplication", "RemoteEducationApplication\RemoteEducationApplication.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducation.DAL", "RemoteEducation.DAL\RemoteEducation.DAL.csproj", "{12268AB2-E999-43EF-87F5-CDE16E7A1556}"
 EndProject
@@ -28,8 +30,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
