@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace RemoteEducationApplication.Views.Login
@@ -177,7 +176,7 @@ namespace RemoteEducationApplication.Views.Login
         #region LoginMenu
 
         /// <summary>
-        /// Handles the MouseLeftButtonDown event of Rectangle control.
+        /// Handles the MouseLeftButtonDown event of Rectangle element.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/>
@@ -188,46 +187,12 @@ namespace RemoteEducationApplication.Views.Login
 
             if (rectangle != null)
             {
-                string commandName = rectangle.Tag.ToString();
+                string commandName = rectangle.GetTag();
 
                 if (commandName == ApplicationHelper.Commands.Close)
                     ApplicationHelper.Close();
                 else if (commandName == ApplicationHelper.Commands.Minimize)
                     ApplicationHelper.Minimize();
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseEnter event of Rectangle control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Rectangle rectangle = sender as Rectangle;
-
-            if (rectangle != null)
-            {
-                rectangle.Fill =
-                    FindResource("ApplicationMenuHoverBrush") as SolidColorBrush;
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseLeave event of Rectangle control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private void Rectangle_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Rectangle rectangle = sender as Rectangle;
-
-            if (rectangle != null)
-            {
-                rectangle.Fill = 
-                    FindResource("BetterWhiteBrush") as SolidColorBrush;
             }
         }
 

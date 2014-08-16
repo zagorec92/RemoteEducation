@@ -3,8 +3,10 @@
     
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
-        <ResourceDictionary Source="..\Fonts\Fonts.xaml" />
-        <ResourceDictionary Source="WindowBaseStyle.xaml" />
+        <ResourceDictionary Source="..\Fonts\FontSize.xaml" />
+        <ResourceDictionary Source="Base\WindowBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\ButtonBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\RectangleMenuBaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="LoginWindowStyle" TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
@@ -37,31 +39,27 @@
         <Setter Property="Background" Value="{StaticResource BetterWhiteBrush}" />
     </Style>
     
-    <Style x:Key="RectangleLoginStyle" TargetType="Rectangle">
-        <Setter Property="Height" Value="30" />
-        <Setter Property="Width" Value="30" />
+    <Style x:Key="RectangleLoginStyle" TargetType="Rectangle" BasedOn="{StaticResource {x:Type Rectangle}}">
         <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="Fill" Value="{StaticResource BetterWhiteBrush}" />
     </Style>
     
-    <Style x:Key="ButtonLoginStyle" TargetType="Button">
+    <Style x:Key="ButtonLoginStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Width" Value="75" />
         <Setter Property="Height" Value="25" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
         <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
-        <Setter Property="BorderBrush" Value="Transparent" />
     </Style>
     
     <Style x:Key="ValidationTextBlockLoginStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Margin" Value="5, 0, 0, 0" />
         <Setter Property="Foreground" Value="{StaticResource ValidationBrush}" />
-        <Setter Property="FontSize" Value="{Binding ValidationFontSize}" />
+        <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
     </Style>
     
     <Style x:Key="UsernamePasswordRecoveryLinkStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
+        <Setter Property="FontSize" Value="{StaticResource TinyFont}" />
         <Setter Property="Margin" Value="0, 20, 0, 0" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>

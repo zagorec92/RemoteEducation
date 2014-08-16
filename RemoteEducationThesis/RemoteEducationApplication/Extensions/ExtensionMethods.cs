@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -39,12 +35,14 @@ namespace RemoteEducationApplication.Extensions
             return true;
         }
 
+        #region Window
+
         /// <summary>
         /// Navigates to a new <see cref="System.Windows.Window"/> instance.
         /// </summary>
         /// <param name="window">The <see cref="System.Windows.Window"/>.</param>
         /// <param name="navigateToWindow">The <see cref="System.Windows.Window"/>.</param>
-        /// <param name="isClosing"></param>
+        /// <param name="isClosing">Close current window.</param>
         public static void NavigateTo(this Window window, Window navigateToWindow, bool isClosing)
         {
             if(isClosing)
@@ -52,5 +50,34 @@ namespace RemoteEducationApplication.Extensions
 
             navigateToWindow.Show();
         }
+
+        #endregion
+
+        #region FrameworkElement
+
+        /// <summary>
+        /// Gets the Tag property of the <see cref="System.Windows.FrameworkElement"/> element as string.
+        /// </summary>
+        /// <param name="rectangle">The <see cref="System.Windows.FrameworkElement"/> instance.</param>
+        /// <returns>Tag as string.</returns>
+        public static string GetTag(this FrameworkElement frameworkElement)
+        {
+            return frameworkElement.Tag.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T">Type of the return value.</typeparam>
+        /// <param name="frameworkElement"></param>
+        /// <returns></returns>
+        public static T GetTag<T>(this FrameworkElement frameworkElement)
+        {
+            Type type = typeof(T);
+
+            return (T)Convert.ChangeType(frameworkElement.Tag, type);
+        }
+
+        #endregion
     }
 }

@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
-        <ResourceDictionary Source="..\Fonts\Fonts.xaml" />
+        <ResourceDictionary Source="..\..\Brushes\Brushes.xaml" />
+        <ResourceDictionary Source="..\..\Fonts\FontSize.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Window">

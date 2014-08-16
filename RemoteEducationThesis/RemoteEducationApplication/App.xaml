@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!--non view resource dictionaries-->
-                <ResourceDictionary Source="Resources\Fonts\Fonts.xaml" />
+                <ResourceDictionary Source="Resources\Fonts\FontSize.xaml" />
                 <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
                 
                 <!--view resource dictionaries-->

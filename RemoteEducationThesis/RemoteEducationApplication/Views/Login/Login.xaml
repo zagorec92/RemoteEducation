@@ -21,9 +21,7 @@
             <Rectangle Style="{StaticResource RectangleLoginStyle}"
                        Tag="{x:Static global:Resources.ApplicationMenuClose}"
                        ToolTip="{x:Static global:Resources.ApplicationMenuClose}"
-                       MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
-                       MouseEnter="Rectangle_MouseEnter"
-                       MouseLeave="Rectangle_MouseLeave">
+                       MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
                 <Rectangle.OpacityMask>
                     <ImageBrush ImageSource="../../Resources/Images/close.png"/>
                 </Rectangle.OpacityMask>
@@ -32,9 +30,7 @@
                        Margin="0, 0, 30, 0"
                        Tag="{x:Static global:Resources.ApplicationMenuMinimize}"
                        ToolTip="{x:Static global:Resources.ApplicationMenuMinimize}"
-                       MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
-                       MouseEnter="Rectangle_MouseEnter"
-                       MouseLeave="Rectangle_MouseLeave">
+                       MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
                 <Rectangle.OpacityMask>
                     <ImageBrush ImageSource="../../Resources/Images/minimize.png"/>
                 </Rectangle.OpacityMask>
