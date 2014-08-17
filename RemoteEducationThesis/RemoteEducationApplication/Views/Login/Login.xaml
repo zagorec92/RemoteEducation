@@ -5,6 +5,42 @@
         Style="{StaticResource LoginWindowStyle}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         KeyDown="Window_KeyDown">
+	<Window.Resources>
+		<Storyboard x:Key="FadeOutLogin">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="FadeOutRecovery">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="FadeInRecovery">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid1">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="FadeInLogin">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+				<EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</Window.Resources>
+	<Window.Triggers>
+		<EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="textBlock">
+			<BeginStoryboard Storyboard="{StaticResource FadeOutLogin}"/>
+			<BeginStoryboard x:Name="FadeInRecovery_BeginStoryboard" Storyboard="{StaticResource FadeInRecovery}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="ButtonBase.Click" SourceName="button">
+			<BeginStoryboard x:Name="FadeOutRecovery_BeginStoryboard" Storyboard="{StaticResource FadeOutRecovery}"/>
+			<BeginStoryboard x:Name="FadeInLogin_BeginStoryboard" Storyboard="{StaticResource FadeInLogin}"/>
+		</EventTrigger>
+	</Window.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -38,7 +74,7 @@
         </Grid>
 
         <!--content-->
-        <Grid Grid.Row="1">
+        <Grid x:Name="grid" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="1.5*" />
@@ -100,9 +136,46 @@
                        Grid.Column="2"
                        Style="{StaticResource UsernamePasswordRecoveryLinkStyle}">
                 <Hyperlink Click="Hyperlink_Click">
-                    <TextBlock Text="{x:Static global:Resources.LoginPageRecovery}"/>
+                    <TextBlock x:Name="textBlock" Text="{x:Static global:Resources.LoginPageRecovery}"/>
                 </Hyperlink>
             </TextBlock>
+        </Grid>
+
+        <!--password recovery-->
+        <Grid x:Name="grid1" Grid.Row="1" Opacity="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="2.7*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{x:Static global:Resources.UserDataEmail}" 
+                       Style="{StaticResource TextBlockLoginStyle}"/>
+            <TextBox Grid.Column="1" 
+                     Name="tbxEmail"
+                     Style="{StaticResource TextBoxLoginStyle}"
+                     TextChanged="TextBox_TextChanged" 
+                     Width="225"/>
+
+            <Button x:Name="button" Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource ButtonLoginStyle}"
+                    Content="{x:Static global:Resources.CancelAction}" 
+                    CommandParameter="{x:Static global:Resources.CancelAction}"
+                    HorizontalAlignment="Left"
+                    Margin="30, 0, 0, 0"
+                    Click="Button_Click"/>
+            
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource ButtonLoginStyle}"
+                    Content="{x:Static global:Resources.RecoveryAction}" 
+                    CommandParameter="{x:Static global:Resources.RecoveryAction}"
+                    Margin="40, 0, 0, 0"
+                    Click="Button_Click"/>
         </Grid>
 
     </Grid>

@@ -88,6 +88,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelAction {
+            get {
+                return ResourceManager.GetString("CancelAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string LoginPageClear {
@@ -115,7 +124,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Forgot username or password?.
+        ///   Looks up a localized string similar to Forgot password?.
         /// </summary>
         public static string LoginPageRecovery {
             get {
@@ -129,6 +138,24 @@ namespace RemoteEducationApplication.Properties {
         public static string LoginPageUsername {
             get {
                 return ResourceManager.GetString("LoginPageUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recover.
+        /// </summary>
+        public static string RecoveryAction {
+            get {
+                return ResourceManager.GetString("RecoveryAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email:.
+        /// </summary>
+        public static string UserDataEmail {
+            get {
+                return ResourceManager.GetString("UserDataEmail", resourceCulture);
             }
         }
     }

@@ -136,6 +136,9 @@ namespace RemoteEducationApplication.Authentication
             return Convert.ToBase64String(passwordWithSaltHashed);
         }
 
+        public static void RecoverPassword(string email)
+        { }
+
         #endregion
     }
 }

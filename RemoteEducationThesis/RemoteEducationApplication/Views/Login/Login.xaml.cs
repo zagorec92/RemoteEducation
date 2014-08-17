@@ -1,7 +1,6 @@
 ﻿using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Views.Dialog;
 using System;
 using System.ComponentModel;
 using System.Windows;
@@ -217,6 +216,10 @@ namespace RemoteEducationApplication.Views.Login
                     tbxUsername.Text = pbxPassword.Password = String.Empty;
                 else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Login)
                     AuthenticateUser();
+                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Cancel)
+                    tbxEmail.Text = String.Empty;
+                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Recover)
+                    AuthenticationManager.RecoverPassword(tbxEmail.Text);
             }
         }
 
@@ -232,7 +235,7 @@ namespace RemoteEducationApplication.Views.Login
         /// instance containing the event data.</param>
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigateTo(new AuthenticationDataRecovery(), false);
+            //this.NavigateTo(new AuthenticationDataRecovery(), false);
         }
 
         #endregion

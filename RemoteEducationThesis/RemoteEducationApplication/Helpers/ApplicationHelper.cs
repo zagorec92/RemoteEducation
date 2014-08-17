@@ -14,6 +14,8 @@ namespace RemoteEducationApplication.Helpers
             public static string Login = "Login";
             public static string Close = "Close";
             public static string Minimize = "Minimize";
+            public static string Cancel = "Cancel";
+            public static string Recover = "Recover";
         }
 
         #endregion

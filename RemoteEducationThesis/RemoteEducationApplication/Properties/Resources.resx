@@ -126,6 +126,9 @@
   <data name="ApplicationWindowLoginTitle" xml:space="preserve">
     <value>RemoteEducation LOGIN</value>
   </data>
+  <data name="CancelAction" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="LoginPageClear" xml:space="preserve">
     <value>Clear</value>
   </data>
@@ -136,9 +139,15 @@
     <value>Password:</value>
   </data>
   <data name="LoginPageRecovery" xml:space="preserve">
-    <value>Forgot username or password?</value>
+    <value>Forgot password?</value>
   </data>
   <data name="LoginPageUsername" xml:space="preserve">
     <value>Username:</value>
+  </data>
+  <data name="RecoveryAction" xml:space="preserve">
+    <value>Recover</value>
+  </data>
+  <data name="UserDataEmail" xml:space="preserve">
+    <value>Email:</value>
   </data>
 </root>
