@@ -3,6 +3,9 @@ using RemoteEducation.DAL.Repositories;
 using RemoteEducation.Model;
 using RemoteEducationApplication.Extensions;
 using System;
+using System.IO;
+using System.Net.Mail;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -13,6 +16,7 @@ namespace RemoteEducationApplication.Authentication
         #region Const
 
         private const int BYTE_SIZE_SALT = 16;
+        private const int GEN_PASS_SIZE = 8;
 
         #endregion
 
@@ -136,8 +140,30 @@ namespace RemoteEducationApplication.Authentication
             return Convert.ToBase64String(passwordWithSaltHashed);
         }
 
-        public static void RecoverPassword(string email)
-        { }
+        public static void RecoverPassword(string username, string email)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        private static string GetRandomPassword(int size)
+        {
+            string generatedPassword = String.Empty;
+            char ch;
+            Random random = new Random();
+
+            for (int i = 0; i < size; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));                 
+                generatedPassword += ch.ToString();
+            }
+
+            return generatedPassword;
+        }
 
         #endregion
     }

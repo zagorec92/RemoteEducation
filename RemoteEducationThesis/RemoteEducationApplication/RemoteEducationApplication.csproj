@@ -82,6 +82,7 @@
     </ApplicationDefinition>
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
+    <Compile Include="Converters\TextConverter.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
@@ -91,6 +92,9 @@
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Server\ServerManager.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
+    <Compile Include="Views\UserControls\ApplicationBar.xaml.cs">
+      <DependentUpon>ApplicationBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Style\GlobalStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Style\LoginStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\Base\WindowBaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ApplicationBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +215,9 @@
       <Project>{888b25b7-d27f-4f39-9db4-9c66a223b489}</Project>
       <Name>RemoteEducation.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

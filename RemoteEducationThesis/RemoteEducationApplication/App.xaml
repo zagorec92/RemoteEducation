@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
                 
                 <!--view resource dictionaries-->
+                <ResourceDictionary Source="Resources\Style\GlobalStyle.xaml" />
                 <ResourceDictionary Source="Resources\Style\LoginStyle.xaml" />
                 <ResourceDictionary Source="Resources\Style\MainWindowStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>

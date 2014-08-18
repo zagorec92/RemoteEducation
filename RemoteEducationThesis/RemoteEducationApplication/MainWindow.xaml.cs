@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Shapes;
+using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication
 {
@@ -62,6 +65,35 @@ namespace RemoteEducationApplication
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region EventHandlers
+
+        #region Menu/Application bar
+
+        /// <summary>
+        /// Handles the MouseLEftButtonDown event of the Rectangle element.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/>
+        /// instance containing the event data.</param>
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        {
+            Rectangle rectangle = sender as Rectangle;
+
+            if(rectangle != null)
+            {
+                string commandName = rectangle.GetTag();
+
+                if (commandName == ApplicationHelper.Commands.Close)
+                    ApplicationHelper.Close();
+                else if (commandName == ApplicationHelper.Commands.Minimize)
+                    ApplicationHelper.Minimize();
+            }
+        }
+
+        #endregion
 
         #endregion
 

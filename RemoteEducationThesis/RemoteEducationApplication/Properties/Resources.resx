@@ -123,8 +123,8 @@
   <data name="ApplicationMenuMinimize" xml:space="preserve">
     <value>Minimize</value>
   </data>
-  <data name="ApplicationWindowLoginTitle" xml:space="preserve">
-    <value>RemoteEducation LOGIN</value>
+  <data name="ApplicationWindowTitle" xml:space="preserve">
+    <value>RemoteEducation</value>
   </data>
   <data name="CancelAction" xml:space="preserve">
     <value>Cancel</value>

@@ -48,6 +48,7 @@ namespace RemoteEducationApplication.Extensions
             if(isClosing)
                 window.Close();
 
+            Application.Current.MainWindow = navigateToWindow;
             navigateToWindow.Show();
         }
 

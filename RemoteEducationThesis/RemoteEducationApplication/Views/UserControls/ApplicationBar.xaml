@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="RemoteEducationApplication.Views.UserControls.ApplicationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="60"
+             Style="{StaticResource ApplicationBarUserControlStyle}">
+
+    <Grid>
+
+        <!--close-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.ApplicationMenuClose}"
+                   ToolTip="{x:Static global:Resources.ApplicationMenuClose}"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/close.png"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+        <!--minimize-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Margin="0, 0, 30, 0"
+                   Tag="{x:Static global:Resources.ApplicationMenuMinimize}"
+                   ToolTip="{x:Static global:Resources.ApplicationMenuMinimize}"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/minimize.png"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+    </Grid>
+</UserControl>

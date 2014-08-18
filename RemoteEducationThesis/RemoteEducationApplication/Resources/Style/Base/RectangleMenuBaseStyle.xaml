@@ -3,7 +3,6 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="..\..\Brushes\Brushes.xaml" />
-        <ResourceDictionary Source="..\..\Fonts\FontSize.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="Rectangle">

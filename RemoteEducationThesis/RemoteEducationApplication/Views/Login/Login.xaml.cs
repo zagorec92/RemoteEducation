@@ -15,11 +15,25 @@ namespace RemoteEducationApplication.Views.Login
     /// </summary>
     public partial class Login : Window, INotifyPropertyChanged
     {
+        #region Struct
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private struct WindowRoles
+        {
+            public static string Login = "LOGIN";
+            public static string Recovery = "PASSWORD RECOVERY";
+        }
+
+        #endregion
+
         #region Fields
 
         private string _usernameValidationMessage;
         private string _passwordValidationMessage;
         private string _capsLockMessage;
+        private string _windowRole;
 
         #endregion
 
@@ -73,6 +87,22 @@ namespace RemoteEducationApplication.Views.Login
             }
         }
 
+        /// <summary>
+        /// Gets or sets the window role.
+        /// </summary>
+        public string WindowRole
+        {
+            get 
+            {
+                return _windowRole;
+            }
+            set
+            {
+                _windowRole = value;
+                NotifyPropertyChanged("WindowRole");
+            }
+        }
+
         #endregion
 
         #region Events
@@ -91,6 +121,7 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public Login()
         {
+            WindowRole = WindowRoles.Login;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
 
@@ -170,29 +201,15 @@ namespace RemoteEducationApplication.Views.Login
             UsernameValidationMessage = String.Empty;
         }
 
-        #endregion
-
-        #region LoginMenu
-
         /// <summary>
-        /// Handles the MouseLeftButtonDown event of Rectangle element.
+        /// Handles the MouseLeftButtonDow event of the textBlock control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/>
+        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> 
         /// instance containing the event data.</param>
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void textBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Rectangle rectangle = sender as Rectangle;
-
-            if (rectangle != null)
-            {
-                string commandName = rectangle.GetTag();
-
-                if (commandName == ApplicationHelper.Commands.Close)
-                    ApplicationHelper.Close();
-                else if (commandName == ApplicationHelper.Commands.Minimize)
-                    ApplicationHelper.Minimize();
-            }
+            WindowRole = WindowRoles.Recovery;
         }
 
         #endregion
@@ -217,25 +234,13 @@ namespace RemoteEducationApplication.Views.Login
                 else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Login)
                     AuthenticateUser();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Cancel)
+                {
                     tbxEmail.Text = String.Empty;
+                    WindowRole = WindowRoles.Login;
+                }
                 else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Recover)
-                    AuthenticationManager.RecoverPassword(tbxEmail.Text);
+                    AuthenticationManager.RecoverPassword(tbxUsernameRecover.Text, tbxEmail.Text);
             }
-        }
-
-        #endregion
-
-        #region HyperLink
-
-        /// <summary>
-        /// Handles the Click event of the HyperLink control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
-        /// instance containing the event data.</param>
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            //this.NavigateTo(new AuthenticationDataRecovery(), false);
         }
 
         #endregion
