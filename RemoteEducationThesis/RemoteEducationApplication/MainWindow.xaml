@@ -10,66 +10,39 @@
             <RowDefinition />
             <RowDefinition Height="25" />
         </Grid.RowDefinitions>
-        
+
         <!--menu bar-->
         <Grid Background="{StaticResource LightBlackBrush}">
-            
+
             <!--menu-->
-            <Grid Width="400"
-                  HorizontalAlignment="Left">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+            <Grid HorizontalAlignment="Left">
+                <Menu Style="{StaticResource MainWindowMenuStyle}">
+                    <MenuItem Header="{x:Static global:Resources.MenuFile}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
 
-                <Grid>
-                    <TextBlock Text="File"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
-                                <Setter Property="FontSize" Value="{StaticResource LargeFont}" />
-                                <Style.Triggers>
-                                    <Trigger Property ="IsMouseOver" Value="True">
-                                        <Setter Property= "Foreground" Value="Red"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </Grid>
+                    <MenuItem Header="{x:Static global:Resources.MenuView}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
 
-                <TextBlock Grid.Column="1"
-                           Text="View" 
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="{StaticResource LargeFont}"
-                           Foreground="{StaticResource BetterWhiteBrush}"/>
+                    <MenuItem Header="{x:Static global:Resources.MenuOptions}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
 
-                <TextBlock Grid.Column="2"
-                           Text="Options" 
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="{StaticResource LargeFont}"
-                           Foreground="{StaticResource BetterWhiteBrush}"/>
+                    </MenuItem>
+                    
+                    <MenuItem Header="{x:Static global:Resources.MenuHelp}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
+                    
 
-                <TextBlock Grid.Column="3"
-                           Text="Help" 
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center"
-                           FontSize="{StaticResource LargeFont}"
-                           Foreground="{StaticResource BetterWhiteBrush}"/>
-
+                </Menu>
             </Grid>
-            
+
             <!--minimize and close-->
             <appBar:ApplicationBar />
-            
+
         </Grid>
-        
+
         <!--status bar-->
         <Grid Grid.Row="2" 
               Background="{StaticResource LightBlackBrush}">

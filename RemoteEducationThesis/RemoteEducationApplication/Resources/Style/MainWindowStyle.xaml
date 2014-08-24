@@ -5,9 +5,13 @@
         <ResourceDictionary Source="..\Fonts\FontSize.xaml" />
         <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
         <ResourceDictionary Source="Base\WindowBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\ButtonBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\MenuBaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
-    <Style x:Key="MainWindowStyle" TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
+    <Style x:Key="MainWindowStyle" 
+           TargetType="Window" 
+           BasedOn="{StaticResource {x:Type Window}}">
         <Setter Property="WindowState" Value="Maximized" />
         <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
@@ -18,6 +22,21 @@
         <Setter Property="BorderThickness" Value="5" />
         <Setter Property="Background" Value="{StaticResource BetterWhiteBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
+    </Style>
+    
+    <Style x:Key="MainWindowMenuStyle" 
+           TargetType="Menu">
+        <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
+    </Style>
+    
+    <Style x:Key="MainWindowMenuItemStyle" 
+           TargetType="MenuItem" 
+           BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="Width" Value="100" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
+
     </Style>
 
 </ResourceDictionary>
