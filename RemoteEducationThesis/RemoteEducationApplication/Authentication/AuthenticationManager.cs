@@ -8,6 +8,9 @@ using System.Net.Mail;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
+using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -51,7 +54,7 @@ namespace RemoteEducationApplication.Authentication
         /// </summary>
         /// <param name="username">Username.</param>
         /// <param name="password">Password.</param>
-        public static void AuthenticateUser(string username, string password)
+        public static int AuthenticateUser(string username, string password)
         {
             if(username == String.Empty && password == String.Empty)
                 throw new ArgumentException(ErrorMessages.InvalidParameters, AuthenticateExParameters.IsParameters);
@@ -59,14 +62,20 @@ namespace RemoteEducationApplication.Authentication
             using(RemoteEducationDbContext context = new RemoteEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
-                User user = userRepository.Get(username);
+                User user = userRepository.GetAll()
+                    .Include(x => x.Roles)
+                    .Where(x => x.UserDetail.Username == username)
+                    .Single();
 
                 if (user == null)
                     throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
 
                 if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
                     throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+
+                return user.Roles.First().ID;
             }
+
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using RemoteEducationApplication.Authentication;
+﻿using RemoteEducation.DAL.Repositories;
+using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using System;
@@ -256,11 +257,15 @@ namespace RemoteEducationApplication.Views.Login
         {
             try
             {
-                ///commented out for testing purposes
-                //AuthenticationManager.AuthenticateUser
-                //    (tbxUsername.Text, pbxPassword.Password);
+                //commented out for testing purposes
+                int roleID = AuthenticationManager.AuthenticateUser
+                    (tbxUsername.Text, pbxPassword.Password);
 
-                this.NavigateTo(new MainWindow(), true);
+                //user navigation to a new window, not null (when implemented)
+                if (roleID == (int)RoleRepository.RoleType.Admin)
+                    this.NavigateTo(new MainWindow(), true);
+                else if (roleID == (int)RoleRepository.RoleType.User)
+                    this.NavigateTo(null, true);
             }
             catch (ArgumentException ex)
             {
