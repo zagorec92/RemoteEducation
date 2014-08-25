@@ -97,7 +97,7 @@
             </TextBlock>
             
             <!--minimize and close-->
-            <appBar:ApplicationBar />
+            <appBar:ApplicationBar IsMainWindowAppBar="True" />
 
         </Grid>
 

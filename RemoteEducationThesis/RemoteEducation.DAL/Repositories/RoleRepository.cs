@@ -1,14 +1,11 @@
 ﻿using RemoteEducation.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RemoteEducation.DAL.Repositories
 {
     public class RoleRepository : RepositoryBase<Role>
     {
+        #region Enum
+
         public enum RoleType
         {
             /// <summary>
@@ -21,5 +18,18 @@ namespace RemoteEducation.DAL.Repositories
             /// </summary>
             Admin = 2
         }
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        public RoleRepository(RemoteEducationDbContext context)
+            : base(context) { }
+
+        #endregion
     }
 }

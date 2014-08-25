@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using RemoteEducationApplication.Extensions;
+using System.Collections.ObjectModel;
 
 namespace RemoteEducationApplication
 {
@@ -26,7 +27,7 @@ namespace RemoteEducationApplication
 
         #region Fields
 
-        private List<ClientHandler> _connectedClients;
+        private static ObservableCollection<ClientHandler> _connectedClients;
 
         #endregion
 
@@ -35,12 +36,12 @@ namespace RemoteEducationApplication
         /// <summary>
         /// ConnectedClients
         /// </summary>
-        public List<ClientHandler> ConnectedClients
+        public static ObservableCollection<ClientHandler> ConnectedClients
         {
             get
             {
                 if (_connectedClients == null)
-                    return new List<ClientHandler>();
+                    return new ObservableCollection<ClientHandler>();
 
                 return _connectedClients;
             }
@@ -64,9 +65,19 @@ namespace RemoteEducationApplication
         public MainWindow()
         {
             InitializeComponent();
+
+            ConnectedClients = new ObservableCollection<ClientHandler>();
+
+            //test
+            for (int i = 0; i < 20; i++)
+                ConnectedClients.Add(new ClientHandler("test" + i));
+            
+            DataContext = this;
         }
 
         #endregion
+
+
 
         #region EventHandlers
 
@@ -123,7 +134,7 @@ namespace RemoteEducationApplication
         /// </summary>
         private async Task ListeningForConnections()
         {
-            ConnectedClients = new List<ClientHandler>();
+            ConnectedClients = new ObservableCollection<ClientHandler>();
 
             while (!Server.IsClosing)
             {
