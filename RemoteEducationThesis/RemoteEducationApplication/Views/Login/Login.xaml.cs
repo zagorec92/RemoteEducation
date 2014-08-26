@@ -2,12 +2,12 @@
 using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
+using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Shapes;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -155,6 +155,17 @@ namespace RemoteEducationApplication.Views.Login
         {
             if (e.Key == Key.Enter)
                 AuthenticateUser();
+        }
+
+        /// <summary>
+        /// Handles the RectangleClick event of the ApplicationBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.View.UserControls.RectangleEventArgs"/>
+        /// instance conatining the event data.</param>
+        private void ApplicationBar_RectangleClick(object sender, RectangleEventArgs e)
+        {
+            ApplicationHelper.ExecuteCommand(e.CommandName);
         }
 
         #endregion

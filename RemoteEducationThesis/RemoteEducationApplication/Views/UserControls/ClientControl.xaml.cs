@@ -26,7 +26,6 @@ namespace RemoteEducationApplication.Views.UserControls
         public ClientControl()
         {
             InitializeComponent();
-            appBar.RectangleClick += appBar_RectangleClick;
         }
 
         /// <summary>
@@ -39,8 +38,6 @@ namespace RemoteEducationApplication.Views.UserControls
             if(e.CommandName == ApplicationHelper.Commands.Close)
                 MainWindow.ConnectedClients.Remove
                     (MainWindow.ConnectedClients.Single(x => x.Name == tbkName.Text));
-        }
-
-        
+        }     
     }
 }

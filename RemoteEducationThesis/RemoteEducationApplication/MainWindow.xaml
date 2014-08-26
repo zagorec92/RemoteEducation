@@ -39,7 +39,7 @@
             </Grid>
 
             <!--minimize and close-->
-            <uc:ApplicationBar IsMainWindowAppBar="True" />
+            <uc:ApplicationBar RectangleClick="ApplicationBar_RectangleClick"/>
 
         </Grid>
         

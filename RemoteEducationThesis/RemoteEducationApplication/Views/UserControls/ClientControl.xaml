@@ -4,13 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="175"
              Background="White"
-             BorderThickness="3"
-             BorderBrush="{StaticResource LightBlackBrush}"
-             Height="200"
-             Width="175">
+             Style="{StaticResource UserControlWindowStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -24,12 +19,12 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock x:Name="tbkName" 
-                       Foreground="{StaticResource BetterWhiteBrush}" 
+                       Style="{StaticResource UserControlTextBoxNameStyle}" 
                        Text="{Binding Name}" />
             
             <appBar:ApplicationBar Grid.Column="1"
-                                   x:Name="appBar"
-                                   IsMainWindowAppBar="False"/>
+                                   MinimizeVisibility="Collapsed"
+                                   RectangleClick="appBar_RectangleClick"/>
         </Grid>
         
         <Image Grid.Row="1" />

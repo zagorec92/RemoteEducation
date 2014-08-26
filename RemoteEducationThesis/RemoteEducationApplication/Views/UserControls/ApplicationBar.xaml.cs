@@ -1,11 +1,9 @@
 ﻿using RemoteEducationApplication.Extensions;
-using RemoteEducationApplication.Helpers;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
-using System.Linq;
-using System;
-using System.Windows;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
@@ -15,12 +13,13 @@ namespace RemoteEducationApplication.Views.UserControls
     public class RectangleEventArgs : EventArgs
     {
         /// <summary>
-        /// 
+        /// Gets or sets the command name.
         /// </summary>
         public string CommandName { get; set; }
 
         /// <summary>
-        /// 
+        /// Initializes a new <see cref="RemoteEducationApplication.Views.UserControls.RectangleEventArgs"/>
+        /// instance.
         /// </summary>
         /// <param name="name"></param>
         public RectangleEventArgs(string name)
@@ -38,9 +37,9 @@ namespace RemoteEducationApplication.Views.UserControls
         #region Properties
 
         /// <summary>
-        /// Gets or sets the flag indicating if the control is used for global control of App state.
+        /// Gets or sets the visibility of minimize icon.
         /// </summary>
-        public bool IsMainWindowAppBar { get; set; }
+        public Visibility MinimizeVisibility { get; set; }
 
         #endregion
 
@@ -49,12 +48,13 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Views.UserControls.RectangleEventArgs"/>
+        /// instance containing the event data.</param>
         public delegate void RectangleClickEventHandler(object sender, RectangleEventArgs e);
 
         /// <summary>
-        /// 
+        /// RectangleClickEvent handler.
         /// </summary>
         public event RectangleClickEventHandler RectangleClick;
 
@@ -62,9 +62,14 @@ namespace RemoteEducationApplication.Views.UserControls
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new <see cref="RemoteEducationApplication.Views.UserControls.ApplicationBar"/>
+        /// instance.
+        /// </summary>
         public ApplicationBar()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         #endregion
@@ -72,7 +77,7 @@ namespace RemoteEducationApplication.Views.UserControls
         #region EventHandling
 
         /// <summary>
-        /// 
+        /// Invokes RectangleClickEventHandler.
         /// </summary>
         /// <param name="command"></param>
         public void OnRectangleClick(string command)
@@ -92,21 +97,7 @@ namespace RemoteEducationApplication.Views.UserControls
             Rectangle rectangle = sender as Rectangle;
 
             if (rectangle != null)
-            {
-                string commandName = rectangle.GetTag();
-
-                if (IsMainWindowAppBar)
-                {
-                    if (commandName == ApplicationHelper.Commands.Close)
-                        ApplicationHelper.Close();
-                    else if (commandName == ApplicationHelper.Commands.Minimize)
-                        ApplicationHelper.Minimize();
-                }
-                else 
-                {
-                    OnRectangleClick(commandName);
-                }
-            }
+                OnRectangleClick(rectangle.GetTag());
         }
 
         #endregion

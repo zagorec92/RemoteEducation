@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+
 namespace RemoteEducationApplication.Helpers
 {
     public abstract class ApplicationHelper : BaseHelper
@@ -36,6 +37,22 @@ namespace RemoteEducationApplication.Helpers
         public static void Minimize()
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Executes given command.
+        /// </summary>
+        /// <param name="command">Command to execute.</param>
+        public static void ExecuteCommand(string command)
+        {
+            if (command == Commands.Minimize)
+                Minimize();
+            else if (command == ApplicationHelper.Commands.Close)
+                Close();
         }
 
         #endregion

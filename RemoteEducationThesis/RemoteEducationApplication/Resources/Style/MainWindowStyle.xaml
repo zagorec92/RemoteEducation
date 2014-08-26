@@ -2,8 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="..\Fonts\FontSize.xaml" />
-        <ResourceDictionary Source="..\Brushes\Brushes.xaml" />
         <ResourceDictionary Source="Base\WindowBaseStyle.xaml" />
         <ResourceDictionary Source="Base\ButtonBaseStyle.xaml" />
         <ResourceDictionary Source="Base\MenuBaseStyle.xaml" />

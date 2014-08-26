@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Shapes;
 using RemoteEducationApplication.Extensions;
 using System.Collections.ObjectModel;
+using RemoteEducationApplication.Views.UserControls;
 
 namespace RemoteEducationApplication
 {
@@ -62,6 +63,9 @@ namespace RemoteEducationApplication
 
         #region Constructor
 
+        /// <summary>
+        /// Initializes a new <see cref="RemoteEducationApplication.MainWindow"/> instance.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -77,31 +81,19 @@ namespace RemoteEducationApplication
 
         #endregion
 
-
-
         #region EventHandlers
 
         #region Menu/Application bar
 
         /// <summary>
-        /// Handles the MouseLEftButtonDown event of the Rectangle element.
+        /// Handles the RectangleClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseEventArgs"/>
-        /// instance containing the event data.</param>
-        private void Rectangle_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        /// <param name="e">The <see cref="RemoteEducationApplication.View.UserControls.RectangleEventArgs"/>
+        /// instance conatining the event data.</param>
+        private void ApplicationBar_RectangleClick(object sender, RectangleEventArgs e)
         {
-            Rectangle rectangle = sender as Rectangle;
-
-            if(rectangle != null)
-            {
-                string commandName = rectangle.GetTag();
-
-                if (commandName == ApplicationHelper.Commands.Close)
-                    ApplicationHelper.Close();
-                else if (commandName == ApplicationHelper.Commands.Minimize)
-                    ApplicationHelper.Minimize();
-            }
+            ApplicationHelper.ExecuteCommand(e.CommandName);
         }
 
         #endregion
