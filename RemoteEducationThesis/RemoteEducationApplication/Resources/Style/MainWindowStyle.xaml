@@ -36,5 +36,10 @@
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
 
     </Style>
+    
+    <Style x:Key="StatusBarTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+    </Style>
 
 </ResourceDictionary>

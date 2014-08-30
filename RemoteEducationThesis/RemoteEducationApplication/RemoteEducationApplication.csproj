@@ -91,7 +91,10 @@
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Server\ServerManager.cs" />
+    <Compile Include="Shared\ApplicationBarEventArgs.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
+    <Compile Include="Shared\UserControlBase.cs" />
+    <Compile Include="Shared\WindowBase.cs" />
     <Compile Include="Views\UserControls\ApplicationBar.xaml.cs">
       <DependentUpon>ApplicationBar.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,9 @@
     </Compile>
     <Compile Include="Views\UserControls\ClientControl.xaml.cs">
       <DependentUpon>ClientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Clock.xaml.cs">
+      <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -162,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ClientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Clock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

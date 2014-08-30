@@ -1,5 +1,5 @@
 ﻿using RemoteEducationApplication.Extensions;
-using System;
+using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,28 +7,6 @@ using System.Windows.Shapes;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public class RectangleEventArgs : EventArgs
-    {
-        /// <summary>
-        /// Gets or sets the command name.
-        /// </summary>
-        public string CommandName { get; set; }
-
-        /// <summary>
-        /// Initializes a new <see cref="RemoteEducationApplication.Views.UserControls.RectangleEventArgs"/>
-        /// instance.
-        /// </summary>
-        /// <param name="name"></param>
-        public RectangleEventArgs(string name)
-            : base()
-        {
-            CommandName = name;
-        }
-    }
-
     /// <summary>
     /// Interaction logic for ApplicationBar.xaml
     /// </summary>
@@ -49,21 +27,21 @@ namespace RemoteEducationApplication.Views.UserControls
         /// 
         /// </summary>
         /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Views.UserControls.RectangleEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
         /// instance containing the event data.</param>
-        public delegate void RectangleClickEventHandler(object sender, RectangleEventArgs e);
+        public delegate void RectangleClickEventHandler(object sender, ApplicationBarEventArgs e);
 
         /// <summary>
         /// RectangleClickEvent handler.
         /// </summary>
-        public event RectangleClickEventHandler RectangleClick;
+        public event RectangleClickEventHandler AppBarClick;
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new <see cref="RemoteEducationApplication.Views.UserControls.ApplicationBar"/>
+        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.ApplicationBar"/> class.
         /// instance.
         /// </summary>
         public ApplicationBar()
@@ -79,11 +57,11 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <summary>
         /// Invokes RectangleClickEventHandler.
         /// </summary>
-        /// <param name="command"></param>
-        public void OnRectangleClick(string command)
+        /// <param name="commandName">Name of the command.</param>
+        public void OnAppBarClick(string commandName)
         {
-            if(RectangleClick != null)
-                RectangleClick(this, new RectangleEventArgs(command));
+            if(AppBarClick != null)
+                AppBarClick(this, new ApplicationBarEventArgs(commandName: commandName));
         }
 
         /// <summary>
@@ -97,7 +75,7 @@ namespace RemoteEducationApplication.Views.UserControls
             Rectangle rectangle = sender as Rectangle;
 
             if (rectangle != null)
-                OnRectangleClick(rectangle.GetTag());
+                OnAppBarClick(rectangle.GetTag());
         }
 
         #endregion

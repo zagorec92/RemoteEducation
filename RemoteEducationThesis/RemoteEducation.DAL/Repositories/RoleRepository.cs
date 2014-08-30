@@ -24,7 +24,7 @@ namespace RemoteEducation.DAL.Repositories
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Creates a new instance of the <see cref="RemoteEducation.DAL.Repositories.RoleRepostiory"/> class.
         /// </summary>
         /// <param name="context"></param>
         public RoleRepository(RemoteEducationDbContext context)

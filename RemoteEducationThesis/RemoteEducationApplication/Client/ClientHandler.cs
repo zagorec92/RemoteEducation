@@ -16,6 +16,7 @@ namespace RemoteEducationApplication.Client
         #region Fields
 
         private int _port;
+        private string _name;
         private Bitmap _desktopImage;
 
         #endregion
@@ -56,27 +57,38 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// ControlIdentifier
+        /// Gets or sets the ControlIdentifier.
         /// </summary>
         public string ControlIdentifier { get; set; }
 
         /// <summary>
-        /// Name
+        /// Gets or sets the Name.
         /// </summary>
-        public string Name { get; set; }
+        public string Name 
+        {
+            get 
+            { 
+                return _name; 
+            }
+            set 
+            {
+                _name = value;
+                OnPropertyChanged("Name");
+            } 
+        }
 
         /// <summary>
-        /// HostName
+        /// Gets or sets the HostName.
         /// </summary>
         public string HostName { get; set; }
 
         /// <summary>
-        /// IsClosing
+        /// Gets or sets the IsClosing.
         /// </summary>
         public bool IsClosing { get; set; }
 
         /// <summary>
-        /// LocalEndPoint
+        /// Gets or sets the LocalEndPoint.
         /// </summary>
         public EndPoint LocalEndPoint 
         {
@@ -84,7 +96,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// RemoteEndPoint
+        /// Gets or sets the RemoteEndPoint.
         /// </summary>
         public EndPoint RemoteEndPoint 
         {
@@ -92,11 +104,14 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// DesktopImage
+        /// Gets or sets the DesktopImage.
         /// </summary>
         public Bitmap DesktopImage 
         {
-            get { return _desktopImage; }
+            get 
+            { 
+                return _desktopImage; 
+            }
             set 
             {
                 _desktopImage = value;
@@ -105,17 +120,12 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// LastUpdate
+        /// Gets or sets the LastUpdate.
         /// </summary>
         public DateTime LastUpdate { get; set; }
 
         /// <summary>
-        /// UpdateInterval
-        /// </summary>
-        public int UpdateInterval { get; set; }
-
-        /// <summary>
-        /// Precedence
+        /// Gets or sets the Precedence.
         /// </summary>
         public int Precedence { get; set; }
 
@@ -162,11 +172,10 @@ namespace RemoteEducationApplication.Client
         /// <param name="name">Client name.</param>
         /// <param name="updateInterval">Refresh interval in milliseconds. Optional.</param>
         /// <param name="precedence">Client precedence. Optional.</param>
-        public ClientHandler(string name, int updateInterval = -1, int precedence = 0)
+        public ClientHandler(string name, int precedence = 0)
             : base()
         {
             Name = name;
-            UpdateInterval = updateInterval;
             Precedence = precedence;
         }
 

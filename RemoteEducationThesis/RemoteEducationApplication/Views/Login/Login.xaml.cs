@@ -2,6 +2,7 @@
 using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
+using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.ComponentModel;
@@ -161,9 +162,9 @@ namespace RemoteEducationApplication.Views.Login
         /// Handles the RectangleClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.View.UserControls.RectangleEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
         /// instance conatining the event data.</param>
-        private void ApplicationBar_RectangleClick(object sender, RectangleEventArgs e)
+        private void ApplicationBar_RectangleClick(object sender, ApplicationBarEventArgs e)
         {
             ApplicationHelper.ExecuteCommand(e.CommandName);
         }

@@ -1,43 +1,36 @@
 ﻿using RemoteEducationApplication.Client;
+using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
+using RemoteEducationApplication.Shared;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
-using System.Windows.Shapes;
-using RemoteEducationApplication.Extensions;
-using System.Collections.ObjectModel;
-using RemoteEducationApplication.Views.UserControls;
 
 namespace RemoteEducationApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        #region Const
-
-        private const string MaxNumberOfConnection = "Maximum number of connections exceeded.";
-
-        #endregion
-
         #region Fields
 
-        private static ObservableCollection<ClientHandler> _connectedClients;
+        private ObservableCollection<ClientHandler> _connectedClients;
+        private DateTime _lastRefresh;
+        private string _statusMessage;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        /// ConnectedClients
+        /// Gets or sets the connected clients.
         /// </summary>
-        public static ObservableCollection<ClientHandler> ConnectedClients
+        public ObservableCollection<ClientHandler> ConnectedClients
         {
             get
             {
@@ -50,33 +43,94 @@ namespace RemoteEducationApplication
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the server handler.
         /// </summary>
         public ServerHandler Server { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the warning message.
         /// </summary>
         public string WarningMessage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message to be displayed in status bar.
+        /// </summary>
+        public string StatusMessage 
+        {
+            get
+            {
+                return _statusMessage;
+            }
+            set
+            {
+                _statusMessage = value;
+                NotifyPropertyChanged("StatusMessage");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the last refresh date.
+        /// </summary>
+        public DateTime LastRefresh 
+        { 
+            get
+            {
+                return _lastRefresh;
+            }
+            set
+            {
+                _lastRefresh = value;
+                NotifyPropertyChanged("LastRefresh");
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of connected clients.
+        /// </summary>
+        /// <exception cref="NullReferenceException">If <paramref name="ConnectedClients"/> is <c>null</c>.</exception>
+        public string ClientCount 
+        {
+            get
+            {
+                if (ConnectedClients != null)
+                    return ConnectedClients.Count.ToString();
+                else
+                    throw new NullReferenceException();
+            }
+        }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Initializes a new <see cref="RemoteEducationApplication.MainWindow"/> instance.
+        /// Creates a new instance of the <see cref="RemoteEducationApplication.MainWindow"/> class.
         /// </summary>
         public MainWindow()
         {
             InitializeComponent();
 
             ConnectedClients = new ObservableCollection<ClientHandler>();
+            Random random = new Random();
 
             //test
             for (int i = 0; i < 20; i++)
-                ConnectedClients.Add(new ClientHandler("test" + i));
-            
+                ConnectedClients.Add(new ClientHandler("test" + i + " ") { Precedence = random.Next(100) });
+
+            ConnectedClients = new ObservableCollection<ClientHandler>(ConnectedClients.OrderByDescending(x => x.Precedence));
+            StatusMessage = "Connections: " + ClientCount;
+
             DataContext = this;
+            Start();
         }
 
         #endregion
@@ -89,11 +143,43 @@ namespace RemoteEducationApplication
         /// Handles the RectangleClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.View.UserControls.RectangleEventArgs"/>
-        /// instance conatining the event data.</param>
-        private void ApplicationBar_RectangleClick(object sender, RectangleEventArgs e)
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// instance containing the event data.</param>
+        private void ApplicationBar_RectangleClick(object sender, ApplicationBarEventArgs e)
         {
             ApplicationHelper.ExecuteCommand(e.CommandName);
+        }
+
+        #endregion
+
+        #region NotifyPropertyChanged
+
+        /// <summary>
+        /// Raises the PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyName">Name of the changed property.</param>
+        protected void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Client
+
+        /// <summary>
+        /// Handles the CloseClick event of the Client control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// instance containing the event data.</param>
+        private void Client_CloseClick(object sender, ApplicationBarEventArgs e)
+        {
+            ConnectedClients.Remove
+                (ConnectedClients.Single(x => x.Name == e.ObjectName));
+
+            StatusMessage = "Connections: " + ClientCount;
         }
 
         #endregion
@@ -102,35 +188,39 @@ namespace RemoteEducationApplication
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
         public async void Start()
         {
-            IPAddress address = ConnectionHelper.GetLocalIPAddress();
+            //IPAddress address = ConnectionHelper.GetLocalIPAddress();
 
-            Server = new ServerHandler(2000, address);
-            Server.MaxConnections = (int)ConnectionHelper.MaxConnections.Twenty;
-            Server.Start();
+            //Server = new ServerHandler(2000, address);
+            //Server.MaxConnections = (int)ConnectionHelper.MaxConnections.Twenty;
+            //Server.Start();
 
             Task[] tasks = new Task[]
             {
-                ListeningForConnections(),
+                //ListeningForConnections(),
                 GetDesktopImage()
             };
 
             await Task.WhenAll(tasks);
 
-            Server.Stop();
+            //Server.Stop();
         }
 
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
         private async Task ListeningForConnections()
         {
             ConnectedClients = new ObservableCollection<ClientHandler>();
 
             while (!Server.IsClosing)
             {
-                Console.WriteLine("Checking if there is a pending connection.");
+                //Console.WriteLine("Checking if there is a pending connection.");
                 if (Server.Pending())
                 {
                     if (ConnectedClients.Count < (int)Server.MaxConnections)
@@ -140,30 +230,35 @@ namespace RemoteEducationApplication
                         if (client != null)
                             ConnectedClients.Add(client);
                     }
-                    else
-                    {
-                        WarningMessage = MaxNumberOfConnection;
-                    }
                 }
                 else
                 {
-                    Console.WriteLine("Waiting {0} seconds.", (int)ConnectionHelper.SleepTime.Moderate / 1000);
-                    await Task.Delay((int)ConnectionHelper.SleepTime.Moderate);
+                    //Console.WriteLine("Waiting {0} seconds.", ConnectionHelper.SleepTime.Moderate.GetValue() / 1000);
+                    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
                 }
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private async Task GetDesktopImage()
         {
-            if (ConnectedClients != null || ConnectedClients.Any())
+            int count = 0;
+
+            while (ConnectedClients != null && ConnectedClients.Any())
             {
                 foreach (ClientHandler client in ConnectedClients)
-                {
-                    Console.WriteLine("Getting desktop image from {0}.", client.LocalEndPoint);
-                }
+                    if(client != null && !client.IsClosing)
+                        client.Name = client.Name.Substring(0, client.Name.IndexOf(' ') + 1) + count.ToString();
+
+                count++;
+                LastRefresh = DateTime.Now;
+
+                await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
             }
         }
-   
 
         #endregion
     }

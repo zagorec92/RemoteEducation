@@ -97,7 +97,7 @@
             </TextBlock>
             
             <!--minimize and close-->
-            <appBar:ApplicationBar RectangleClick="ApplicationBar_RectangleClick"/>
+            <appBar:ApplicationBar AppBarClick="ApplicationBar_RectangleClick"/>
 
         </Grid>
 

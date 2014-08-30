@@ -39,7 +39,7 @@
             </Grid>
 
             <!--minimize and close-->
-            <uc:ApplicationBar RectangleClick="ApplicationBar_RectangleClick"/>
+            <uc:ApplicationBar AppBarClick="ApplicationBar_RectangleClick"/>
 
         </Grid>
         
@@ -56,7 +56,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <uc:ClientControl Tag="{Binding Name}"
-                                          Margin="10"/>
+                                          Margin="10"
+                                          CloseClick="Client_CloseClick"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -66,7 +67,19 @@
         <!--status bar-->
         <Grid Grid.Row="2" 
               Background="{StaticResource LightBlackBrush}">
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock HorizontalAlignment="Left"
+                       Text="{Binding StatusMessage}"
+                       Style="{StaticResource StatusBarTextBlockStyle}"/>
+            
+            <uc:Clock Grid.Column="1"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"/>
+            
         </Grid>
 
     </Grid>

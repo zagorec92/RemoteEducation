@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using RemoteEducationApplication.Helpers;
+using RemoteEducationApplication.Shared;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using RemoteEducationApplication.Views.UserControls;
-using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Helpers;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
@@ -23,21 +9,59 @@ namespace RemoteEducationApplication.Views.UserControls
     /// </summary>
     public partial class ClientControl : UserControl
     {
+        #region Constructor
+
+        /// <summary>
+        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.ClientControl"/> class.
+        /// </summary>
         public ClientControl()
         {
             InitializeComponent();
         }
 
+        #endregion
+
+        #region Events & Delegates
+
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void appBar_RectangleClick(object sender, RectangleEventArgs e)
+        /// <param name="sender">The source of the event</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// instance containing the event data.</param>
+        public delegate void ClientCloseEventHandler(object sender, ApplicationBarEventArgs e);
+
+        /// <summary>
+        /// ClientCloseEventHandler handler.
+        /// </summary>
+        public event ClientCloseEventHandler CloseClick;
+
+        #endregion
+
+        #region EventHandling
+
+        /// <summary>
+        /// Invokes RectangleClickEventHandler.
+        /// </summary>
+        /// <param name="clientName">Name of the client.</param>
+        public void OnCloseClick(string clientName)
         {
-            if(e.CommandName == ApplicationHelper.Commands.Close)
-                MainWindow.ConnectedClients.Remove
-                    (MainWindow.ConnectedClients.Single(x => x.Name == tbkName.Text));
-        }     
+            if (CloseClick != null)
+                CloseClick(this, new ApplicationBarEventArgs(objectName: clientName));
+        }
+
+        /// <summary>
+        /// Handles the RectangleClick event of the appBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// instance containing the event data.</param>
+        private void appBar_RectangleClick(object sender, ApplicationBarEventArgs e)
+        {
+            if (e.CommandName == ApplicationHelper.Commands.Close)
+                OnCloseClick(tbkName.Text);
+        }   
+
+        #endregion  
     }
 }

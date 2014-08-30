@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemoteEducationApplication.Helpers;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -77,6 +78,20 @@ namespace RemoteEducationApplication.Extensions
             Type type = typeof(T);
 
             return (T)Convert.ChangeType(frameworkElement.Tag, type);
+        }
+
+        #endregion
+
+        #region BaseHelper.SleepTime
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static int GetValue(this BaseHelper.SleepTime enumValue)
+        {
+            return (int)enumValue;
         }
 
         #endregion

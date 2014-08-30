@@ -3,13 +3,18 @@
     public class ApplicationLog : EntityBase
     {
         /// <summary>
-        /// Name.
+        /// Gets or sets the name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Description.
+        /// Gets or sets the description.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the stack trace.
+        /// </summary>
+        public string StackTrace { get; set; }
     }
 }
