@@ -21,6 +21,16 @@ namespace RemoteEducationApplication.Helpers
 
         #endregion
 
+        #region Enum
+
+        public enum WindowBarRole
+        {
+            ApplicationBar = 1,
+            ClientBar = 2
+        }
+
+        #endregion
+
         #region BasicAppCommands
 
         /// <summary>

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="RemoteEducationApplication.Views.UserControls.ApplicationBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+             Style="{StaticResource ApplicationBarUserControlStyle}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--expand-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.WindowBarExpand}"
+                   ToolTip="{x:Static global:Resources.WindowBarExpand}"
+                   Visibility="{Binding ClientBarVisibility}">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/expand.png" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+        <!--minimize-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.WindowBarMinimize}"
+                   ToolTip="{x:Static global:Resources.WindowBarMinimize}"
+                   Visibility="{Binding ApplicationBarVisibility}"
+                   Grid.Column="1"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/minimize.png"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+        <!--connect-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.WindowBarConnect}"
+                   ToolTip="{x:Static global:Resources.WindowBarConnect}"
+                   Visibility="{Binding ClientBarVisibility}"
+                   Grid.Column="1">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/connect.png" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+
+        <!--close-->
+        <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.WindowBarClose}"
+                   ToolTip="{x:Static global:Resources.WindowBarClose}"
+                   Grid.Column="2"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/close.png"/>
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+    </Grid>
+</UserControl>

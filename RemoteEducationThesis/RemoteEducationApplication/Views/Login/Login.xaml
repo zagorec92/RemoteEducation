@@ -1,13 +1,14 @@
-﻿<Window x:Class="RemoteEducationApplication.Views.Login.Login"
+﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.Login.Login"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
+        xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
         xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
         xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
         Style="{StaticResource LoginWindowStyle}"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         KeyDown="Window_KeyDown">
-	<Window.Resources>
+    <base:WindowBase.Resources>
 		<Storyboard x:Key="SlideOutLogin">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="ContentLogin">
 				<EasingThicknessKeyFrame KeyTime="0" Value="0">
@@ -65,8 +66,8 @@
 			</ThicknessAnimationUsingKeyFrames>
 		</Storyboard>
         <c:TextConverter x:Key="TextConverter" />
-	</Window.Resources>
-	<Window.Triggers>
+	</base:WindowBase.Resources>
+    <base:WindowBase.Triggers>
 		<EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="textBlock">
 			<BeginStoryboard x:Name="SlideOutLogin_BeginStoryboard" Storyboard="{StaticResource SlideOutLogin}"/>
 			<BeginStoryboard x:Name="SlideInRecovery_BeginStoryboard" Storyboard="{StaticResource SlideInRecovery}"/>
@@ -75,7 +76,7 @@
 			<BeginStoryboard x:Name="SlideOutRecovery_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
 			<BeginStoryboard x:Name="SlideInLogin_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
 		</EventTrigger>
-	</Window.Triggers>
+	</base:WindowBase.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -97,7 +98,8 @@
             </TextBlock>
             
             <!--minimize and close-->
-            <appBar:ApplicationBar AppBarClick="ApplicationBar_RectangleClick"/>
+            <appBar:ApplicationBar AppBarClick="ApplicationBar_Click"
+                                   WindowRole="ApplicationBar"/>
 
         </Grid>
 
@@ -222,4 +224,4 @@
         </Grid>
 
     </Grid>
-</Window>
+</base:WindowBase>

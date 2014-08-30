@@ -5,17 +5,15 @@ using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace RemoteEducationApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : WindowBase
     {
         #region Fields
 
@@ -101,15 +99,6 @@ namespace RemoteEducationApplication
 
         #endregion
 
-        #region Events
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -145,23 +134,9 @@ namespace RemoteEducationApplication
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
         /// instance containing the event data.</param>
-        private void ApplicationBar_RectangleClick(object sender, ApplicationBarEventArgs e)
+        private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
             ApplicationHelper.ExecuteCommand(e.CommandName);
-        }
-
-        #endregion
-
-        #region NotifyPropertyChanged
-
-        /// <summary>
-        /// Raises the PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property.</param>
-        protected void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

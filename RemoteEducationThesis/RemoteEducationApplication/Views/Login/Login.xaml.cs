@@ -3,9 +3,7 @@ using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Views.UserControls;
 using System;
-using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +13,7 @@ namespace RemoteEducationApplication.Views.Login
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window, INotifyPropertyChanged
+    public partial class Login : WindowBase
     {
         #region Struct
 
@@ -107,15 +105,6 @@ namespace RemoteEducationApplication.Views.Login
 
         #endregion
 
-        #region Events
-        
-        /// <summary>
-        /// The <see cref="System.ComponentModel.PropertyChangedEventHandler"/> delegate.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
@@ -164,23 +153,9 @@ namespace RemoteEducationApplication.Views.Login
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
         /// instance conatining the event data.</param>
-        private void ApplicationBar_RectangleClick(object sender, ApplicationBarEventArgs e)
+        private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
             ApplicationHelper.ExecuteCommand(e.CommandName);
-        }
-
-        #endregion
-
-        #region NotifyPropertyChanged
-
-        /// <summary>
-        /// Raises the PropertyChanged event.
-        /// </summary>
-        /// <param name="propertyName">Name of the changed property.</param>
-        protected void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

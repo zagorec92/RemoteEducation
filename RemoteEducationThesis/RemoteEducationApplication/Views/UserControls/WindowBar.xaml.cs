@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
@@ -17,7 +18,17 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <summary>
         /// Gets or sets the visibility of minimize icon.
         /// </summary>
-        public Visibility MinimizeVisibility { get; set; }
+        public WindowRole WindowRole { get; set; }
+
+        /// <summary>
+        /// Gets or sets the application bar visibility.
+        /// </summary>
+        public Visibility ApplicationBarVisibility { get; set; }
+
+        /// <summary>
+        /// Gets or sets the client bar visibility.
+        /// </summary>
+        public Visibility ClientBarVisibility { get; set; }
 
         #endregion
 
@@ -47,7 +58,7 @@ namespace RemoteEducationApplication.Views.UserControls
         public ApplicationBar()
         {
             InitializeComponent();
-            DataContext = this;
+            Loaded += ApplicationBar_Loaded;
         }
 
         #endregion
@@ -55,10 +66,21 @@ namespace RemoteEducationApplication.Views.UserControls
         #region EventHandling
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ApplicationBar_Loaded(object sender, RoutedEventArgs e)
+        {
+            HandleRoleVisibility();
+            DataContext = this;
+        }
+
+        /// <summary>
         /// Invokes RectangleClickEventHandler.
         /// </summary>
         /// <param name="commandName">Name of the command.</param>
-        public void OnAppBarClick(string commandName)
+        protected void OnAppBarClick(string commandName)
         {
             if(AppBarClick != null)
                 AppBarClick(this, new ApplicationBarEventArgs(commandName: commandName));
@@ -76,6 +98,27 @@ namespace RemoteEducationApplication.Views.UserControls
 
             if (rectangle != null)
                 OnAppBarClick(rectangle.GetTag());
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Determines the visibility of icons based on WindowRole property.
+        /// </summary>
+        private void HandleRoleVisibility()
+        {
+            if (WindowRole == WindowRole.ApplicationBar)
+            {
+                ApplicationBarVisibility = Visibility.Visible;
+                ClientBarVisibility = Visibility.Hidden;
+            }
+            else if (WindowRole == WindowRole.ClientBar)
+            {
+                ApplicationBarVisibility = Visibility.Hidden;
+                ClientBarVisibility = Visibility.Visible;
+            }
         }
 
         #endregion

@@ -95,8 +95,8 @@
     <Compile Include="Shared\ITcpConnectionBase.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
-    <Compile Include="Views\UserControls\ApplicationBar.xaml.cs">
-      <DependentUpon>ApplicationBar.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\WindowBar.xaml.cs">
+      <DependentUpon>WindowBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -131,7 +131,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Style\ClientControlStyle.xaml">
+    <Page Include="Resources\Style\UserControlStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -159,7 +159,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ApplicationBar.xaml">
+    <Page Include="Views\UserControls\WindowBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +242,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\connect.png" />
+    <Resource Include="Resources\Images\expand.png" />
     <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

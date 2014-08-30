@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationMenuClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="ApplicationMenuMinimize" xml:space="preserve">
-    <value>Minimize</value>
-  </data>
   <data name="ApplicationWindowTitle" xml:space="preserve">
     <value>RemoteEducation</value>
   </data>
@@ -161,5 +155,17 @@
   </data>
   <data name="UserDataEmail" xml:space="preserve">
     <value>Email:</value>
+  </data>
+  <data name="WindowBarClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="WindowBarConnect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="WindowBarExpand" xml:space="preserve">
+    <value>Expand</value>
+  </data>
+  <data name="WindowBarMinimize" xml:space="preserve">
+    <value>Minimize</value>
   </data>
 </root>

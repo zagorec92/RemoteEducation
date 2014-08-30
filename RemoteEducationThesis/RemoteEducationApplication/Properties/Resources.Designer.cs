@@ -61,24 +61,6 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Close.
-        /// </summary>
-        public static string ApplicationMenuClose {
-            get {
-                return ResourceManager.GetString("ApplicationMenuClose", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minimize.
-        /// </summary>
-        public static string ApplicationMenuMinimize {
-            get {
-                return ResourceManager.GetString("ApplicationMenuMinimize", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to RemoteEducation.
         /// </summary>
         public static string ApplicationWindowTitle {
@@ -192,6 +174,42 @@ namespace RemoteEducationApplication.Properties {
         public static string UserDataEmail {
             get {
                 return ResourceManager.GetString("UserDataEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string WindowBarClose {
+            get {
+                return ResourceManager.GetString("WindowBarClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string WindowBarConnect {
+            get {
+                return ResourceManager.GetString("WindowBarConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand.
+        /// </summary>
+        public static string WindowBarExpand {
+            get {
+                return ResourceManager.GetString("WindowBarExpand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize.
+        /// </summary>
+        public static string WindowBarMinimize {
+            get {
+                return ResourceManager.GetString("WindowBarMinimize", resourceCulture);
             }
         }
     }

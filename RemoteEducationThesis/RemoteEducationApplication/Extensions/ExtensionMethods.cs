@@ -82,16 +82,16 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region BaseHelper.SleepTime
+        #region Enum
 
         /// <summary>
-        /// 
+        /// Gets the Int32 value from enum.
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
-        public static int GetValue(this BaseHelper.SleepTime enumValue)
+        public static int GetValue(this Enum enumValue)
         {
-            return (int)enumValue;
+            return (int)Enum.Parse(enumValue.GetType(), enumValue.ToString());
         }
 
         #endregion

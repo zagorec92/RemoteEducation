@@ -1,9 +1,10 @@
-﻿<Window x:Class="RemoteEducationApplication.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-        xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
-        Style="{StaticResource MainWindowStyle}">
+﻿<base:WindowBase x:Class="RemoteEducationApplication.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 Style="{StaticResource MainWindowStyle}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -39,7 +40,8 @@
             </Grid>
 
             <!--minimize and close-->
-            <uc:ApplicationBar AppBarClick="ApplicationBar_RectangleClick"/>
+            <uc:ApplicationBar AppBarClick="ApplicationBar_Click"
+                               WindowRole="ApplicationBar"/>
 
         </Grid>
         
@@ -83,4 +85,4 @@
         </Grid>
 
     </Grid>
-</Window>
+</base:WindowBase>

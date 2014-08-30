@@ -23,7 +23,7 @@
                        Text="{Binding Name}" />
             
             <appBar:ApplicationBar Grid.Column="1"
-                                   MinimizeVisibility="Collapsed"
+                                   WindowRole="ClientBar"
                                    AppBarClick="appBar_RectangleClick"/>
         </Grid>
         
