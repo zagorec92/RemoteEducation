@@ -12,7 +12,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         
-        <Grid Background="{StaticResource LightBlackBrush}">
+        <Grid Background="{DynamicResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />

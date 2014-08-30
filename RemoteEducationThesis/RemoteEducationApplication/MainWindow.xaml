@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <!--menu bar-->
-        <Grid Background="{StaticResource LightBlackBrush}">
+        <Grid Background="{DynamicResource BackgroundBrush}">
 
             <!--menu-->
             <Grid HorizontalAlignment="Left">
@@ -48,7 +48,9 @@
         <Grid Grid.Row="1">
             
             <ListView ItemsSource="{Binding ConnectedClients}"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      BorderThickness="0"
+                      Background="{StaticResource BetterWhiteBrush}">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True"
@@ -68,7 +70,7 @@
 
         <!--status bar-->
         <Grid Grid.Row="2" 
-              Background="{StaticResource LightBlackBrush}">
+              Background="{DynamicResource BackgroundBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />

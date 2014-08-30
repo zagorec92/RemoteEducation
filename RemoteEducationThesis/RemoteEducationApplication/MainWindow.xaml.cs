@@ -7,6 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RemoteEducationApplication
 {
@@ -107,7 +108,22 @@ namespace RemoteEducationApplication
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
 
+        #endregion
+
+        #region EventHandlers
+
+        #region Window
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
             ConnectedClients = new ObservableCollection<ClientHandler>();
             Random random = new Random();
 
@@ -123,8 +139,6 @@ namespace RemoteEducationApplication
         }
 
         #endregion
-
-        #region EventHandlers
 
         #region Menu/Application bar
 

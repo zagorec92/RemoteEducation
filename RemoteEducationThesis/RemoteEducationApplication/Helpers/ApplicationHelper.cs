@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -7,7 +8,7 @@ namespace RemoteEducationApplication.Helpers
         #region Struct
 
         /// <summary>
-        /// 
+        /// Contains command names.
         /// </summary>
         public struct Commands
         {
@@ -19,13 +20,32 @@ namespace RemoteEducationApplication.Helpers
             public static string Recover = "Recover";
         }
 
+        /// <summary>
+        /// Contains theme dictionary names.
+        /// </summary>
+        public struct ThemeDictionaries
+        {
+            public static string Default = "DefaultTheme";
+            public static string Orange = "OrangeTheme";
+        }
+
         #endregion
 
         #region Enum
 
+        /// <summary>
+        /// 
+        /// </summary>
         public enum WindowBarRole
         {
+            /// <summary>
+            /// 
+            /// </summary>
             ApplicationBar = 1,
+
+            /// <summary>
+            /// 
+            /// </summary>
             ClientBar = 2
         }
 
@@ -63,6 +83,23 @@ namespace RemoteEducationApplication.Helpers
                 Minimize();
             else if (command == ApplicationHelper.Commands.Close)
                 Close();
+        }
+
+        /// <summary>
+        /// Change the application theme.
+        /// </summary>
+        /// <param name="themeName">
+        /// <para>Theme name.</para>
+        /// <para>Use the <c>ApplicationHelper.ThemeDictionaries</c> structure.</para>
+        /// </param>
+        public static void ChangeTheme(string themeName)
+        {
+            string dictionaryPath = String.Format("Resources/Style/Theme/{0}.xaml", themeName);
+
+            ResourceDictionary resourceDictionary = new ResourceDictionary();
+            resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
+
+            Application.Current.Resources.MergedDictionaries[2] = resourceDictionary;
         }
 
         #endregion

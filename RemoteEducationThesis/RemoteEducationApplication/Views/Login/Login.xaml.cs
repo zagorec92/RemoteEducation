@@ -115,8 +115,7 @@ namespace RemoteEducationApplication.Views.Login
             WindowRole = WindowRoles.Login;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
-            DataContext = this;
+            Loaded += Login_Loaded;
         }
 
         #endregion
@@ -124,6 +123,16 @@ namespace RemoteEducationApplication.Views.Login
         #region EventHandlers
 
         #region Window
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Login_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = this;
+        }
 
         /// <summary>
         /// Handles the MouseLeftButtonDown event of the Window control.
@@ -249,6 +258,7 @@ namespace RemoteEducationApplication.Views.Login
                   //  (tbxUsername.Text, pbxPassword.Password);
 
                 int roleID = 2;
+
                 //user navigation to a new window, not null (when implemented)
                 if (roleID == (int)RoleRepository.RoleType.Admin)
                     this.NavigateTo(new MainWindow(), true);

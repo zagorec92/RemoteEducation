@@ -11,7 +11,7 @@
            TargetType="Window" 
            BasedOn="{StaticResource {x:Type Window}}">
         <Setter Property="WindowState" Value="Maximized" />
-        <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
 
         <!--for design view-->
@@ -24,13 +24,15 @@
     
     <Style x:Key="MainWindowMenuStyle" 
            TargetType="Menu">
-        <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="Margin" Value="0, 2, 0, 0" />
+        <Setter Property="BorderThickness" Value="0" />
     </Style>
     
     <Style x:Key="MainWindowMenuItemStyle" 
            TargetType="MenuItem" 
            BasedOn="{StaticResource {x:Type MenuItem}}">
-        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="50" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
@@ -39,7 +41,7 @@
     
     <Style x:Key="StatusBarTextBlockStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
     </Style>
 
 </ResourceDictionary>

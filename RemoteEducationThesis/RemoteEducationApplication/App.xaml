@@ -6,10 +6,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--non view resource dictionaries-->
+                <!--basic resource dictionaries-->
                 <ResourceDictionary Source="Resources\Fonts\FontSize.xaml" />
                 <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
-                
+
+                <!--theme-->
+                <ResourceDictionary Source="Resources\Style\Theme\DefaultTheme.xaml" />
+
                 <!--view resource dictionaries-->
                 <ResourceDictionary Source="Resources\Style\GlobalStyle.xaml" />
                 <ResourceDictionary Source="Resources\Style\LoginStyle.xaml" />

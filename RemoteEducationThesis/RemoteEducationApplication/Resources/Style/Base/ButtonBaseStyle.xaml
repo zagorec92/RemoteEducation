@@ -1,18 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="..\..\Brushes\Brushes.xaml" />
-        <ResourceDictionary Source="..\..\Fonts\FontSize.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
+    
     <Style TargetType="Button">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="OverridenTemplateBorder"
-                            Background="{StaticResource LightBlackBrush}">
+                            Background="{DynamicResource BackgroundBrush}">
                         <ContentPresenter HorizontalAlignment="Center" 
                                           VerticalAlignment="Center" />
                     </Border>

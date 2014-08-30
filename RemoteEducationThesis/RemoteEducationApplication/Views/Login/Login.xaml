@@ -84,7 +84,7 @@
         </Grid.RowDefinitions>
 
         <!--menu bar-->
-        <Grid Background="{StaticResource LightBlackBrush}">
+        <Grid Background="{StaticResource BackgroundBrush}">
             <TextBlock Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
                        Foreground="{StaticResource BetterWhiteBrush}"

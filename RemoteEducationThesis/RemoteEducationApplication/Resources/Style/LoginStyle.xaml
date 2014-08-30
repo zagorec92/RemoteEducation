@@ -10,7 +10,7 @@
         <Setter Property="Width" Value="425" />
         <Setter Property="Height" Value="250" />
         <Setter Property="ResizeMode" Value="NoResize" />
-        <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
         
         <!--for design view-->
         <Setter Property="WindowStyle" Value="None" />
@@ -28,7 +28,7 @@
     
     <Style x:Key="TextBoxLoginStyle" TargetType="Control">
         <Setter Property="Margin" Value="5, 5, 0, 0" />
-        <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
         <Setter Property="BorderThickness" Value="0, 0, 0, 1" />
         <Setter Property="Height" Value="25" />
         <Setter Property="Width" Value="150" />
@@ -42,13 +42,13 @@
         <Setter Property="Height" Value="25" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
-        <Setter Property="Background" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
     </Style>
     
     <Style x:Key="ValidationTextBlockLoginStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Bottom" />
         <Setter Property="Margin" Value="5, 0, 0, 0" />
-        <Setter Property="Foreground" Value="{StaticResource ValidationBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ValidationBrush}" />
         <Setter Property="FontSize" Value="{StaticResource SmallFont}" />
     </Style>
     

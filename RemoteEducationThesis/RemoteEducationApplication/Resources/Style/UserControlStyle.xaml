@@ -6,11 +6,11 @@
         <Setter Property="Height" Value="200" />
         <Setter Property="Width" Value="190" />
         <Setter Property="BorderThickness" Value="3" />
-        <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
     </Style>
     
     <Style x:Key="UserControlTextBoxNameStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="Margin" Value="7.5, 0, 0, 0" />
     </Style> 
     
@@ -21,7 +21,7 @@
     </Style>
     
     <Style x:Key="UserControlClockTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 </ResourceDictionary>
