@@ -1,11 +1,13 @@
-﻿<UserControl x:Class="RemoteEducationApplication.Views.UserControls.ClientControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
-             Background="White"
-             Style="{StaticResource UserControlWindowStyle}">
+﻿<base:UserControlBase x:Class="RemoteEducationApplication.Views.UserControls.ClientControl"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                      xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                      xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                      Background="White"
+                      Style="{StaticResource UserControlWindowStyle}"
+                      Tag="{Binding Name}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -18,16 +20,16 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <TextBlock x:Name="tbkName" 
-                       Style="{StaticResource UserControlTextBoxNameStyle}" 
+            <TextBlock Style="{StaticResource UserControlTextBoxNameStyle}" 
                        Text="{Binding Name}" />
             
             <appBar:ApplicationBar Grid.Column="1"
                                    WindowRole="ClientBar"
+                                   IsExpanded="{Binding IsExpanded}"
                                    AppBarClick="appBar_RectangleClick"/>
         </Grid>
         
         <Image Grid.Row="1" />
         
     </Grid>
-</UserControl>
+</base:UserControlBase>

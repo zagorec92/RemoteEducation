@@ -3,8 +3,8 @@
     
     <!--client control-->
     <Style x:Key="UserControlWindowStyle" TargetType="UserControl">
-        <Setter Property="Height" Value="200" />
-        <Setter Property="Width" Value="190" />
+        <Setter Property="Height" Value="{Binding Height}" />
+        <Setter Property="Width" Value="{Binding Width}" />
         <Setter Property="BorderThickness" Value="3" />
         <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
     </Style>

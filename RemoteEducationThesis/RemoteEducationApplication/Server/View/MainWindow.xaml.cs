@@ -98,6 +98,11 @@ namespace RemoteEducationApplication
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value indicating if ClientControl is expanded.
+        /// </summary>
+        protected bool HasClientExpanded { get; set; }
+
         #endregion
 
         #region Constructor
@@ -127,12 +132,28 @@ namespace RemoteEducationApplication
             ConnectedClients = new ObservableCollection<ClientHandler>();
             Random random = new Random();
 
-            //test
+            /*
+             * TEST
+             * ------------------
+             */ 
             for (int i = 0; i < 20; i++)
-                ConnectedClients.Add(new ClientHandler("test" + i + " ") { Precedence = random.Next(100) });
+                ConnectedClients.Add(new ClientHandler("test" + i + " ") 
+                { 
+                    Precedence = random.Next(100),
+                    Width = 200,
+                    Height = 190
+                });
 
-            ConnectedClients = new ObservableCollection<ClientHandler>(ConnectedClients.OrderByDescending(x => x.Precedence));
+            ConnectedClients = new ObservableCollection<ClientHandler>(ConnectedClients
+                .OrderByDescending(x => x.Precedence));
+
+            for (int i = 0; i < ConnectedClients.Count; i++)
+                ConnectedClients[i].DefaultIndex = i;
+            
             StatusMessage = "Connections: " + ClientCount;
+            /*
+             *------------------ 
+             */
 
             DataContext = this;
             Start();
@@ -163,10 +184,17 @@ namespace RemoteEducationApplication
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
         /// instance containing the event data.</param>
-        private void Client_CloseClick(object sender, ApplicationBarEventArgs e)
+        private void Client_Click(object sender, ApplicationBarEventArgs e)
         {
-            ConnectedClients.Remove
-                (ConnectedClients.Single(x => x.Name == e.ObjectName));
+            if (e.CommandName == ApplicationHelper.Commands.Close)
+                CloseClient(e.ObjectName);
+            else if(e.CommandName == ApplicationHelper.Commands.Expand ||
+                e.CommandName == ApplicationHelper.Commands.Shrink)
+                ChangeClientHeightAndWidth(e.ObjectName, e.CommandName);
+            else if(e.CommandName == ApplicationHelper.Commands.Connect)
+            {
+
+            }
 
             StatusMessage = "Connections: " + ClientCount;
         }
@@ -176,6 +204,67 @@ namespace RemoteEducationApplication
         #endregion
 
         #region Methods
+
+        #region Client
+
+        /// <summary>
+        /// Remove the client from the list.
+        /// </summary>
+        /// <param name="clientName"></param>
+        private void CloseClient(string clientName)
+        {
+            if (ConnectedClients.Count(x => x.Name == clientName) == 1)
+            {
+                ConnectedClients.Remove
+                    (ConnectedClients.Single(x => x.Name == clientName));
+            }
+
+            HasClientExpanded = false;
+        }
+
+        /// <summary>
+        /// Changes the client width and height.
+        /// </summary>
+        /// <param name="clientName"></param>
+        /// <param name="commandName"></param>
+        private void ChangeClientHeightAndWidth(string clientName, string commandName)
+        {
+            //width and height values are temporarily hardcoded
+
+            if (ConnectedClients.Count(x => x.Name == clientName) == 1)
+            {
+                if (commandName == ApplicationHelper.Commands.Expand && !HasClientExpanded)
+                {
+                    ClientHandler clientHandler = ConnectedClients.Single
+                        (x => x.Name == clientName);
+
+                    ConnectedClients.Remove(clientHandler);
+
+                    clientHandler.Width = 1024;
+                    clientHandler.Height = 680;
+                    clientHandler.IsExpanded = true;
+                    
+                    ConnectedClients.Insert(0, clientHandler);
+                    HasClientExpanded = true;
+                }
+                else if (commandName == ApplicationHelper.Commands.Shrink)
+                {
+                    ClientHandler clientHandler = ConnectedClients.Single
+                        (x => x.Name == clientName);
+
+                    ConnectedClients.Remove(clientHandler);
+
+                    clientHandler.Width = 200;
+                    clientHandler.Height = 190;
+                    clientHandler.IsExpanded = false;
+
+                    ConnectedClients.Insert(clientHandler.DefaultIndex, clientHandler);
+                    HasClientExpanded = false;
+                }          
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// 

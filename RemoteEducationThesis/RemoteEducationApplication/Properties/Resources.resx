@@ -168,4 +168,7 @@
   <data name="WindowBarMinimize" xml:space="preserve">
     <value>Minimize</value>
   </data>
+  <data name="WindowBarShrink" xml:space="preserve">
+    <value>Shrink</value>
+  </data>
 </root>

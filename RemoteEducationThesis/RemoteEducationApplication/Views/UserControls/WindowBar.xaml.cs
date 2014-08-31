@@ -11,8 +11,18 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for ApplicationBar.xaml
     /// </summary>
-    public partial class ApplicationBar : UserControl
+    public partial class ApplicationBar : UserControlBase
     {
+        #region Dependecy properties
+
+        /// <summary>
+        /// IsExpandedDependencyProperty dependency property.
+        /// </summary>
+        public static readonly DependencyProperty IsExpandedDependencyProperty =
+            DependencyProperty.Register("IsExpanded", typeof(bool), typeof(ApplicationBar));
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -29,6 +39,22 @@ namespace RemoteEducationApplication.Views.UserControls
         /// Gets or sets the client bar visibility.
         /// </summary>
         public Visibility ClientBarVisibility { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value indicating if the control is expanded.
+        /// </summary>
+        public bool IsExpanded 
+        {
+            get
+            {
+                return bool.Parse(GetValue(IsExpandedDependencyProperty).ToString());
+            }
+            set
+            {
+                SetValue(IsExpandedDependencyProperty, value);
+                NotifyPropertyChanged("IsExpanded");
+            }
+        }
 
         #endregion
 

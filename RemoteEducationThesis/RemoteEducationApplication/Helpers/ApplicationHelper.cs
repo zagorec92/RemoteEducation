@@ -12,12 +12,18 @@ namespace RemoteEducationApplication.Helpers
         /// </summary>
         public struct Commands
         {
-            public static string Clear = "Clear";
             public static string Login = "Login";
+            public static string Recover = "Recover";
+
             public static string Close = "Close";
             public static string Minimize = "Minimize";
             public static string Cancel = "Cancel";
-            public static string Recover = "Recover";
+            public static string Clear = "Clear";
+            
+            public static string Connect = "Connect";
+           
+            public static string Expand = "Expand";
+            public static string Shrink = "Shrink";
         }
 
         /// <summary>
@@ -81,7 +87,7 @@ namespace RemoteEducationApplication.Helpers
         {
             if (command == Commands.Minimize)
                 Minimize();
-            else if (command == ApplicationHelper.Commands.Close)
+            else if (command == Commands.Close)
                 Close();
         }
 

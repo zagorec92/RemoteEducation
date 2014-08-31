@@ -18,6 +18,8 @@ namespace RemoteEducationApplication.Client
         private int _port;
         private string _name;
         private Bitmap _desktopImage;
+        private double _width;
+        private double _height;
 
         #endregion
 
@@ -128,6 +130,36 @@ namespace RemoteEducationApplication.Client
         /// Gets or sets the Precedence.
         /// </summary>
         public int Precedence { get; set; }
+
+        public double Height
+        {
+            get
+            {
+                return _height;
+            }
+            set
+            {
+                _height = value;
+                OnPropertyChanged("Height");
+            }
+        }
+
+        public double Width
+        {
+            get
+            {
+                return _width;
+            }
+            set
+            {
+                _width = value;
+                OnPropertyChanged("Width");
+            }
+        }
+
+        public int DefaultIndex { get; set; }
+
+        public bool IsExpanded { get; set; }
 
         #endregion
 

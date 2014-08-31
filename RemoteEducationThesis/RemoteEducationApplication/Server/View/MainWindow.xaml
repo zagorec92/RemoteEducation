@@ -59,9 +59,8 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <uc:ClientControl Tag="{Binding Name}"
-                                          Margin="10"
-                                          CloseClick="Client_CloseClick"/>
+                        <uc:ClientControl Margin="10"
+                                          ClientClick="Client_Click"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

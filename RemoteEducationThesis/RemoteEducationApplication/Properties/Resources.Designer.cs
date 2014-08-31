@@ -212,5 +212,14 @@ namespace RemoteEducationApplication.Properties {
                 return ResourceManager.GetString("WindowBarMinimize", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shrink.
+        /// </summary>
+        public static string WindowBarShrink {
+            get {
+                return ResourceManager.GetString("WindowBarShrink", resourceCulture);
+            }
+        }
     }
 }
