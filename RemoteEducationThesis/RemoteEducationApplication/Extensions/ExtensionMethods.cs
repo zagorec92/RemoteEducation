@@ -75,9 +75,24 @@ namespace RemoteEducationApplication.Extensions
         /// <returns></returns>
         public static T GetTag<T>(this FrameworkElement frameworkElement)
         {
+            return To<T>(frameworkElement.Tag);
+        }
+
+        #endregion
+
+        #region Convert object
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static T To<T>(this object value)
+        {
             Type type = typeof(T);
 
-            return (T)Convert.ChangeType(frameworkElement.Tag, type);
+            return (T)Convert.ChangeType(value, type);
         }
 
         #endregion

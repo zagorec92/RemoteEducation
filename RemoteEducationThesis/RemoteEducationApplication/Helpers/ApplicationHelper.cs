@@ -83,7 +83,7 @@ namespace RemoteEducationApplication.Helpers
         /// Executes given command.
         /// </summary>
         /// <param name="command">Command to execute.</param>
-        public static void ExecuteCommand(string command)
+        public static void ExecuteBasicCommand(string command)
         {
             if (command == Commands.Minimize)
                 Minimize();

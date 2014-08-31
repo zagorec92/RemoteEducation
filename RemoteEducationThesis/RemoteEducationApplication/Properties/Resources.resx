@@ -123,6 +123,10 @@
   <data name="CancelAction" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="FileSubMenuItemExit" xml:space="preserve">
+    <value>_Exit</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
   <data name="LoginPageClear" xml:space="preserve">
     <value>Clear</value>
   </data>
@@ -139,19 +143,29 @@
     <value>Username:</value>
   </data>
   <data name="MenuFile" xml:space="preserve">
-    <value>File</value>
+    <value>_File</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuHelp" xml:space="preserve">
-    <value>Help</value>
+    <value>_Help</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuOptions" xml:space="preserve">
-    <value>Options</value>
+    <value>_Options</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuView" xml:space="preserve">
-    <value>View</value>
+    <value>_View</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="RecoveryAction" xml:space="preserve">
     <value>Recover</value>
+  </data>
+  <data name="StatusBarConnections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="StatusBarLastRefresh" xml:space="preserve">
+    <value>Updated</value>
   </data>
   <data name="UserDataEmail" xml:space="preserve">
     <value>Email:</value>

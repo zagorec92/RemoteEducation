@@ -20,6 +20,12 @@
                 <Menu Style="{StaticResource MainWindowMenuStyle}">
                     <MenuItem Header="{x:Static global:Resources.MenuFile}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.FileSubMenuItemExit}" 
+                                  Tag="{x:Static global:Resources.WindowBarClose}"
+                                  InputGestureText="Alt+F4"
+                                  Click="SubMenuItem_Click">
+                        </MenuItem>
                     </MenuItem>
 
                     <MenuItem Header="{x:Static global:Resources.MenuView}"
@@ -28,7 +34,6 @@
 
                     <MenuItem Header="{x:Static global:Resources.MenuOptions}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
-
                     </MenuItem>
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"
@@ -75,13 +80,37 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <TextBlock HorizontalAlignment="Left"
-                       Text="{Binding StatusMessage}"
-                       Style="{StaticResource StatusBarTextBlockStyle}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock HorizontalAlignment="Left"
+                           Style="{StaticResource StatusBarTextBlockStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}: {1}">
+                            <Binding Source="{x:Static global:Resources.StatusBarConnections}"/>
+                            <Binding Path="ClientNumber"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             
-            <uc:Clock Grid.Column="1"
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource StatusBarTextBlockStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}: {1}">
+                            <Binding Source="{x:Static global:Resources.StatusBarLastRefresh}"/>
+                            <Binding Path="LastUpdate"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>             
+            </Grid>
+
+            <!--<uc:Clock Grid.Column="1"
                       HorizontalAlignment="Right"
-                      VerticalAlignment="Center"/>
+                      VerticalAlignment="Center"/>-->
             
         </Grid>
 

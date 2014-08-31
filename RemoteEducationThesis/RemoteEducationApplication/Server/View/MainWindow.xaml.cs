@@ -5,9 +5,11 @@ using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RemoteEducationApplication
 {
@@ -19,8 +21,8 @@ namespace RemoteEducationApplication
         #region Fields
 
         private ObservableCollection<ClientHandler> _connectedClients;
-        private DateTime _lastRefresh;
-        private string _statusMessage;
+        private DateTime _lastUpdate;
+        private int _clientNumber;
 
         #endregion
 
@@ -38,7 +40,10 @@ namespace RemoteEducationApplication
 
                 return _connectedClients;
             }
-            set { _connectedClients = value; }
+            set 
+            { 
+                _connectedClients = value;          
+            }
         }
 
         /// <summary>
@@ -47,39 +52,18 @@ namespace RemoteEducationApplication
         public ServerHandler Server { get; set; }
 
         /// <summary>
-        /// Gets or sets the warning message.
-        /// </summary>
-        public string WarningMessage { get; set; }
-
-        /// <summary>
-        /// Gets or sets the message to be displayed in status bar.
-        /// </summary>
-        public string StatusMessage 
-        {
-            get
-            {
-                return _statusMessage;
-            }
-            set
-            {
-                _statusMessage = value;
-                NotifyPropertyChanged("StatusMessage");
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the last refresh date.
         /// </summary>
-        public DateTime LastRefresh 
+        public DateTime LastUpdate 
         { 
             get
             {
-                return _lastRefresh;
+                return _lastUpdate;
             }
             set
             {
-                _lastRefresh = value;
-                NotifyPropertyChanged("LastRefresh");
+                _lastUpdate = value;
+                NotifyPropertyChanged("LastUpdate");
             }
         }
 
@@ -87,14 +71,30 @@ namespace RemoteEducationApplication
         /// Gets the count of connected clients.
         /// </summary>
         /// <exception cref="NullReferenceException">If <paramref name="ConnectedClients"/> is <c>null</c>.</exception>
-        public string ClientCount 
+        public int ClientCount 
         {
             get
             {
                 if (ConnectedClients != null)
-                    return ConnectedClients.Count.ToString();
+                    return ConnectedClients.Count;
                 else
-                    throw new NullReferenceException();
+                    throw new NullReferenceException();           
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the current client count number.
+        /// </summary>
+        public int ClientNumber 
+        { 
+            get
+            {
+                return _clientNumber;
+            }
+            set
+            {
+                _clientNumber = value;
+                NotifyPropertyChanged("ClientNumber");
             }
         }
 
@@ -112,6 +112,7 @@ namespace RemoteEducationApplication
         /// </summary>
         public MainWindow()
         {
+            HandleFullScreenResize();
             InitializeComponent();
             Loaded += MainWindow_Loaded;
         }
@@ -128,14 +129,14 @@ namespace RemoteEducationApplication
         /// <param name="sender"></param>
         /// <param name="e"></param>
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            ConnectedClients = new ObservableCollection<ClientHandler>();
-            Random random = new Random();
-
+        {            
             /*
              * TEST
              * ------------------
              */ 
+            ConnectedClients = new ObservableCollection<ClientHandler>();
+            Random random = new Random();
+
             for (int i = 0; i < 20; i++)
                 ConnectedClients.Add(new ClientHandler("test" + i + " ") 
                 { 
@@ -150,13 +151,24 @@ namespace RemoteEducationApplication
             for (int i = 0; i < ConnectedClients.Count; i++)
                 ConnectedClients[i].DefaultIndex = i;
             
-            StatusMessage = "Connections: " + ClientCount;
+            ClientNumber = ClientCount;
             /*
              *------------------ 
              */
 
             DataContext = this;
             Start();
+        }
+
+        /// <summary>
+        /// Overrides the OnClosing event.
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+
+            //close all connections
         }
 
         #endregion
@@ -171,7 +183,23 @@ namespace RemoteEducationApplication
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            ApplicationHelper.ExecuteCommand(e.CommandName);
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the MenuItem element.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void SubMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+
+            if(menuItem != null)
+            {
+                if (menuItem.GetTag() == ApplicationHelper.Commands.Close)
+                    ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
+            }
         }
 
         #endregion
@@ -195,8 +223,6 @@ namespace RemoteEducationApplication
             {
 
             }
-
-            StatusMessage = "Connections: " + ClientCount;
         }
 
         #endregion
@@ -204,6 +230,22 @@ namespace RemoteEducationApplication
         #endregion
 
         #region Methods
+
+        #region Window
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void HandleFullScreenResize()
+        {
+            Width = System.Windows.SystemParameters.WorkArea.Width;
+            Height = System.Windows.SystemParameters.WorkArea.Height;
+            Left = default(int);
+            Top = default(int);
+            WindowState = WindowState.Normal;
+        }
+
+        #endregion
 
         #region Client
 
@@ -219,6 +261,7 @@ namespace RemoteEducationApplication
                     (ConnectedClients.Single(x => x.Name == clientName));
             }
 
+            ClientNumber = ClientCount;
             HasClientExpanded = false;
         }
 
@@ -258,7 +301,12 @@ namespace RemoteEducationApplication
                     clientHandler.Height = 190;
                     clientHandler.IsExpanded = false;
 
-                    ConnectedClients.Insert(clientHandler.DefaultIndex, clientHandler);
+                    ClientHandler client = ConnectedClients.
+                        Where(x => x.Precedence > clientHandler.Precedence).LastOrDefault();                    
+                    int indexOfClient = client == null ? -1 : ConnectedClients.IndexOf(client);
+
+                    ConnectedClients.Insert(indexOfClient + 1, clientHandler);
+
                     HasClientExpanded = false;
                 }          
             }
@@ -332,9 +380,9 @@ namespace RemoteEducationApplication
                         client.Name = client.Name.Substring(0, client.Name.IndexOf(' ') + 1) + count.ToString();
 
                 count++;
-                LastRefresh = DateTime.Now;
-
-                await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
+                LastUpdate = DateTime.Now;
+                
+                await Task.Delay(ConnectionHelper.SleepTime.Long.GetValue());
             }
         }
 

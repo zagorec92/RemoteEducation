@@ -16,4 +16,7 @@
     <!--Menu hover-->
     <SolidColorBrush x:Key="MenuHoverBrush" Color="{Binding Source={StaticResource DarkGreenWin8Brush}, Path=Color}" />
 
+    <!--Submenu hover-->
+    <SolidColorBrush x:Key="SubMenuHoverBrush" Color="{Binding Source={StaticResource DarkBlueWin8Brush}, Path=Color}" />
+
 </ResourceDictionary>

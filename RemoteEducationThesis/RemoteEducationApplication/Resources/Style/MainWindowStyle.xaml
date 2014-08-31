@@ -16,6 +16,7 @@
 
         <!--for design view-->
         <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="ResizeMode" Value="NoResize" />
         <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="BorderThickness" Value="5" />
         <Setter Property="Background" Value="{StaticResource BetterWhiteBrush}" />
@@ -31,12 +32,20 @@
     
     <Style x:Key="MainWindowMenuItemStyle" 
            TargetType="MenuItem" 
-           BasedOn="{StaticResource {x:Type MenuItem}}">
+           BasedOn="{StaticResource TopMenuItemBaseStyle}">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
         <Setter Property="Width" Value="100" />
         <Setter Property="Height" Value="50" />
         <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
+    </Style>
 
+    <Style x:Key="MainWindowSubMenuItemStyle" 
+           TargetType="MenuItem"
+           BasedOn="{StaticResource SubMenuItemBaseStyle}">
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
     </Style>
     
     <Style x:Key="StatusBarTextBlockStyle" TargetType="TextBlock">

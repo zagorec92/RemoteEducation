@@ -79,6 +79,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Exit.
+        /// </summary>
+        public static string FileSubMenuItemExit {
+            get {
+                return ResourceManager.GetString("FileSubMenuItemExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string LoginPageClear {
@@ -124,7 +133,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File.
+        ///   Looks up a localized string similar to _File.
         /// </summary>
         public static string MenuFile {
             get {
@@ -133,7 +142,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help.
+        ///   Looks up a localized string similar to _Help.
         /// </summary>
         public static string MenuHelp {
             get {
@@ -142,7 +151,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Options.
+        ///   Looks up a localized string similar to _Options.
         /// </summary>
         public static string MenuOptions {
             get {
@@ -151,7 +160,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
+        ///   Looks up a localized string similar to _View.
         /// </summary>
         public static string MenuView {
             get {
@@ -165,6 +174,24 @@ namespace RemoteEducationApplication.Properties {
         public static string RecoveryAction {
             get {
                 return ResourceManager.GetString("RecoveryAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connections.
+        /// </summary>
+        public static string StatusBarConnections {
+            get {
+                return ResourceManager.GetString("StatusBarConnections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated.
+        /// </summary>
+        public static string StatusBarLastRefresh {
+            get {
+                return ResourceManager.GetString("StatusBarLastRefresh", resourceCulture);
             }
         }
         

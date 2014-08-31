@@ -164,7 +164,7 @@ namespace RemoteEducationApplication.Views.Login
         /// instance conatining the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            ApplicationHelper.ExecuteCommand(e.CommandName);
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
 
         #endregion
