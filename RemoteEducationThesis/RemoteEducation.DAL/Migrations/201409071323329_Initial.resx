@@ -117,75 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ApplicationWindowTitle" xml:space="preserve">
-    <value>ƎEducation</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="CancelAction" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="FileSubMenuItemExit" xml:space="preserve">
-    <value>_Exit</value>
-    <comment>Prefixed with '_' because of the hotkey.</comment>
-  </data>
-  <data name="LoginPageClear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="LoginPageLogin" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="LoginPagePassword" xml:space="preserve">
-    <value>Password:</value>
-  </data>
-  <data name="LoginPageRecovery" xml:space="preserve">
-    <value>Forgot password?</value>
-  </data>
-  <data name="LoginPageUsername" xml:space="preserve">
-    <value>Username:</value>
-  </data>
-  <data name="MenuFile" xml:space="preserve">
-    <value>_File</value>
-    <comment>Prefixed with '_' because of the hotkey.</comment>
-  </data>
-  <data name="MenuHelp" xml:space="preserve">
-    <value>_Help</value>
-    <comment>Prefixed with '_' because of the hotkey.</comment>
-  </data>
-  <data name="MenuOptions" xml:space="preserve">
-    <value>_Options</value>
-    <comment>Prefixed with '_' because of the hotkey.</comment>
-  </data>
-  <data name="MenuView" xml:space="preserve">
-    <value>_View</value>
-    <comment>Prefixed with '_' because of the hotkey.</comment>
-  </data>
-  <data name="RecoveryAction" xml:space="preserve">
-    <value>Recover</value>
-  </data>
-  <data name="StatusBarConnections" xml:space="preserve">
-    <value>Connections</value>
-  </data>
-  <data name="StatusBarLastConnectionRefresh" xml:space="preserve">
-    <value>Connections updated</value>
-  </data>
-  <data name="StatusBarLastImageRefresh" xml:space="preserve">
-    <value>Image updated</value>
-  </data>
-  <data name="UserDataEmail" xml:space="preserve">
-    <value>Email:</value>
-  </data>
-  <data name="WindowBarClose" xml:space="preserve">
-    <value>Close</value>
-  </data>
-  <data name="WindowBarConnect" xml:space="preserve">
-    <value>Connect</value>
-  </data>
-  <data name="WindowBarExpand" xml:space="preserve">
-    <value>Expand</value>
-  </data>
-  <data name="WindowBarMinimize" xml:space="preserve">
-    <value>Minimize</value>
-  </data>
-  <data name="WindowBarShrink" xml:space="preserve">
-    <value>Shrink</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

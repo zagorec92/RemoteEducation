@@ -1,4 +1,4 @@
-﻿using RemoteEducation.Model;
+﻿using Education.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,24 +10,14 @@ namespace RemoteEducation.DAL.Repositories
 {
     public abstract class RepositoryBase<T> where T : EntityBase
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        protected RemoteEducationDbContext Context { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
-        public RepositoryBase(RemoteEducationDbContext context)
+        protected EEducationDbContext Context { get; set; }
+
+        public RepositoryBase(EEducationDbContext context)
         {
             Context = context;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public virtual IQueryable<T> GetAll()
         {
             return Context.Set<T>();

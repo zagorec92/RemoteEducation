@@ -90,8 +90,12 @@
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
+    <Compile Include="Properties\Resources.hr-HR.Designer.cs">
+      <DependentUpon>Resources.hr-HR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Server\ServerHandler.cs" />
-    <Compile Include="Server\ServerManager.cs" />
     <Compile Include="Shared\ApplicationBarEventArgs.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
@@ -108,7 +112,7 @@
     <Compile Include="Views\UserControls\Clock.xaml.cs">
       <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
-    <Page Include="Server\View\MainWindow.xaml">
+    <Page Include="Views\Server\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -116,7 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Server\View\MainWindow.xaml.cs">
+    <Compile Include="Views\Server\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -199,6 +203,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.hr-HR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.hr-HR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -244,9 +252,9 @@
       <Project>{12268ab2-e999-43ef-87f5-cde16e7a1556}</Project>
       <Name>RemoteEducation.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RemoteEducation.Model\RemoteEducation.Model.csproj">
+    <ProjectReference Include="..\RemoteEducation.Model\Education.Model.csproj">
       <Project>{888b25b7-d27f-4f39-9db4-9c66a223b489}</Project>
-      <Name>RemoteEducation.Model</Name>
+      <Name>Education.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

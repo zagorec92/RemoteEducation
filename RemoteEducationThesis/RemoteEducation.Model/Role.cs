@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace RemoteEducation.Model
+namespace Education.Model
 {
     public class Role : EntityBase
     {

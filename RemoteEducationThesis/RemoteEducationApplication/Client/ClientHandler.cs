@@ -20,10 +20,23 @@ namespace RemoteEducationApplication.Client
         private Bitmap _desktopImage;
         private double _width;
         private double _height;
+        private TcpClient _tcpClient;
 
         #endregion
 
         #region Properties
+
+        public TcpClient TcpClient
+        {
+            get 
+            { 
+                return _tcpClient; 
+            }
+            set
+            {
+                _tcpClient = value;
+            }
+        }
 
         /// <summary>
         /// Port

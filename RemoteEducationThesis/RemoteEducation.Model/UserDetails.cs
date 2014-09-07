@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace RemoteEducation.Model
+namespace Education.Model
 {
     public class UserDetails : EntityBase
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -12,18 +13,18 @@ namespace RemoteEducationApplication.Helpers
         /// </summary>
         public struct Commands
         {
-            public static string Login = "Login";
-            public static string Recover = "Recover";
+            public static string Login = AppResources.LoginPageLogin;
+            public static string Recover = AppResources.RecoveryAction;
 
-            public static string Close = "Close";
-            public static string Minimize = "Minimize";
-            public static string Cancel = "Cancel";
-            public static string Clear = "Clear";
+            public static string Close = AppResources.WindowBarClose;
+            public static string Minimize = AppResources.WindowBarMinimize;
+            public static string Cancel = AppResources.CancelAction;
+            public static string Clear = AppResources.LoginPageClear;
             
-            public static string Connect = "Connect";
+            public static string Connect = AppResources.WindowBarConnect;
            
-            public static string Expand = "Expand";
-            public static string Shrink = "Shrink";
+            public static string Expand = AppResources.WindowBarExpand;
+            public static string Shrink = AppResources.WindowBarShrink;
         }
 
         /// <summary>

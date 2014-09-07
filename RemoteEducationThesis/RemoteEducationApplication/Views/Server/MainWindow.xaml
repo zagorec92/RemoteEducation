@@ -1,0 +1,130 @@
+﻿<base:WindowBase x:Class="RemoteEducationApplication.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 Style="{StaticResource MainWindowStyle}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+
+        <!--menu bar-->
+        <Grid Background="{DynamicResource BackgroundBrush}">
+
+            <!--menu-->
+            <Grid HorizontalAlignment="Left">
+                <Menu Style="{StaticResource MainWindowMenuStyle}">
+                    <MenuItem Header="{x:Static global:Resources.MenuFile}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.FileSubMenuItemExit}" 
+                                  Tag="{x:Static global:Resources.WindowBarClose}"
+                                  InputGestureText="Alt+F4"
+                                  Click="SubMenuItem_Click">
+                        </MenuItem>
+                    </MenuItem>
+
+                    <MenuItem Header="{x:Static global:Resources.MenuView}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
+
+                    <MenuItem Header="{x:Static global:Resources.MenuOptions}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
+                    
+                    <MenuItem Header="{x:Static global:Resources.MenuHelp}"
+                              Style="{StaticResource MainWindowMenuItemStyle}">
+                    </MenuItem>
+                    
+
+                </Menu>
+            </Grid>
+
+            <!--minimize and close-->
+            <uc:ApplicationBar AppBarClick="ApplicationBar_Click"
+                               WindowRole="ApplicationBar"/>
+
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            
+            <ListView ItemsSource="{Binding ConnectedClients}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      BorderThickness="0"
+                      Background="{StaticResource BetterWhiteBrush}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True"
+                                   Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <uc:ClientControl Margin="10"
+                                          ClientClick="Client_Click"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </Grid>
+
+        <!--status bar-->
+        <Grid Grid.Row="2" 
+              Background="{DynamicResource BackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock HorizontalAlignment="Left"
+                           Style="{StaticResource StatusBarTextBlockStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}: {1}">
+                            <Binding Source="{x:Static global:Resources.StatusBarConnections}"/>
+                            <Binding Path="ClientNumber"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource StatusBarTextBlockStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}: {1}">
+                            <Binding Source="{x:Static global:Resources.StatusBarLastImageRefresh}"/>
+                            <Binding Path="LastImageUpdate"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>    
+                
+                <TextBlock Grid.Column="2"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource StatusBarTextBlockStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}: {1}">
+                            <Binding Source="{x:Static global:Resources.StatusBarLastConnectionRefresh}"/>
+                            <Binding Path="LastConnectionUpdate" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+
+            <!--<uc:Clock Grid.Column="1"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"/>-->
+            
+        </Grid>
+
+    </Grid>
+</base:WindowBase>

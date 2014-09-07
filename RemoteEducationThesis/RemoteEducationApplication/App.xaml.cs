@@ -1,6 +1,6 @@
 ﻿using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
-using RemoteEducation.Model;
+using Education.Model;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -27,8 +27,6 @@ namespace RemoteEducationApplication
                 new FrameworkPropertyMetadata(
                     XmlLanguage.GetLanguage(
                     CultureInfo.CurrentCulture.IetfLanguageTag)));
-
-            DispatcherUnhandledException += App_DispatcherUnhandledException;
         }
 
         /// <summary>
@@ -39,7 +37,7 @@ namespace RemoteEducationApplication
         /// instance conatining the event data.</param>
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            using(RemoteEducationDbContext context = new RemoteEducationDbContext())
+            using(EEducationDbContext context = new EEducationDbContext())
             {
                 ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
 

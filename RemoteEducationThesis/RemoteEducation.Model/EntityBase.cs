@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace RemoteEducation.Model
+namespace Education.Model
 {
     public abstract class EntityBase
     {

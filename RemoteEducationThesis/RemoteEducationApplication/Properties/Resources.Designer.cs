@@ -61,7 +61,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RemoteEducation.
+        ///   Looks up a localized string similar to ƎEducation.
         /// </summary>
         public static string ApplicationWindowTitle {
             get {
@@ -187,11 +187,20 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated.
+        ///   Looks up a localized string similar to Connections updated.
         /// </summary>
-        public static string StatusBarLastRefresh {
+        public static string StatusBarLastConnectionRefresh {
             get {
-                return ResourceManager.GetString("StatusBarLastRefresh", resourceCulture);
+                return ResourceManager.GetString("StatusBarLastConnectionRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image updated.
+        /// </summary>
+        public static string StatusBarLastImageRefresh {
+            get {
+                return ResourceManager.GetString("StatusBarLastImageRefresh", resourceCulture);
             }
         }
         

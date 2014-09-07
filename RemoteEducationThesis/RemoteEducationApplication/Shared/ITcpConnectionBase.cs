@@ -19,11 +19,6 @@ namespace RemoteEducationApplication.Shared
         AddressFamily AddressFamily { get; }
 
         /// <summary>
-        /// Gets or sets the closing flag.
-        /// </summary>
-        bool IsClosing { get; set; }
-
-        /// <summary>
         /// 
         /// </summary>
         bool Connected { get; }

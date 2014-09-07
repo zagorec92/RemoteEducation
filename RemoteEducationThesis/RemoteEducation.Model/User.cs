@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteEducation.Model
+namespace Education.Model
 {
     public class User : EntityBase
     {

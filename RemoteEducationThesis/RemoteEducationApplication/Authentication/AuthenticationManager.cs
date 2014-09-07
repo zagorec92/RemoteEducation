@@ -1,6 +1,6 @@
 ﻿using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
-using RemoteEducation.Model;
+using Education.Model;
 using RemoteEducationApplication.Extensions;
 using System;
 using System.IO;
@@ -59,7 +59,7 @@ namespace RemoteEducationApplication.Authentication
             if(username == String.Empty && password == String.Empty)
                 throw new ArgumentException(ErrorMessages.InvalidParameters, AuthenticateExParameters.IsParameters);
 
-            using(RemoteEducationDbContext context = new RemoteEducationDbContext())
+            using(EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
                 User user = userRepository.GetAll()
@@ -89,7 +89,7 @@ namespace RemoteEducationApplication.Authentication
                 user.UserDetail.PasswordSalt);
 
             //save
-            using (RemoteEducationDbContext context = new RemoteEducationDbContext())
+            using (EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
 

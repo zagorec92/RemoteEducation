@@ -1,4 +1,4 @@
-﻿using RemoteEducation.Model;
+﻿using Education.Model;
 using System;
 using System.Linq;
 
@@ -10,19 +10,9 @@ namespace RemoteEducation.DAL.Repositories
         /// 
         /// </summary>
         /// <param name="context"></param>
-        public UserRepository(RemoteEducationDbContext context)
+        public UserRepository(EEducationDbContext context)
             : base(context)
         { }
-
-        /// <summary>
-        /// Gets the user by id.
-        /// </summary>
-        /// <param name="id">User id.</param>
-        /// <returns></returns>
-        public User Get(int id)
-        {
-            return base.Get(id);
-        }
 
         /// <summary>
         /// Gets the user by username.
@@ -35,7 +25,7 @@ namespace RemoteEducation.DAL.Repositories
                 .FirstOrDefault(x => x.UserDetail.Username == username);
         }
 
-        public bool InsertOrUpdate(User user)
+        public override bool InsertOrUpdate(User user)
         {
             try
             {

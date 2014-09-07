@@ -121,71 +121,71 @@
     <value>ƎEducation</value>
   </data>
   <data name="CancelAction" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Odustani</value>
   </data>
   <data name="FileSubMenuItemExit" xml:space="preserve">
-    <value>_Exit</value>
+    <value>_Izađi</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="LoginPageClear" xml:space="preserve">
-    <value>Clear</value>
+    <value>Obriši</value>
   </data>
   <data name="LoginPageLogin" xml:space="preserve">
-    <value>Login</value>
+    <value>Prijavi se</value>
   </data>
   <data name="LoginPagePassword" xml:space="preserve">
-    <value>Password:</value>
+    <value>Zaporka:</value>
   </data>
   <data name="LoginPageRecovery" xml:space="preserve">
-    <value>Forgot password?</value>
+    <value>Zaboravili ste zaporku?</value>
   </data>
   <data name="LoginPageUsername" xml:space="preserve">
-    <value>Username:</value>
+    <value>Korisničko ime:</value>
   </data>
   <data name="MenuFile" xml:space="preserve">
-    <value>_File</value>
+    <value>_Datoteka</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuHelp" xml:space="preserve">
-    <value>_Help</value>
+    <value>_Pomoć</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuOptions" xml:space="preserve">
-    <value>_Options</value>
+    <value>_Opcije</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="MenuView" xml:space="preserve">
-    <value>_View</value>
+    <value>_Pogled</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
   <data name="RecoveryAction" xml:space="preserve">
-    <value>Recover</value>
+    <value>Obnovi</value>
   </data>
   <data name="StatusBarConnections" xml:space="preserve">
-    <value>Connections</value>
+    <value>Veze</value>
   </data>
   <data name="StatusBarLastConnectionRefresh" xml:space="preserve">
-    <value>Connections updated</value>
+    <value>Veze ažurirane</value>
   </data>
   <data name="StatusBarLastImageRefresh" xml:space="preserve">
-    <value>Image updated</value>
+    <value>Slike ažurirane</value>
   </data>
   <data name="UserDataEmail" xml:space="preserve">
     <value>Email:</value>
   </data>
   <data name="WindowBarClose" xml:space="preserve">
-    <value>Close</value>
+    <value>Zatvori</value>
   </data>
   <data name="WindowBarConnect" xml:space="preserve">
-    <value>Connect</value>
+    <value>Poveži</value>
   </data>
   <data name="WindowBarExpand" xml:space="preserve">
-    <value>Expand</value>
+    <value>Proširi</value>
   </data>
   <data name="WindowBarMinimize" xml:space="preserve">
-    <value>Minimize</value>
+    <value>Minimiziraj</value>
   </data>
   <data name="WindowBarShrink" xml:space="preserve">
-    <value>Shrink</value>
+    <value>Smanji</value>
   </data>
 </root>

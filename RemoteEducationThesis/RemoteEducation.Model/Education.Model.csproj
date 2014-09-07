@@ -7,8 +7,8 @@
     <ProjectGuid>{888B25B7-D27F-4F39-9DB4-9C66A223B489}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RemoteEducation.Model</RootNamespace>
-    <AssemblyName>RemoteEducation.Model</AssemblyName>
+    <RootNamespace>Education.Model</RootNamespace>
+    <AssemblyName>Education.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,9 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer.cs" />
     <Compile Include="ApplicationLog.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDetails.cs" />

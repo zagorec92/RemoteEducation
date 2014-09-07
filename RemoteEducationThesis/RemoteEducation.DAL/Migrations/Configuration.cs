@@ -2,7 +2,7 @@ using System.Data.Entity.Migrations;
 
 namespace RemoteEducation.DAL.Migrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<RemoteEducationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EEducationDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace RemoteEducation.DAL.Migrations
         /// 
         /// </summary>
         /// <param name="context"></param>
-        protected override void Seed(RemoteEducationDbContext context)
+        protected override void Seed(EEducationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -80,10 +80,10 @@ namespace RemoteEducationApplication.Server
         public int MaxConnections { get; set; }
 
         /// <summary>
-        /// Gets or sets the flag indicating if server is closing.
+        /// Gets or sets the flag indicating if server has stopped listening.
         /// <value>Default true</value>
         /// </summary>
-        public bool IsClosing { get; set; }
+        public bool IsListening { get; set; }
 
         #endregion
 
@@ -121,7 +121,11 @@ namespace RemoteEducationApplication.Server
         /// <param name="endPoint"></param>
         public ServerHandler(IPEndPoint endPoint)
             : base (endPoint)
-        { }
+        {
+            Port = endPoint.Port;
+            IpAddress = endPoint.Address;
+            IsListening = true;
+        }
 
         /// <summary>
         /// Initializes new instance of ServerHandler class.
@@ -133,6 +137,7 @@ namespace RemoteEducationApplication.Server
         {
             Port = port;
             IpAddress = address;
+            IsListening = true;
         }
 
         #endregion

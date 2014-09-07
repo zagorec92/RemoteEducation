@@ -1,4 +1,4 @@
-﻿namespace RemoteEducation.Model
+﻿namespace Education.Model
 {
     public class ApplicationLog : EntityBase
     {
