@@ -1,7 +1,12 @@
 ﻿using RemoteEducationApplication.Helpers;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace RemoteEducationApplication.Extensions
 {
@@ -107,6 +112,29 @@ namespace RemoteEducationApplication.Extensions
         public static int GetValue(this Enum enumValue)
         {
             return (int)Enum.Parse(enumValue.GetType(), enumValue.ToString());
+        }
+
+        #endregion
+
+        #region Bitmap
+
+        public static ImageSource GetImageSource(this Bitmap bitmap)
+        {
+            using(MemoryStream ms = new MemoryStream())
+            {
+                bitmap.Save(ms, ImageFormat.Bmp);
+                ms.Position = default(int);
+
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+
+                bitmapImage.StreamSource = ms;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+
+                bitmapImage.EndInit();
+
+                return bitmapImage;
+            }
         }
 
         #endregion

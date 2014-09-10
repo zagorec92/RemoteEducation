@@ -4,7 +4,6 @@
     <Style TargetType="Rectangle">
         <Setter Property="Height" Value="30" />
         <Setter Property="Width" Value="30" />
-        <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Fill" Value="{DynamicResource ApplicationMenuHoverBrush}" />

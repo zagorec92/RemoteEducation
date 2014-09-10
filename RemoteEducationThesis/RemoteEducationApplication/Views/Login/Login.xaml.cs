@@ -3,6 +3,7 @@ using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
+using RemoteEducationApplication.Views.Client;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -263,7 +264,7 @@ namespace RemoteEducationApplication.Views.Login
                 if (roleID == (int)RoleRepository.RoleType.Admin)
                     this.NavigateTo(new MainWindow(), true);
                 else if (roleID == (int)RoleRepository.RoleType.User)
-                    this.NavigateTo(null, true);
+                    this.NavigateTo(new ClientWindow(), true);
             }
             catch (ArgumentException ex)
             {

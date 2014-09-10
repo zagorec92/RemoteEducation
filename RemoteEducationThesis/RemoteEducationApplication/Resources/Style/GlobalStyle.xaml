@@ -19,6 +19,7 @@
            BasedOn="{StaticResource {x:Type Rectangle}}">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Margin" Value="0, -3, 0, 0" />
+        <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
     </Style>
 
 </ResourceDictionary>

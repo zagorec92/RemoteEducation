@@ -79,6 +79,33 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Waiting for desktop image....
+        /// </summary>
+        public static string ClientImageWaitStatus {
+            get {
+                return ResourceManager.GetString("ClientImageWaitStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connected.
+        /// </summary>
+        public static string ClientWindowConnected {
+            get {
+                return ResourceManager.GetString("ClientWindowConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending Image....
+        /// </summary>
+        public static string ClientWindowSendingImage {
+            get {
+                return ResourceManager.GetString("ClientWindowSendingImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Exit.
         /// </summary>
         public static string FileSubMenuItemExit {

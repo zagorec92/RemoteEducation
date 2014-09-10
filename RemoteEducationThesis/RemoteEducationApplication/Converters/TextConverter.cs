@@ -5,8 +5,10 @@ using System.Windows.Data;
 
 namespace RemoteEducationApplication.Converters
 {
-    class TextConverter : IMultiValueConverter
+    public class TextConverter : IMultiValueConverter
     {
+        #region Methods
+
         /// <summary>
         /// 
         /// </summary>
@@ -32,5 +34,7 @@ namespace RemoteEducationApplication.Converters
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

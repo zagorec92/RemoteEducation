@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Base\WindowBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\RectangleMenuBaseStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="ClientWindowStyle" TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Height" Value="125" />
+        <Setter Property="ResizeMode" Value="NoResize" />
+        <Setter Property="BorderBrush" Value="{StaticResource LightBlackBrush}" />
+
+        <!--for design view-->
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="BorderThickness" Value="5" />
+        <Setter Property="Background" Value="{StaticResource BetterWhiteBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource MediumFont}" />
+    </Style>
+    
+    <Style x:Key="ClientWindowStatusRectangleStyle" 
+           TargetType="Rectangle" 
+           BasedOn="{StaticResource {x:Type Rectangle}}">
+        <Setter Property="Fill" Value="{StaticResource LightBlackBrush}" />
+    </Style>
+</ResourceDictionary>

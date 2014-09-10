@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using RemoteEducationApplication.Shared;
+using System.Windows.Media;
 
 namespace RemoteEducationApplication.Client
 {
@@ -15,13 +16,15 @@ namespace RemoteEducationApplication.Client
     {
         #region Fields
 
+        private bool _hasPicture;
         private int _port;
-        private string _name;
-        private Bitmap _desktopImage;
         private double _width;
         private double _height;
-        private TcpClient _tcpClient;
+        private string _name;
 
+        private ImageSource _desktopImage;       
+        private TcpClient _tcpClient;
+        
         #endregion
 
         #region Properties
@@ -68,7 +71,7 @@ namespace RemoteEducationApplication.Client
         /// </summary>
         public new bool Connected
         {
-            get { return base.Client.Connected; }
+            get { return TcpClient.Client.Connected; }
         }
 
         /// <summary>
@@ -121,7 +124,7 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// Gets or sets the DesktopImage.
         /// </summary>
-        public Bitmap DesktopImage 
+        public ImageSource DesktopImage 
         {
             get 
             { 
@@ -130,6 +133,7 @@ namespace RemoteEducationApplication.Client
             set 
             {
                 _desktopImage = value;
+                HasPicture = true;
                 OnPropertyChanged("DesktopImage");
             } 
         }
@@ -173,6 +177,19 @@ namespace RemoteEducationApplication.Client
         public int DefaultIndex { get; set; }
 
         public bool IsExpanded { get; set; }
+
+        public bool HasPicture
+        {
+            get
+            {
+                return _hasPicture;
+            }
+            set
+            {
+                _hasPicture = value;
+                OnPropertyChanged("HasPicture");
+            }
+        }
 
         #endregion
 
@@ -222,6 +239,13 @@ namespace RemoteEducationApplication.Client
         {
             Name = name;
             Precedence = precedence;
+            TcpClient = new TcpClient();
+        }
+
+        public ClientHandler()
+            : base() 
+        {
+            TcpClient = new TcpClient();
         }
 
 

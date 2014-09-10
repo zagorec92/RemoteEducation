@@ -3,11 +3,15 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                      xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
                       xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                      xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
-                      Background="White"
                       Style="{StaticResource UserControlWindowStyle}"
                       Tag="{Binding Name}">
+    <base:UserControlBase.Resources>
+        <c:StatusTextVisibilityConverter x:Key="StatusTextVisibilityConverter" />
+    </base:UserControlBase.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -28,8 +32,25 @@
                                    IsExpanded="{Binding IsExpanded}"
                                    AppBarClick="appBar_RectangleClick"/>
         </Grid>
-        
-        <Image Grid.Row="1" />
-        
+
+        <TextBlock Grid.Row="1" 
+                   Style="{StaticResource UserControlImageWaitTextBlockStyle}"
+                   Text="{x:Static global:Resources.ClientImageWaitStatus}">
+            <TextBlock.Visibility>
+                <Binding Converter="{StaticResource StatusTextVisibilityConverter}" 
+                         ConverterParameter="Text"
+                         Path="HasPicture">
+                </Binding>
+            </TextBlock.Visibility>
+        </TextBlock>
+
+        <Image Grid.Row="1" Source="{Binding DesktopImage}">
+            <Image.Visibility>
+                <Binding Converter="{StaticResource StatusTextVisibilityConverter}" 
+                         ConverterParameter="Image" 
+                         Path="HasPicture"/>
+            </Image.Visibility>
+        </Image>
+
     </Grid>
 </base:UserControlBase>

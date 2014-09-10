@@ -123,6 +123,15 @@
   <data name="CancelAction" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ClientImageWaitStatus" xml:space="preserve">
+    <value>Waiting for desktop image...</value>
+  </data>
+  <data name="ClientWindowConnected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="ClientWindowSendingImage" xml:space="preserve">
+    <value>Sending Image...</value>
+  </data>
   <data name="FileSubMenuItemExit" xml:space="preserve">
     <value>_Exit</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>

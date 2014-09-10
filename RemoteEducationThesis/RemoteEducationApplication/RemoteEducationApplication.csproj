@@ -82,6 +82,7 @@
     </ApplicationDefinition>
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
+    <Compile Include="Converters\StatusTextVisibilityConverter.cs" />
     <Compile Include="Converters\TextConverter.cs" />
     <Compile Include="Converters\WindowBarVisibilityConverter.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">
       <DependentUpon>Resources.hr-HR.resx</DependentUpon>
@@ -100,6 +102,9 @@
     <Compile Include="Shared\ITcpConnectionBase.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
+    <Compile Include="Views\Client\ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\WindowBar.xaml.cs">
       <DependentUpon>WindowBar.xaml</DependentUpon>
     </Compile>
@@ -112,6 +117,14 @@
     <Compile Include="Views\UserControls\Clock.xaml.cs">
       <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Style\ClientWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Client\ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Server\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -260,6 +273,8 @@
   <ItemGroup>
     <Resource Include="Resources\Images\connect.png" />
     <Resource Include="Resources\Images\expand.png" />
+    <Resource Include="Resources\Images\client_connect.png" />
+    <Resource Include="Resources\Images\client_upload_picture.png" />
     <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
