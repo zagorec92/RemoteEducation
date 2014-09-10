@@ -29,6 +29,9 @@ namespace RemoteEducationApplication.Client
 
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public TcpClient TcpClient
         {
             get 
@@ -148,6 +151,9 @@ namespace RemoteEducationApplication.Client
         /// </summary>
         public int Precedence { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public double Height
         {
             get
@@ -161,6 +167,9 @@ namespace RemoteEducationApplication.Client
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public double Width
         {
             get
@@ -174,10 +183,19 @@ namespace RemoteEducationApplication.Client
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public int DefaultIndex { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsExpanded { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool HasPicture
         {
             get

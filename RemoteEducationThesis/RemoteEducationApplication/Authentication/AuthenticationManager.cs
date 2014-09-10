@@ -1,16 +1,12 @@
-﻿using RemoteEducation.DAL;
+﻿using Education.Model;
+using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
-using Education.Model;
 using RemoteEducationApplication.Extensions;
 using System;
-using System.IO;
-using System.Net.Mail;
-using System.Reflection;
+using System.Data.Entity;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Linq;
-using System.Collections.Generic;
-using System.Data.Entity;
 
 namespace RemoteEducationApplication.Authentication
 {

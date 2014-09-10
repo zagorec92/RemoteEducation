@@ -19,6 +19,9 @@ namespace RemoteEducationApplication.Views.UserControls
 
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool IsClientExpanded 
         {
             get
