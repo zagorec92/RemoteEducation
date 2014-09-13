@@ -122,6 +122,17 @@ namespace RemoteEducationApplication
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool HasClients 
+        { 
+            get
+            {
+                return ClientCount > 0;
+            } 
+        }
+
+        /// <summary>
         /// Gets or sets the value indicating if ClientControl is expanded.
         /// </summary>
         protected bool HasClientExpanded { get; set; }
@@ -340,6 +351,8 @@ namespace RemoteEducationApplication
             };
         }
 
+        #region async
+
         /// <summary>
         /// 
         /// </summary>
@@ -367,8 +380,6 @@ namespace RemoteEducationApplication
                 else
                     await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
             }
-
-
         }
 
         /// <summary>
@@ -385,35 +396,27 @@ namespace RemoteEducationApplication
                 foreach (ClientHandler client in ConnectedClients)
                 {
                     int read = client.TcpClient.Client.Receive(byteArray, SocketFlags.Peek);
-                    if (client.TcpClient.Connected && read > 0)
+                    if (client.Connected && read > 0)
                     {
                         BinaryFormatter bFormatter = new BinaryFormatter();
-                        Bitmap bitmap = bFormatter.Deserialize(client.TcpClient.GetStream()) as Bitmap;
+                        Bitmap bitmap = bFormatter.Deserialize(client.GetStream()) as Bitmap;
                         client.DesktopImage = bitmap.GetImageSource();
                     }
                     else
                     {
-                        client.TcpClient.Close();
                         client.Close();
                         clientsToRemove.Add(client);
                     }
                 }
 
+                clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
                 LastImageUpdate = DateTime.Now;
-
-                foreach (ClientHandler client in clientsToRemove)
-                    ConnectedClients.Remove(client);
 
                 await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
             }
         }
 
-        private Bitmap GetImageFromStream(NetworkStream ns)
-        {
-            BinaryFormatter bFormatter = new BinaryFormatter();
-            
-            return bFormatter.Deserialize(ns) as Bitmap;
-        }
+        #endregion
 
         #endregion
     }

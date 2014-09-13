@@ -15,7 +15,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="OverridenTemplateBorder" 
                                     Property="Background" 
-                                    Value="{StaticResource DarkGreenWin8Brush}" />
+                                    Value="{DynamicResource MenuHoverBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

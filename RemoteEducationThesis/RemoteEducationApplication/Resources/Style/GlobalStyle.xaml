@@ -7,7 +7,7 @@
     
     <!--application bar-->
     <Style x:Key="ApplicationBarUserControlStyle" TargetType="UserControl">
-        <Setter Property="Width" Value="80" />
+        <Setter Property="Width" Value="90" />
         <Setter Property="Height" Value="25" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />

@@ -82,9 +82,7 @@
     </ApplicationDefinition>
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
-    <Compile Include="Converters\StatusTextVisibilityConverter.cs" />
-    <Compile Include="Converters\TextConverter.cs" />
-    <Compile Include="Converters\WindowBarVisibilityConverter.cs" />
+    <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
@@ -117,6 +115,10 @@
     <Compile Include="Views\UserControls\Clock.xaml.cs">
       <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Storyboard\LoginStoryboards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Style\ClientWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

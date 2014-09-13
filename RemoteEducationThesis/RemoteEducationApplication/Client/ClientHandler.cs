@@ -294,5 +294,27 @@ namespace RemoteEducationApplication.Client
         #endregion
 
         #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public NetworkStream GetStream()
+        {
+            return TcpClient.GetStream();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public new void Close()
+        {
+            TcpClient.Close();
+            this.Close();
+        }
+
+        #endregion
     }
 }

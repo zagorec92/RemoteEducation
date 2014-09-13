@@ -20,6 +20,9 @@
                 <ResourceDictionary Source="Resources\Style\MainWindowStyle.xaml" />
                 <ResourceDictionary Source="Resources\Style\ClientWindowStyle.xaml" />
                 <ResourceDictionary Source="Resources\Style\UserControlStyle.xaml" />
+                
+                <!--storyboards-->
+                <ResourceDictionary Source="Resources\Storyboard\LoginStoryboards.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

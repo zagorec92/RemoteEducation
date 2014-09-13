@@ -6,7 +6,7 @@
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                       xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
-                     Style="{StaticResource ApplicationBarUserControlStyle}">
+                      Style="{StaticResource ApplicationBarUserControlStyle}">
     <base:UserControlBase.Resources>
         <c:WindowBarVisibilityConverter x:Key="WindowBarVisibilityConverter" />
     </base:UserControlBase.Resources>
