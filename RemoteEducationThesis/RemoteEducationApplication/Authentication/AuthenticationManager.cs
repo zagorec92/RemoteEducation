@@ -50,9 +50,9 @@ namespace RemoteEducationApplication.Authentication
         /// </summary>
         /// <param name="username">Username.</param>
         /// <param name="password">Password.</param>
-        public static int AuthenticateUser(string username, string password)
+        public static int AuthenticateUser(string email, string password)
         {
-            if(username == String.Empty && password == String.Empty)
+            if(email == String.Empty && password == String.Empty)
                 throw new ArgumentException(ErrorMessages.InvalidParameters, AuthenticateExParameters.IsParameters);
 
             using(EEducationDbContext context = new EEducationDbContext())
@@ -60,7 +60,7 @@ namespace RemoteEducationApplication.Authentication
                 UserRepository userRepository = new UserRepository(context);
                 User user = userRepository.GetAll()
                     .Include(x => x.Roles)
-                    .Where(x => x.UserDetail.Username == username)
+                    .Where(x => x.UserDetail.Email == email)
                     .Single();
 
                 if (user == null)

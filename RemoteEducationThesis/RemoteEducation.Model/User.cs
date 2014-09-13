@@ -38,11 +38,9 @@ namespace Education.Model
             get { return String.Format("{0} {1}", FirstName, LastName); }
         }
 
-        public virtual ICollection<Role> Roles { get; set; }
-
         /// <summary>
-        /// Is active.
+        /// 
         /// </summary>
-        public bool Active { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

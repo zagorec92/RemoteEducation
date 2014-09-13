@@ -6,11 +6,6 @@ namespace Education.Model
     public class UserDetails : EntityBase
     {
         /// <summary>
-        /// Username.
-        /// </summary>
-        public string Username { get; set; }
-
-        /// <summary>
         /// Password.
         /// </summary>
         public string Password { get; set; }

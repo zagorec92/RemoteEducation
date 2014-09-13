@@ -17,10 +17,8 @@ namespace Education.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Is active.
+        /// 
         /// </summary>
-        public bool Active { get; set; }
-
         public virtual ICollection<User> Users { get; set; }
     }
 }
