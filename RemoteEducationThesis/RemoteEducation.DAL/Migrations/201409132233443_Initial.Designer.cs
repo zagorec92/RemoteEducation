@@ -13,7 +13,7 @@ namespace RemoteEducation.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201409071323329_Initial"; }
+            get { return "201409132233443_Initial"; }
         }
         
         string IMigrationMetadata.Source
