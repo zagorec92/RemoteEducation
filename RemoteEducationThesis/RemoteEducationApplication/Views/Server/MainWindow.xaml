@@ -38,6 +38,11 @@
 
                     <MenuItem Header="{x:Static global:Resources.MenuOptions}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.OptionsSubMenuOpenQuestion}"
+                                  Tag="{x:Static global:Resources.OptionsSubMenuOpenQuestion}"
+                                  Click="SubMenuItem_Click">
+                        </MenuItem>
                     </MenuItem>
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"

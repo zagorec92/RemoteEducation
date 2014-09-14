@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
+using System.Net;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -119,12 +120,13 @@ namespace RemoteEducationApplication.Views.Client
             bool isConnected = false;
             Client = new ClientHandler();
             ConnectionStatus = AppResources.ClientWindowConnectTry;
+            IPAddress ipAddress = DatabaseHelper.GetLastIPAddress();
 
             while (timeout < AppSettings.Default.DefaultTimeout)
             {
                 try
                 {
-                    Client.TcpClient.Connect(ConnectionHelper.GetLocalIPAddress(), AppSettings.Default.DefaultServerPort);
+                    Client.TcpClient.Connect(ipAddress, AppSettings.Default.DefaultServerPort);
                     ConnectionStatus = AppResources.ClientWindowConnected;
                     break;
                 }

@@ -223,6 +223,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Open question.
+        /// </summary>
+        public static string OptionsSubMenuOpenQuestion {
+            get {
+                return ResourceManager.GetString("OptionsSubMenuOpenQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recover.
         /// </summary>
         public static string RecoveryAction {

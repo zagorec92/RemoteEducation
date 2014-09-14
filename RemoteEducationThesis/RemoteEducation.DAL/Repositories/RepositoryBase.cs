@@ -45,7 +45,7 @@ namespace RemoteEducation.DAL.Repositories
                 if (entity.ID == default(int))
                 {
                     Context.Set<T>().Add(entity);
-                    entity.DateCreated = DateTime.Now;
+                    entity.DateCreated = entity.DateModified = DateTime.Now;
                 }
                 else
                 {

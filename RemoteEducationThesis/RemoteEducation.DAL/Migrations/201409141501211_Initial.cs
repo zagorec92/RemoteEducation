@@ -14,8 +14,8 @@ namespace RemoteEducation.DAL.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Content = c.String(),
                         Score = c.Int(nullable: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                         Question_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
@@ -30,8 +30,8 @@ namespace RemoteEducation.DAL.Migrations
                         Name = c.String(),
                         Description = c.String(),
                         StackTrace = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -41,8 +41,8 @@ namespace RemoteEducation.DAL.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Content = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -53,8 +53,8 @@ namespace RemoteEducation.DAL.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Description = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -66,8 +66,8 @@ namespace RemoteEducation.DAL.Migrations
                         UserDetailsID = c.Int(nullable: false),
                         FirstName = c.String(),
                         LastName = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.UserDetails", t => t.UserDetailsID, cascadeDelete: true)
@@ -81,8 +81,8 @@ namespace RemoteEducation.DAL.Migrations
                         Password = c.String(),
                         PasswordSalt = c.String(),
                         Email = c.String(),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -93,12 +93,23 @@ namespace RemoteEducation.DAL.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         UserID = c.Int(nullable: false),
                         TotalScore = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        DateCreated = c.DateTime(nullable: false),
-                        DateModified = c.DateTime(nullable: false),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
                 .Index(t => t.UserID);
+            
+            CreateTable(
+                "dbo.ServerInfoes",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        IpAddress = c.String(),
+                        DateCreated = c.DateTime(),
+                        DateModified = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
                 "dbo.UserRoles",
@@ -128,6 +139,7 @@ namespace RemoteEducation.DAL.Migrations
             DropIndex("dbo.Users", new[] { "UserDetailsID" });
             DropIndex("dbo.Answers", new[] { "Question_ID" });
             DropTable("dbo.UserRoles");
+            DropTable("dbo.ServerInfoes");
             DropTable("dbo.ScoreLogs");
             DropTable("dbo.UserDetails");
             DropTable("dbo.Users");

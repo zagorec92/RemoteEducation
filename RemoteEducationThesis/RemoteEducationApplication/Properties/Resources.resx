@@ -206,4 +206,8 @@
   <data name="ClientWindowConnectTry" xml:space="preserve">
     <value>Trying to connect...</value>
   </data>
+  <data name="OptionsSubMenuOpenQuestion" xml:space="preserve">
+    <value>_Open question</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
 </root>

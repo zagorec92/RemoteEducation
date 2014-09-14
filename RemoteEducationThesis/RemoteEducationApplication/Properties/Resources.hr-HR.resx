@@ -206,4 +206,8 @@
   <data name="ClientWindowProcessWaiting" xml:space="preserve">
     <value>Čekam...</value>
   </data>
+  <data name="OptionsSubMenuOpenQuestion" xml:space="preserve">
+    <value>_Učitaj pitanje</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
 </root>

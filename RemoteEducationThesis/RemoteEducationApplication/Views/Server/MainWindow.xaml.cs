@@ -1,4 +1,8 @@
-﻿using RemoteEducationApplication.Client;
+﻿using Education.Model;
+using Microsoft.Win32;
+using RemoteEducation.DAL;
+using RemoteEducation.DAL.Repositories;
+using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
@@ -8,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -213,8 +218,12 @@ namespace RemoteEducationApplication
 
             if (menuItem != null)
             {
-                if (menuItem.GetTag() == ApplicationHelper.Commands.Close)
+                string tag = menuItem.GetTag();
+
+                if (tag == ApplicationHelper.Commands.Close)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
+                else if (tag == ApplicationHelper.Commands.Question)
+                    QuestionHelper.OpenQuestion();                
             }
         }
 
@@ -343,6 +352,8 @@ namespace RemoteEducationApplication
             Server.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
             Server.IsListening = true;
             Server.Start();
+
+            ///DatabaseHelper.SaveServerInfo(address);
 
             LastImageUpdate = LastConnectionUpdate = DateTime.Now;
 

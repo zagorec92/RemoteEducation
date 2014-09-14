@@ -25,6 +25,8 @@ namespace RemoteEducationApplication.Helpers
            
             public static string Expand = AppResources.WindowBarExpand;
             public static string Shrink = AppResources.WindowBarShrink;
+
+            public static string Question = AppResources.OptionsSubMenuOpenQuestion;
         }
 
         /// <summary>

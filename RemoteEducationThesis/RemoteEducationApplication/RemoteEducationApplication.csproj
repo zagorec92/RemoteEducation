@@ -87,7 +87,9 @@
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
+    <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\QuestionHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">

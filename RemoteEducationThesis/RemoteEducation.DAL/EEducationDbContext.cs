@@ -13,5 +13,6 @@ namespace RemoteEducation.DAL
         public DbSet<ScoreLog> ScoreLogs { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<ServerInfo> ServerInfos { get; set; }
     }
 }
