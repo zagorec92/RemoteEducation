@@ -75,7 +75,7 @@ namespace RemoteEducationApplication.Helpers
         {
             get
             {
-                int width = Convert.ToInt32(SystemParameters.PrimaryScreenWidth);
+                int width = Convert.ToInt32(SystemParameters.PrimaryScreenHeight);
                 return width;
             }
         }
@@ -87,7 +87,7 @@ namespace RemoteEducationApplication.Helpers
         /// </summary>
         public static void InitializeBitmap()
         {
-            _bitmap = new Bitmap(ScreenWidth, ScreenHeight);
+            _bitmap = new Bitmap(ScreenHeight, ScreenWidth);
         }
 
         #region Screenshot

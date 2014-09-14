@@ -6,13 +6,6 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RemoteEducationApplication.Extensions;
-using System;
-using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
-using System.Collections.Generic;
-using System.Linq;
-using AppResources = RemoteEducationApplication.Properties.Resources;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -21,56 +14,12 @@ namespace RemoteEducationApplication.Views.Client
     /// </summary>
     public partial class ClientWindow : WindowBase
     {
-        #region Fields
-
-        private string _connectionStatus;
-        private string _processStatus;
-
-        #endregion
-
         #region Properties
 
         /// <summary>
         /// 
         /// </summary>
         protected ClientHandler Client { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public WaitingTime SleepTime { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ConnectionStatus
-        {
-            get
-            {
-                return _connectionStatus;
-            }
-            set
-            {
-                _connectionStatus = value;
-                NotifyPropertyChanged("ConnectionStatus");
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string ProcessStatus
-        {
-            get
-            {
-                return _processStatus;
-            }
-            set
-            {
-                _processStatus = value;
-                NotifyPropertyChanged("ProcessStatus");
-            }
-        }
 
         #endregion
 
@@ -94,64 +43,23 @@ namespace RemoteEducationApplication.Views.Client
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ClientWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void ClientWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ConnectionStatus = AppResources.ClientWindowsDisconnected;
-            ProcessStatus = AppResources.ClientWindowProcessWaiting;
             DataContext = this;
             ScreenshotHelper.InitializeBitmap();
 
             //izvuci podatke iz baze o konekciji
-
-            Task[] tasks = new Task[]
-            {
-                Connect()
-            };
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private async Task<bool> Connect()
-        {
-            int timeout = 0;
-            bool isConnected = false;
             Client = new ClientHandler();
-            ConnectionStatus = AppResources.ClientWindowConnectTry;
+            Client.TcpClient.Connect(ConnectionHelper.GetLocalIPAddress(), 10000);
 
-            while (timeout < AppSettings.Default.DefaultTimeout)
-            {
-                try
-                {
-                    Client.TcpClient.Connect(ConnectionHelper.GetLocalIPAddress(), AppSettings.Default.DefaultServerPort);
-                    ConnectionStatus = AppResources.ClientWindowConnected;
-                    break;
-                }
-                catch
-                {
-                    timeout++;
-                }
-
-                await Task.Delay(WaitingTime.Short.GetValue());
-            }
+            //clientHandler.TcpClient.Connect();
 
             if (Client.TcpClient.Connected)
             {
-                var stream = Client.GetClientStream();
-                int waitingLengthIndex = stream.ReadByte();
+                //razmjeni informaciju o trajanju čekanja
 
-                SleepTime = ExtensionMethods.GetValueByIndex<WaitingTime>(waitingLengthIndex);
-                isConnected = true;
-
-                Task[] tasks = new Task[]
-                {
-                    SendImage(),
-                    GetDataFromServer()
-                };
+                await SendImage();
             }
-
-            return isConnected;
         }
 
         /// <summary>
@@ -184,9 +92,9 @@ namespace RemoteEducationApplication.Views.Client
         /// <returns></returns>
         private async Task SendImage()
         {
-            NetworkStream ns = Client.GetClientStream();
+            byte[] byteArray = new byte[1];
+            NetworkStream ns = Client.TcpClient.GetStream();
             BinaryFormatter bFormatter = new BinaryFormatter();
-            ProcessStatus = AppResources.ClientWindowSendingImage;
 
             while (true)
             {
@@ -194,27 +102,14 @@ namespace RemoteEducationApplication.Views.Client
                 {
                     Bitmap bitmap = ScreenshotHelper.TakeScreenshot();
                     bFormatter.Serialize(ns, bitmap);
+
+                    await Task.Delay(10000);
                 }
                 catch
                 {
                     break;
                 }
-
-                await Task.Delay(SleepTime.GetValue());
             }
-
-            ConnectionStatus = AppResources.ClientWindowsDisconnected;
-            ProcessStatus = AppResources.ClientWindowProcessWaiting;
-
-            bool isConnected = false;
-
-            while (!isConnected)
-                isConnected = await Connect();
-        }
-
-        private async Task GetDataFromServer()
-        {
-
         }
 
         #endregion

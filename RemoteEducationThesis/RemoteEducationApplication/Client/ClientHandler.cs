@@ -9,12 +9,10 @@ using System.Threading.Tasks;
 using System.Drawing;
 using RemoteEducationApplication.Shared;
 using System.Windows.Media;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
-using RemoteEducationApplication.Helpers;
 
 namespace RemoteEducationApplication.Client
 {
-    public class ClientHandler : INotifyPropertyChanged
+    public class ClientHandler : TcpClient, ITcpConnectionBase
     {
         #region Fields
 
@@ -26,7 +24,6 @@ namespace RemoteEducationApplication.Client
 
         private ImageSource _desktopImage;       
         private TcpClient _tcpClient;
-        private TcpListener _tcpServer;
         
         #endregion
 
@@ -48,24 +45,9 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        public TcpListener TcpServer
-        {
-            get 
-            {
-                return _tcpServer;
-            }
-            set
-            {
-                _tcpServer = value;
-            }
-        }
-
-        /// <summary>
         /// Port
         /// </summary>
-        public int ClientPort
+        public int Port
         {
             get { return _port; }
             set
@@ -80,9 +62,9 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// AddressFamily
         /// </summary>
-        public AddressFamily ClientAddressFamily
+        public AddressFamily AddressFamily
         {
-            get { return TcpClient.Client.AddressFamily; }
+            get { return base.Client.AddressFamily; }
         }
 
         /// <summary>
@@ -90,7 +72,7 @@ namespace RemoteEducationApplication.Client
         /// to a remote host as of the last Overload:System.Net.Sockets.Socket.Send or
         /// Overload:System.Net.Sockets.Socket.Receive operation.
         /// </summary>
-        public bool ClientConnected
+        public new bool Connected
         {
             get { return TcpClient.Client.Connected; }
         }
@@ -129,17 +111,17 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// Gets or sets the LocalEndPoint.
         /// </summary>
-        public EndPoint ClientLocalEndPoint 
+        public EndPoint LocalEndPoint 
         {
-            get { return TcpClient.Client.LocalEndPoint; }
+            get { return base.Client.LocalEndPoint; }
         }
 
         /// <summary>
         /// Gets or sets the RemoteEndPoint.
         /// </summary>
-        public EndPoint ClientRemoteEndPoint 
+        public EndPoint RemoteEndPoint 
         {
-            get { return TcpClient.Client.RemoteEndPoint; }
+            get { return base.Client.RemoteEndPoint; }
         }
 
         /// <summary>
@@ -163,6 +145,11 @@ namespace RemoteEducationApplication.Client
         /// Gets or sets the LastUpdate.
         /// </summary>
         public DateTime LastUpdate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Precedence.
+        /// </summary>
+        public int Precedence { get; set; }
 
         /// <summary>
         /// 
@@ -265,29 +252,56 @@ namespace RemoteEducationApplication.Client
         /// <param name="name">Client name.</param>
         /// <param name="updateInterval">Refresh interval in milliseconds. Optional.</param>
         /// <param name="precedence">Client precedence. Optional.</param>
-        public ClientHandler(string name)
+        public ClientHandler(string name, int precedence = 0)
+            : base()
         {
             Name = name;
+            Precedence = precedence;
             TcpClient = new TcpClient();
         }
 
         public ClientHandler()
+            : base() 
         {
             TcpClient = new TcpClient();
-            TcpServer = new TcpListener(ConnectionHelper.GetLocalIPAddress(), AppSettings.Default.DefaultClientPort);
         }
+
+
+        #region base
+
+        /// <summary>
+        /// Initializes a new instance of ClientHandler class.
+        /// </summary>
+        /// <param name="endPoint"></param>
+        public ClientHandler(IPEndPoint endPoint)
+            : base(endPoint)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of ClientHandler class.
+        /// </summary>
+        /// <param name="hostname"></param>
+        /// <param name="name"></param>
+        /// <param name="port"></param>
+        public ClientHandler(string hostname, string name, int port)
+            : base(hostname, port)
+        {
+            HostName = hostname;
+            Port = port;
+            Name = name;
+        }
+
+        #endregion
 
         #endregion
 
         #region Methods
 
-        #region Client
-
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public NetworkStream GetClientStream()
+        public NetworkStream GetStream()
         {
             return TcpClient.GetStream();
         }
@@ -295,24 +309,11 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// 
         /// </summary>
-        public void CloseClient()
+        public new void Close()
         {
             TcpClient.Close();
+            this.Close();
         }
-
-        #endregion
-
-        #region Server
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void CloseServer()
-        {
-            TcpServer.Stop();
-        }
-
-        #endregion
 
         #endregion
     }

@@ -47,13 +47,11 @@ namespace RemoteEducationApplication
 
                 return _connectedClients;
             }
-            set
-            {
-                _connectedClients = value;
+            set 
+            { 
+                _connectedClients = value;          
             }
         }
-
-        public List<ClientHandler> ClientServerConnections { get; set; }
 
         /// <summary>
         /// Gets or sets the server handler.
@@ -63,8 +61,8 @@ namespace RemoteEducationApplication
         /// <summary>
         /// Gets or sets the last refresh date.
         /// </summary>
-        public DateTime LastImageUpdate
-        {
+        public DateTime LastImageUpdate 
+        { 
             get
             {
                 return _lastImageUpdate;
@@ -96,22 +94,22 @@ namespace RemoteEducationApplication
         /// Gets the count of connected clients.
         /// </summary>
         /// <exception cref="NullReferenceException">If <paramref name="ConnectedClients"/> is <c>null</c>.</exception>
-        public int ClientCount
+        public int ClientCount 
         {
             get
             {
                 if (ConnectedClients != null)
                     return ConnectedClients.Count;
                 else
-                    throw new NullReferenceException();
+                    throw new NullReferenceException();           
             }
         }
 
         /// <summary>
         /// Gets or sets the current client count number.
         /// </summary>
-        public int ClientNumber
-        {
+        public int ClientNumber 
+        { 
             get
             {
                 return _clientNumber;
@@ -126,12 +124,12 @@ namespace RemoteEducationApplication
         /// <summary>
         /// 
         /// </summary>
-        public bool HasClients
-        {
+        public bool HasClients 
+        { 
             get
             {
                 return ClientCount > 0;
-            }
+            } 
         }
 
         /// <summary>
@@ -165,7 +163,7 @@ namespace RemoteEducationApplication
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
+        {            
             ConnectedClients = new ObservableCollection<ClientHandler>();
             ClientNumber = ClientCount;
             DataContext = this;
@@ -196,7 +194,7 @@ namespace RemoteEducationApplication
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            if (Server.IsListening && e.CommandName == ApplicationHelper.Commands.Close)
+            if(Server.IsListening && e.CommandName == ApplicationHelper.Commands.Close)
                 Server.Stop();
 
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
@@ -211,7 +209,7 @@ namespace RemoteEducationApplication
         {
             MenuItem menuItem = sender as MenuItem;
 
-            if (menuItem != null)
+            if(menuItem != null)
             {
                 if (menuItem.GetTag() == ApplicationHelper.Commands.Close)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
@@ -232,10 +230,10 @@ namespace RemoteEducationApplication
         {
             if (e.CommandName == ApplicationHelper.Commands.Close)
                 CloseClient(e.ObjectName);
-            else if (e.CommandName == ApplicationHelper.Commands.Expand ||
+            else if(e.CommandName == ApplicationHelper.Commands.Expand ||
                 e.CommandName == ApplicationHelper.Commands.Shrink)
                 ChangeClientHeightAndWidth(e.ObjectName, e.CommandName);
-            else if (e.CommandName == ApplicationHelper.Commands.Connect)
+            else if(e.CommandName == ApplicationHelper.Commands.Connect)
             {
 
             }
@@ -273,9 +271,9 @@ namespace RemoteEducationApplication
         {
             if (ConnectedClients.Count(x => x.Name == clientName) == 1)
             {
-                ClientHandler clientHandler =
+                ClientHandler clientHandler = 
                     ConnectedClients.Single(x => x.Name == clientName);
-                clientHandler.CloseClient();
+                clientHandler.Close();
                 ConnectedClients.Remove(clientHandler);
             }
 
@@ -304,7 +302,7 @@ namespace RemoteEducationApplication
                     clientHandler.Width = 1024;
                     clientHandler.Height = 680;
                     clientHandler.IsExpanded = true;
-
+                    
                     ConnectedClients.Insert(0, clientHandler);
                     HasClientExpanded = true;
                 }
@@ -316,17 +314,17 @@ namespace RemoteEducationApplication
                     ConnectedClients.Remove(clientHandler);
 
                     clientHandler.Width = 200;
-                    clientHandler.Height = 210;
+                    clientHandler.Height = 190;
                     clientHandler.IsExpanded = false;
 
-                    //ClientHandler client = ConnectedClients.
-                    //    Where(x => x.Precedence > clientHandler.Precedence).LastOrDefault();                    
-                    //int indexOfClient = client == null ? -1 : ConnectedClients.IndexOf(client);
+                    ClientHandler client = ConnectedClients.
+                        Where(x => x.Precedence > clientHandler.Precedence).LastOrDefault();                    
+                    int indexOfClient = client == null ? -1 : ConnectedClients.IndexOf(client);
 
-                    //ConnectedClients.Insert(indexOfClient + 1, clientHandler);
+                    ConnectedClients.Insert(indexOfClient + 1, clientHandler);
 
                     HasClientExpanded = false;
-                }
+                }          
             }
         }
 
@@ -339,7 +337,7 @@ namespace RemoteEducationApplication
         {
             IPAddress address = ConnectionHelper.GetLocalIPAddress();
 
-            Server = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerPort));
+            Server = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultPort));
             Server.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
             Server.IsListening = true;
             Server.Start();
@@ -370,18 +368,13 @@ namespace RemoteEducationApplication
                     if (ConnectedClients.Count < Server.MaxConnections)
                     {
                         ClientHandler client = new ClientHandler();
-                        client.Height = 200;
-                        client.Width = 220;
+                        client.Width = 200;
+                        client.Height = 210;
+                        client.HasPicture = false;
                         client.TcpClient = Server.AcceptTcpClient();
 
                         if (client.TcpClient != null)
                             ConnectedClients.Add(client);
-
-                        ClientNumber = ClientCount;
-
-                        var stream = client.GetClientStream();
-                        stream.WriteByte(2);
-                        stream.Flush();
                     }
                 }
                 else
@@ -399,27 +392,24 @@ namespace RemoteEducationApplication
 
             while (ConnectedClients != null)
             {
+                byte[] byteArray = new byte[1];
                 foreach (ClientHandler client in ConnectedClients)
                 {
-                    if (client.ClientConnected)
+                    int read = client.TcpClient.Client.Receive(byteArray, SocketFlags.Peek);
+                    if (client.Connected && read > 0)
                     {
-                        try
-                        {
-                            BinaryFormatter bFormatter = new BinaryFormatter();
-                            Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
-                            client.DesktopImage = bitmap.GetImageSource();
-                        }
-                        catch { }
+                        BinaryFormatter bFormatter = new BinaryFormatter();
+                        Bitmap bitmap = bFormatter.Deserialize(client.GetStream()) as Bitmap;
+                        client.DesktopImage = bitmap.GetImageSource();
                     }
                     else
                     {
-                        client.CloseClient();
+                        client.Close();
                         clientsToRemove.Add(client);
                     }
                 }
 
                 clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
-                ClientNumber = ClientCount;
                 LastImageUpdate = DateTime.Now;
 
                 await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());

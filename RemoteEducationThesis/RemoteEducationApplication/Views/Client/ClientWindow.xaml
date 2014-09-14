@@ -46,7 +46,7 @@
                 <TextBlock Grid.Column="1"
                        Style="{StaticResource StatusBarTextBlockStyle}"
                        Foreground="{StaticResource LightBlackBrush}"
-                       Text="{Binding ConnectionStatus}"/>
+                       Text="{x:Static global:Resources.ClientWindowConnected}"/>
             </Grid>
 
             <Grid Grid.Row="1" 
@@ -63,7 +63,7 @@
                 <TextBlock Grid.Column="1"
                        Style="{StaticResource StatusBarTextBlockStyle}"
                        Foreground="{StaticResource LightBlackBrush}"
-                       Text="{Binding ProcessStatus}"/>
+                       Text="{x:Static global:Resources.ClientWindowSendingImage}"/>
             </Grid>
 
 
