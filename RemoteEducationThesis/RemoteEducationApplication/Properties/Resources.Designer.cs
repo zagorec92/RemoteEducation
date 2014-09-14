@@ -97,6 +97,33 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Trying to connect....
+        /// </summary>
+        public static string ClientWindowConnectTry {
+            get {
+                return ResourceManager.GetString("ClientWindowConnectTry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting....
+        /// </summary>
+        public static string ClientWindowProcessWaiting {
+            get {
+                return ResourceManager.GetString("ClientWindowProcessWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnected.
+        /// </summary>
+        public static string ClientWindowsDisconnected {
+            get {
+                return ResourceManager.GetString("ClientWindowsDisconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sending Image....
         /// </summary>
         public static string ClientWindowSendingImage {
