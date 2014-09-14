@@ -2,8 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="RemoteEducationApplication.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DefaultPort" Type="System.Int32" Scope="Application">
+    <Setting Name="DefaultServerPort" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="DefaultClientPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10001</Value>
+    </Setting>
+    <Setting Name="DefaultTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

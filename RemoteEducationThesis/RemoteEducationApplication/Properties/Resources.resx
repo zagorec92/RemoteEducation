@@ -129,6 +129,9 @@
   <data name="ClientWindowConnected" xml:space="preserve">
     <value>Connected</value>
   </data>
+  <data name="ClientWindowsDisconnected" xml:space="preserve">
+    <value>Disconnected</value>
+  </data>
   <data name="ClientWindowSendingImage" xml:space="preserve">
     <value>Sending Image...</value>
   </data>
@@ -196,5 +199,11 @@
   </data>
   <data name="WindowBarShrink" xml:space="preserve">
     <value>Shrink</value>
+  </data>
+  <data name="ClientWindowProcessWaiting" xml:space="preserve">
+    <value>Waiting...</value>
+  </data>
+  <data name="ClientWindowConnectTry" xml:space="preserve">
+    <value>Trying to connect...</value>
   </data>
 </root>

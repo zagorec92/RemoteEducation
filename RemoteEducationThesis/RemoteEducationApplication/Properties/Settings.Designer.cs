@@ -26,9 +26,27 @@ namespace RemoteEducationApplication.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10000")]
-        public int DefaultPort {
+        public int DefaultServerPort {
             get {
-                return ((int)(this["DefaultPort"]));
+                return ((int)(this["DefaultServerPort"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10001")]
+        public int DefaultClientPort {
+            get {
+                return ((int)(this["DefaultClientPort"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int DefaultTimeout {
+            get {
+                return ((int)(this["DefaultTimeout"]));
             }
         }
     }

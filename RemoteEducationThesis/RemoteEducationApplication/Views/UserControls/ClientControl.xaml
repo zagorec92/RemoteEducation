@@ -17,16 +17,20 @@
             <RowDefinition Height="25"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
+
         <Grid Background="{DynamicResource BackgroundBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="0"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            
+
             <TextBlock Style="{StaticResource UserControlTextBoxNameStyle}" 
                        Text="{Binding Name}" />
-            
+
             <appBar:ApplicationBar Grid.Column="1"
                                    WindowRole="ClientBar"
                                    IsExpanded="{Binding IsExpanded}"
@@ -44,7 +48,8 @@
             </TextBlock.Visibility>
         </TextBlock>
 
-        <Image Grid.Row="1" Source="{Binding DesktopImage}">
+        <Image Grid.Row="1" Source="{Binding DesktopImage}"
+               Margin="0, 1, 0, 1">
             <Image.Visibility>
                 <Binding Converter="{StaticResource StatusTextVisibilityConverter}" 
                          ConverterParameter="Image" 

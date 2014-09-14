@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace RemoteEducationApplication.Extensions
 {
@@ -114,27 +116,46 @@ namespace RemoteEducationApplication.Extensions
             return (int)Enum.Parse(enumValue.GetType(), enumValue.ToString());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumValue"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static T GetValueByIndex<T>(int index)
+        {
+            List<T> enumList = Enum.GetValues(typeof(T)).Cast<T>().ToList();
+
+            return enumList[index];
+        }
+
         #endregion
 
         #region Bitmap
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
         public static ImageSource GetImageSource(this Bitmap bitmap)
         {
-            using(MemoryStream ms = new MemoryStream())
-            {
-                bitmap.Save(ms, ImageFormat.Bmp);
-                ms.Position = default(int);
+            BitmapImage bitmapImage;
 
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, ImageFormat.Bmp);
+            ms.Seek(0, SeekOrigin.Begin);
 
-                bitmapImage.StreamSource = ms;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
 
-                bitmapImage.EndInit();
+            bitmapImage.StreamSource = ms;
+            bitmapImage.CacheOption = BitmapCacheOption.None;
 
-                return bitmapImage;
-            }
+            bitmapImage.EndInit();
+
+            return bitmapImage;
         }
 
         #endregion

@@ -129,6 +129,9 @@
   <data name="ClientWindowConnected" xml:space="preserve">
     <value>Povezan</value>
   </data>
+  <data name="ClientWindowsDisconnected" xml:space="preserve">
+    <value>Nema veze</value>
+  </data>
   <data name="ClientWindowSendingImage" xml:space="preserve">
     <value>Šaljem sliku...</value>
   </data>
@@ -196,5 +199,11 @@
   </data>
   <data name="WindowBarShrink" xml:space="preserve">
     <value>Smanji</value>
+  </data>
+  <data name="ClientWindowConnectTry" xml:space="preserve">
+    <value>Uspostavljam vezu...</value>
+  </data>
+  <data name="ClientWindowProcessWaiting" xml:space="preserve">
+    <value>Čekam...</value>
   </data>
 </root>

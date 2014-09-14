@@ -1,10 +1,10 @@
-﻿using RemoteEducationApplication.Helpers;
+﻿using RemoteEducationApplication.Extensions;
+using RemoteEducationApplication.Helpers;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Converters
 {

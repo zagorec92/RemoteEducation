@@ -258,7 +258,7 @@ namespace RemoteEducationApplication.Views.Login
                 //int roleID = AuthenticationManager.AuthenticateUser
                   //  (tbxUsername.Text, pbxPassword.Password);
 
-                int roleID = 2;
+                int roleID = 1;
 
                 //user navigation to a new window, not null (when implemented)
                 if (roleID == (int)RoleRepository.RoleType.Admin)
