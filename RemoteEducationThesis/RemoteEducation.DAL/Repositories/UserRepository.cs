@@ -1,11 +1,14 @@
 ﻿using Education.Model;
 using System;
 using System.Linq;
+using System.Data.Entity;
 
 namespace RemoteEducation.DAL.Repositories
 {
     public class UserRepository : RepositoryBase<User>
     {
+        #region Constructor
+
         /// <summary>
         /// 
         /// </summary>
@@ -13,36 +16,43 @@ namespace RemoteEducation.DAL.Repositories
         public UserRepository(EEducationDbContext context)
             : base(context) { }
 
+        #endregion
+
+        #region Get
+
         /// <summary>
-        /// Gets the user by username.
+        /// Gets the user by first name.
         /// </summary>
         /// <param name="username">Username.</param>
         /// <returns></returns>
-        public User Get(string name)
+        public User GetByFirstName(string firstName)
         {
             return base.GetAll()
-                .FirstOrDefault(x => x.FirstName == name);
+                .FirstOrDefault(x => x.FirstName.Equals(firstName));
         }
 
         /// <summary>
-        /// 
+        /// Gets the user by last name.
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="lastName"></param>
         /// <returns></returns>
-        public override bool InsertOrUpdate(User user)
+        public User GetByLastName(string lastName)
         {
-            try
-            {
-                user.UserDetail.DateCreated = 
-                    user.UserDetail.DateModified = DateTime.Now;
-                base.InsertOrUpdate(user);
-            }
-            catch
-            {
-                return false;
-            }
-
-            return true;
+            return base.GetAll()
+                .FirstOrDefault(x => x.LastName.Equals(lastName));
         }
+
+        /// <summary>
+        /// Gets the user by email.
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public User GetByEmail(string email)
+        {
+            return base.GetAll()
+                .FirstOrDefault(x => x.UserDetail.Email.Equals(email));
+        }
+
+        #endregion
     }
 }

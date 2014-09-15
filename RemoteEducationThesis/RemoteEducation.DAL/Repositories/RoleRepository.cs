@@ -9,14 +9,19 @@ namespace RemoteEducation.DAL.Repositories
         public enum RoleType
         {
             /// <summary>
-            /// User role
-            /// </summary>
-            User = 1,
-
-            /// <summary>
             /// Admin role
             /// </summary>
-            Admin = 2
+            Admin = 1,
+
+            /// <summary>
+            /// Student role
+            /// </summary>
+            Student = 2,
+
+            /// <summary>
+            /// Proffesor role
+            /// </summary>
+            Professor = 3
         }
 
         #endregion

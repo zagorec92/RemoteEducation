@@ -111,6 +111,19 @@
                                Text="{x:Static global:Resources.LoginPageRecovery}"/>
                 </Hyperlink>
             </TextBlock>
+
+            <ProgressBar Grid.Column="2"
+                         Grid.Row="2"
+                         Height="3"
+                         VerticalAlignment="Bottom"
+                         Margin="0, 0, 0, 5"
+                         HorizontalAlignment="Left"
+                         IsIndeterminate="True"
+                         Width="165"
+                         BorderThickness="0"
+                         Background="{StaticResource BetterWhiteBrush}"
+                         Foreground="{StaticResource BlueWin8Brush}"
+                         Visibility="{Binding ProgressBarVisibility}"/>
         </Grid>
 
         <!--password recovery-->

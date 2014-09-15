@@ -58,10 +58,7 @@ namespace RemoteEducationApplication.Authentication
             using(EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
-                User user = userRepository.GetAll()
-                    .Include(x => x.Roles)
-                    .Where(x => x.UserDetail.Email == email)
-                    .Single();
+                User user = userRepository.GetByEmail(email);
 
                 if (user == null)
                     throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
@@ -71,7 +68,6 @@ namespace RemoteEducationApplication.Authentication
 
                 return user.Roles.First().ID;
             }
-
         }
 
         /// <summary>
@@ -145,6 +141,7 @@ namespace RemoteEducationApplication.Authentication
             return Convert.ToBase64String(passwordWithSaltHashed);
         }
 
+        ///
         public static void RecoverPassword(string username, string email)
         {
 

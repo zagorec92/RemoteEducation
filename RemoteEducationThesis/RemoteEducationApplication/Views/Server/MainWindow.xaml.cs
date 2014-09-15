@@ -7,6 +7,7 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
+using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,7 @@ using System.Windows;
 using System.Windows.Controls;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
 
-namespace RemoteEducationApplication
+namespace RemoteEducationApplication.Views.Server
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -223,7 +224,7 @@ namespace RemoteEducationApplication
                 if (tag == ApplicationHelper.Commands.Close)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
                 else if (tag == ApplicationHelper.Commands.Question)
-                    QuestionHelper.OpenQuestion();                
+                    QuestionHelper.CreateQuestionWithAnswers();
             }
         }
 

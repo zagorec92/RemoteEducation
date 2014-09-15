@@ -4,7 +4,9 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Client;
+using RemoteEducationApplication.Views.Server;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -36,9 +38,27 @@ namespace RemoteEducationApplication.Views.Login
         private string _capsLockMessage;
         private string _windowRole;
 
+        private Visibility _progressBarVisibility;
+
         #endregion
 
         #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility ProgressBarVisibility
+        {
+            get
+            {
+                return _progressBarVisibility;
+            }
+            set
+            {
+                _progressBarVisibility = value;
+                NotifyPropertyChanged("ProgressBarVisibility");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the message to be displayed for username TextBox.
@@ -132,6 +152,7 @@ namespace RemoteEducationApplication.Views.Login
         /// <param name="e"></param>
         void Login_Loaded(object sender, RoutedEventArgs e)
         {
+            ProgressBarVisibility = System.Windows.Visibility.Collapsed;
             DataContext = this;
         }
 
@@ -248,26 +269,24 @@ namespace RemoteEducationApplication.Views.Login
         #region Methods
 
         /// <summary>
-        /// Authenticates user.
+        /// Authenticates user and initializes application module depending on the role.
         /// </summary>
         private void AuthenticateUser()
         {
             try
             {
-                //commented out for testing purposes
-                //int roleID = AuthenticationManager.AuthenticateUser
-                  //  (tbxUsername.Text, pbxPassword.Password);
+                int roleID = AuthenticationManager.AuthenticateUser
+                    (tbxUsername.Text, pbxPassword.Password);
 
-                int roleID = 2;
-
-                //user navigation to a new window, not null (when implemented)
-                if (roleID == (int)RoleRepository.RoleType.Admin)
+                if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
+                    roleID == RoleRepository.RoleType.Professor.GetValue())
                     this.NavigateTo(new MainWindow(), true);
-                else if (roleID == (int)RoleRepository.RoleType.User)
+                else if (roleID == RoleRepository.RoleType.Student.GetValue())
                     this.NavigateTo(new ClientWindow(), true);
             }
             catch (ArgumentException ex)
             {
+                ProgressBarVisibility = System.Windows.Visibility.Collapsed;
                 string message = ExceptionHelper.GetMessage(ex);
 
                 if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)

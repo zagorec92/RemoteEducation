@@ -5,19 +5,22 @@ using RemoteEducation.DAL.Repositories;
 using System;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
+using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {
     public static class QuestionHelper
     {
         private const string Filter = "HTML Files |*.html";
+        private const string AnswerDelimiter = "@--";
 
         #region Methods
 
         /// <summary>
         /// 
         /// </summary>
-        public static void OpenQuestion()
+        public static void CreateQuestionWithAnswers()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.DefaultExt = Filter.Substring(Filter.IndexOf('.'));
@@ -25,12 +28,27 @@ namespace RemoteEducationApplication.Helpers
 
             Question question = new Question();
 
-            if(ofd.ShowDialog().GetValueOrDefault())
-                question.Content = CleanHtmlContent(File.ReadAllText(ofd.FileName));
-
-            if(!question.Content.Equals(String.Empty))
+            if (ofd.ShowDialog().GetValueOrDefault())
             {
-                using(EEducationDbContext context = new EEducationDbContext())
+                string htmlContent = File.ReadAllText(ofd.FileName);
+                
+                question.Answers = ParseAnswersFromContent(htmlContent);
+                question.Content = CleanHtmlContent(htmlContent);
+
+                SaveQuestion(question);
+                SaveAnswers(question.Answers);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="question"></param>
+        private static void SaveQuestion(Question question)
+        {
+            if (!question.Content.Equals(String.Empty))
+            {
+                using (EEducationDbContext context = new EEducationDbContext())
                 {
                     QuestionRepository questionRepository = new QuestionRepository(context);
 
@@ -45,6 +63,31 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="answers"></param>
+        private static void SaveAnswers(ICollection<Answer> answers)
+        {
+            using (EEducationDbContext context = new EEducationDbContext())
+            {
+                AnswerRepository answerRepository = new AnswerRepository(context);
+
+                bool isValid = false;
+
+                foreach (Answer answer in answers)
+                {
+                    isValid = answerRepository.InsertOrUpdate(answer);
+
+                    if (!isValid)
+                        break;
+                }
+
+                if(isValid)
+                    answerRepository.Save();
+            }
+        }
+
+        /// <summary>
         /// Removes extra characters from html file.
         /// </summary>
         /// <param name="htmlContent"></param>
@@ -52,8 +95,36 @@ namespace RemoteEducationApplication.Helpers
         private static string CleanHtmlContent(string htmlContent)
         {
             char[] charactersToRemove = new char[] { '\n', '\r' };
+            string clearedLineBreaks = String.Concat(htmlContent.Where(x => !charactersToRemove.Contains(x)));
 
-            return String.Concat(htmlContent.Where(x => !charactersToRemove.Contains(x)));
+            return clearedLineBreaks.Substring(0, clearedLineBreaks.IndexOf(AnswerDelimiter));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="htmlContent"></param>
+        /// <returns></returns>
+        private static ICollection<Answer> ParseAnswersFromContent(string htmlContent)
+        {
+            List<Answer> answers = new List<Answer>();
+
+            string answersToParse = htmlContent.Remove(0, htmlContent.IndexOf(AnswerDelimiter) + AnswerDelimiter.Length);
+            string[] answerValues = answersToParse.Split(';');
+
+            foreach (string value in answerValues)
+            {
+                int scoreIndex = value.IndexOf(AnswerDelimiter[0]);
+
+                answers.Add(new Answer()
+                {
+                    Content = value.Substring(0, scoreIndex++),
+                    Score = value.Substring(scoreIndex).To<Int32>()
+                });
+                
+            }
+
+            return answers;
         }
 
         #endregion

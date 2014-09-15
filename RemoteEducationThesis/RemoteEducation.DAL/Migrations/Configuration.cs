@@ -64,13 +64,37 @@ namespace RemoteEducation.DAL.Migrations
             user.UserDetail = userDetails;
             user.DateCreated = user.DateModified = DateTime.Now;
 
-            testPasswords.Add(user.FullName, password);
+            testPasswords.Add(user.UserDetail.Email, password);
+
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            userDetails = new UserDetails();
+            userDetails.Email = "professor1@tvz.hr";
+            userDetails.PasswordSalt = GenerateSalt();
+
+            password = GetRandomPassword(8);
+            userDetails.Password = CreateSaltedPasswordHash(password, userDetails.PasswordSalt);
+            userDetails.DateCreated = userDetails.DateModified = DateTime.Now;
+
+            context.UserDetails.AddOrUpdate(x => x.Email, userDetails);
+            context.SaveChanges();
+
+            user = new User();
+            user.FirstName = "Profesor";
+            user.LastName = "1";
+            user.Roles = new List<Role>();
+            user.Roles.Add(context.Roles.FirstOrDefault(x => x.Name == "Professor"));
+            user.UserDetail = userDetails;
+            user.DateCreated = user.DateModified = DateTime.Now;
+
+            testPasswords.Add(user.UserDetail.Email, password);
 
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             path = Path.Combine(path, "test_passwords.txt");
 
             foreach (var item in testPasswords)
-                File.WriteAllLines(path, new string[] { item.Key, item.Value });
+                File.AppendAllLines(path, new string[] { item.Key, item.Value });
 
             context.Users.AddOrUpdate(u => u.LastName,
                 user);
