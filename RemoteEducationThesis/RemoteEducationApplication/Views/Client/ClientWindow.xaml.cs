@@ -1,4 +1,6 @@
-﻿using RemoteEducationApplication.Client;
+﻿using RemoteEducationApplication.Authentication;
+using RemoteEducationApplication.Client;
+using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System.Drawing;
@@ -6,14 +8,9 @@ using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using RemoteEducationApplication.Extensions;
-using System;
-using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
-using System.Collections.Generic;
-using System.Linq;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
-using System.Net;
+using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -120,13 +117,14 @@ namespace RemoteEducationApplication.Views.Client
             bool isConnected = false;
             Client = new ClientHandler();
             ConnectionStatus = AppResources.ClientWindowConnectTry;
-            IPAddress ipAddress = DatabaseHelper.GetLastIPAddress();
+            System.Net.IPAddress ipAddress = DatabaseHelper.GetLastIPAddress();
 
             while (timeout < AppSettings.Default.DefaultTimeout)
             {
                 try
                 {
-                    Client.TcpClient.Connect(ipAddress, AppSettings.Default.DefaultServerPort);
+                    Client.TcpClient.Connect(ipAddress, AppSettings.Default.DefaultServerImagePort);
+                    Client.TcpClientDataExchange.Connect(ipAddress, AppSettings.Default.DefaultServerDataPort);
                     ConnectionStatus = AppResources.ClientWindowConnected;
                     break;
                 }
@@ -145,6 +143,15 @@ namespace RemoteEducationApplication.Views.Client
 
                 SleepTime = ExtensionMethods.GetValueByIndex<WaitingTime>(waitingLengthIndex);
                 isConnected = true;
+
+                var dataStream = Client.TcpClientDataExchange.GetStream();
+                string userFullName = AuthenticationManager.LoggedInUser.FullName;
+                int lenght = userFullName.Length * 2;
+
+                dataStream.WriteByte((byte)lenght);
+                dataStream.Flush();
+
+                dataStream.Write(userFullName.GetBytes(), 0, lenght);
 
                 Task[] tasks = new Task[]
                 {

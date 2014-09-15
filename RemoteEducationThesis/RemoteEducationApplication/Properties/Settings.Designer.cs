@@ -26,18 +26,18 @@ namespace RemoteEducationApplication.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10000")]
-        public int DefaultServerPort {
+        public int DefaultServerImagePort {
             get {
-                return ((int)(this["DefaultServerPort"]));
+                return ((int)(this["DefaultServerImagePort"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10001")]
-        public int DefaultClientPort {
+        public int DefaultServerDataPort {
             get {
-                return ((int)(this["DefaultClientPort"]));
+                return ((int)(this["DefaultServerDataPort"]));
             }
         }
         

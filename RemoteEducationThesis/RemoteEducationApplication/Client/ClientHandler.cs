@@ -26,7 +26,7 @@ namespace RemoteEducationApplication.Client
 
         private ImageSource _desktopImage;       
         private TcpClient _tcpClient;
-        private TcpListener _tcpServer;
+        private TcpClient _tcpClientDataExchange;
         
         #endregion
 
@@ -50,15 +50,15 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// 
         /// </summary>
-        public TcpListener TcpServer
+        public TcpClient TcpClientDataExchange
         {
             get 
             {
-                return _tcpServer;
+                return _tcpClientDataExchange;
             }
             set
             {
-                _tcpServer = value;
+                _tcpClientDataExchange = value;
             }
         }
 
@@ -274,7 +274,7 @@ namespace RemoteEducationApplication.Client
         public ClientHandler()
         {
             TcpClient = new TcpClient();
-            TcpServer = new TcpListener(ConnectionHelper.GetLocalIPAddress(), AppSettings.Default.DefaultClientPort);
+            TcpClientDataExchange = new TcpClient();    
         }
 
         #endregion
@@ -298,18 +298,6 @@ namespace RemoteEducationApplication.Client
         public void CloseClient()
         {
             TcpClient.Close();
-        }
-
-        #endregion
-
-        #region Server
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public void CloseServer()
-        {
-            TcpServer.Stop();
         }
 
         #endregion

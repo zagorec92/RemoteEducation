@@ -1,22 +1,15 @@
-﻿using Education.Model;
-using Microsoft.Win32;
-using RemoteEducation.DAL;
-using RemoteEducation.DAL.Repositories;
-using RemoteEducationApplication.Client;
+﻿using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
@@ -64,7 +57,12 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// Gets or sets the server handler.
         /// </summary>
-        public ServerHandler Server { get; set; }
+        public ServerHandler ServerImage { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ServerHandler ServerData { get; set; }
 
         /// <summary>
         /// Gets or sets the last refresh date.
@@ -202,8 +200,8 @@ namespace RemoteEducationApplication.Views.Server
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            if (Server.IsListening && e.CommandName == ApplicationHelper.Commands.Close)
-                Server.Stop();
+            if (ServerImage.IsListening && e.CommandName == ApplicationHelper.Commands.Close)
+                ServerImage.Stop();
 
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
@@ -349,10 +347,14 @@ namespace RemoteEducationApplication.Views.Server
         {
             IPAddress address = ConnectionHelper.GetLocalIPAddress();
 
-            Server = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerPort));
-            Server.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
-            Server.IsListening = true;
-            Server.Start();
+            ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerImagePort));
+            ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerDataPort));
+            ServerImage.MaxConnections = ServerData.MaxConnections =
+                ConnectionHelper.MaxConnections.Twenty.GetValue();
+            ServerImage.IsListening = ServerData.IsListening = true;
+
+            ServerImage.Start();
+            ServerData.Start();
 
             ///DatabaseHelper.SaveServerInfo(address);
 
@@ -373,18 +375,18 @@ namespace RemoteEducationApplication.Views.Server
         /// <returns></returns>
         private async Task ListeningForConnections()
         {
-            while (Server.IsListening)
+            while (ServerImage.IsListening)
             {
                 LastConnectionUpdate = DateTime.Now;
-
-                if (Server.Pending())
+                if (ServerImage.Pending())
                 {
-                    if (ConnectedClients.Count < Server.MaxConnections)
+                    if (ConnectedClients.Count < ServerImage.MaxConnections)
                     {
                         ClientHandler client = new ClientHandler();
                         client.Height = 200;
                         client.Width = 220;
-                        client.TcpClient = Server.AcceptTcpClient();
+                        client.TcpClient = ServerImage.AcceptTcpClient();
+                        client.TcpClientDataExchange = ServerData.AcceptTcpClient();
 
                         if (client.TcpClient != null)
                             ConnectedClients.Add(client);
@@ -394,6 +396,14 @@ namespace RemoteEducationApplication.Views.Server
                         var stream = client.GetClientStream();
                         stream.WriteByte(2);
                         stream.Flush();
+
+                        stream = client.TcpClientDataExchange.GetStream();
+                        int length = stream.ReadByte();
+                        byte[] buffer = new byte[length];
+
+                        stream.Read(buffer, 0, length);
+                        string value = buffer.GetString();
+                        client.Name = value;                      
                     }
                 }
                 else

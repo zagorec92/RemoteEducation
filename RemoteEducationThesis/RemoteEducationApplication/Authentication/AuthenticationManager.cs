@@ -43,6 +43,15 @@ namespace RemoteEducationApplication.Authentication
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static User LoggedInUser { get; set; }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -65,6 +74,8 @@ namespace RemoteEducationApplication.Authentication
 
                 if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
                     throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+
+                LoggedInUser = user;
 
                 return user.Roles.First().ID;
             }
