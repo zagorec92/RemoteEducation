@@ -1,10 +1,26 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication.Shared
 {
     public class WindowBase : Window, INotifyPropertyChanged
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets the application default settings.
+        /// </summary>
+        public AppSettings AppSettings
+        {
+            get
+            {
+                return AppSettings.Default;
+            }
+        }
+
+        #endregion
+
         #region Event
 
         /// <summary>

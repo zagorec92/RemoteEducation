@@ -210,4 +210,10 @@
     <value>_Učitaj pitanje</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
+  <data name="LoginPageLoginTitle" xml:space="preserve">
+    <value>PRIJAVA</value>
+  </data>
+  <data name="LoginPageRecoveryTitle" xml:space="preserve">
+    <value>NOVA ZAPORKA</value>
+  </data>
 </root>

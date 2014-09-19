@@ -34,6 +34,15 @@
 
                     <MenuItem Header="{x:Static global:Resources.MenuView}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="Change theme"
+                                  Tag="Change theme">
+                            <Menu>
+                                <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="Change theme"
+                                  Tag="Change theme"></MenuItem>
+                            </Menu>
+                        </MenuItem>
                     </MenuItem>
 
                     <MenuItem Header="{x:Static global:Resources.MenuOptions}"

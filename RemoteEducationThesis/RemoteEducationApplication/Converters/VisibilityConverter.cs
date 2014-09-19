@@ -66,7 +66,7 @@ namespace RemoteEducationApplication.Converters
         #region Struct
 
         /// <summary>
-        /// 
+        /// SenderType
         /// </summary>
         private struct SenderType
         {

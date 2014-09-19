@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using RemoteEducationApplication.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Helpers
@@ -108,7 +109,8 @@ namespace RemoteEducationApplication.Helpers
             ResourceDictionary resourceDictionary = new ResourceDictionary();
             resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
 
-            Application.Current.Resources.MergedDictionaries[2] = resourceDictionary;
+            Application.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] 
+                = resourceDictionary;
         }
 
         #endregion

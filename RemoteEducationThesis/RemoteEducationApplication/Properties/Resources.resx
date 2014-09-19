@@ -210,4 +210,10 @@
     <value>_Open question</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
   </data>
+  <data name="LoginPageLoginTitle" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="LoginPageRecoveryTitle" xml:space="preserve">
+    <value>RECOVERY</value>
+  </data>
 </root>

@@ -6,10 +6,13 @@ using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Client;
 using RemoteEducationApplication.Views.Server;
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -21,12 +24,12 @@ namespace RemoteEducationApplication.Views.Login
         #region Struct
 
         /// <summary>
-        /// 
+        /// WindowRoles
         /// </summary>
         private struct WindowRoles
         {
-            public static string Login = "LOGIN";
-            public static string Recovery = "PASSWORD RECOVERY";
+            public static string Login = AppResources.LoginPageLoginTitle;
+            public static string Recovery = AppResources.LoginPageRecoveryTitle;
         }
 
         #endregion
@@ -38,27 +41,9 @@ namespace RemoteEducationApplication.Views.Login
         private string _capsLockMessage;
         private string _windowRole;
 
-        private Visibility _progressBarVisibility;
-
         #endregion
 
         #region Properties
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public Visibility ProgressBarVisibility
-        {
-            get
-            {
-                return _progressBarVisibility;
-            }
-            set
-            {
-                _progressBarVisibility = value;
-                NotifyPropertyChanged("ProgressBarVisibility");
-            }
-        }
 
         /// <summary>
         /// Gets or sets the message to be displayed for username TextBox.
@@ -146,13 +131,13 @@ namespace RemoteEducationApplication.Views.Login
         #region Window
 
         /// <summary>
-        /// 
+        /// Handles the Loaded event of the Window control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance
+        /// containing the event data.</param>
         void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            ProgressBarVisibility = System.Windows.Visibility.Collapsed;
             DataContext = this;
         }
 
@@ -160,7 +145,8 @@ namespace RemoteEducationApplication.Views.Login
         /// Handles the MouseLeftButtonDown event of the Window control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/>
+        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance
+        /// containing the event data.</param>
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -183,7 +169,7 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
-        /// instance conatining the event data.</param>
+        /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
@@ -275,8 +261,9 @@ namespace RemoteEducationApplication.Views.Login
         {
             try
             {
-                int roleID = AuthenticationManager.AuthenticateUser
-                    (tbxUsername.Text, pbxPassword.Password);
+                //int roleID = AuthenticationManager.AuthenticateUser
+                //    (tbxUsername.Text, pbxPassword.Password);
+                int roleID = 3;
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
                     roleID == RoleRepository.RoleType.Professor.GetValue())
@@ -286,14 +273,15 @@ namespace RemoteEducationApplication.Views.Login
             }
             catch (ArgumentException ex)
             {
-                ProgressBarVisibility = System.Windows.Visibility.Collapsed;
+                //ProgressBarVisibility = System.Windows.Visibility.Collapsed;
                 string message = ExceptionHelper.GetMessage(ex);
 
                 if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
                     UsernameValidationMessage = message;
                 else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsPassword)
                     PasswordValidationMessage = message;
-                else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParameters)
+                else if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsParameters ||
+                    ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsDatabase)
                     UsernameValidationMessage = PasswordValidationMessage = message;
             }
         }

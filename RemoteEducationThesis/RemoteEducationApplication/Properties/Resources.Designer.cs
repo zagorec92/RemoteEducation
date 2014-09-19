@@ -160,6 +160,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LOGIN.
+        /// </summary>
+        public static string LoginPageLoginTitle {
+            get {
+                return ResourceManager.GetString("LoginPageLoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password:.
         /// </summary>
         public static string LoginPagePassword {
@@ -174,6 +183,15 @@ namespace RemoteEducationApplication.Properties {
         public static string LoginPageRecovery {
             get {
                 return ResourceManager.GetString("LoginPageRecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RECOVERY.
+        /// </summary>
+        public static string LoginPageRecoveryTitle {
+            get {
+                return ResourceManager.GetString("LoginPageRecoveryTitle", resourceCulture);
             }
         }
         

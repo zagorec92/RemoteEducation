@@ -9,7 +9,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AppResources = RemoteEducationApplication.Properties.Resources;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
 namespace RemoteEducationApplication.Views.Client
@@ -119,12 +118,12 @@ namespace RemoteEducationApplication.Views.Client
             ConnectionStatus = AppResources.ClientWindowConnectTry;
             System.Net.IPAddress ipAddress = DatabaseHelper.GetLastIPAddress();
 
-            while (timeout < AppSettings.Default.DefaultTimeout)
+            while (timeout < AppSettings.DefaultTimeout)
             {
                 try
                 {
-                    Client.TcpClient.Connect(ipAddress, AppSettings.Default.DefaultServerImagePort);
-                    Client.TcpClientDataExchange.Connect(ipAddress, AppSettings.Default.DefaultServerDataPort);
+                    Client.TcpClient.Connect(ipAddress, AppSettings.DefaultServerImagePort);
+                    Client.TcpClientDataExchange.Connect(ipAddress, AppSettings.DefaultServerDataPort);
                     ConnectionStatus = AppResources.ClientWindowConnected;
                     break;
                 }

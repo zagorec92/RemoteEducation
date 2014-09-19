@@ -35,6 +35,57 @@
             Longest = 40000
         }
 
+        /// <summary>
+        /// Resource dictionary indexes from App.xaml.
+        /// </summary>
+        public enum ResourceDictionaryIndex
+        {
+            /// <summary>
+            /// FontSize resource dictionary.
+            /// </summary>
+            FontSize = 0,
+            
+            /// <summary>
+            /// Brushes resource dictionary.
+            /// </summary>
+            Brushes = 1,
+
+            /// <summary>
+            /// DefaultTheme resource dictionary.
+            /// </summary>
+            Theme = 2,
+
+            /// <summary>
+            /// GlobalStyle resource dictionary.
+            /// </summary>
+            GlobalStyle = 3,
+
+            /// <summary>
+            /// LoginStyle resource dictionary.
+            /// </summary>
+            LoginStyle = 4,
+
+            /// <summary>
+            /// MainWindowStyle resource dictionary.
+            /// </summary>
+            MainWindowStyle = 5,
+
+            /// <summary>
+            /// ClientWindowStyle resource dictionary.
+            /// </summary>
+            ClientWindowStyle = 6,
+
+            /// <summary>
+            /// UserControlStyle resource dictionary.
+            /// </summary>
+            UserControlStyle = 7,
+
+            /// <summary>
+            /// LoginStoryboards resource dictionary.
+            /// </summary>
+            LoginStoryboards = 8
+        }
+
         #endregion
     }
 }

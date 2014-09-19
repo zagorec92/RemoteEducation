@@ -14,7 +14,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication.Views.Server
 {
@@ -347,8 +346,8 @@ namespace RemoteEducationApplication.Views.Server
         {
             IPAddress address = ConnectionHelper.GetLocalIPAddress();
 
-            ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerImagePort));
-            ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.Default.DefaultServerDataPort));
+            ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
+            ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
             ServerImage.MaxConnections = ServerData.MaxConnections =
                 ConnectionHelper.MaxConnections.Twenty.GetValue();
             ServerImage.IsListening = ServerData.IsListening = true;

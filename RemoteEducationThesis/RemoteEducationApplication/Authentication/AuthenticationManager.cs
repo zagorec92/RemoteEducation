@@ -3,6 +3,7 @@ using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
 using RemoteEducationApplication.Extensions;
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
@@ -29,6 +30,7 @@ namespace RemoteEducationApplication.Authentication
             public const string InvalidParameters = "Parameter is empty.";
             public const string InvalidUsername = "Incorrect username.";
             public const string InvalidPassword = "Incorrect password.";
+            public const string NoConnection = "There is no connection to the database.";
         }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace RemoteEducationApplication.Authentication
             public static string IsUsername = "Username";
             public static string IsPassword = "Password";
             public static string IsParameters = "Empty";
+            public static string IsDatabase = "Database";
         }
 
         #endregion
@@ -66,18 +69,23 @@ namespace RemoteEducationApplication.Authentication
 
             using(EEducationDbContext context = new EEducationDbContext())
             {
-                UserRepository userRepository = new UserRepository(context);
-                User user = userRepository.GetByEmail(email);
+                if (context.IsValid())
+                {
+                    UserRepository userRepository = new UserRepository(context);
+                    User user = userRepository.GetByEmail(email);
 
-                if (user == null)
-                    throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
+                    if (user == null)
+                        throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
 
-                if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
-                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+                    if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
+                        throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
 
-                LoggedInUser = user;
+                    LoggedInUser = user;
 
-                return user.Roles.First().ID;
+                    return user.Roles.First().ID;
+                }
+                else
+                    throw new ArgumentException(ErrorMessages.NoConnection, AuthenticateExParameters.IsDatabase);
             }
         }
 

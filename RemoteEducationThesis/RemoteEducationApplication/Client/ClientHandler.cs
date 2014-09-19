@@ -284,7 +284,7 @@ namespace RemoteEducationApplication.Client
         #region Client
 
         /// <summary>
-        /// 
+        /// Gets the TcpClient stream.
         /// </summary>
         /// <returns></returns>
         public NetworkStream GetClientStream()
@@ -293,11 +293,32 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Closes the TcpClient.
         /// </summary>
         public void CloseClient()
         {
             TcpClient.Close();
+        }
+
+        #endregion
+
+        #region ClientDataExchange
+
+        /// <summary>
+        /// Gets the TcpClientDataExchange stream.
+        /// </summary>
+        /// <returns></returns>
+        public NetworkStream GetDataExchangeStream()
+        {
+            return TcpClientDataExchange.GetStream();
+        }
+
+        /// <summary>
+        /// Closes the TcpClientDataExchange.
+        /// </summary>
+        public void CloseDataExchange()
+        {
+            TcpClientDataExchange.Close();
         }
 
         #endregion

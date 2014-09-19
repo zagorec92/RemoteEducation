@@ -1,29 +1,36 @@
-﻿using RemoteEducationApplication.Helpers;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace RemoteEducationApplication.Extensions
 {
     public static class ExtensionMethods
     {
+        #region Button
+
         /// <summary>
-        /// Gets the command parameter as a String.
+        /// Gets the command parameter as a string.
         /// </summary>
         /// <param name="bttn">The <see cref="System.Windows.Controls.Button"/> 
         /// instance containing the command parameter.</param>
-        /// <returns></returns>
+        /// <returns>CommandParameter as a string.</returns>
         public static string GetCommandParameter(this Button bttn)
         {
             return bttn.CommandParameter.ToString();
         }
+
+        #endregion
+
+        #region byte array
 
         /// <summary>
         /// Checks if byte arrays are equal by compairing every byte.
@@ -41,7 +48,35 @@ namespace RemoteEducationApplication.Extensions
                     return false;
 
             return true;
+        }  
+
+        /// <summary>
+        /// Gets the byte array from a string.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static byte[] GetBytes(this string str)
+        {
+            byte[] bytes = new byte[str.Length * sizeof(char)];
+            Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
+
+            return bytes;
         }
+
+        /// <summary>
+        /// Gets the string from a byte array.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string GetString(this byte[] bytes)
+        {
+            char[] chars = new char[bytes.Length / sizeof(char)];
+            Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+
+            return new string(chars);
+        }
+
+        #endregion
 
         #region Window
 
@@ -69,7 +104,7 @@ namespace RemoteEducationApplication.Extensions
         /// <summary>
         /// Gets the Tag property of the <see cref="System.Windows.FrameworkElement"/> element as string.
         /// </summary>
-        /// <param name="rectangle">The <see cref="System.Windows.FrameworkElement"/> instance.</param>
+        /// <param name="frameworkElement">The <see cref="System.Windows.FrameworkElement"/> instance.</param>
         /// <returns>Tag as string.</returns>
         public static string GetTag(this FrameworkElement frameworkElement)
         {
@@ -77,11 +112,11 @@ namespace RemoteEducationApplication.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Gets the Tag property of the <see cref="System.Windows.FrameworkElement"/> element as a custom type.
         /// </summary>
         /// <typeparam name="T">Type of the return value.</typeparam>
-        /// <param name="frameworkElement"></param>
-        /// <returns></returns>
+        /// <param name="frameworkElement">The <see cref="System.Windows.FrameworkElement"/> instance.</param>
+        /// <returns>Tag as a custom type.</returns>
         public static T GetTag<T>(this FrameworkElement frameworkElement)
         {
             return To<T>(frameworkElement.Tag);
@@ -89,7 +124,7 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region Convert object
+        #region Convert object type
 
         /// <summary>
         /// 
@@ -162,18 +197,21 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        public static byte[] GetBytes(this string str)
+        #region DbContext
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static bool IsValid(this DbContext context)
         {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
-            System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
-            return bytes;
+            if (context.Database.Connection.State == ConnectionState.Open)
+                return true;
+            else
+                return false;
         }
 
-        public static string GetString(this byte[] bytes)
-        {
-            char[] chars = new char[bytes.Length / sizeof(char)];
-            System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
-            return new string(chars);
-        }
+        #endregion
     }
 }

@@ -22,6 +22,7 @@ namespace RemoteEducationApplication
         /// <param name="e">The <see cref="System.Windows.StartupEventArgs"/> instance containing the event data.</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("hr-HR");
             FrameworkElement.LanguageProperty.
                 OverrideMetadata(typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(

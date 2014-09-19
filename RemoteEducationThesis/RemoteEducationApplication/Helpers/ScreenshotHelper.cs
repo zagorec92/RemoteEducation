@@ -7,14 +7,18 @@ namespace RemoteEducationApplication.Helpers
 {
     public class ScreenshotHelper
     {
+        #region Fields
+        
         private static Bitmap _bitmap;
+
+        #endregion
 
         #region MousePointer
 
         private const Int32 CURSOR_SHOWING = 0x00000001;
 
         /// <summary>
-        /// 
+        /// CURSORINFO
         /// </summary>
         struct CURSORINFO
         {
@@ -25,7 +29,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// POINTAPI
         /// </summary>
         struct POINTAPI
         {
@@ -34,7 +38,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// GetCursorInfo
         /// </summary>
         /// <param name="pci"></param>
         /// <returns></returns>
@@ -42,7 +46,7 @@ namespace RemoteEducationApplication.Helpers
         static extern bool GetCursorInfo(out CURSORINFO pci);
 
         /// <summary>
-        /// 
+        /// DrawIcon
         /// </summary>
         /// <param name="hDC"></param>
         /// <param name="X"></param>
@@ -57,7 +61,7 @@ namespace RemoteEducationApplication.Helpers
         #region Properties
 
         /// <summary>
-        /// 
+        /// Gets the primary screen height.
         /// </summary>
         protected static int ScreenHeight
         {
@@ -69,7 +73,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Gets the primary screen width.
         /// </summary>
         protected static int ScreenWidth
         {
@@ -82,24 +86,29 @@ namespace RemoteEducationApplication.Helpers
 
         #endregion
 
+        #region InitializeBitmap
+
         /// <summary>
-        /// Initializes a new instance of the Bitmap class.
+        /// Initializes a new <see cref="System.Drawing.Bitmap"/> instance.
         /// </summary>
         public static void InitializeBitmap()
         {
             _bitmap = new Bitmap(ScreenWidth, ScreenHeight);
         }
 
+        #endregion
+
         #region Screenshot
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The <see cref="System.Drawing.Bitmap"/> instance.</returns>
         public static Bitmap TakeScreenshot()
         {
             using (Graphics graphics = Graphics.FromImage(_bitmap))
             {
+                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
                 graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
                 graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
                 graphics.CopyFromScreen(0, 0, 0, 0, _bitmap.Size);
