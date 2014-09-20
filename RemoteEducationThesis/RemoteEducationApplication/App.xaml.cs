@@ -1,12 +1,12 @@
-﻿using RemoteEducation.DAL;
+﻿using Education.Model;
+using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
-using Education.Model;
+using RemoteEducationApplication.Extensions;
 using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication
 {
@@ -15,6 +15,9 @@ namespace RemoteEducationApplication
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static string CurrentThemeName { get; set; }
 
         /// <summary>
@@ -44,20 +47,17 @@ namespace RemoteEducationApplication
         {
             using(EEducationDbContext context = new EEducationDbContext())
             {
-                if (context.IsValid())
+                ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
+
+                ApplicationLog applicationLog = new ApplicationLog()
                 {
-                    ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
+                    Name = e.Exception.Message,
+                    Description = e.Exception.InnerException == null ? String.Empty : e.Exception.InnerException.Message,
+                    StackTrace = e.Exception.StackTrace
+                };
 
-                    ApplicationLog applicationLog = new ApplicationLog()
-                    {
-                        Name = e.Exception.Message,
-                        Description = e.Exception.InnerException == null ? String.Empty : e.Exception.InnerException.Message,
-                        StackTrace = e.Exception.StackTrace
-                    };
-
-                    if (appLogRepository.InsertOrUpdate(applicationLog))
-                        appLogRepository.Save();
-                }
+                if (appLogRepository.InsertOrUpdate(applicationLog))
+                    appLogRepository.Save();
             }
         }
     }

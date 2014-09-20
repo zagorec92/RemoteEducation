@@ -2,6 +2,7 @@
 using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
 using System.Net;
+using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -30,7 +31,7 @@ namespace RemoteEducationApplication.Helpers
         /// <returns></returns>
         public static IPAddress GetLastIPAddress()
         {
-            using(EEducationDbContext context = new EEducationDbContext())
+            using (EEducationDbContext context = new EEducationDbContext())
             {
                 ServerInfoRepository serverInfoRepository = new ServerInfoRepository(context);
                 return serverInfoRepository.GetLastIPAddress();

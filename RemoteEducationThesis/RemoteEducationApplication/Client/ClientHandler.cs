@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using RemoteEducationApplication.Shared;
 using System.Windows.Media;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
-using RemoteEducationApplication.Helpers;
+using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
+using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Client
 {
@@ -319,6 +313,21 @@ namespace RemoteEducationApplication.Client
         public void CloseDataExchange()
         {
             TcpClientDataExchange.Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SendName()
+        {
+            var dataStream = TcpClientDataExchange.GetStream();
+            string userFullName = AuthManager.LoggedInUser.FullName;
+            int lenght = userFullName.Length * 2;
+
+            dataStream.WriteByte((byte)lenght);
+            dataStream.Flush();
+
+            dataStream.Write(userFullName.GetBytes(), 0, lenght);
         }
 
         #endregion

@@ -231,4 +231,7 @@
     <value>Classic</value>
     <comment>Name of the theme - no translation</comment>
   </data>
+  <data name="MenuFileLogoff" xml:space="preserve">
+    <value>Log off</value>
+  </data>
 </root>

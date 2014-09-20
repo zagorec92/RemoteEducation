@@ -4,12 +4,14 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System.Drawing;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
+using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -31,6 +33,11 @@ namespace RemoteEducationApplication.Views.Client
         /// 
         /// </summary>
         protected ClientHandler Client { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected IPAddress IpAddress { get; set; }
 
         /// <summary>
         /// 
@@ -98,7 +105,16 @@ namespace RemoteEducationApplication.Views.Client
             DataContext = this;
             ScreenshotHelper.InitializeBitmap();
 
-            //izvuci podatke iz baze o konekciji
+            Start();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Start()
+        {
+            Client = new ClientHandler();
+            IpAddress = DatabaseHelper.GetLastIPAddress();
 
             Task[] tasks = new Task[]
             {
@@ -114,16 +130,15 @@ namespace RemoteEducationApplication.Views.Client
         {
             int timeout = 0;
             bool isConnected = false;
-            Client = new ClientHandler();
+            
             ConnectionStatus = AppResources.ClientWindowConnectTry;
-            System.Net.IPAddress ipAddress = DatabaseHelper.GetLastIPAddress();
 
             while (timeout < AppSettings.DefaultTimeout)
             {
                 try
                 {
-                    Client.TcpClient.Connect(ipAddress, AppSettings.DefaultServerImagePort);
-                    Client.TcpClientDataExchange.Connect(ipAddress, AppSettings.DefaultServerDataPort);
+                    Client.TcpClient.Connect(IpAddress, AppSettings.DefaultServerImagePort);
+                    Client.TcpClientDataExchange.Connect(IpAddress, AppSettings.DefaultServerDataPort);
                     ConnectionStatus = AppResources.ClientWindowConnected;
                     break;
                 }
@@ -143,14 +158,7 @@ namespace RemoteEducationApplication.Views.Client
                 SleepTime = ExtensionMethods.GetValueByIndex<WaitingTime>(waitingLengthIndex);
                 isConnected = true;
 
-                var dataStream = Client.TcpClientDataExchange.GetStream();
-                string userFullName = AuthenticationManager.LoggedInUser.FullName;
-                int lenght = userFullName.Length * 2;
-
-                dataStream.WriteByte((byte)lenght);
-                dataStream.Flush();
-
-                dataStream.Write(userFullName.GetBytes(), 0, lenght);
+                Client.SendName();
 
                 Task[] tasks = new Task[]
                 {
@@ -220,9 +228,32 @@ namespace RemoteEducationApplication.Views.Client
                 isConnected = await Connect();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private async Task GetDataFromServer()
         {
+            NetworkStream stream = Client.GetDataExchangeStream();
 
+            while(true)
+            {
+                try
+                {
+                    if (stream.DataAvailable)
+                    {
+                        int id = stream.ReadByte();
+                    }
+                    else
+                        await Task.Delay(SleepTime.GetValue());
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            return;
         }
 
         #endregion

@@ -1,8 +1,10 @@
-﻿using System;
-using System.Windows;
+﻿using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using RemoteEducationApplication.Views.Login;
+using System;
+using System.Windows;
 using System.Windows.Controls;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -16,6 +18,7 @@ namespace RemoteEducationApplication.Helpers
         public struct CommandTags
         {
             public static string Login = AppResources.LoginPageLogin;
+            public static string Logoff = AppResources.MenuFileLogoff;
             public static string Recover = AppResources.RecoveryAction;
 
             public static string Close = AppResources.WindowBarClose;
@@ -84,6 +87,15 @@ namespace RemoteEducationApplication.Helpers
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
 
+        /// <summary>
+        /// Logs off current user.
+        /// </summary>
+        public static void Logoff()
+        {
+            AuthenticationManager.LoggedInUser = null;
+            App.Current.MainWindow.NavigateTo(new Login(), true);
+        }
+
         #endregion
 
         #region Methods
@@ -98,6 +110,8 @@ namespace RemoteEducationApplication.Helpers
                 Minimize();
             else if (command == CommandTags.Close)
                 Close();
+            else if (command == CommandTags.Logoff)
+                Logoff();
         }
 
         /// <summary>

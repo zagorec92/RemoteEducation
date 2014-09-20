@@ -4,11 +4,11 @@ using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -29,6 +29,7 @@ namespace RemoteEducationApplication.Views.Server
         private DateTime _lastImageUpdate;
         private DateTime _lastConnectionUpdate;
         private int _clientNumber;
+        private bool _hasClients;
 
         #endregion
 
@@ -134,7 +135,12 @@ namespace RemoteEducationApplication.Views.Server
         {
             get
             {
-                return ClientCount > 0;
+                return _hasClients;
+            }
+            set
+            {
+                _hasClients = value;
+                NotifyPropertyChanged("HasClients");
             }
         }
 
@@ -180,12 +186,13 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// Overrides the OnClosing event.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance.</param>
         protected override void OnClosing(CancelEventArgs e)
         {
-            base.OnClosing(e);
+            ServerImage.Stop();
+            ServerData.Stop();
 
-            //close all connections
+            base.OnClosing(e);
         }
 
         #endregion
@@ -200,9 +207,6 @@ namespace RemoteEducationApplication.Views.Server
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            if (ServerImage.IsListening && e.CommandName == ApplicationHelper.CommandTags.Close)
-                ServerImage.Stop();
-
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
 
@@ -219,10 +223,11 @@ namespace RemoteEducationApplication.Views.Server
             {
                 string tag = menuItem.GetTag();
 
-                if (tag == ApplicationHelper.CommandTags.Close)
+                if (tag == ApplicationHelper.CommandTags.Close ||
+                    tag == ApplicationHelper.CommandTags.Logoff)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
                 else if (tag == ApplicationHelper.CommandTags.Question)
-                    QuestionHelper.CreateQuestionWithAnswers();
+                    SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers());
                 else if (ApplicationHelper.IsThemeTag(tag))
                     ApplicationHelper.ChangeTheme(tag);
             }
@@ -305,7 +310,7 @@ namespace RemoteEducationApplication.Views.Server
             }
 
             ClientNumber = ClientCount;
-            HasClientExpanded = false;
+            //HasClientExpanded = false;
         }
 
         /// <summary>
@@ -326,8 +331,8 @@ namespace RemoteEducationApplication.Views.Server
 
                     ConnectedClients.Remove(clientHandler);
 
-                    clientHandler.Width = 1024;
-                    clientHandler.Height = 680;
+                    clientHandler.Width = SystemParameters.PrimaryScreenWidth - 200;
+                    clientHandler.Height = SystemParameters.PrimaryScreenHeight - 200;
                     clientHandler.IsExpanded = true;
 
                     ConnectedClients.Insert(0, clientHandler);
@@ -344,13 +349,25 @@ namespace RemoteEducationApplication.Views.Server
                     clientHandler.Height = 210;
                     clientHandler.IsExpanded = false;
 
-                    //ClientHandler client = ConnectedClients.
-                    //    Where(x => x.Precedence > clientHandler.Precedence).LastOrDefault();                    
-                    //int indexOfClient = client == null ? -1 : ConnectedClients.IndexOf(client);
-
-                    //ConnectedClients.Insert(indexOfClient + 1, clientHandler);
-
                     HasClientExpanded = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="questionId"></param>
+        private void SendQuestionIDToClient(int questionId)
+        {
+            if(questionId != default(int))
+            {
+                foreach (var client in ConnectedClients)
+                {
+                    var stream = client.GetDataExchangeStream();
+                    stream.Flush();
+                    stream.WriteByte((byte)questionId);
+                    stream.Flush();
                 }
             }
         }
@@ -373,7 +390,7 @@ namespace RemoteEducationApplication.Views.Server
             ServerImage.Start();
             ServerData.Start();
 
-            //DatabaseHelper.SaveServerInfo(address);
+            DatabaseHelper.SaveServerInfo(address);
 
             LastImageUpdate = LastConnectionUpdate = DateTime.Now;
 
@@ -409,6 +426,9 @@ namespace RemoteEducationApplication.Views.Server
                             ConnectedClients.Add(client);
 
                         ClientNumber = ClientCount;
+
+                        if (ClientNumber > 0 && !HasClients)
+                            HasClients = true;
 
                         var stream = client.GetClientStream();
                         stream.WriteByte(2);
@@ -459,6 +479,10 @@ namespace RemoteEducationApplication.Views.Server
 
                 clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
                 ClientNumber = ClientCount;
+
+                if (ClientNumber < 1 && HasClients)
+                    HasClients = false;
+
                 LastImageUpdate = DateTime.Now;
 
                 await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());

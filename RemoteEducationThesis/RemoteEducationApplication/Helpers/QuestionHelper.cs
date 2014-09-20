@@ -20,7 +20,7 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// 
         /// </summary>
-        public static void CreateQuestionWithAnswers()
+        public static int CreateQuestionWithAnswers()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.DefaultExt = Filter.Substring(Filter.IndexOf('.'));
@@ -37,7 +37,11 @@ namespace RemoteEducationApplication.Helpers
 
                 SaveQuestion(question);
                 SaveAnswers(question.Answers);
+
+                return question.ID;
             }
+
+            return default(int);
         }
 
         /// <summary>
@@ -82,7 +86,7 @@ namespace RemoteEducationApplication.Helpers
                         break;
                 }
 
-                if(isValid)
+                if (isValid)
                     answerRepository.Save();
             }
         }
