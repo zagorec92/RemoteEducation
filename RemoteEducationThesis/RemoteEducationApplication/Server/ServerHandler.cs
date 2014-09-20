@@ -99,23 +99,6 @@ namespace RemoteEducationApplication.Server
         #region Constructor
 
         /// <summary>
-        /// Initializes new instance of ServerHandler class with default port (1000).
-        /// </summary>
-        //public ServerHandler()
-        //    : base(1000)
-        //{ }
-
-        /// <summary>
-        /// Initializes new instance of ServerHandler class.
-        /// </summary>
-        /// <param name="port">Port used for listening.</param>
-        //public ServerHandler(int port)
-        //    : base(port)
-        //{
-        //     Port = port;
-        //}
-
-        /// <summary>
         /// Initializes new instance of ServerHandler class.
         /// </summary>
         /// <param name="endPoint"></param>

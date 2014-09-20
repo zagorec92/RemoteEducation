@@ -35,13 +35,20 @@
                     <MenuItem Header="{x:Static global:Resources.MenuView}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
                         <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
-                                  Header="Change theme"
-                                  Tag="Change theme">
-                            <Menu>
-                                <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
-                                  Header="Change theme"
-                                  Tag="Change theme"></MenuItem>
-                            </Menu>
+                                  Header="{x:Static global:Resources.MenuTheme}"
+                                  SubmenuOpened="MenuItem_SubmenuOpened">
+                            <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                      Header="{x:Static global:Resources.MenuThemeClassic}"
+                                      Tag="{x:Static global:Resources.MenuThemeClassic}"
+                                      Click="SubMenuItem_Click"/>
+                            <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                      Header="{x:Static global:Resources.MenuThemeDark}"
+                                      Tag="{x:Static global:Resources.MenuThemeDark}"
+                                      Click="SubMenuItem_Click"/>
+                            <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                        Header="{x:Static global:Resources.MenuThemeOrange}"
+                                        Tag="{x:Static global:Resources.MenuThemeOrange}"
+                                        Click="SubMenuItem_Click"/>
                         </MenuItem>
                     </MenuItem>
 

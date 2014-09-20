@@ -32,9 +32,9 @@ namespace RemoteEducationApplication.Converters
             {
                 bool isExpanded = bool.Parse(values.Last().ToString());
 
-                if (callingObjectCommandName == ApplicationHelper.Commands.Expand)
+                if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
                     return isExpanded ? Visibility.Hidden : Visibility.Visible;
-                else if (callingObjectCommandName == ApplicationHelper.Commands.Shrink)
+                else if (callingObjectCommandName == ApplicationHelper.CommandTags.Shrink)
                     return isExpanded ? Visibility.Visible : Visibility.Hidden;
 
                 return Visibility.Hidden;

@@ -11,7 +11,7 @@ namespace RemoteEducationApplication.Shared
         /// <summary>
         /// Gets the application default settings.
         /// </summary>
-        public AppSettings AppSettings
+        internal AppSettings AppSettings
         {
             get
             {

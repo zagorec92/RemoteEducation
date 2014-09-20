@@ -2,6 +2,7 @@
 using System.Windows;
 using RemoteEducationApplication.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
+using System.Windows.Controls;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -12,7 +13,7 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// Contains command names.
         /// </summary>
-        public struct Commands
+        public struct CommandTags
         {
             public static string Login = AppResources.LoginPageLogin;
             public static string Recover = AppResources.RecoveryAction;
@@ -28,6 +29,10 @@ namespace RemoteEducationApplication.Helpers
             public static string Shrink = AppResources.WindowBarShrink;
 
             public static string Question = AppResources.OptionsSubMenuOpenQuestion;
+
+            public static string ThemeClassic = AppResources.MenuThemeClassic;
+            public static string ThemeDark = AppResources.MenuThemeDark;
+            public static string ThemeOrange = AppResources.MenuThemeOrange;
         }
 
         /// <summary>
@@ -89,10 +94,22 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="command">Command to execute.</param>
         public static void ExecuteBasicCommand(string command)
         {
-            if (command == Commands.Minimize)
+            if (command == CommandTags.Minimize)
                 Minimize();
-            else if (command == Commands.Close)
+            else if (command == CommandTags.Close)
                 Close();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public static bool IsThemeTag(string tag)
+        {
+            return tag == CommandTags.ThemeClassic ||
+                tag == CommandTags.ThemeDark ||
+                tag == CommandTags.ThemeOrange;
         }
 
         /// <summary>
@@ -111,6 +128,31 @@ namespace RemoteEducationApplication.Helpers
 
             Application.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] 
                 = resourceDictionary;
+
+            App.CurrentThemeName = themeName;
+        }
+
+        /// <summary>
+        /// Sets the font weight property of the MenuItem control to bold depending on the tag value.
+        /// </summary>
+        /// <param name="menuItem">The <see cref="System.Windows.Controls.MenuItem"/> instance
+        /// containing the tag value.</param>
+        public static void SetSelectedThemeName(MenuItem menuItem)
+        {
+            ItemCollection itemCollection = menuItem.Items;
+
+            foreach (object item in itemCollection)
+            {
+                MenuItem mItem = item as MenuItem;
+
+                if (mItem != null)
+                {
+                    if (mItem.GetTag() == App.CurrentThemeName)
+                        mItem.FontWeight = FontWeights.Bold;
+                    else
+                        mItem.FontWeight = FontWeights.Regular;
+                }
+            }
         }
 
         #endregion

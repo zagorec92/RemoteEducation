@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="Resources\Brushes\Brushes.xaml" />
 
                 <!--theme-->
-                <ResourceDictionary Source="Resources\Style\Theme\DefaultTheme.xaml" />
+                <ResourceDictionary Source="Resources\Style\Theme\Dark.xaml" />
 
                 <!--view resource dictionaries-->
                 <ResourceDictionary Source="Resources\Style\GlobalStyle.xaml" />

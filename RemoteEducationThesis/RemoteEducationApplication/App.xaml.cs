@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
+using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication
 {
@@ -14,6 +15,8 @@ namespace RemoteEducationApplication
     /// </summary>
     public partial class App : Application
     {
+        public static string CurrentThemeName { get; set; }
+
         /// <summary>
         /// Handles Application Startup event.
         /// Overrides current culture settings.
@@ -22,6 +25,7 @@ namespace RemoteEducationApplication
         /// <param name="e">The <see cref="System.Windows.StartupEventArgs"/> instance containing the event data.</param>
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            CurrentThemeName = "Dark";
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("hr-HR");
             FrameworkElement.LanguageProperty.
                 OverrideMetadata(typeof(FrameworkElement),
@@ -40,17 +44,20 @@ namespace RemoteEducationApplication
         {
             using(EEducationDbContext context = new EEducationDbContext())
             {
-                ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
-
-                ApplicationLog applicationLog = new ApplicationLog()
+                if (context.IsValid())
                 {
-                    Name = e.Exception.Message,
-                    Description = e.Exception.InnerException == null ? String.Empty : e.Exception.InnerException.Message,
-                    StackTrace = e.Exception.StackTrace
-                };
+                    ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
 
-                if (appLogRepository.InsertOrUpdate(applicationLog))
-                    appLogRepository.Save();
+                    ApplicationLog applicationLog = new ApplicationLog()
+                    {
+                        Name = e.Exception.Message,
+                        Description = e.Exception.InnerException == null ? String.Empty : e.Exception.InnerException.Message,
+                        StackTrace = e.Exception.StackTrace
+                    };
+
+                    if (appLogRepository.InsertOrUpdate(applicationLog))
+                        appLogRepository.Save();
+                }
             }
         }
     }

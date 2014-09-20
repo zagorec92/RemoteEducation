@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Background-->
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{Binding Source={StaticResource DarkBlueWin8Brush}, Path=Color}" />
+
+    <!--Foreground-->
+    <SolidColorBrush x:Key="ForegroundBrush" Color="White" />
+
+    <!--Validation-->
+    <SolidColorBrush x:Key="ValidationBrush" Color="{Binding Source={StaticResource DarkRedWin8Brush}, Path=Color}" />
+
+    <!--Application bar hover-->
+    <SolidColorBrush x:Key="ApplicationMenuHoverBrush" Color="Red" />
+
+    <!--Menu hover-->
+    <SolidColorBrush x:Key="MenuHoverBrush" Color="#2B6799" />
+
+    <!--Submenu hover-->
+    <SolidColorBrush x:Key="SubMenuHoverBrush" Color="#2B6799" />
+    
+    <!--Submenu background-->
+    <SolidColorBrush x:Key="SubMenuBackgroundBrush" Color="{Binding Source={StaticResource DarkBlueWin8Brush}, Path=Color}" />
+
+</ResourceDictionary>

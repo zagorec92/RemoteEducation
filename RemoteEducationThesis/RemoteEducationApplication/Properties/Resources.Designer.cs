@@ -232,6 +232,42 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string MenuTheme {
+            get {
+                return ResourceManager.GetString("MenuTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Classic.
+        /// </summary>
+        public static string MenuThemeClassic {
+            get {
+                return ResourceManager.GetString("MenuThemeClassic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string MenuThemeDark {
+            get {
+                return ResourceManager.GetString("MenuThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orange.
+        /// </summary>
+        public static string MenuThemeOrange {
+            get {
+                return ResourceManager.GetString("MenuThemeOrange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _View.
         /// </summary>
         public static string MenuView {

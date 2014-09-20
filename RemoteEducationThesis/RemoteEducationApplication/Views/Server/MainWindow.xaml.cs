@@ -4,6 +4,7 @@ using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -199,7 +200,7 @@ namespace RemoteEducationApplication.Views.Server
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
         {
-            if (ServerImage.IsListening && e.CommandName == ApplicationHelper.Commands.Close)
+            if (ServerImage.IsListening && e.CommandName == ApplicationHelper.CommandTags.Close)
                 ServerImage.Stop();
 
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
@@ -218,12 +219,29 @@ namespace RemoteEducationApplication.Views.Server
             {
                 string tag = menuItem.GetTag();
 
-                if (tag == ApplicationHelper.Commands.Close)
+                if (tag == ApplicationHelper.CommandTags.Close)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
-                else if (tag == ApplicationHelper.Commands.Question)
+                else if (tag == ApplicationHelper.CommandTags.Question)
                     QuestionHelper.CreateQuestionWithAnswers();
+                else if (ApplicationHelper.IsThemeTag(tag))
+                    ApplicationHelper.ChangeTheme(tag);
             }
         }
+
+        /// <summary>
+        /// Handles the SubmenuOpened event of the MenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance
+        /// containing the event data.</param>
+        private void MenuItem_SubmenuOpened(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+
+            if (menuItem != null)
+                ApplicationHelper.SetSelectedThemeName(menuItem);
+        }
+
 
         #endregion
 
@@ -237,12 +255,12 @@ namespace RemoteEducationApplication.Views.Server
         /// instance containing the event data.</param>
         private void Client_Click(object sender, ApplicationBarEventArgs e)
         {
-            if (e.CommandName == ApplicationHelper.Commands.Close)
+            if (e.CommandName == ApplicationHelper.CommandTags.Close)
                 CloseClient(e.ObjectName);
-            else if (e.CommandName == ApplicationHelper.Commands.Expand ||
-                e.CommandName == ApplicationHelper.Commands.Shrink)
+            else if (e.CommandName == ApplicationHelper.CommandTags.Expand ||
+                e.CommandName == ApplicationHelper.CommandTags.Shrink)
                 ChangeClientHeightAndWidth(e.ObjectName, e.CommandName);
-            else if (e.CommandName == ApplicationHelper.Commands.Connect)
+            else if (e.CommandName == ApplicationHelper.CommandTags.Connect)
             {
 
             }
@@ -301,7 +319,7 @@ namespace RemoteEducationApplication.Views.Server
 
             if (ConnectedClients.Count(x => x.Name == clientName) == 1)
             {
-                if (commandName == ApplicationHelper.Commands.Expand && !HasClientExpanded)
+                if (commandName == ApplicationHelper.CommandTags.Expand && !HasClientExpanded)
                 {
                     ClientHandler clientHandler = ConnectedClients.Single
                         (x => x.Name == clientName);
@@ -315,7 +333,7 @@ namespace RemoteEducationApplication.Views.Server
                     ConnectedClients.Insert(0, clientHandler);
                     HasClientExpanded = true;
                 }
-                else if (commandName == ApplicationHelper.Commands.Shrink)
+                else if (commandName == ApplicationHelper.CommandTags.Shrink)
                 {
                     ClientHandler clientHandler = ConnectedClients.Single
                         (x => x.Name == clientName);
@@ -355,7 +373,7 @@ namespace RemoteEducationApplication.Views.Server
             ServerImage.Start();
             ServerData.Start();
 
-            ///DatabaseHelper.SaveServerInfo(address);
+            //DatabaseHelper.SaveServerInfo(address);
 
             LastImageUpdate = LastConnectionUpdate = DateTime.Now;
 

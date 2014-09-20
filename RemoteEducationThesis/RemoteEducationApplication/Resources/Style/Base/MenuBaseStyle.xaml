@@ -14,14 +14,14 @@
 						                      RecognizesAccessKey="True" />
                             <Popup Name="Popup"
 					               Placement="Bottom"
-                                   VerticalOffset="-5"
+                                   VerticalOffset="-3"
                                    PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
 					               IsOpen="{TemplateBinding IsSubmenuOpen}" 
 					               Focusable="False"
-					               PopupAnimation="Fade">
+					               PopupAnimation="Slide">
                                 <Border Name="SubmenuBorder"
 							            SnapsToDevicePixels="True"
-							            Background="{StaticResource LightBlackBrush}">
+							            Background="{DynamicResource SubMenuBackgroundBrush}">
                                     <StackPanel IsItemsHost="True" 
 								                KeyboardNavigation.DirectionalNavigation="Cycle"/>
                                 </Border>
@@ -47,7 +47,7 @@
         </Setter>
     </Style>
 
-    <!-- SubmenuItem -->
+     <!--SubmenuItem--> 
     <Style x:Key="SubMenuItemBaseStyle" TargetType="MenuItem">
         <Setter Property="Template">
             <Setter.Value>
@@ -57,6 +57,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut"/>
+                                <ColumnDefinition Width="15"/>
                             </Grid.ColumnDefinitions>
                             <ContentPresenter Name="HeaderHost"
                                               ContentSource="Header"
@@ -71,14 +72,45 @@
                                        VerticalAlignment="Center"
                                        Margin="0, 0, 5, 0"
                                        DockPanel.Dock="Right" />
+                            <Grid Grid.Column="2" Margin="4,0,6,0" x:Name="ArrowPanel" VerticalAlignment="Center">
+                                <Path x:Name="ArrowPanelPath" HorizontalAlignment="Right" VerticalAlignment="Center" Fill="{TemplateBinding Foreground}" Data="M0,0 L0,8 L4,4 z"/>
+                            </Grid>
+                            <Popup IsOpen="{Binding Path=IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" 
+                                   Placement="Right" 
+                                   x:Name="SubMenuPopup" 
+                                   Focusable="false" 
+                                   Width="200"
+                                   PopupAnimation="Slide"
+                                   AllowsTransparency="True">
+                                <Border Name="SubMenuBorder" 
+                                        SnapsToDevicePixels="True"
+							            Background="{DynamicResource SubMenuBackgroundBrush}">
+                                    <StackPanel IsItemsHost="True"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                                </Border>
+                            </Popup>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsHighlighted" Value="true">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SubMenuHoverBrush}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource SubMenuHoverBrush}"/> 
+                        </Trigger>
+                        <Trigger SourceName="SubMenuPopup" Property="Popup.AllowsTransparency" Value="True">
+                            <Setter TargetName="SubMenuBorder" Property="CornerRadius" Value="0,0,0,0"/>
+                            <Setter TargetName="SubMenuBorder" Property="Padding" Value="0,0,0,0"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter Property="Foreground" Value="{StaticResource SubMenuHoverBrush}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource SubMenuHoverBrush}"/>
+                        </Trigger>
+                        <Trigger Property="Role" Value="TopLevelHeader">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel"/>
+                        </Trigger>
+                        <Trigger Property="Role" Value="TopLevelItem">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel"/>
+                        </Trigger>
+                        <Trigger Property="Role" Value="SubmenuItem">
+                            <Setter Property="DockPanel.Dock" Value="Top"/>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="ArrowPanel"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

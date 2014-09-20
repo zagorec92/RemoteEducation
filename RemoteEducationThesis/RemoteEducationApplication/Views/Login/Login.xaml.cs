@@ -234,16 +234,16 @@ namespace RemoteEducationApplication.Views.Login
 
             if (bttn != null)
             {
-                if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Clear)
+                if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Clear)
                     tbxUsername.Text = pbxPassword.Password = String.Empty;
-                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Login)
+                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Login)
                     AuthenticateUser();
-                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Cancel)
+                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
                 {
                     tbxEmail.Text = String.Empty;
                     WindowRole = WindowRoles.Login;
                 }
-                else if (bttn.GetCommandParameter() == ApplicationHelper.Commands.Recover)
+                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Recover)
                     AuthenticationManager.RecoverPassword(tbxUsernameRecover.Text, tbxEmail.Text);
             }
         }

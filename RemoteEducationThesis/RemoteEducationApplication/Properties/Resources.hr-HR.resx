@@ -216,4 +216,19 @@
   <data name="LoginPageRecoveryTitle" xml:space="preserve">
     <value>NOVA ZAPORKA</value>
   </data>
+  <data name="MenuTheme" xml:space="preserve">
+    <value>Tema</value>
+  </data>
+  <data name="MenuThemeDark" xml:space="preserve">
+    <value>Dark</value>
+    <comment>Name of the theme - no translation</comment>
+  </data>
+  <data name="MenuThemeOrange" xml:space="preserve">
+    <value>Orange</value>
+    <comment>Name of the theme - no translation</comment>
+  </data>
+  <data name="MenuThemeClassic" xml:space="preserve">
+    <value>Classic</value>
+    <comment>Name of the theme - no translation</comment>
+  </data>
 </root>
