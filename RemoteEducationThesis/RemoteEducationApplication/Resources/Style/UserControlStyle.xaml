@@ -9,8 +9,9 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BackgroundBrush}" />
     </Style>
     
-    <Style x:Key="UserControlTextBoxNameStyle" TargetType="TextBlock">
+    <Style x:Key="UserControlTextBlockNameStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="7.5, 0, 0, 0" />
     </Style>
 

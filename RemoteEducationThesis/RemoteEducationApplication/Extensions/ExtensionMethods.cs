@@ -87,11 +87,11 @@ namespace RemoteEducationApplication.Extensions
         /// <param name="window">The <see cref="System.Windows.Window"/>.</param>
         /// <param name="navigateToWindow">The <see cref="System.Windows.Window"/>.</param>
         /// <param name="isClosing">Close current window.</param>
-        public static void NavigateTo(this Window control, Window navigateToWindow, bool isClosing)
+        public static void NavigateTo(this Window window, Window navigateToWindow, bool isClosing)
         {
             if (isClosing)
             {
-                control.Close();
+                window.Close();
                 Application.Current.MainWindow = navigateToWindow;
             }
 

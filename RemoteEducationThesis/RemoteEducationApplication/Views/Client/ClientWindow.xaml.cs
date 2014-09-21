@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
@@ -164,11 +165,6 @@ namespace RemoteEducationApplication.Views.Client
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int TotalScore { get; set; }
-
         #endregion
 
         #region Constructor
@@ -220,7 +216,7 @@ namespace RemoteEducationApplication.Views.Client
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void wb_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void wb_Navigated(object sender, NavigationEventArgs e)
         {
             WebBrowser webBrowser = sender as WebBrowser;
 
@@ -237,7 +233,8 @@ namespace RemoteEducationApplication.Views.Client
                     Dictionary<int, String> urlParams =
                         WebBrowserHelper.GetParsedUrlParameters(urlParameters);
 
-                    TotalScore = QuestionHelper.CheckAnswers(urlParams);
+                    Client.TotalScore += QuestionHelper.CheckAnswers(urlParams);
+                    ScoreHelper.SaveUserScore(Client.TotalScore);
                     HasAnswered = true;
                 }
                 else
@@ -418,7 +415,7 @@ namespace RemoteEducationApplication.Views.Client
                     }
                     else if (HasAnswered)
                     {
-                        stream.WriteByte((byte)TotalScore);
+                        stream.WriteByte((byte)Client.TotalScore);
                         stream.Flush();
                         HasAnswered = false;
                     }

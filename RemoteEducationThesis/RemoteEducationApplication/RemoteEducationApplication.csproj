@@ -109,6 +109,7 @@
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\QuestionHelper.cs" />
+    <Compile Include="Helpers\ScoreHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\WebBrowserHelper.cs" />
@@ -124,6 +125,9 @@
     <Compile Include="Shared\WindowBase.cs" />
     <Compile Include="Views\Client\ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\ScoreList.xaml.cs">
+      <DependentUpon>ScoreList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\WindowBar.xaml.cs">
       <DependentUpon>WindowBar.xaml</DependentUpon>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Client\ClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\ScoreList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

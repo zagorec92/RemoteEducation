@@ -79,6 +79,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Score.
+        /// </summary>
+        public static string ClientControlScore {
+            get {
+                return ResourceManager.GetString("ClientControlScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Client has disconnected....
         /// </summary>
         public static string ClientStatusDisconnected {
@@ -295,11 +304,29 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scores.
+        /// </summary>
+        public static string MenuWindowScoreListTitle {
+            get {
+                return ResourceManager.GetString("MenuWindowScoreListTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Open question.
         /// </summary>
         public static string OptionsSubMenuOpenQuestion {
             get {
                 return ResourceManager.GetString("OptionsSubMenuOpenQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show scores.
+        /// </summary>
+        public static string OptionsSubMenuScoreList {
+            get {
+                return ResourceManager.GetString("OptionsSubMenuScoreList", resourceCulture);
             }
         }
         

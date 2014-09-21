@@ -40,6 +40,11 @@ namespace RemoteEducationApplication.Views.UserControls
         public Visibility ClientBarVisibility { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool OverrideInitialization { get; set; }
+
+        /// <summary>
         /// Gets or sets the value indicating if the control is expanded.
         /// </summary>
         public bool IsExpanded 
@@ -136,7 +141,9 @@ namespace RemoteEducationApplication.Views.UserControls
         {
             if (WindowRole == WindowRole.ApplicationBar)
             {
-                ApplicationBarVisibility = Visibility.Visible;
+                if(!OverrideInitialization)
+                    ApplicationBarVisibility = Visibility.Visible;
+
                 ClientBarVisibility = Visibility.Hidden;
             }
             else if (WindowRole == WindowRole.ClientBar)

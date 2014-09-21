@@ -237,4 +237,13 @@
   <data name="ClientStatusDisconnected" xml:space="preserve">
     <value>Client has disconnected...</value>
   </data>
+  <data name="ClientControlScore" xml:space="preserve">
+    <value>Score</value>
+  </data>
+  <data name="OptionsSubMenuScoreList" xml:space="preserve">
+    <value>Show scores</value>
+  </data>
+  <data name="MenuWindowScoreListTitle" xml:space="preserve">
+    <value>Scores</value>
+  </data>
 </root>

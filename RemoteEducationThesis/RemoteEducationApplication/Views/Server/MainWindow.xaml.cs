@@ -3,6 +3,7 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
+using RemoteEducationApplication.Views.Menu;
 using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.Collections.Generic;
@@ -266,6 +267,8 @@ namespace RemoteEducationApplication.Views.Server
                     SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers());
                 else if (ApplicationHelper.IsThemeTag(tag))
                     ApplicationHelper.ChangeTheme(tag);
+                else if (tag == ApplicationHelper.CommandTags.ScoreList)
+                    this.NavigateTo(new ScoreList(), false);
             }
         }
 

@@ -61,8 +61,11 @@
                         <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                   Header="{x:Static global:Resources.OptionsSubMenuOpenQuestion}"
                                   Tag="{x:Static global:Resources.OptionsSubMenuOpenQuestion}"
-                                  Click="SubMenuItem_Click">
-                        </MenuItem>
+                                  Click="SubMenuItem_Click" />
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.OptionsSubMenuScoreList}"
+                                  Tag="{x:Static global:Resources.OptionsSubMenuScoreList}"
+                                  Click="SubMenuItem_Click"/>
                     </MenuItem>
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"

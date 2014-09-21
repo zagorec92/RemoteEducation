@@ -237,4 +237,13 @@
   <data name="ClientStatusDisconnected" xml:space="preserve">
     <value>Klijent je prekinuo vezu...</value>
   </data>
+  <data name="ClientControlScore" xml:space="preserve">
+    <value>Bodovi</value>
+  </data>
+  <data name="OptionsSubMenuScoreList" xml:space="preserve">
+    <value>Prikaži rezultate</value>
+  </data>
+  <data name="MenuWindowScoreListTitle" xml:space="preserve">
+    <value>Rezultati</value>
+  </data>
 </root>

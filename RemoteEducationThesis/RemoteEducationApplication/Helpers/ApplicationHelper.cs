@@ -32,6 +32,7 @@ namespace RemoteEducationApplication.Helpers
             public static string Shrink = AppResources.WindowBarShrink;
 
             public static string Question = AppResources.OptionsSubMenuOpenQuestion;
+            public static string ScoreList = AppResources.OptionsSubMenuScoreList;
 
             public static string ThemeClassic = AppResources.MenuThemeClassic;
             public static string ThemeDark = AppResources.MenuThemeDark;
@@ -112,6 +113,17 @@ namespace RemoteEducationApplication.Helpers
                 Close();
             else if (command == CommandTags.Logoff)
                 Logoff();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="window"></param>
+        public static void ExecuteBasicCommand(string command, Window window)
+        {
+            if (command == CommandTags.Close)
+                window.Close();
         }
 
         /// <summary>

@@ -12,10 +12,12 @@
     <base:UserControlBase.Resources>
         <c:StatusTextVisibilityConverter x:Key="StatusTextVisibilityConverter" />
     </base:UserControlBase.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
             <RowDefinition />
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
 
         <Grid Background="{DynamicResource BackgroundBrush}">
@@ -29,18 +31,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource UserControlTextBoxNameStyle}" 
+            <TextBlock Style="{StaticResource UserControlTextBlockNameStyle}" 
                        Text="{Binding Name}" />
 
-            <TextBlock Grid.Column="1"
-                       Style="{StaticResource UserControlTextBoxNameStyle}" 
-                       Text="{Binding TotalScore}" />
-
-                <wBar:ApplicationBar Grid.Column="2"
-                                     WindowRole="ClientBar"
-                                     IsExpanded="{Binding IsExpanded}"
-                                     AppBarClick="appBar_RectangleClick"
-                                     Margin="0, 0, 0, 3"/>
+            <wBar:ApplicationBar Grid.Column="2"
+                                 WindowRole="ClientBar"
+                                 IsExpanded="{Binding IsExpanded}"
+                                 AppBarClick="appBar_RectangleClick"/>
         </Grid>
 
         <TextBlock Grid.Row="1" 
@@ -62,6 +59,18 @@
                          Path="HasPicture"/>
             </Image.Visibility>
         </Image>
+
+        <Grid Grid.Row="2"
+              Background="{DynamicResource BackgroundBrush}">
+            <TextBlock Style="{StaticResource UserControlTextBlockNameStyle}">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}: {1}">
+                        <Binding Source="{x:Static global:Resources.ClientControlScore}" />
+                        <Binding Path="TotalScore" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </Grid>
 
     </Grid>
 </base:UserControlBase>
