@@ -39,7 +39,7 @@
 
         <TextBlock Grid.Row="1" 
                    Style="{StaticResource UserControlImageWaitTextBlockStyle}"
-                   Text="{x:Static global:Resources.ClientImageWaitStatus}">
+                   Text="{Binding StatusMessage}">
             <TextBlock.Visibility>
                 <Binding Converter="{StaticResource StatusTextVisibilityConverter}" 
                          ConverterParameter="Text"

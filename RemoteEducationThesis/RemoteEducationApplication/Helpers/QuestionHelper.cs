@@ -92,6 +92,25 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <returns></returns>
+        public static Question GetQuestion (int questionId)
+        {
+            using(EEducationDbContext context = new EEducationDbContext())
+            {
+                QuestionRepository questionRepository = new QuestionRepository(context);
+                Question question = questionRepository.Get(questionId);
+
+                if (question != null)
+                    return question;
+                else
+                    return null;
+            }
+        }
+
+        /// <summary>
         /// Removes extra characters from html file.
         /// </summary>
         /// <param name="htmlContent"></param>

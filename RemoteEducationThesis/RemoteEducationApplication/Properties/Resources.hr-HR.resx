@@ -123,7 +123,7 @@
   <data name="CancelAction" xml:space="preserve">
     <value>Odustani</value>
   </data>
-  <data name="ClientImageWaitStatus" xml:space="preserve">
+  <data name="ClientStatusImageWait" xml:space="preserve">
     <value>Čekam sliku radne površine...</value>
   </data>
   <data name="ClientWindowConnected" xml:space="preserve">
@@ -233,5 +233,8 @@
   </data>
   <data name="MenuFileLogoff" xml:space="preserve">
     <value>Odjavi se</value>
+  </data>
+  <data name="ClientStatusDisconnected" xml:space="preserve">
+    <value>Klijent je prekinuo vezu...</value>
   </data>
 </root>

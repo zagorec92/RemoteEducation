@@ -79,11 +79,20 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client has disconnected....
+        /// </summary>
+        public static string ClientStatusDisconnected {
+            get {
+                return ResourceManager.GetString("ClientStatusDisconnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Waiting for desktop image....
         /// </summary>
-        public static string ClientImageWaitStatus {
+        public static string ClientStatusImageWait {
             get {
-                return ResourceManager.GetString("ClientImageWaitStatus", resourceCulture);
+                return ResourceManager.GetString("ClientStatusImageWait", resourceCulture);
             }
         }
         

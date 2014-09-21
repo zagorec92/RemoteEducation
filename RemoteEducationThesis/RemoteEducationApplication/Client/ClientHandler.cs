@@ -13,10 +13,12 @@ namespace RemoteEducationApplication.Client
         #region Fields
 
         private bool _hasPicture;
+        private bool _isExpanded;
         private int _port;
         private double _width;
         private double _height;
         private string _name;
+        private string _statusMessage;
 
         private ImageSource _desktopImage;       
         private TcpClient _tcpClient;
@@ -148,7 +150,12 @@ namespace RemoteEducationApplication.Client
             set 
             {
                 _desktopImage = value;
-                HasPicture = true;
+
+                if (_desktopImage != null)
+                    HasPicture = true;
+                else
+                    HasPicture = false;
+
                 OnPropertyChanged("DesktopImage");
             } 
         }
@@ -198,7 +205,18 @@ namespace RemoteEducationApplication.Client
         /// <summary>
         /// 
         /// </summary>
-        public bool IsExpanded { get; set; }
+        public bool IsExpanded 
+        {
+            get
+            {
+                return _isExpanded;
+            }
+            set
+            {
+                _isExpanded = value;
+                OnPropertyChanged("IsExpanded");
+            }
+        }
 
         /// <summary>
         /// 
@@ -215,6 +233,27 @@ namespace RemoteEducationApplication.Client
                 OnPropertyChanged("HasPicture");
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string StatusMessage
+        {
+            get
+            {
+                return _statusMessage;
+            }
+            set
+            {
+                _statusMessage = value;
+                OnPropertyChanged("StatusMessage");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int ListIndex { get; set; }
 
         #endregion
 

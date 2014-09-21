@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
@@ -158,6 +159,19 @@ namespace RemoteEducationApplication.Extensions
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumValue"></param>
+        /// <returns></returns>
+        public static int GetIndexOfValue<T>(T enumValue)
+        {
+            List<T> enumList = Enum.GetValues(typeof(T)).Cast<T>().ToList();
+
+            return enumList.IndexOf(enumValue);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumValue"></param>
         /// <param name="index"></param>
         /// <returns></returns>
         public static T GetValueByIndex<T>(int index)
@@ -210,6 +224,24 @@ namespace RemoteEducationApplication.Extensions
                 return true;
             else
                 return false;
+        }
+
+        #endregion
+
+        #region ObservableCollection<T>
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="oldIndex"></param>
+        /// <param name="newIndex"></param>
+        public static void MoveExtended<T>(this ObservableCollection<T> collection, int oldIndex, int newIndex)
+        {
+            T item = collection[oldIndex];
+            collection.Remove(item);
+            collection.Insert(newIndex, item);
         }
 
         #endregion

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
+using Education.Model;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -213,6 +214,8 @@ namespace RemoteEducationApplication.Views.Client
                 }
                 catch
                 {
+                    Client.CloseDataExchange();
+                    Client.CloseClient();
                     break;
                 }
 
@@ -223,6 +226,7 @@ namespace RemoteEducationApplication.Views.Client
             ProcessStatus = AppResources.ClientWindowProcessWaiting;
 
             bool isConnected = false;
+            Client = new ClientHandler();
 
             while (!isConnected)
                 isConnected = await Connect();
@@ -236,13 +240,14 @@ namespace RemoteEducationApplication.Views.Client
         {
             NetworkStream stream = Client.GetDataExchangeStream();
 
-            while(true)
+            while (true)
             {
                 try
                 {
                     if (stream.DataAvailable)
                     {
                         int id = stream.ReadByte();
+                        Question question = QuestionHelper.GetQuestion(id);
                     }
                     else
                         await Task.Delay(SleepTime.GetValue());

@@ -3,6 +3,7 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
+using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,10 +12,12 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Server
 {
@@ -23,12 +26,29 @@ namespace RemoteEducationApplication.Views.Server
     /// </summary>
     public partial class MainWindow : WindowBase
     {
+        #region Struct
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private struct ClientSizes
+        {
+            public static double InitialWidth = 220;
+            public static double InitialHeight = 200;
+            public static double WideWidth = SystemParameters.PrimaryScreenWidth - 300;
+            public static double WideHeight = SystemParameters.PrimaryScreenHeight - 185;
+            public static double SideGridWidth = 250;
+        }
+
+        #endregion
+
         #region Fields
 
         private ObservableCollection<ClientHandler> _connectedClients;
         private DateTime _lastImageUpdate;
         private DateTime _lastConnectionUpdate;
         private int _clientNumber;
+        private double _helperGridWidth;
         private bool _hasClients;
 
         #endregion
@@ -148,6 +168,22 @@ namespace RemoteEducationApplication.Views.Server
         /// Gets or sets the value indicating if ClientControl is expanded.
         /// </summary>
         protected bool HasClientExpanded { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double HelperGridWidth
+        {
+            get
+            {
+                return _helperGridWidth;
+            }
+            set
+            {
+                _helperGridWidth = value;
+                NotifyPropertyChanged("HelperGridWidth");
+            }
+        }
 
         #endregion
 
@@ -310,7 +346,8 @@ namespace RemoteEducationApplication.Views.Server
             }
 
             ClientNumber = ClientCount;
-            //HasClientExpanded = false;
+            HasClientExpanded = false;
+            HelperGridWidth = default(int);
         }
 
         /// <summary>
@@ -320,8 +357,6 @@ namespace RemoteEducationApplication.Views.Server
         /// <param name="commandName"></param>
         private void ChangeClientHeightAndWidth(string clientName, string commandName)
         {
-            //width and height values are temporarily hardcoded
-
             if (ConnectedClients.Count(x => x.Name == clientName) == 1)
             {
                 if (commandName == ApplicationHelper.CommandTags.Expand && !HasClientExpanded)
@@ -329,27 +364,30 @@ namespace RemoteEducationApplication.Views.Server
                     ClientHandler clientHandler = ConnectedClients.Single
                         (x => x.Name == clientName);
 
-                    ConnectedClients.Remove(clientHandler);
+                    clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
 
-                    clientHandler.Width = SystemParameters.PrimaryScreenWidth - 200;
-                    clientHandler.Height = SystemParameters.PrimaryScreenHeight - 200;
+                    ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
+
+                    clientHandler.Width = ClientSizes.WideWidth;
+                    clientHandler.Height = ClientSizes.WideHeight;
                     clientHandler.IsExpanded = true;
 
-                    ConnectedClients.Insert(0, clientHandler);
                     HasClientExpanded = true;
+                    HelperGridWidth = ClientSizes.SideGridWidth;
                 }
                 else if (commandName == ApplicationHelper.CommandTags.Shrink)
                 {
                     ClientHandler clientHandler = ConnectedClients.Single
                         (x => x.Name == clientName);
 
-                    ConnectedClients.Remove(clientHandler);
+                    ConnectedClients.MoveExtended(0, clientHandler.ListIndex);
 
-                    clientHandler.Width = 200;
-                    clientHandler.Height = 210;
+                    clientHandler.Width = ClientSizes.InitialWidth;
+                    clientHandler.Height = ClientSizes.InitialHeight;
                     clientHandler.IsExpanded = false;
 
                     HasClientExpanded = false;
+                    HelperGridWidth = default(int);
                 }
             }
         }
@@ -417,10 +455,11 @@ namespace RemoteEducationApplication.Views.Server
                     if (ConnectedClients.Count < ServerImage.MaxConnections)
                     {
                         ClientHandler client = new ClientHandler();
-                        client.Height = 200;
-                        client.Width = 220;
+                        client.Height = ClientSizes.InitialHeight;
+                        client.Width = ClientSizes.InitialWidth;
                         client.TcpClient = ServerImage.AcceptTcpClient();
                         client.TcpClientDataExchange = ServerData.AcceptTcpClient();
+                        client.StatusMessage = AppResources.ClientStatusImageWait;
 
                         if (client.TcpClient != null)
                             ConnectedClients.Add(client);
@@ -430,17 +469,8 @@ namespace RemoteEducationApplication.Views.Server
                         if (ClientNumber > 0 && !HasClients)
                             HasClients = true;
 
-                        var stream = client.GetClientStream();
-                        stream.WriteByte(2);
-                        stream.Flush();
-
-                        stream = client.TcpClientDataExchange.GetStream();
-                        int length = stream.ReadByte();
-                        byte[] buffer = new byte[length];
-
-                        stream.Read(buffer, 0, length);
-                        string value = buffer.GetString();
-                        client.Name = value;                      
+                        SendSleepTimeValue(client.GetClientStream());
+                        client.Name =  GetUserIdentification(client.GetDataExchangeStream());                    
                     }
                 }
                 else
@@ -468,25 +498,59 @@ namespace RemoteEducationApplication.Views.Server
                             Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
                             client.DesktopImage = bitmap.GetImageSource();
                         }
-                        catch { }
+                        catch 
+                        {
+                            client.DesktopImage = null;
+                            client.CloseClient();
+                            clientsToRemove.Add(client);
+                            client.StatusMessage = AppResources.ClientStatusDisconnected;
+                        }
                     }
                     else
                     {
+                        client.DesktopImage = null;
                         client.CloseClient();
                         clientsToRemove.Add(client);
+                        client.StatusMessage = AppResources.ClientStatusDisconnected;
                     }
                 }
+
+                LastImageUpdate = DateTime.Now;
+
+                await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
 
                 clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
                 ClientNumber = ClientCount;
 
                 if (ClientNumber < 1 && HasClients)
                     HasClients = false;
-
-                LastImageUpdate = DateTime.Now;
-
-                await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        private void SendSleepTimeValue(NetworkStream stream)
+        {
+            int sleepTimeIndex = ExtensionMethods.GetIndexOfValue<ConnectionHelper.SleepTime>
+                (ConnectionHelper.SleepTime.Moderate);
+            stream.WriteByte((byte)sleepTimeIndex);
+            stream.Flush();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        private string GetUserIdentification(NetworkStream stream)
+        {
+            int length = stream.ReadByte();
+            byte[] buffer = new byte[length];
+
+            stream.Read(buffer, 0, length);
+            return buffer.GetString();
         }
 
         #endregion

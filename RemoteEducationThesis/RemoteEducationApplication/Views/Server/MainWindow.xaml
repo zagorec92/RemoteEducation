@@ -82,23 +82,23 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding ConnectedClients}"
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      BorderThickness="0"
-                      Background="{StaticResource BetterWhiteBrush}">
-                <ListView.ItemsPanel>
+            <ItemsControl ItemsSource="{Binding ConnectedClients}"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          BorderThickness="0"
+                          Background="{StaticResource BetterWhiteBrush}">
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True"
                                    Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <uc:ClientControl Margin="10"
                                           ClientClick="Client_Click"/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             
             <!--fix for the strange white space in the bottom right of the listbox-->
             <Rectangle Fill="{StaticResource BetterWhiteBrush}"
@@ -107,7 +107,9 @@
                        Width="40"
                        Margin="0, 0, 1, 1"/>
             
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1"
+                  Width="{Binding HelperGridWidth}"
+                  Background="Red">
                 
             </Grid>
             
