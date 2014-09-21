@@ -245,5 +245,20 @@ namespace RemoteEducationApplication.Extensions
         }
 
         #endregion
+
+        #region WebBrowser
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="webBrowser"></param>
+        /// <returns></returns>
+        public static string GetQueryParams(this WebBrowser webBrowser)
+        {
+            return webBrowser.Source.Query.Length > 0 ? 
+                webBrowser.Source.Query.Substring(1) : String.Empty;
+        }
+
+        #endregion
     }
 }

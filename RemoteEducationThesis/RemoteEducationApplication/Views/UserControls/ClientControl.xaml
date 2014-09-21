@@ -4,7 +4,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
-                      xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                      xmlns:wBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                       Style="{StaticResource UserControlWindowStyle}"
@@ -25,16 +25,22 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
+                <ColumnDefinition Width="35" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
             <TextBlock Style="{StaticResource UserControlTextBoxNameStyle}" 
                        Text="{Binding Name}" />
 
-            <appBar:ApplicationBar Grid.Column="1"
-                                   WindowRole="ClientBar"
-                                   IsExpanded="{Binding IsExpanded}"
-                                   AppBarClick="appBar_RectangleClick"/>
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource UserControlTextBoxNameStyle}" 
+                       Text="{Binding TotalScore}" />
+
+                <wBar:ApplicationBar Grid.Column="2"
+                                     WindowRole="ClientBar"
+                                     IsExpanded="{Binding IsExpanded}"
+                                     AppBarClick="appBar_RectangleClick"
+                                     Margin="0, 0, 0, 3"/>
         </Grid>
 
         <TextBlock Grid.Row="1" 

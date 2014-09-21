@@ -102,6 +102,7 @@
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Extensions\ExtensionMethods.cs" />
+    <Compile Include="Extensions\WebBrowserExtender.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Helpers\QuestionHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
+    <Compile Include="Helpers\WebBrowserHelper.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">
       <DependentUpon>Resources.hr-HR.resx</DependentUpon>
       <AutoGen>True</AutoGen>

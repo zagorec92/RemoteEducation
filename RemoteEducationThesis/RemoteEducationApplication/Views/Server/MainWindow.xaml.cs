@@ -33,8 +33,8 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         private struct ClientSizes
         {
-            public static double InitialWidth = 220;
-            public static double InitialHeight = 200;
+            public static double InitialWidth = 240;
+            public static double InitialHeight = 220;
             public static double WideWidth = SystemParameters.PrimaryScreenWidth - 300;
             public static double WideHeight = SystemParameters.PrimaryScreenHeight - 185;
             public static double SideGridWidth = 250;
@@ -435,7 +435,8 @@ namespace RemoteEducationApplication.Views.Server
             Task[] tasks = new Task[]
             {
                 ListeningForConnections(),
-                GetDesktopImage()
+                GetDesktopImage(),
+                ExchangeDataWithClient()
             };
         }
 
@@ -524,6 +525,30 @@ namespace RemoteEducationApplication.Views.Server
 
                 if (ClientNumber < 1 && HasClients)
                     HasClients = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private async Task ExchangeDataWithClient()
+        {
+            while(ServerData.IsListening)
+            {
+                try
+                {
+                    foreach(ClientHandler client in ConnectedClients)
+                    {
+                        NetworkStream stream = client.GetDataExchangeStream();
+
+                        if(stream.DataAvailable)
+                            client.TotalScore += stream.ReadByte();
+                    }
+                }
+                catch { }
+
+                await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
             }
         }
 

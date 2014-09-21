@@ -15,6 +15,7 @@ namespace RemoteEducationApplication.Client
         private bool _hasPicture;
         private bool _isExpanded;
         private int _port;
+        private int _totalScore;
         private double _width;
         private double _height;
         private string _name;
@@ -254,6 +255,22 @@ namespace RemoteEducationApplication.Client
         /// 
         /// </summary>
         public int ListIndex { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TotalScore
+        {
+            get
+            {
+                return _totalScore;
+            }
+            set
+            {
+                _totalScore = value;
+                OnPropertyChanged("TotalScore");
+            }
+        }
 
         #endregion
 

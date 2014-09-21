@@ -11,32 +11,6 @@ namespace RemoteEducationApplication.Views.UserControls
     /// </summary>
     public partial class ClientControl : UserControlBase
     {
-        //#region Fields
-
-        //private bool _isClientExpanded;
-
-        //#endregion
-
-        //#region Properties
-
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        //public bool IsClientExpanded 
-        //{
-        //    get
-        //    {
-        //        return _isClientExpanded;
-        //    } 
-        //    set
-        //    {
-        //        _isClientExpanded = value;
-        //        NotifyPropertyChanged("IsClientExpanded");
-        //    }
-        //}
-
-        //#endregion
-
         #region Constructor
 
         /// <summary>

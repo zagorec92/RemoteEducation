@@ -1,18 +1,19 @@
-﻿using RemoteEducationApplication.Authentication;
+﻿using Education.Model;
 using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
-using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
-using Education.Model;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -21,10 +22,32 @@ namespace RemoteEducationApplication.Views.Client
     /// </summary>
     public partial class ClientWindow : WindowBase
     {
+        #region Struct
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private struct ClientSizes
+        {
+            public const double InitialHeight = 125;
+            public const double InitialWidth = 250;
+            public const double QuestionHeight = 425;
+            public const double QuestionWidth = 500;
+        }
+
+        #endregion
+
         #region Fields
+
+        private bool _hasAnswered;
 
         private string _connectionStatus;
         private string _processStatus;
+
+        private double _clientHeight;
+        private double _clientWidth;
+
+        private Uri _questionSource;
 
         #endregion
 
@@ -77,6 +100,75 @@ namespace RemoteEducationApplication.Views.Client
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public double ClientHeight
+        {
+            get
+            {
+                return _clientHeight;
+            }
+            set
+            {
+                _clientHeight = value;
+                NotifyPropertyChanged("ClientHeight");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double ClientWidth
+        {
+            get
+            {
+                return _clientWidth;
+            }
+            set
+            {
+                _clientWidth = value;
+                NotifyPropertyChanged("ClientWidth");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Uri QuestionSource
+        {
+            get
+            {
+                return _questionSource;
+            }
+            set
+            {
+                _questionSource = value;
+                NotifyPropertyChanged("QuestionSource");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool HasAnswered
+        {
+            get
+            {
+                return _hasAnswered;
+            }
+            set
+            {
+                _hasAnswered = value;
+                NotifyPropertyChanged("HasAnswered");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int TotalScore { get; set; }
+
         #endregion
 
         #region Constructor
@@ -94,6 +186,8 @@ namespace RemoteEducationApplication.Views.Client
 
         #region EventHandling
 
+        #region Window
+
         /// <summary>
         /// 
         /// </summary>
@@ -101,13 +195,93 @@ namespace RemoteEducationApplication.Views.Client
         /// <param name="e"></param>
         private void ClientWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ConnectionStatus = AppResources.ClientWindowsDisconnected;
-            ProcessStatus = AppResources.ClientWindowProcessWaiting;
+            Initialize();
             DataContext = this;
-            ScreenshotHelper.InitializeBitmap();
 
             Start();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClientWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        #endregion
+
+        #region WebBrowser
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void wb_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            WebBrowser webBrowser = sender as WebBrowser;
+
+            if (webBrowser != null)
+            {
+                string urlParameters = webBrowser.GetQueryParams();
+
+                if (urlParameters.Length > 0)
+                {
+                    webBrowser.Visibility = System.Windows.Visibility.Collapsed;
+                    ClientHeight = ClientSizes.InitialHeight;
+                    ClientWidth = ClientSizes.InitialWidth;
+
+                    Dictionary<int, String> urlParams =
+                        WebBrowserHelper.GetParsedUrlParameters(urlParameters);
+
+                    TotalScore = QuestionHelper.CheckAnswers(urlParams);
+                    HasAnswered = true;
+                }
+                else
+                    webBrowser.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
+        #endregion
+
+        #region ApplicationBar
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ApplicationBar_AppBarClick(object sender, ApplicationBarEventArgs e)
+        {
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+        #region Initialize
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Initialize()
+        {
+            ConnectionStatus = AppResources.ClientWindowsDisconnected;
+            ProcessStatus = AppResources.ClientWindowProcessWaiting;
+            ClientHeight = ClientSizes.InitialHeight;
+            ClientWidth = ClientSizes.InitialWidth;
+            ScreenshotHelper.InitializeBitmap();
+        }
+
+        #endregion
+
+        #region Start
 
         /// <summary>
         /// 
@@ -123,6 +297,10 @@ namespace RemoteEducationApplication.Views.Client
             };
         }
 
+        #endregion
+
+        #region Connect
+
         /// <summary>
         /// 
         /// </summary>
@@ -131,7 +309,7 @@ namespace RemoteEducationApplication.Views.Client
         {
             int timeout = 0;
             bool isConnected = false;
-            
+
             ConnectionStatus = AppResources.ClientWindowConnectTry;
 
             while (timeout < AppSettings.DefaultTimeout)
@@ -164,36 +342,16 @@ namespace RemoteEducationApplication.Views.Client
                 Task[] tasks = new Task[]
                 {
                     SendImage(),
-                    GetDataFromServer()
+                    ExchangeDataWithServer()
                 };
             }
 
             return isConnected;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ApplicationBar_AppBarClick(object sender, ApplicationBarEventArgs e)
-        {
-            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClientWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
         #endregion
 
-        #region Methods
+        #region SendImage
 
         /// <summary>
         /// 
@@ -232,11 +390,15 @@ namespace RemoteEducationApplication.Views.Client
                 isConnected = await Connect();
         }
 
+        #endregion
+
+        #region ExchangeDataWithServer
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        private async Task GetDataFromServer()
+        private async Task ExchangeDataWithServer()
         {
             NetworkStream stream = Client.GetDataExchangeStream();
 
@@ -247,7 +409,18 @@ namespace RemoteEducationApplication.Views.Client
                     if (stream.DataAvailable)
                     {
                         int id = stream.ReadByte();
+
                         Question question = QuestionHelper.GetQuestion(id);
+                        ClientHeight = ClientSizes.QuestionHeight;
+                        ClientWidth = ClientSizes.QuestionWidth;
+                        QuestionSource = QuestionHelper.GetQuestionContentUri(question.Content);
+                        HasAnswered = false;
+                    }
+                    else if (HasAnswered)
+                    {
+                        stream.WriteByte((byte)TotalScore);
+                        stream.Flush();
+                        HasAnswered = false;
                     }
                     else
                         await Task.Delay(SleepTime.GetValue());
@@ -260,6 +433,8 @@ namespace RemoteEducationApplication.Views.Client
 
             return;
         }
+
+        #endregion
 
         #endregion
     }

@@ -2,23 +2,46 @@
 using Microsoft.Win32;
 using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
+using RemoteEducationApplication.Extensions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {
     public static class QuestionHelper
     {
+        #region Const
+
         private const string Filter = "HTML Files |*.html";
         private const string AnswerDelimiter = "@--";
+
+        #endregion
+
+        #region Struct
+
+        private struct HtmlTags
+        {
+            public const string BodyOpen = "<body>";
+            public const string BodyClose = "</body>";
+            public const string FormOpen = "<form id=\"questionForm\" method=\"get\">";
+            public const string FormClose = "<input type='submit' value='Submit answers' "+ 
+                "style='float:right;margin-right: 20px;'/></form>";
+        }
+
+        #endregion
+
+        #region Properties
+
+        public static Question CurrentQuestion { get; set; }
+
+        #endregion
 
         #region Methods
 
         /// <summary>
-        /// 
+        /// Shows OpenFileDialog, reads question and answers from a given file and saves them into database.
         /// </summary>
         public static int CreateQuestionWithAnswers()
         {
@@ -34,6 +57,7 @@ namespace RemoteEducationApplication.Helpers
                 
                 question.Answers = ParseAnswersFromContent(htmlContent);
                 question.Content = CleanHtmlContent(htmlContent);
+                question.Content = WrapInFormTags(question.Content);
 
                 SaveQuestion(question);
                 SaveAnswers(question.Answers);
@@ -45,7 +69,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Saves question in database.
         /// </summary>
         /// <param name="question"></param>
         private static void SaveQuestion(Question question)
@@ -67,7 +91,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Saves answers in database.
         /// </summary>
         /// <param name="answers"></param>
         private static void SaveAnswers(ICollection<Answer> answers)
@@ -92,7 +116,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Gets the question by ID.
         /// </summary>
         /// <param name="questionId"></param>
         /// <returns></returns>
@@ -124,7 +148,21 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Wraps body content in form tags.
+        /// </summary>
+        /// <param name="htmlContent"></param>
+        private static string WrapInFormTags(string htmlContent)
+        {
+            htmlContent = htmlContent.Insert(
+                htmlContent.IndexOf(HtmlTags.BodyOpen) + HtmlTags.BodyOpen.Length, HtmlTags.FormOpen);
+            htmlContent = htmlContent.Insert(
+                htmlContent.IndexOf(HtmlTags.BodyClose), HtmlTags.FormClose);
+
+            return htmlContent;
+        }
+
+        /// <summary>
+        /// Gets the answers from html content.
         /// </summary>
         /// <param name="htmlContent"></param>
         /// <returns></returns>
@@ -148,6 +186,40 @@ namespace RemoteEducationApplication.Helpers
             }
 
             return answers;
+        }
+
+        /// <summary>
+        /// Saves the content to a file on disk and returns a path to the file.
+        /// </summary>
+        /// <param name="htmlContent"></param>
+        /// <returns></returns>
+        public static Uri GetQuestionContentUri(string htmlContent)
+        {
+            string filePath = @"C:\Users\" + Environment.UserName + @"\AppData\LocalLow\Temp\question.htm";
+            File.WriteAllText(filePath, htmlContent);
+            return new Uri(filePath);
+        }
+
+        /// <summary>
+        /// Checks if given answers are correct. Includes scores.
+        /// </summary>
+        /// <param name="answers"></param>
+        /// <returns></returns>
+        public static int CheckAnswers(Dictionary<int, String> answers)
+        {
+            List<Answer> correctAnswers = CurrentQuestion.Answers.ToList();
+            int score = default(int);
+
+            for (int i = 0; i < answers.Count; i++)
+            {
+                var correctAnswer = correctAnswers[i].Content;
+                var givenAnswer = answers[i];
+
+                if (correctAnswer.Equals(givenAnswer))
+                    score += correctAnswers[i].Score;
+            }
+
+            return score;
         }
 
         #endregion
