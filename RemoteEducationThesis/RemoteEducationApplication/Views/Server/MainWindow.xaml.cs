@@ -34,11 +34,11 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         private struct ClientSizes
         {
-            public static double InitialWidth = 240;
-            public static double InitialHeight = 220;
+            public const double InitialWidth = 240;
+            public const double InitialHeight = 220;
             public static double WideWidth = SystemParameters.PrimaryScreenWidth - 300;
             public static double WideHeight = SystemParameters.PrimaryScreenHeight - 185;
-            public static double SideGridWidth = 250;
+            public const double SideGridWidth = 250;
         }
 
         #endregion
@@ -49,7 +49,7 @@ namespace RemoteEducationApplication.Views.Server
         private DateTime _lastImageUpdate;
         private DateTime _lastConnectionUpdate;
         private int _clientNumber;
-        private double _helperGridWidth;
+        private double _sideGridWidth;
         private bool _hasClients;
 
         #endregion
@@ -74,7 +74,9 @@ namespace RemoteEducationApplication.Views.Server
             }
         }
 
-        public List<ClientHandler> ClientServerConnections { get; set; }
+        public ObservableCollection<ClientHandler> SideClients { get; set; }
+
+        //public List<ClientHandler> ClientServerConnections { get; set; }
 
         /// <summary>
         /// Gets or sets the server handler.
@@ -103,7 +105,7 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the date when connection update has occured.
         /// </summary>
         public DateTime LastConnectionUpdate
         {
@@ -150,7 +152,7 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         /// <summary>
-        /// 
+        /// Gtes or sets the flag depending whether any client is connected or not.
         /// </summary>
         public bool HasClients
         {
@@ -171,18 +173,18 @@ namespace RemoteEducationApplication.Views.Server
         protected bool HasClientExpanded { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or set the width of the side grid.
         /// </summary>
-        public double HelperGridWidth
+        public double SideGridWidth
         {
             get
             {
-                return _helperGridWidth;
+                return _sideGridWidth;
             }
             set
             {
-                _helperGridWidth = value;
-                NotifyPropertyChanged("HelperGridWidth");
+                _sideGridWidth = value;
+                NotifyPropertyChanged("SideGridWidth");
             }
         }
 
@@ -214,7 +216,25 @@ namespace RemoteEducationApplication.Views.Server
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             ConnectedClients = new ObservableCollection<ClientHandler>();
+            SideClients = new ObservableCollection<ClientHandler>();
             ClientNumber = ClientCount;
+
+            for (int i = 0; i < 4; i++)
+            {
+                ClientHandler client = new ClientHandler() 
+                {
+                    Name = String.Format("Client {0}", i),
+                    HasPicture = true,
+                    TotalScore = 0,
+                    Height = ClientSizes.InitialHeight,
+                    Width = ClientSizes.InitialWidth,
+                    ID = i
+                };
+
+                //SideClients.Add(client);
+                ConnectedClients.Add(client);
+            }
+
             DataContext = this;
 
             Start();
@@ -226,8 +246,8 @@ namespace RemoteEducationApplication.Views.Server
         /// <param name="e">The <see cref="System.ComponentModel.CancelEventArgs"/> instance.</param>
         protected override void OnClosing(CancelEventArgs e)
         {
-            ServerImage.Stop();
-            ServerData.Stop();
+            //ServerImage.Stop();
+            //ServerData.Stop();
 
             base.OnClosing(e);
         }
@@ -300,14 +320,12 @@ namespace RemoteEducationApplication.Views.Server
         private void Client_Click(object sender, ApplicationBarEventArgs e)
         {
             if (e.CommandName == ApplicationHelper.CommandTags.Close)
-                CloseClient(e.ObjectName);
+                CloseClient(e.ObjectID);
             else if (e.CommandName == ApplicationHelper.CommandTags.Expand ||
                 e.CommandName == ApplicationHelper.CommandTags.Shrink)
-                ChangeClientHeightAndWidth(e.ObjectName, e.CommandName);
+                ChangeClientHeightAndWidth(e.ObjectID, e.CommandName);
             else if (e.CommandName == ApplicationHelper.CommandTags.Connect)
-            {
-
-            }
+                throw new NotImplementedException();
         }
 
         #endregion
@@ -338,19 +356,44 @@ namespace RemoteEducationApplication.Views.Server
         /// Remove the client from the list.
         /// </summary>
         /// <param name="clientName"></param>
-        private void CloseClient(string clientName)
+        private void CloseClient(int clientID)
         {
-            if (ConnectedClients.Count(x => x.Name == clientName) == 1)
+            if (ConnectedClients.Any(x => x.ID == clientID))
             {
                 ClientHandler clientHandler =
-                    ConnectedClients.Single(x => x.Name == clientName);
+                    ConnectedClients.Single(x => x.ID == clientID);
                 clientHandler.CloseClient();
                 ConnectedClients.Remove(clientHandler);
             }
 
             ClientNumber = ClientCount;
             HasClientExpanded = false;
-            HelperGridWidth = default(int);
+            SideGridWidth = default(int);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientHandler"></param>
+        /// <param name="isExpanded"></param>
+        private void HandleClientResize(ClientHandler clientHandler, bool isExpanded)
+        {
+            if (isExpanded)
+            {
+                clientHandler.Width = ClientSizes.WideWidth;
+                clientHandler.Height = ClientSizes.WideHeight;
+                SideGridWidth = ClientSizes.SideGridWidth;
+
+                clientHandler.IsExpanded = HasClientExpanded = true;
+            }
+            else
+            {
+                clientHandler.Width = ClientSizes.InitialWidth;
+                clientHandler.Height = ClientSizes.InitialHeight;
+                SideGridWidth = default(int);
+
+                clientHandler.IsExpanded = HasClientExpanded = false;
+            }
         }
 
         /// <summary>
@@ -358,39 +401,28 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         /// <param name="clientName"></param>
         /// <param name="commandName"></param>
-        private void ChangeClientHeightAndWidth(string clientName, string commandName)
+        private void ChangeClientHeightAndWidth(int clientID, string commandName)
         {
-            if (ConnectedClients.Count(x => x.Name == clientName) == 1)
+            if (ConnectedClients.Any(x => x.ID == clientID))
             {
                 if (commandName == ApplicationHelper.CommandTags.Expand && !HasClientExpanded)
                 {
                     ClientHandler clientHandler = ConnectedClients.Single
-                        (x => x.Name == clientName);
-
+                        (x => x.ID == clientID);
                     clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
 
                     ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
+                    SideClients.TakeExceptFirst(ConnectedClients, true);
 
-                    clientHandler.Width = ClientSizes.WideWidth;
-                    clientHandler.Height = ClientSizes.WideHeight;
-                    clientHandler.IsExpanded = true;
-
-                    HasClientExpanded = true;
-                    HelperGridWidth = ClientSizes.SideGridWidth;
+                    HandleClientResize(clientHandler, true);
                 }
                 else if (commandName == ApplicationHelper.CommandTags.Shrink)
                 {
-                    ClientHandler clientHandler = ConnectedClients.Single
-                        (x => x.Name == clientName);
+                    ClientHandler clientHandler = ConnectedClients.First();
 
-                    ConnectedClients.MoveExtended(0, clientHandler.ListIndex);
+                    ConnectedClients.TakeAll(SideClients, true);
 
-                    clientHandler.Width = ClientSizes.InitialWidth;
-                    clientHandler.Height = ClientSizes.InitialHeight;
-                    clientHandler.IsExpanded = false;
-
-                    HasClientExpanded = false;
-                    HelperGridWidth = default(int);
+                    HandleClientResize(clientHandler, false);
                 }
             }
         }
@@ -414,6 +446,8 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         #endregion
+
+        #region Start
 
         /// <summary>
         /// 
@@ -443,7 +477,9 @@ namespace RemoteEducationApplication.Views.Server
             };
         }
 
-        #region async
+        #endregion
+
+        #region Async
 
         /// <summary>
         /// 
@@ -474,7 +510,7 @@ namespace RemoteEducationApplication.Views.Server
                             HasClients = true;
 
                         SendSleepTimeValue(client.GetClientStream());
-                        client.Name =  GetUserIdentification(client.GetDataExchangeStream());                    
+                        client.Name = GetUserIdentification(client.GetDataExchangeStream());                    
                     }
                 }
                 else

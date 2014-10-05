@@ -22,27 +22,26 @@ namespace RemoteEducationApplication.Converters
         /// <returns></returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values.First() == DependencyProperty.UnsetValue)
-                return Visibility.Hidden;
+            Visibility retVal = Visibility.Hidden;
 
-            string callingObjectCommandName = parameter == null ? String.Empty : parameter.ToString();
-            Visibility visibility = (Visibility)values.First();
-            
-            if(visibility == Visibility.Visible)
+            if (values.First() != DependencyProperty.UnsetValue)
             {
-                bool isExpanded = bool.Parse(values.Last().ToString());
 
-                if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
-                    return isExpanded ? Visibility.Hidden : Visibility.Visible;
-                else if (callingObjectCommandName == ApplicationHelper.CommandTags.Shrink)
-                    return isExpanded ? Visibility.Visible : Visibility.Hidden;
+                string callingObjectCommandName = parameter == null ? String.Empty : parameter.ToString();
+                Visibility visibility = (Visibility)values.First();
 
-                return Visibility.Hidden;
+                if (visibility == Visibility.Visible)
+                {
+                    bool isExpanded = bool.Parse(values.Last().ToString());
+
+                    if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
+                        retVal = isExpanded ? Visibility.Hidden : Visibility.Visible;
+                    else if (callingObjectCommandName == ApplicationHelper.CommandTags.Shrink)
+                        retVal = isExpanded ? Visibility.Visible : Visibility.Hidden;
+                }
             }
-            else
-            {
-                return Visibility.Hidden;
-            }
+
+            return retVal;
         }
 
         /// <summary>
@@ -55,7 +54,7 @@ namespace RemoteEducationApplication.Converters
         /// <returns></returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("No need for converting back.");
         }
 
         #endregion
@@ -121,7 +120,7 @@ namespace RemoteEducationApplication.Converters
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("No need for converting back.");
         }
 
         #endregion

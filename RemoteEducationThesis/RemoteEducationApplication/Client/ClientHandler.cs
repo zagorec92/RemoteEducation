@@ -272,6 +272,11 @@ namespace RemoteEducationApplication.Client
             }
         }
 
+        /// <summary>
+        /// Gets or sets the ID of the client.
+        /// </summary>
+        public int ID { get; set; }
+
         #endregion
 
         #region EventHandlers

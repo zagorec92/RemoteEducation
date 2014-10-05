@@ -3,8 +3,8 @@ using RemoteEducation.DAL;
 using RemoteEducation.DAL.Repositories;
 using RemoteEducationApplication.Authentication;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 
 namespace RemoteEducationApplication.Helpers
 {

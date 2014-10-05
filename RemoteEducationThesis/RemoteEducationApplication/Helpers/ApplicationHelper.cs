@@ -33,10 +33,6 @@ namespace RemoteEducationApplication.Helpers
 
             public static string Question = AppResources.OptionsSubMenuOpenQuestion;
             public static string ScoreList = AppResources.OptionsSubMenuScoreList;
-
-            public static string ThemeClassic = AppResources.MenuThemeClassic;
-            public static string ThemeDark = AppResources.MenuThemeDark;
-            public static string ThemeOrange = AppResources.MenuThemeOrange;
         }
 
         /// <summary>
@@ -127,15 +123,20 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Chekcs if the given tag is a theme tag.
         /// </summary>
         /// <param name="tag"></param>
-        /// <returns></returns>
+        /// <returns>True if tthe tag is theme tag, otherwise false.</returns>
         public static bool IsThemeTag(string tag)
         {
-            return tag == CommandTags.ThemeClassic ||
-                tag == CommandTags.ThemeDark ||
-                tag == CommandTags.ThemeOrange;
+            string[] themes = new string[] 
+            {
+                AppResources.MenuThemeOrange,
+                AppResources.MenuThemeDark,
+                AppResources.MenuThemeClassic
+            };
+
+            return themes.Contains(tag);
         }
 
         /// <summary>

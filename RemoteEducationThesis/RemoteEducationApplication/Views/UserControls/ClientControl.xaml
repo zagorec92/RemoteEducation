@@ -8,7 +8,7 @@
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                       Style="{StaticResource UserControlWindowStyle}"
-                      Tag="{Binding Name}">
+                      Tag="{Binding ID}">
     <base:UserControlBase.Resources>
         <c:StatusTextVisibilityConverter x:Key="StatusTextVisibilityConverter" />
     </base:UserControlBase.Resources>
@@ -26,7 +26,7 @@
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="110" />
                 <ColumnDefinition Width="35" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>

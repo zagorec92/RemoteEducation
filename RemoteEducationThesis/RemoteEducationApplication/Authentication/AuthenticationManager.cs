@@ -69,23 +69,18 @@ namespace RemoteEducationApplication.Authentication
 
             using(EEducationDbContext context = new EEducationDbContext())
             {
-                if (context.IsValid())
-                {
-                    UserRepository userRepository = new UserRepository(context);
-                    User user = userRepository.GetByEmail(email);
+                UserRepository userRepository = new UserRepository(context);
+                User user = userRepository.GetByEmail(email);
 
-                    if (user == null)
-                        throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
+                if (user == null)
+                    throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
 
-                    if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
-                        throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+                if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
+                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
 
-                    LoggedInUser = user;
+                LoggedInUser = user;
 
-                    return user.Roles.First().ID;
-                }
-                else
-                    throw new ArgumentException(ErrorMessages.NoConnection, AuthenticateExParameters.IsDatabase);
+                return user.Roles.First().ID;
             }
         }
 

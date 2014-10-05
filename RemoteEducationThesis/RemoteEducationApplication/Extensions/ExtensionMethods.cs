@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemoteEducationApplication.Client;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -23,7 +24,7 @@ namespace RemoteEducationApplication.Extensions
         /// </summary>
         /// <param name="bttn">The <see cref="System.Windows.Controls.Button"/> 
         /// instance containing the command parameter.</param>
-        /// <returns>CommandParameter as a string.</returns>
+        /// <returns>Value of the CommandParameter property as a string.</returns>
         public static string GetCommandParameter(this Button bttn)
         {
             return bttn.CommandParameter.ToString();
@@ -211,37 +212,100 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region DbContext
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
-        public static bool IsValid(this DbContext context)
-        {
-            if (context.Database.Connection.State == ConnectionState.Open)
-                return true;
-            else
-                return false;
-        }
-
-        #endregion
-
         #region ObservableCollection<T>
 
         /// <summary>
-        /// 
+        /// Moves item from current index to another.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="collection"></param>
-        /// <param name="oldIndex"></param>
-        /// <param name="newIndex"></param>
+        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
+        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
+        /// instance on which move is executed.</param>
+        /// <param name="oldIndex">Current index.</param>
+        /// <param name="newIndex">New index.</param>
         public static void MoveExtended<T>(this ObservableCollection<T> collection, int oldIndex, int newIndex)
         {
             T item = collection[oldIndex];
             collection.Remove(item);
             collection.Insert(newIndex, item);
+        }
+
+        /// <summary>
+        /// Removes all items execpt the first one from existing collection and adds thme to another collection.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
+        /// <param name="addCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
+        /// instance in which items will be added.</param>
+        /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
+        /// instance from which items will be removed.</param>
+        public static void TakeExceptFirst<T>(this ObservableCollection<T> addCollection, 
+            ObservableCollection<T> removeCollection, bool sort = false)
+        {
+            int length = removeCollection.Count - 1;
+
+            for (int i = length; i > 0; i--)
+            {
+                addCollection.Add(removeCollection[i]);
+                removeCollection.RemoveAt(i);
+            }
+
+            if (sort)
+                if(typeof(T).Equals(typeof(ClientHandler)))
+                {
+                    ObservableCollection<ClientHandler> collection = 
+                        addCollection.To<ObservableCollection<ClientHandler>>();
+                    collection.Sort();
+                    addCollection = collection.To<ObservableCollection<T>>();
+                }
+        }
+
+        /// <summary>
+        /// Removes all items from existing collection and adds them to another collection.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
+        /// <param name="addCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
+        /// instance in which items will be added.</param>
+        /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
+        /// instance from which items will be removed.</param>
+        public static void TakeAll<T>(this ObservableCollection<T> addCollection,
+            ObservableCollection<T> removeCollection, bool sort = false)
+        {
+            int length = removeCollection.Count - 1;
+
+            for (int i = length; i > -1; i--)
+            {
+                addCollection.Add(removeCollection[i]);
+                removeCollection.RemoveAt(i);
+            }
+
+            if (sort)
+                if (typeof(T).Equals(typeof(ClientHandler)))
+                {
+                    ObservableCollection<ClientHandler> collection =
+                        addCollection.To<ObservableCollection<ClientHandler>>();
+                    collection.Sort();
+                    addCollection = collection.To<ObservableCollection<T>>();
+                }
+        }
+
+        /// <summary>
+        /// Bubble sort for the collection which contains clients.
+        /// </summary>
+        /// <typeparam name="T">Type of <see cref="RemoteEducationApplication.Client.ClientHandler"/>.</typeparam>
+        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> instance </param>
+        public static void Sort<T>(this ObservableCollection<T> collection)
+            where T : ClientHandler
+        {
+            for (int i = 1; i < collection.Count; i++)
+            {
+                for (int j = 0; j < collection.Count - i; j++)
+                {
+                    if (collection[j].ID > collection[j + 1].ID)
+                        collection.MoveExtended(j, j + 1);
+
+                    if (j == 0)
+                        collection.MoveExtended(0, 0);
+                }
+            }
         }
 
         #endregion
@@ -257,6 +321,25 @@ namespace RemoteEducationApplication.Extensions
         {
             return webBrowser.Source.Query.Length > 0 ? 
                 webBrowser.Source.Query.Substring(1) : String.Empty;
+        }
+
+        #endregion
+
+        #region String array
+
+        /// <summary>
+        /// Checks if the string array contains given string.
+        /// </summary>
+        /// <param name="array">The <see cref="System.String"/> array.</param>
+        /// <param name="item">The <see cref="System.String"/> instance to compare.</param>
+        /// <returns>True if array contains the item, otherwise false.</returns>
+        public static bool Contains(this string[] array, string item)
+        {
+            foreach (string s in array)
+                if (s.Equals(item))
+                    return true;
+
+            return false;
         }
 
         #endregion

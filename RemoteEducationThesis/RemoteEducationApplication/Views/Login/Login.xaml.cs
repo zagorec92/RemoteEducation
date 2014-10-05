@@ -40,6 +40,7 @@ namespace RemoteEducationApplication.Views.Login
         private string _passwordValidationMessage;
         private string _capsLockMessage;
         private string _windowRole;
+        private string _username;
 
         #endregion
 
@@ -106,6 +107,22 @@ namespace RemoteEducationApplication.Views.Login
             {
                 _windowRole = value;
                 NotifyPropertyChanged("WindowRole");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        public string Username
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                _username = value;
+                NotifyPropertyChanged("Username");
             }
         }
 
@@ -235,7 +252,7 @@ namespace RemoteEducationApplication.Views.Login
             if (bttn != null)
             {
                 if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Clear)
-                    tbxUsername.Text = pbxPassword.Password = String.Empty;
+                    Username = pbxPassword.Password = String.Empty;
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Login)
                     AuthenticateUser();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
@@ -262,7 +279,7 @@ namespace RemoteEducationApplication.Views.Login
             try
             {
                 //int roleID = AuthenticationManager.AuthenticateUser
-                //    (tbxUsername.Text, pbxPassword.Password);
+                  //  (Username, pbxPassword.Password);
                 int roleID = 3;
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||

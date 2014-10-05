@@ -45,6 +45,8 @@ namespace RemoteEducation.DAL.Migrations
 
             Dictionary<string, string> testPasswords = new Dictionary<string, string>();
 
+            #region 1
+
             UserDetails userDetails = new UserDetails();
             userDetails.Email = "ipericki1@tvz.hr";
             userDetails.PasswordSalt = GenerateSalt();
@@ -69,6 +71,10 @@ namespace RemoteEducation.DAL.Migrations
             context.Users.AddOrUpdate(u => u.LastName,
                 user);
 
+            #endregion
+
+            #region 2
+
             userDetails = new UserDetails();
             userDetails.Email = "professor1@tvz.hr";
             userDetails.PasswordSalt = GenerateSalt();
@@ -90,16 +96,130 @@ namespace RemoteEducation.DAL.Migrations
 
             testPasswords.Add(user.UserDetail.Email, password);
 
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            #endregion
+
+            #region 3
+
+            userDetails = new UserDetails();
+            userDetails.Email = "student1@tvz.hr";
+            userDetails.PasswordSalt = GenerateSalt();
+
+            password = GetRandomPassword(8);
+            userDetails.Password = CreateSaltedPasswordHash(password, userDetails.PasswordSalt);
+            userDetails.DateCreated = userDetails.DateModified = DateTime.Now;
+
+            context.UserDetails.AddOrUpdate(x => x.Email, userDetails);
+            context.SaveChanges();
+
+            user = new User();
+            user.FirstName = "Luka";
+            user.LastName = "Pancirov";
+            user.Roles = new List<Role>();
+            user.Roles.Add(context.Roles.FirstOrDefault(x => x.Name == "Student"));
+            user.UserDetail = userDetails;
+            user.DateCreated = user.DateModified = DateTime.Now;
+
+            testPasswords.Add(user.UserDetail.Email, password);
+
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            #endregion
+
+            #region 4
+
+            userDetails = new UserDetails();
+            userDetails.Email = "student2@tvz.hr";
+            userDetails.PasswordSalt = GenerateSalt();
+
+            password = GetRandomPassword(8);
+            userDetails.Password = CreateSaltedPasswordHash(password, userDetails.PasswordSalt);
+            userDetails.DateCreated = userDetails.DateModified = DateTime.Now;
+
+            context.UserDetails.AddOrUpdate(x => x.Email, userDetails);
+            context.SaveChanges();
+
+            user = new User();
+            user.FirstName = "Dominik";
+            user.LastName = "Hodja";
+            user.Roles = new List<Role>();
+            user.Roles.Add(context.Roles.FirstOrDefault(x => x.Name == "Student"));
+            user.UserDetail = userDetails;
+            user.DateCreated = user.DateModified = DateTime.Now;
+
+            testPasswords.Add(user.UserDetail.Email, password);
+
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            #endregion
+
+            #region 5
+
+            userDetails = new UserDetails();
+            userDetails.Email = "student3@tvz.hr";
+            userDetails.PasswordSalt = GenerateSalt();
+
+            password = GetRandomPassword(8);
+            userDetails.Password = CreateSaltedPasswordHash(password, userDetails.PasswordSalt);
+            userDetails.DateCreated = userDetails.DateModified = DateTime.Now;
+
+            context.UserDetails.AddOrUpdate(x => x.Email, userDetails);
+            context.SaveChanges();
+
+            user = new User();
+            user.FirstName = "Hrvoje";
+            user.LastName = "Brlek";
+            user.Roles = new List<Role>();
+            user.Roles.Add(context.Roles.FirstOrDefault(x => x.Name == "Student"));
+            user.UserDetail = userDetails;
+            user.DateCreated = user.DateModified = DateTime.Now;
+
+            testPasswords.Add(user.UserDetail.Email, password);
+
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            #endregion
+
+            #region 6
+
+            userDetails = new UserDetails();
+            userDetails.Email = "student4@tvz.hr";
+            userDetails.PasswordSalt = GenerateSalt();
+
+            password = GetRandomPassword(8);
+            userDetails.Password = CreateSaltedPasswordHash(password, userDetails.PasswordSalt);
+            userDetails.DateCreated = userDetails.DateModified = DateTime.Now;
+
+            context.UserDetails.AddOrUpdate(x => x.Email, userDetails);
+            context.SaveChanges();
+
+            user = new User();
+            user.FirstName = "Ivan";
+            user.LastName = "Horvat";
+            user.Roles = new List<Role>();
+            user.Roles.Add(context.Roles.FirstOrDefault(x => x.Name == "Student"));
+            user.UserDetail = userDetails;
+            user.DateCreated = user.DateModified = DateTime.Now;
+
+            testPasswords.Add(user.UserDetail.Email, password);
+
+            context.Users.AddOrUpdate(u => u.LastName,
+                user);
+
+            #endregion
+
+            context.SaveChanges();
+
             string path = System.Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             path = Path.Combine(path, "test_passwords.txt");
 
             foreach (var item in testPasswords)
                 File.AppendAllLines(path, new string[] { item.Key, item.Value });
-
-            context.Users.AddOrUpdate(u => u.LastName,
-                user);
-
-            context.SaveChanges();
         }
 
         private static string GenerateSalt()

@@ -47,10 +47,10 @@ namespace RemoteEducationApplication.Views.UserControls
         /// Invokes RectangleClickEventHandler.
         /// </summary>
         /// <param name="clientName">Name of the client.</param>
-        public void OnCloseClick(string clientName, string commandName)
+        public void OnCloseClick(int clientID, string commandName)
         {
             if (ClientClick != null)
-                ClientClick(this, new ApplicationBarEventArgs(commandName, clientName));
+                ClientClick(this, new ApplicationBarEventArgs(commandName, clientID));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace RemoteEducationApplication.Views.UserControls
         /// instance containing the event data.</param>
         private void appBar_RectangleClick(object sender, ApplicationBarEventArgs e)
         {
-            OnCloseClick(this.GetTag(), e.CommandName);
+            OnCloseClick(this.GetTag<int>(), e.CommandName);
         }   
 
         #endregion  

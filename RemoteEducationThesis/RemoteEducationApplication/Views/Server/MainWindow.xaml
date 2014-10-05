@@ -111,9 +111,23 @@
                        Margin="0, 0, 1, 1"/>
             
             <Grid Grid.Column="1"
-                  Width="{Binding HelperGridWidth}"
-                  Background="Red">
-                
+                  Width="{Binding SideGridWidth}">
+                <ItemsControl ItemsSource="{Binding SideClients}"
+                              BorderThickness="1, 0, 0, 0"
+                              BorderBrush="{StaticResource LightBlackBrush}"
+                              Background="{StaticResource BetterWhiteBrush}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource SideBarTextBlockStyle}"
+                                       Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Grid>
             
         </Grid>

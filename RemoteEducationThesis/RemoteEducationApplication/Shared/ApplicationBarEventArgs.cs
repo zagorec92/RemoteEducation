@@ -17,7 +17,7 @@ namespace RemoteEducationApplication.Shared
         /// <summary>
         /// Gets or sets the object name.
         /// </summary>
-        public string ObjectName { get; set; }
+        public int ObjectID { get; set; }
 
         #endregion
 
@@ -29,11 +29,11 @@ namespace RemoteEducationApplication.Shared
         /// </summary>
         /// <param name="commandName">Name of the command.<c>Optional.</c></param>
         /// <param name="objectName">Name of the object.<c>Optional.</c></param>
-        public ApplicationBarEventArgs(string commandName = "", string objectName = "")
+        public ApplicationBarEventArgs(string commandName = "", int objectID = 0)
             : base()
         {
             CommandName = commandName;
-            ObjectName = objectName;
+            ObjectID = objectID;
         }
 
         #endregion

@@ -23,7 +23,7 @@ namespace RemoteEducationApplication.Helpers
 
         private struct HtmlTags
         {
-            public const string BodyOpen = "<body>";
+            public const string BodyOpen = "<body";
             public const string BodyClose = "</body>";
             public const string FormOpen = "<form id=\"questionForm\" method=\"get\">";
             public const string FormClose = "<input type='submit' value='Submit answers' "+ 
@@ -154,7 +154,7 @@ namespace RemoteEducationApplication.Helpers
         private static string WrapInFormTags(string htmlContent)
         {
             htmlContent = htmlContent.Insert(
-                htmlContent.IndexOf(HtmlTags.BodyOpen) + HtmlTags.BodyOpen.Length, HtmlTags.FormOpen);
+                htmlContent.IndexOf(">", htmlContent.IndexOf(HtmlTags.BodyOpen)) + 1, HtmlTags.FormOpen);
             htmlContent = htmlContent.Insert(
                 htmlContent.IndexOf(HtmlTags.BodyClose), HtmlTags.FormClose);
 
