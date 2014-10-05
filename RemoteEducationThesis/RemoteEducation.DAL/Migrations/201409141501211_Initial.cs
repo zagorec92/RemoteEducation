@@ -1,4 +1,4 @@
-namespace RemoteEducation.DAL.Migrations
+namespace Education.DAL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

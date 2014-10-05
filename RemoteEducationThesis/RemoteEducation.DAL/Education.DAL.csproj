@@ -7,7 +7,7 @@
     <ProjectGuid>{12268AB2-E999-43EF-87F5-CDE16E7A1556}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RemoteEducation.DAL</RootNamespace>
+    <RootNamespace>Education.DAL</RootNamespace>
     <AssemblyName>RemoteEducation.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

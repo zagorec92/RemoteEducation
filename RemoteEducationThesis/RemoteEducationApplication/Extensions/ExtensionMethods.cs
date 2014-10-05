@@ -1,4 +1,5 @@
 ﻿using RemoteEducationApplication.Client;
+using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -212,7 +213,9 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region ObservableCollection<T>
+        #region ObservableCollection
+
+        #region Generic
 
         /// <summary>
         /// Moves item from current index to another.
@@ -238,7 +241,7 @@ namespace RemoteEducationApplication.Extensions
         /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
         /// instance from which items will be removed.</param>
         public static void TakeExceptFirst<T>(this ObservableCollection<T> addCollection, 
-            ObservableCollection<T> removeCollection, bool sort = false)
+            ObservableCollection<T> removeCollection)
         {
             int length = removeCollection.Count - 1;
 
@@ -247,15 +250,6 @@ namespace RemoteEducationApplication.Extensions
                 addCollection.Add(removeCollection[i]);
                 removeCollection.RemoveAt(i);
             }
-
-            if (sort)
-                if(typeof(T).Equals(typeof(ClientHandler)))
-                {
-                    ObservableCollection<ClientHandler> collection = 
-                        addCollection.To<ObservableCollection<ClientHandler>>();
-                    collection.Sort();
-                    addCollection = collection.To<ObservableCollection<T>>();
-                }
         }
 
         /// <summary>
@@ -267,7 +261,7 @@ namespace RemoteEducationApplication.Extensions
         /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
         /// instance from which items will be removed.</param>
         public static void TakeAll<T>(this ObservableCollection<T> addCollection,
-            ObservableCollection<T> removeCollection, bool sort = false)
+            ObservableCollection<T> removeCollection)
         {
             int length = removeCollection.Count - 1;
 
@@ -276,24 +270,18 @@ namespace RemoteEducationApplication.Extensions
                 addCollection.Add(removeCollection[i]);
                 removeCollection.RemoveAt(i);
             }
-
-            if (sort)
-                if (typeof(T).Equals(typeof(ClientHandler)))
-                {
-                    ObservableCollection<ClientHandler> collection =
-                        addCollection.To<ObservableCollection<ClientHandler>>();
-                    collection.Sort();
-                    addCollection = collection.To<ObservableCollection<T>>();
-                }
         }
 
+        #endregion
+
+        #region ClientHandler
+
         /// <summary>
-        /// Bubble sort for the collection which contains clients.
+        /// Sorts the collection which contains clients.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="RemoteEducationApplication.Client.ClientHandler"/>.</typeparam>
         /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> instance </param>
-        public static void Sort<T>(this ObservableCollection<T> collection)
-            where T : ClientHandler
+        public static void SortClient(this ObservableCollection<ClientHandler> collection)
         {
             for (int i = 1; i < collection.Count; i++)
             {
@@ -307,6 +295,8 @@ namespace RemoteEducationApplication.Extensions
                 }
             }
         }
+
+        #endregion
 
         #endregion
 

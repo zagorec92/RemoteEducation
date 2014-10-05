@@ -1,11 +1,6 @@
 ﻿using Education.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RemoteEducation.DAL.Repositories
+namespace Education.DAL.Repositories
 {
     public class AnswerRepository : RepositoryBase<Answer>
     {

@@ -221,7 +221,7 @@ namespace RemoteEducationApplication.Views.Server
 
             for (int i = 0; i < 4; i++)
             {
-                ClientHandler client = new ClientHandler() 
+                ClientHandler client = new ClientHandler()
                 {
                     Name = String.Format("Client {0}", i),
                     HasPicture = true,
@@ -237,7 +237,7 @@ namespace RemoteEducationApplication.Views.Server
 
             DataContext = this;
 
-            Start();
+            //Start();
         }
 
         /// <summary>
@@ -407,12 +407,12 @@ namespace RemoteEducationApplication.Views.Server
             {
                 if (commandName == ApplicationHelper.CommandTags.Expand && !HasClientExpanded)
                 {
-                    ClientHandler clientHandler = ConnectedClients.Single
-                        (x => x.ID == clientID);
+                    ClientHandler clientHandler = ConnectedClients.Single(x => x.ID == clientID);
                     clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
 
                     ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
-                    SideClients.TakeExceptFirst(ConnectedClients, true);
+                    SideClients.TakeExceptFirst(ConnectedClients);
+                    SideClients.SortClient();
 
                     HandleClientResize(clientHandler, true);
                 }
@@ -420,7 +420,8 @@ namespace RemoteEducationApplication.Views.Server
                 {
                     ClientHandler clientHandler = ConnectedClients.First();
 
-                    ConnectedClients.TakeAll(SideClients, true);
+                    ConnectedClients.TakeAll(SideClients);
+                    ConnectedClients.SortClient();
 
                     HandleClientResize(clientHandler, false);
                 }
@@ -428,7 +429,7 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         /// <summary>
-        /// 
+        /// Sends question identification number to every client.
         /// </summary>
         /// <param name="questionId"></param>
         private void SendQuestionIDToClient(int questionId)

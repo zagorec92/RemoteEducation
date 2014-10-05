@@ -1,12 +1,9 @@
 ﻿using Education.Model;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RemoteEducation.DAL.Repositories
+namespace Education.DAL.Repositories
 {
     public abstract class RepositoryBase<T> where T : EntityBase
     {

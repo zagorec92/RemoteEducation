@@ -1,6 +1,6 @@
 ﻿using Education.Model;
-using RemoteEducation.DAL;
-using RemoteEducation.DAL.Repositories;
+using Education.DAL;
+using Education.DAL.Repositories;
 using System.Net;
 using RemoteEducationApplication.Extensions;
 

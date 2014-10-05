@@ -1,19 +1,25 @@
 ﻿using Education.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RemoteEducation.DAL.Repositories
+namespace Education.DAL.Repositories
 {
     public class ScoreLogRepository : RepositoryBase<ScoreLog>
     {
+        #region Enum
+
+        /// <summary>
+        /// Sort directions
+        /// </summary>
         public enum SortDirection
         {
             Ascending = 1,
             Descending = 2,
         }
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
         /// 
@@ -22,11 +28,15 @@ namespace RemoteEducation.DAL.Repositories
         public ScoreLogRepository(EEducationDbContext context)
             : base(context) { }
 
+        #endregion
+
+        #region Methods
+
         /// <summary>
-        /// 
+        /// Gets the score based on username.
         /// </summary>
         /// <param name="username"></param>
-        /// <returns></returns>
+        /// <returns>Total score.</returns>
         public decimal GetScoreByUsername(string name)
         {
             ScoreLog scoreLog = base.GetAll().
@@ -36,7 +46,7 @@ namespace RemoteEducation.DAL.Repositories
         }
 
         /// <summary>
-        /// 
+        /// Sorts users based on score.
         /// </summary>
         /// <param name="sortDirection"></param>
         /// <returns></returns>
@@ -60,7 +70,7 @@ namespace RemoteEducation.DAL.Repositories
         }
 
         /// <summary>
-        /// 
+        /// Add points to the user.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="points"></param>
@@ -74,7 +84,7 @@ namespace RemoteEducation.DAL.Repositories
         }
 
         /// <summary>
-        /// 
+        /// Subtract points from the user.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="points"></param>
@@ -86,5 +96,7 @@ namespace RemoteEducation.DAL.Repositories
 
             return base.InsertOrUpdate(scoreLog);
         }
+
+        #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Education.Model;
-using RemoteEducation.DAL;
-using RemoteEducation.DAL.Repositories;
+using Education.DAL;
+using Education.DAL.Repositories;
 using RemoteEducationApplication.Extensions;
 using System;
 using System.Data;
@@ -85,7 +85,7 @@ namespace RemoteEducationApplication.Authentication
         }
 
         /// <summary>
-        /// Creates authentication data for the <see cref="RemoteEducation.Model.User"/> instance.
+        /// Creates authentication data for the <see cref="Education.Model.User"/> instance.
         /// </summary>
         /// <param name="user"></param>
         public static void CreateUserAuthentication(User user)

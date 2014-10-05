@@ -1,7 +1,7 @@
 ﻿using Education.Model;
 using Microsoft.Win32;
-using RemoteEducation.DAL;
-using RemoteEducation.DAL.Repositories;
+using Education.DAL;
+using Education.DAL.Repositories;
 using RemoteEducationApplication.Extensions;
 using System;
 using System.Collections.Generic;

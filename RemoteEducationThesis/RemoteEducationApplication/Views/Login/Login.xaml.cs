@@ -1,4 +1,4 @@
-﻿using RemoteEducation.DAL.Repositories;
+﻿using Education.DAL.Repositories;
 using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;

@@ -297,9 +297,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RemoteEducation.DAL\RemoteEducation.DAL.csproj">
+    <ProjectReference Include="..\RemoteEducation.DAL\Education.DAL.csproj">
       <Project>{12268ab2-e999-43ef-87f5-cde16e7a1556}</Project>
-      <Name>RemoteEducation.DAL</Name>
+      <Name>Education.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\RemoteEducation.Model\Education.Model.csproj">
       <Project>{888b25b7-d27f-4f39-9db4-9c66a223b489}</Project>

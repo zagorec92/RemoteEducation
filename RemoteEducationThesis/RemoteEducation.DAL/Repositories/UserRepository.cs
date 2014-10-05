@@ -1,9 +1,7 @@
 ﻿using Education.Model;
-using System;
 using System.Linq;
-using System.Data.Entity;
 
-namespace RemoteEducation.DAL.Repositories
+namespace Education.DAL.Repositories
 {
     public class UserRepository : RepositoryBase<User>
     {

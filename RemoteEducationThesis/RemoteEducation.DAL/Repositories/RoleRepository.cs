@@ -1,6 +1,6 @@
 ﻿using Education.Model;
 
-namespace RemoteEducation.DAL.Repositories
+namespace Education.DAL.Repositories
 {
     public class RoleRepository : RepositoryBase<Role>
     {
@@ -29,7 +29,7 @@ namespace RemoteEducation.DAL.Repositories
         #region Constructor
 
         /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducation.DAL.Repositories.RoleRepostiory"/> class.
+        /// Creates a new instance of the <see cref="Education.DAL.Repositories.RoleRepostiory"/> class.
         /// </summary>
         /// <param name="context"></param>
         public RoleRepository(EEducationDbContext context)

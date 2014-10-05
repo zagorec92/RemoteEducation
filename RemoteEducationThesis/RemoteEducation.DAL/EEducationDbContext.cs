@@ -2,7 +2,7 @@
 using System;
 using System.Data.Entity;
 
-namespace RemoteEducation.DAL
+namespace Education.DAL
 {
     public class EEducationDbContext : DbContext, IDisposable
     {
