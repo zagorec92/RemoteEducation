@@ -45,7 +45,7 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// Gets the local IP address.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The <see cref="System.Net.IPAddress"/> instance representing local IP address.</returns>
         public static IPAddress GetLocalIPAddress()
         {
             IPAddress ipAddress = null;

@@ -69,9 +69,9 @@ namespace RemoteEducationApplication.Views.Menu
         /// Handles the AppBarClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/> instance
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/> instance
         /// containing the event data.</param>
-        private void ApplicationBar_AppBarClick(object sender, ApplicationBarEventArgs e)
+        private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
         }

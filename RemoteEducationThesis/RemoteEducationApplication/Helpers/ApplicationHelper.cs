@@ -10,6 +10,15 @@ namespace RemoteEducationApplication.Helpers
 {
     public abstract class ApplicationHelper : BaseHelper
     {
+        #region Const
+
+        /// <summary>
+        /// Represents theme folder path format string.
+        /// </summary>
+        private const string ThemeFolderPathFormat = "Resources/Style/Theme/{0}.xaml";
+
+        #endregion
+
         #region Struct
 
         /// <summary>
@@ -33,15 +42,6 @@ namespace RemoteEducationApplication.Helpers
 
             public static string Question = AppResources.OptionsSubMenuOpenQuestion;
             public static string ScoreList = AppResources.OptionsSubMenuScoreList;
-        }
-
-        /// <summary>
-        /// Contains theme dictionary names.
-        /// </summary>
-        public struct ThemeDictionaries
-        {
-            public static string Default = "DefaultTheme";
-            public static string Orange = "OrangeTheme";
         }
 
         #endregion
@@ -148,7 +148,7 @@ namespace RemoteEducationApplication.Helpers
         /// </param>
         public static void ChangeTheme(string themeName)
         {
-            string dictionaryPath = String.Format("Resources/Style/Theme/{0}.xaml", themeName);
+            string dictionaryPath = String.Format(ThemeFolderPathFormat, themeName);
 
             ResourceDictionary resourceDictionary = new ResourceDictionary();
             resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
@@ -164,7 +164,7 @@ namespace RemoteEducationApplication.Helpers
         /// </summary>
         /// <param name="menuItem">The <see cref="System.Windows.Controls.MenuItem"/> instance
         /// containing the tag value.</param>
-        public static void SetSelectedThemeName(MenuItem menuItem)
+        public static void SetSelectedThemeNameInMenu(MenuItem menuItem)
         {
             ItemCollection itemCollection = menuItem.Items;
 
@@ -173,12 +173,8 @@ namespace RemoteEducationApplication.Helpers
                 MenuItem mItem = item as MenuItem;
 
                 if (mItem != null)
-                {
-                    if (mItem.GetTag() == App.CurrentThemeName)
-                        mItem.FontWeight = FontWeights.Bold;
-                    else
-                        mItem.FontWeight = FontWeights.Regular;
-                }
+                    mItem.FontWeight = mItem.GetTag().Equals(App.CurrentThemeName)
+                        ? FontWeights.Bold : FontWeights.Normal;
             }
         }
 

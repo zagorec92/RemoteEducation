@@ -246,4 +246,7 @@
   <data name="MenuWindowScoreListTitle" xml:space="preserve">
     <value>Rezultati</value>
   </data>
+  <data name="SideClientBarHeader" xml:space="preserve">
+    <value>Ostali povezani klijenti</value>
+  </data>
 </root>

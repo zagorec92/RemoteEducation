@@ -40,6 +40,11 @@ namespace RemoteEducationApplication.Views.UserControls
         public Visibility ClientBarVisibility { get; set; }
 
         /// <summary>
+        /// Gets or sets the minimize icon visibility.
+        /// </summary>
+        public Visibility MinimizeIconVisibility { get; set; }
+
+        /// <summary>
         /// 
         /// </summary>
         public bool OverrideInitialization { get; set; }
@@ -68,14 +73,14 @@ namespace RemoteEducationApplication.Views.UserControls
         /// 
         /// </summary>
         /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
         /// instance containing the event data.</param>
-        public delegate void RectangleClickEventHandler(object sender, ApplicationBarEventArgs e);
+        public delegate void RectangleClickEventHandler(object sender, ApplicationEventArgs e);
 
         /// <summary>
         /// RectangleClickEvent handler.
         /// </summary>
-        public event RectangleClickEventHandler AppBarClick;
+        public event RectangleClickEventHandler WindowBarClick;
 
         #endregion
 
@@ -112,8 +117,8 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <param name="commandName">Name of the command.</param>
         protected void OnAppBarClick(string commandName)
         {
-            if(AppBarClick != null)
-                AppBarClick(this, new ApplicationBarEventArgs(commandName: commandName));
+            if(WindowBarClick != null)
+                WindowBarClick(this, new ApplicationEventArgs(commandName: commandName));
         }
 
         /// <summary>
@@ -150,6 +155,7 @@ namespace RemoteEducationApplication.Views.UserControls
             {
                 ApplicationBarVisibility = Visibility.Hidden;
                 ClientBarVisibility = Visibility.Visible;
+                MinimizeIconVisibility = Visibility.Hidden;
             }
         }
 

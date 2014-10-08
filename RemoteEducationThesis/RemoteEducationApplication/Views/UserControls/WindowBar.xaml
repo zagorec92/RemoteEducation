@@ -56,7 +56,7 @@
         <Rectangle Style="{StaticResource ApplicationBarRectangleStyle}"
                    Tag="{x:Static global:Resources.WindowBarMinimize}"
                    ToolTip="{x:Static global:Resources.WindowBarMinimize}"
-                   Visibility="{Binding ApplicationBarVisibility}"
+                   Visibility="{Binding MinimizeIconVisibility}"
                    Grid.Column="1"
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
             <Rectangle.OpacityMask>

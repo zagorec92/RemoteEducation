@@ -246,4 +246,7 @@
   <data name="MenuWindowScoreListTitle" xml:space="preserve">
     <value>Scores</value>
   </data>
+  <data name="SideClientBarHeader" xml:space="preserve">
+    <value>Other connected clients</value>
+  </data>
 </root>

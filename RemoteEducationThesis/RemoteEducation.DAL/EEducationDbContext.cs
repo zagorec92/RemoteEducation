@@ -1,10 +1,9 @@
 ﻿using Education.Model;
-using System;
 using System.Data.Entity;
 
 namespace Education.DAL
 {
-    public class EEducationDbContext : DbContext, IDisposable
+    public class EEducationDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<UserDetails> UserDetails { get; set; }

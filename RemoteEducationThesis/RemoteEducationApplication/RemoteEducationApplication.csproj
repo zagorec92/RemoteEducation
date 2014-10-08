@@ -121,8 +121,12 @@
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Shared\ApplicationBarEventArgs.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
+    <Compile Include="Shared\NativeMethods.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
+    <Compile Include="Views\UserControls\ClientMiniControl.xaml.cs">
+      <DependentUpon>ClientMiniControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Client\ClientWindow.xaml.cs">
       <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\Theme\Classic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ClientMiniControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,8 +1,5 @@
-﻿using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Helpers;
+﻿using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Extensions;
-using System.Windows.Controls;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
@@ -30,12 +27,12 @@ namespace RemoteEducationApplication.Views.UserControls
         /// 
         /// </summary>
         /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
         /// instance containing the event data.</param>
-        public delegate void ClientClickEventHandler(object sender, ApplicationBarEventArgs e);
+        public delegate void ClientClickEventHandler(object sender, ApplicationEventArgs e);
 
         /// <summary>
-        /// ClientCloseEventHandler handler.
+        /// ClientClickEventHandler handler.
         /// </summary>
         public event ClientClickEventHandler ClientClick;
 
@@ -44,22 +41,22 @@ namespace RemoteEducationApplication.Views.UserControls
         #region EventHandling
 
         /// <summary>
-        /// Invokes RectangleClickEventHandler.
+        /// Invokes ClientClickEventHandler.
         /// </summary>
         /// <param name="clientName">Name of the client.</param>
         public void OnCloseClick(int clientID, string commandName)
         {
             if (ClientClick != null)
-                ClientClick(this, new ApplicationBarEventArgs(commandName, clientID));
+                ClientClick(this, new ApplicationEventArgs(commandName, clientID));
         }
 
         /// <summary>
         /// Handles the RectangleClick event of the appBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
         /// instance containing the event data.</param>
-        private void appBar_RectangleClick(object sender, ApplicationBarEventArgs e)
+        private void appBar_RectangleClick(object sender, ApplicationEventArgs e)
         {
             OnCloseClick(this.GetTag<int>(), e.CommandName);
         }   

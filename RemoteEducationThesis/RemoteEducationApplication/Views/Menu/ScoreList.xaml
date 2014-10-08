@@ -27,7 +27,7 @@
                                  OverrideInitialization="True"
                                  ApplicationBarVisibility="Collapsed"
                                  WindowRole="ApplicationBar" 
-                                 AppBarClick="ApplicationBar_AppBarClick"/>
+                                 WindowBarClick="ApplicationBar_AppBarClick"/>
 
         </Grid>
 

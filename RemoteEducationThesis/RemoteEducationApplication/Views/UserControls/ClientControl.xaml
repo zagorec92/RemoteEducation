@@ -37,7 +37,7 @@
             <wBar:ApplicationBar Grid.Column="2"
                                  WindowRole="ClientBar"
                                  IsExpanded="{Binding IsExpanded}"
-                                 AppBarClick="appBar_RectangleClick"/>
+                                 WindowBarClick="appBar_RectangleClick"/>
         </Grid>
 
         <TextBlock Grid.Row="1" 

@@ -17,7 +17,7 @@ namespace RemoteEducationApplication.Extensions
         /// <returns></returns>
         public static string GetBindableSource(DependencyObject obj)
         {
-            return (string)obj.GetValue(BindableSourceProperty);
+            return obj.GetValue(BindableSourceProperty).To<string>();
         }
 
         /// <summary>

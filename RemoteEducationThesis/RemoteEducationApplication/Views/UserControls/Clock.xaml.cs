@@ -9,7 +9,7 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for Clock.xaml
     /// </summary>
-    public partial class Clock : UserControlBase
+    public partial class Clock : UserControlBase, IDisposable
     {
         #region Fields
 
@@ -110,6 +110,35 @@ namespace RemoteEducationApplication.Views.UserControls
             _timer.Elapsed += timer_Elapsed;
             _timer.Start();
         }
+
+        #region IDisposable Support
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disposing">The <see cref="System.Boolean"/> value indicating if dispose should be executed.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if(_timer != null)
+                {
+                    _timer.Dispose();
+                    _timer = null;
+                }     
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
 
         #endregion
     }

@@ -4,13 +4,11 @@ using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Menu;
-using RemoteEducationApplication.Views.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -121,21 +119,6 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         /// <summary>
-        /// Gets the count of connected clients.
-        /// </summary>
-        /// <exception cref="NullReferenceException">If <paramref name="ConnectedClients"/> is <c>null</c>.</exception>
-        public int ClientCount
-        {
-            get
-            {
-                if (ConnectedClients != null)
-                    return ConnectedClients.Count;
-                else
-                    throw new NullReferenceException();
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the current client count number.
         /// </summary>
         public int ClientNumber
@@ -204,20 +187,20 @@ namespace RemoteEducationApplication.Views.Server
 
         #endregion
 
-        #region EventHandlers
+        #region EventHandling
 
         #region Window
 
         /// <summary>
-        /// 
+        /// Handles the Loaded event of the MainWindow control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             ConnectedClients = new ObservableCollection<ClientHandler>();
             SideClients = new ObservableCollection<ClientHandler>();
-            ClientNumber = ClientCount;
+            ClientNumber = GetClientCount();
 
             for (int i = 0; i < 4; i++)
             {
@@ -260,9 +243,9 @@ namespace RemoteEducationApplication.Views.Server
         /// Handles the RectangleClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
         /// instance containing the event data.</param>
-        private void ApplicationBar_Click(object sender, ApplicationBarEventArgs e)
+        private void ApplicationBar_Click(object sender, ApplicationEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
@@ -303,7 +286,7 @@ namespace RemoteEducationApplication.Views.Server
             MenuItem menuItem = sender as MenuItem;
 
             if (menuItem != null)
-                ApplicationHelper.SetSelectedThemeName(menuItem);
+                ApplicationHelper.SetSelectedThemeNameInMenu(menuItem);
         }
 
 
@@ -315,9 +298,9 @@ namespace RemoteEducationApplication.Views.Server
         /// Handles the CloseClick event of the Client control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationBarEventArgs"/>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
         /// instance containing the event data.</param>
-        private void Client_Click(object sender, ApplicationBarEventArgs e)
+        private void Client_Click(object sender, ApplicationEventArgs e)
         {
             if (e.CommandName == ApplicationHelper.CommandTags.Close)
                 CloseClient(e.ObjectID);
@@ -326,6 +309,18 @@ namespace RemoteEducationApplication.Views.Server
                 ChangeClientHeightAndWidth(e.ObjectID, e.CommandName);
             else if (e.CommandName == ApplicationHelper.CommandTags.Connect)
                 throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Handles the ClientMiniClick event of the ClientMiniControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
+        /// instance containing the event data.</param>
+        private void ClientMiniControl_ClientMiniClick(object sender, ApplicationEventArgs e)
+        {
+            if (e.CommandName == ApplicationHelper.CommandTags.Close)
+                CloseClient(e.ObjectID);
         }
 
         #endregion
@@ -353,22 +348,41 @@ namespace RemoteEducationApplication.Views.Server
         #region Client
 
         /// <summary>
-        /// Remove the client from the list.
+        /// Gets the count of connected clients.
+        /// </summary>
+        /// <exception cref="NullReferenceException">If <paramref name="ConnectedClients"/> is <c>null</c>.</exception>
+        private int GetClientCount()
+        {
+            if (ConnectedClients != null)
+                return ConnectedClients.Count;
+            else
+                throw new NullReferenceException();
+        }
+
+        /// <summary>
+        /// Removes the client from the list.
         /// </summary>
         /// <param name="clientName"></param>
         private void CloseClient(int clientID)
         {
-            if (ConnectedClients.Any(x => x.ID == clientID))
+            ClientHandler clientHandler;
+
+            if ((clientHandler = ConnectedClients.SingleOrDefault(x => x.ID == clientID)) != null)
             {
-                ClientHandler clientHandler =
-                    ConnectedClients.Single(x => x.ID == clientID);
                 clientHandler.CloseClient();
                 ConnectedClients.Remove(clientHandler);
+
+                HasClientExpanded = false;
+                SideGridWidth = default(int);
             }
 
-            ClientNumber = ClientCount;
-            HasClientExpanded = false;
-            SideGridWidth = default(int);
+            if((clientHandler = SideClients.SingleOrDefault(x => x.ID == clientID)) != null)
+            {
+                clientHandler.CloseClient();
+                SideClients.Remove(clientHandler);
+            }
+
+            ClientNumber = GetClientCount();
         }
 
         /// <summary>
@@ -505,7 +519,7 @@ namespace RemoteEducationApplication.Views.Server
                         if (client.TcpClient != null)
                             ConnectedClients.Add(client);
 
-                        ClientNumber = ClientCount;
+                        ClientNumber = GetClientCount();
 
                         if (ClientNumber > 0 && !HasClients)
                             HasClients = true;
@@ -539,20 +553,14 @@ namespace RemoteEducationApplication.Views.Server
                             Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
                             client.DesktopImage = bitmap.GetImageSource();
                         }
-                        catch 
+                        catch
                         {
-                            client.DesktopImage = null;
-                            client.CloseClient();
-                            clientsToRemove.Add(client);
-                            client.StatusMessage = AppResources.ClientStatusDisconnected;
+                            clientsToRemove.Add(ClientDisconnecting(client));
                         }
                     }
                     else
                     {
-                        client.DesktopImage = null;
-                        client.CloseClient();
-                        clientsToRemove.Add(client);
-                        client.StatusMessage = AppResources.ClientStatusDisconnected;
+                        clientsToRemove.Add(ClientDisconnecting(client));
                     }
                 }
 
@@ -560,11 +568,7 @@ namespace RemoteEducationApplication.Views.Server
 
                 await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
 
-                clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
-                ClientNumber = ClientCount;
-
-                if (ClientNumber < 1 && HasClients)
-                    HasClients = false;
+                HandleDisconnectedClients(clientsToRemove);
             }
         }
 
@@ -574,23 +578,32 @@ namespace RemoteEducationApplication.Views.Server
         /// <returns></returns>
         private async Task ExchangeDataWithClient()
         {
-            while(ServerData.IsListening)
+            List<ClientHandler> clientsToRemove = new List<ClientHandler>();
+
+            while (ServerData.IsListening)
             {
-                try
+                foreach (ClientHandler client in ConnectedClients)
                 {
-                    foreach(ClientHandler client in ConnectedClients)
+                    try
                     {
                         NetworkStream stream = client.GetDataExchangeStream();
 
-                        if(stream.DataAvailable)
+                        if (stream.DataAvailable)
                             client.TotalScore += stream.ReadByte();
                     }
+                    catch
+                    {
+                        clientsToRemove.Add(ClientDisconnecting(client));
+                    }
                 }
-                catch { }
 
                 await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
+
+                HandleDisconnectedClients(clientsToRemove);
             }
         }
+
+        #region DataExchange
 
         /// <summary>
         /// 
@@ -616,6 +629,34 @@ namespace RemoteEducationApplication.Views.Server
 
             stream.Read(buffer, 0, length);
             return buffer.GetString();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Updates the client state and closes the client connection.
+        /// </summary>
+        /// <param name="client"></param>
+        private ClientHandler ClientDisconnecting(ClientHandler client)
+        {
+            client.DesktopImage = null;
+            client.CloseClient();
+            client.StatusMessage = AppResources.ClientStatusDisconnected;
+
+            return client;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientsToRemove"></param>
+        private void HandleDisconnectedClients(List<ClientHandler> clientsToRemove)
+        {
+            clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
+            ClientNumber = GetClientCount();
+
+            if (ClientNumber < 1 && HasClients)
+                HasClients = false;
         }
 
         #endregion

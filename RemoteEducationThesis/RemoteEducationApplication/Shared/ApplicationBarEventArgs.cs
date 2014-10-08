@@ -5,7 +5,7 @@ namespace RemoteEducationApplication.Shared
     /// <summary>
     /// 
     /// </summary>
-    public class ApplicationBarEventArgs : EventArgs
+    public class ApplicationEventArgs : EventArgs
     {
         #region Properties
 
@@ -29,7 +29,7 @@ namespace RemoteEducationApplication.Shared
         /// </summary>
         /// <param name="commandName">Name of the command.<c>Optional.</c></param>
         /// <param name="objectName">Name of the object.<c>Optional.</c></param>
-        public ApplicationBarEventArgs(string commandName = "", int objectID = 0)
+        public ApplicationEventArgs(string commandName = "", int objectID = 0)
             : base()
         {
             CommandName = commandName;

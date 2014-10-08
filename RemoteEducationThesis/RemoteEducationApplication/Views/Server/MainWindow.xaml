@@ -75,7 +75,7 @@
             </Grid>
 
             <!--minimize and close-->
-            <uc:ApplicationBar AppBarClick="ApplicationBar_Click"
+            <uc:ApplicationBar WindowBarClick="ApplicationBar_Click"
                                WindowRole="ApplicationBar"/>
 
         </Grid>
@@ -112,9 +112,30 @@
             
             <Grid Grid.Column="1"
                   Width="{Binding SideGridWidth}">
-                <ItemsControl ItemsSource="{Binding SideClients}"
-                              BorderThickness="1, 0, 0, 0"
-                              BorderBrush="{StaticResource LightBlackBrush}"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.RowSpan="3"
+                        BorderThickness="1"
+                        BorderBrush="{StaticResource LightBlackBrush}"/>
+                
+                <StackPanel Grid.Column="1"
+                            Background="{StaticResource LightBlackBrush}">
+                                    
+                    <TextBlock Text="{x:Static global:Resources.SideClientBarHeader}"
+                               Style="{StaticResource SideBarHeaderTextBlockStyle}"/>
+                
+                </StackPanel>
+                
+                <ItemsControl Grid.Row="1" 
+                              Grid.Column="1"
+                              ItemsSource="{Binding SideClients}"
                               Background="{StaticResource BetterWhiteBrush}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -123,8 +144,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Style="{StaticResource SideBarTextBlockStyle}"
-                                       Text="{Binding Name}"/>
+                            <uc:ClientMiniControl ClientMiniClick="ClientMiniControl_ClientMiniClick" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

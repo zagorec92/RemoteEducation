@@ -377,11 +377,11 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Sends user name through the DataExchange socket.
         /// </summary>
         public void SendName()
         {
-            var dataStream = TcpClientDataExchange.GetStream();
+            NetworkStream dataStream = TcpClientDataExchange.GetStream();
             string userFullName = AuthManager.LoggedInUser.FullName;
             int lenght = userFullName.Length * 2;
 

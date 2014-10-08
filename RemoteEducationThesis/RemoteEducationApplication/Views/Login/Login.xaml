@@ -38,7 +38,7 @@
             </TextBlock>
             
             <!--minimize and close-->
-            <appBar:ApplicationBar AppBarClick="ApplicationBar_Click"
+            <appBar:ApplicationBar WindowBarClick="ApplicationBar_Click"
                                    WindowRole="ApplicationBar"/>
 
         </Grid>

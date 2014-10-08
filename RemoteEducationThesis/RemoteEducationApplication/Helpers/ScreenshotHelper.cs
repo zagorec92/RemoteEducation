@@ -1,11 +1,13 @@
-﻿using System;
+﻿using RemoteEducationApplication.Shared;
+using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace RemoteEducationApplication.Helpers
 {
-    public class ScreenshotHelper
+    public class ScreenshotHelper : NativeMethods
     {
         #region Fields
         
@@ -16,45 +18,6 @@ namespace RemoteEducationApplication.Helpers
         #region MousePointer
 
         private const Int32 CURSOR_SHOWING = 0x00000001;
-
-        /// <summary>
-        /// CURSORINFO
-        /// </summary>
-        struct CURSORINFO
-        {
-            public Int32 cbSize;
-            public Int32 flags;
-            public IntPtr hCursor;
-            public POINTAPI ptScreenPos;
-        }
-
-        /// <summary>
-        /// POINTAPI
-        /// </summary>
-        struct POINTAPI
-        {
-            public int x;
-            public int y;
-        }
-
-        /// <summary>
-        /// GetCursorInfo
-        /// </summary>
-        /// <param name="pci"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        static extern bool GetCursorInfo(out CURSORINFO pci);
-
-        /// <summary>
-        /// DrawIcon
-        /// </summary>
-        /// <param name="hDC"></param>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
-        /// <param name="hIcon"></param>
-        /// <returns></returns>
-        [DllImport("user32.dll")]
-        static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
 
         #endregion
 
@@ -103,14 +66,14 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// 
         /// </summary>
-        /// <returns>The <see cref="System.Drawing.Bitmap"/> instance.</returns>
+        /// <returns>The <see cref="Bitmap"/> instance.</returns>
         public static Bitmap TakeScreenshot()
         {
             using (Graphics graphics = Graphics.FromImage(_bitmap))
             {
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
-                graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
+                graphics.SmoothingMode = SmoothingMode.HighSpeed;
+                graphics.InterpolationMode = InterpolationMode.Low;
+                graphics.CompositingQuality = CompositingQuality.HighSpeed;
                 graphics.CopyFromScreen(0, 0, 0, 0, _bitmap.Size);
 
                 CURSORINFO pci;
@@ -120,7 +83,7 @@ namespace RemoteEducationApplication.Helpers
                 {
                     if (pci.flags == CURSOR_SHOWING)
                     {
-                        DrawIcon(graphics.GetHdc(), pci.ptScreenPos.x, pci.ptScreenPos.y, pci.hCursor);
+                        DrawIcon(graphics.GetHdc(), pci.ptScreenPos.x, pci.ptScreenPos.y, pci.GetHCursor());
                         graphics.ReleaseHdc();
                     }
                 }

@@ -11,9 +11,9 @@ namespace RemoteEducationApplication.Helpers
     public static class ScoreHelper
     {
         /// <summary>
-        /// 
+        /// Saves user score.
         /// </summary>
-        /// <param name="score"></param>
+        /// <param name="score">The <see cref="System.Int32"/> value representing the score.</param>
         public static void SaveUserScore(int score)
         {
             using (EEducationDbContext context = new EEducationDbContext())
@@ -29,9 +29,9 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Gets the scores.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The list of scores.</returns>
         public static List<ScoreLog> GetScoreLogs()
         {
             using(EEducationDbContext context = new EEducationDbContext())

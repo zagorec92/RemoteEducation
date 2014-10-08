@@ -251,7 +251,7 @@ namespace RemoteEducationApplication.Views.Client
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ApplicationBar_AppBarClick(object sender, ApplicationBarEventArgs e)
+        private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
