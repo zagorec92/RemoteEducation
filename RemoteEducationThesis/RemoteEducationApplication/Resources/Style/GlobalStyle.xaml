@@ -15,7 +15,7 @@
     <!--mini window bar-->
     <Style x:Key="MiniWindowBarUserControlStyle" TargetType="UserControl" 
            BasedOn="{StaticResource WindowBarUserControlBaseStyle}">
-        <Setter Property="Width" Value="45" />
+        <Setter Property="Width" Value="50" />
     </Style>
 
     <Style x:Key="WindowBarRectangleStyle" 

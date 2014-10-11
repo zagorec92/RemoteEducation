@@ -29,7 +29,7 @@ namespace RemoteEducationApplication
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             CurrentThemeName = "Dark";
-            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("hr-HR");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
             FrameworkElement.LanguageProperty.
                 OverrideMetadata(typeof(FrameworkElement),
                 new FrameworkPropertyMetadata(

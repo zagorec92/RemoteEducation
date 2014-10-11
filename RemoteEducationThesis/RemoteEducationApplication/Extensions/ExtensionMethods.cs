@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -303,7 +304,7 @@ namespace RemoteEducationApplication.Extensions
         /// </summary>
         /// <typeparam name="T">Type of <see cref="RemoteEducationApplication.Client.ClientHandler"/>.</typeparam>
         /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> instance </param>
-        public static void SortClient(this ObservableCollection<ClientHandler> collection)
+        public static void SortClients(this ObservableCollection<ClientHandler> collection)
         {
             for (int i = 1; i < collection.Count; i++)
             {
@@ -319,6 +320,23 @@ namespace RemoteEducationApplication.Extensions
         }
 
         #endregion
+
+        #endregion
+
+        #region ClientHandler
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientHandler"></param>
+        /// <returns></returns>
+        public static bool IsClientConnected(this ClientHandler clientHandler)
+        {
+            if (clientHandler.IsClientConnected)
+                return true;
+            else
+                throw new SocketException(SocketError.ConnectionAborted.GetValue());
+        }
 
         #endregion
 

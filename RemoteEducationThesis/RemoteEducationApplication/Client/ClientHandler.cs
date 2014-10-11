@@ -87,7 +87,7 @@ namespace RemoteEducationApplication.Client
         /// to a remote host as of the last Overload:System.Net.Sockets.Socket.Send or
         /// Overload:System.Net.Sockets.Socket.Receive operation.
         /// </summary>
-        public bool ClientConnected
+        public bool IsClientConnected
         {
             get { return TcpClient.Client.Connected; }
         }

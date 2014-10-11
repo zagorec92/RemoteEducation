@@ -340,6 +340,12 @@ namespace RemoteEducationApplication.Views.Server
         {
             if (e.CommandName == ApplicationHelper.CommandTags.Close)
                 CloseClient(e.ObjectID);
+            else if (e.CommandName == ApplicationHelper.CommandTags.Expand)
+            {
+                ChangeClientHeightAndWidth(ConnectedClients.Select(x => x.ID).First(), 
+                    ApplicationHelper.CommandTags.Shrink);
+                ChangeClientHeightAndWidth(e.ObjectID, e.CommandName);
+            }
         }
 
         #endregion
@@ -403,8 +409,14 @@ namespace RemoteEducationApplication.Views.Server
                 clientHandler.CloseClient();
                 ConnectedClients.Remove(clientHandler);
 
-                HasClientExpanded = false;
-                SideGridWidth = default(int);
+                if (HasClientExpanded)
+                {
+                    ConnectedClients.TakeAll(SideClients);
+                    ConnectedClients.SortClients();
+
+                    HasClientExpanded = false;
+                    SideGridWidth = default(int);
+                }
             }
 
             if((clientHandler = SideClients.SingleOrDefault(x => x.ID == clientID)) != null)
@@ -457,7 +469,7 @@ namespace RemoteEducationApplication.Views.Server
 
                     ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
                     SideClients.TakeExceptFirst(ConnectedClients);
-                    SideClients.SortClient();
+                    SideClients.SortClients();
 
                     HandleClientResize(clientHandler, true);
                 }
@@ -466,9 +478,26 @@ namespace RemoteEducationApplication.Views.Server
                     ClientHandler clientHandler = ConnectedClients.First();
 
                     ConnectedClients.TakeAll(SideClients);
-                    ConnectedClients.SortClient();
+                    ConnectedClients.SortClients();
 
                     HandleClientResize(clientHandler, false);
+                }
+            }
+            else
+            {
+                if(commandName == ApplicationHelper.CommandTags.Expand)
+                {
+                    ConnectedClients.TakeAll(SideClients);
+                    ConnectedClients.SortClients();
+
+                    ClientHandler clientHandler = ConnectedClients.Single(x => x.ID == clientID);
+                    clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
+
+                    ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
+                    SideClients.TakeExceptFirst(ConnectedClients);
+                    SideClients.SortClients();
+
+                    HandleClientResize(clientHandler, true);
                 }
             }
         }
@@ -576,24 +605,20 @@ namespace RemoteEducationApplication.Views.Server
             {
                 foreach (ClientHandler client in ConnectedClients)
                 {
-                    if (client.ClientConnected)
+                    try
                     {
-                        try
+                        if (client.IsClientConnected())
                         {
                             BinaryFormatter bFormatter = new BinaryFormatter();
                             Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
                             client.DesktopImage = bitmap.GetImageSource();
                         }
-                        catch
-                        {
-                            clientsToRemove.Add(ClientDisconnecting(client));
-                        }
                     }
-                    else
+                    catch
                     {
                         clientsToRemove.Add(ClientDisconnecting(client));
                     }
-                }
+                }       
 
                 LastImageUpdate = DateTime.Now;
 

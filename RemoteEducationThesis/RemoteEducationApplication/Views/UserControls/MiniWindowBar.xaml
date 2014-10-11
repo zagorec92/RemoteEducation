@@ -7,11 +7,26 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       Style="{StaticResource MiniWindowBarUserControlStyle}">
     <Grid>
-        <!--close-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--expand-->
         <Rectangle Style="{StaticResource MiniWindowBarRectangleStyle}"
+                   Tag="{x:Static global:Resources.WindowBarExpand}"
+                   ToolTip="{x:Static global:Resources.WindowBarExpand}"             
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+            <Rectangle.OpacityMask>
+                <ImageBrush ImageSource="../../Resources/Images/expand.png" />
+            </Rectangle.OpacityMask>
+        </Rectangle>
+        
+        <!--close-->
+        <Rectangle Grid.Column="1"
+                   Style="{StaticResource MiniWindowBarRectangleStyle}"
                    Tag="{x:Static global:Resources.WindowBarClose}"
                    ToolTip="{x:Static global:Resources.WindowBarClose}"
-                   Grid.Column="2"
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="../../Resources/Images/close.png"/>
