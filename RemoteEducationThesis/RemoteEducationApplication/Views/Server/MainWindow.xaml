@@ -75,7 +75,7 @@
             </Grid>
 
             <!--minimize and close-->
-            <uc:ApplicationBar WindowBarClick="ApplicationBar_Click"
+            <uc:WindowBar WindowBarClick="ApplicationBar_Click"
                                WindowRole="ApplicationBar"/>
 
         </Grid>
@@ -123,10 +123,10 @@
                 
                 <Border Grid.RowSpan="3"
                         BorderThickness="1"
-                        BorderBrush="{StaticResource LightBlackBrush}"/>
+                        BorderBrush="{DynamicResource BackgroundBrush}"/>
                 
                 <StackPanel Grid.Column="1"
-                            Background="{StaticResource LightBlackBrush}">
+                            Background="{DynamicResource BackgroundBrush}">
                                     
                     <TextBlock Text="{x:Static global:Resources.SideClientBarHeader}"
                                Style="{StaticResource SideBarHeaderTextBlockStyle}"/>

@@ -25,7 +25,7 @@
             </TextBlock>
 
             <!--minimize and close-->
-            <wb:ApplicationBar WindowBarClick="ApplicationBar_AppBarClick"
+            <wb:WindowBar WindowBarClick="ApplicationBar_AppBarClick"
                                WindowRole="ApplicationBar"/>
 
         </Grid>

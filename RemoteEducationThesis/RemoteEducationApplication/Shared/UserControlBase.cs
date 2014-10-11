@@ -8,7 +8,7 @@ namespace RemoteEducationApplication.Shared
         #region Event
 
         /// <summary>
-        /// 
+        /// PropertyChanged
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -283,12 +283,8 @@ namespace RemoteEducationApplication.Views.Server
         /// containing the event data.</param>
         private void MenuItem_SubmenuOpened(object sender, RoutedEventArgs e)
         {
-            MenuItem menuItem = sender as MenuItem;
-
-            if (menuItem != null)
-                ApplicationHelper.SetSelectedThemeNameInMenu(menuItem);
+            sender.ExecuteIfNotNull<MenuItem>(x => MenuHelper.SetSelectedThemeNameInMenu(x));
         }
-
 
         #endregion
 

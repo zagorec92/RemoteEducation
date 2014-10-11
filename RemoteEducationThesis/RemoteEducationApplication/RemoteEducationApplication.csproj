@@ -108,6 +108,7 @@
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\QuestionHelper.cs" />
     <Compile Include="Helpers\ScoreHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
@@ -133,6 +134,9 @@
     <Compile Include="Views\Menu\ScoreList.xaml.cs">
       <DependentUpon>ScoreList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\MiniWindowBar.xaml.cs">
+      <DependentUpon>MiniWindowBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\WindowBar.xaml.cs">
       <DependentUpon>WindowBar.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,10 @@
       <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Storyboard\LoginStoryboards.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\Base\WindowBarUserControlBaseStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\Base\WindowBaseStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\MiniWindowBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

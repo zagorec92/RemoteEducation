@@ -3,23 +3,35 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Base\RectangleMenuBaseStyle.xaml" />
+        <ResourceDictionary Source="Base\WindowBarUserControlBaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
-    <!--application bar-->
-    <Style x:Key="ApplicationBarUserControlStyle" TargetType="UserControl">
+    <!--window bar-->
+    <Style x:Key="WindowBarUserControlStyle" TargetType="UserControl" 
+           BasedOn="{StaticResource WindowBarUserControlBaseStyle}">
         <Setter Property="Width" Value="90" />
-        <Setter Property="Height" Value="25" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="ApplicationBarRectangleStyle" 
+    <!--mini window bar-->
+    <Style x:Key="MiniWindowBarUserControlStyle" TargetType="UserControl" 
+           BasedOn="{StaticResource WindowBarUserControlBaseStyle}">
+        <Setter Property="Width" Value="45" />
+    </Style>
+
+    <Style x:Key="WindowBarRectangleStyle" 
            TargetType="Rectangle" 
            BasedOn="{StaticResource {x:Type Rectangle}}">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Margin" Value="0, -3, 0, 0" />
         <Setter Property="Fill" Value="{DynamicResource ForegroundBrush}" />
+    </Style>
+
+    <Style x:Key="MiniWindowBarRectangleStyle" 
+           TargetType="Rectangle" 
+           BasedOn="{StaticResource {x:Type Rectangle}}">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="0, -3, 0, 0" />
+        <Setter Property="Fill" Value="{DynamicResource BackgroundBrush}" />
     </Style>
 
 </ResourceDictionary>

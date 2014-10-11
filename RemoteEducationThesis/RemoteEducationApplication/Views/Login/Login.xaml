@@ -3,7 +3,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-                 xmlns:appBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  Style="{StaticResource LoginWindowStyle}"
                  MouseLeftButtonDown="Window_MouseLeftButtonDown"
                  KeyDown="Window_KeyDown">
@@ -24,10 +24,10 @@
         </Grid.RowDefinitions>
 
         <!--menu bar-->
-        <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid Background="{DynamicResource BackgroundBrush}">
             <TextBlock Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
-                       Foreground="{StaticResource BetterWhiteBrush}"
+                       Foreground="{DynamicResource ForegroundBrush}"
                        Margin="10, 0, 0, 0">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} {1}">
@@ -38,7 +38,7 @@
             </TextBlock>
             
             <!--minimize and close-->
-            <appBar:ApplicationBar WindowBarClick="ApplicationBar_Click"
+            <uc:WindowBar WindowBarClick="ApplicationBar_Click"
                                    WindowRole="ApplicationBar"/>
 
         </Grid>
@@ -89,6 +89,7 @@
                        Margin="5, 0, 0, 8"/>
 
             <!--third row-->
+            <!--clear-->
             <Button Grid.Row="2"
                     Grid.Column="1"
                     Content="{x:Static global:Resources.LoginPageClear}"
@@ -96,6 +97,8 @@
                     HorizontalAlignment="Left"
                     CommandParameter="{x:Static global:Resources.LoginPageClear}"
                     Click="Button_Click"/>
+            
+            <!--login-->
             <Button Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
@@ -145,6 +148,7 @@
                      TextChanged="TextBox_TextChanged" 
                      Width="225"/>
 
+            <!--cancel-->
             <Button x:Name="button" Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
@@ -154,6 +158,7 @@
                     Margin="30, 0, 0, 0"
                     Click="Button_Click"/>
             
+            <!--recover-->
             <Button Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"

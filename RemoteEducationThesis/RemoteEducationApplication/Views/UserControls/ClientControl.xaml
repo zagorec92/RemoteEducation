@@ -4,7 +4,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
-                      xmlns:wBar="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                      xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                       Style="{StaticResource UserControlWindowStyle}"
@@ -34,7 +34,7 @@
             <TextBlock Style="{StaticResource UserControlTextBlockNameStyle}" 
                        Text="{Binding Name}" />
 
-            <wBar:ApplicationBar Grid.Column="2"
+            <uc:WindowBar Grid.Column="2"
                                  WindowRole="ClientBar"
                                  IsExpanded="{Binding IsExpanded}"
                                  WindowBarClick="appBar_RectangleClick"/>

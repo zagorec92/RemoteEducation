@@ -127,7 +127,9 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region Convert object type
+        #region Object
+
+        #region Convert
 
         /// <summary>
         /// 
@@ -141,6 +143,26 @@ namespace RemoteEducationApplication.Extensions
 
             return (T)Convert.ChangeType(value, type);
         }
+
+        #endregion
+
+        #region ExecuteIfNotNull
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static void ExecuteIfNotNull<T>(this object value, Action<T> action)
+        {
+            T item = To<T>(value);
+
+            if (item != null)
+                action.Invoke(item);
+        }
+
+        #endregion
 
         #endregion
 

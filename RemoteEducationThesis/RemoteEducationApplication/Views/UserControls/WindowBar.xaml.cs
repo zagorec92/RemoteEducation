@@ -2,6 +2,7 @@
 using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
 
@@ -10,7 +11,7 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for ApplicationBar.xaml
     /// </summary>
-    public partial class ApplicationBar : UserControlBase
+    public partial class WindowBar : UserControlBase
     {
         #region Dependecy properties
 
@@ -18,7 +19,7 @@ namespace RemoteEducationApplication.Views.UserControls
         /// IsExpandedDependencyProperty dependency property.
         /// </summary>
         public static readonly DependencyProperty IsExpandedDependencyProperty =
-            DependencyProperty.Register("IsExpanded", typeof(bool), typeof(ApplicationBar));
+            DependencyProperty.Register("IsExpanded", typeof(bool), typeof(WindowBar));
 
         #endregion
 
@@ -43,11 +44,6 @@ namespace RemoteEducationApplication.Views.UserControls
         /// Gets or sets the minimize icon visibility.
         /// </summary>
         public Visibility MinimizeIconVisibility { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool OverrideInitialization { get; set; }
 
         /// <summary>
         /// Gets or sets the value indicating if the control is expanded.
@@ -87,10 +83,10 @@ namespace RemoteEducationApplication.Views.UserControls
         #region Constructor
 
         /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.ApplicationBar"/> class.
+        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.WindowBar"/> class.
         /// instance.
         /// </summary>
-        public ApplicationBar()
+        public WindowBar()
         {
             InitializeComponent();
             Loaded += ApplicationBar_Loaded;
@@ -129,10 +125,7 @@ namespace RemoteEducationApplication.Views.UserControls
         /// instance containing the event data.</param>
         public virtual void Rectangle_MouseLeftButtonDown(object sender, MouseEventArgs e)
         {
-            Rectangle rectangle = sender as Rectangle;
-
-            if (rectangle != null)
-                OnAppBarClick(rectangle.GetTag());
+            sender.ExecuteIfNotNull<Rectangle>(x => OnAppBarClick(x.GetTag()));
         }
 
         #endregion
@@ -146,9 +139,7 @@ namespace RemoteEducationApplication.Views.UserControls
         {
             if (WindowRole == WindowRole.ApplicationBar)
             {
-                if(!OverrideInitialization)
-                    ApplicationBarVisibility = Visibility.Visible;
-
+                ApplicationBarVisibility = Visibility.Visible;
                 ClientBarVisibility = Visibility.Hidden;
             }
             else if (WindowRole == WindowRole.ClientBar)

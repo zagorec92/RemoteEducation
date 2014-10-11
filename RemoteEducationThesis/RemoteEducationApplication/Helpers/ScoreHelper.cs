@@ -34,7 +34,7 @@ namespace RemoteEducationApplication.Helpers
         /// <returns>The list of scores.</returns>
         public static List<ScoreLog> GetScoreLogs()
         {
-            using(EEducationDbContext context = new EEducationDbContext())
+            using (EEducationDbContext context = new EEducationDbContext())
             {
                 ScoreLogRepository scoreLogRepository = new ScoreLogRepository(context);
 
