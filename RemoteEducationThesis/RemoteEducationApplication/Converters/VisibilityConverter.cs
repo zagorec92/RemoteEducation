@@ -60,7 +60,7 @@ namespace RemoteEducationApplication.Converters
         #endregion
     }
 
-    public class StatusTextVisibilityConverter :IValueConverter
+    public class StatusTextVisibilityConverter : IValueConverter
     {
         #region Struct
 
@@ -72,6 +72,7 @@ namespace RemoteEducationApplication.Converters
             public const string Other = "Other";
             public const string Text = "Text";
             public const string Image = "Image";
+            public const string Clock = "Clock";
         }
 
         #endregion
@@ -97,6 +98,7 @@ namespace RemoteEducationApplication.Converters
             {
                 case SenderType.Image:
                 case SenderType.Other:
+                case SenderType.Clock:
                     visibility = condition ? Visibility.Visible : Visibility.Collapsed;
                     break;
                 case SenderType.Text:

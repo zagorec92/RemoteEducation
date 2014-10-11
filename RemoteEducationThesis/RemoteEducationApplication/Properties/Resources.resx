@@ -216,7 +216,7 @@
   <data name="LoginPageRecoveryTitle" xml:space="preserve">
     <value>RECOVERY</value>
   </data>
-  <data name="MenuTheme" xml:space="preserve">
+  <data name="SubMenuViewTheme" xml:space="preserve">
     <value>Theme</value>
   </data>
   <data name="MenuThemeDark" xml:space="preserve">
@@ -248,5 +248,8 @@
   </data>
   <data name="SideClientBarHeader" xml:space="preserve">
     <value>Other connected clients</value>
+  </data>
+  <data name="SubMenuViewFullScreen" xml:space="preserve">
+    <value>Full screen</value>
   </data>
 </root>

@@ -216,7 +216,7 @@
   <data name="LoginPageRecoveryTitle" xml:space="preserve">
     <value>NOVA ZAPORKA</value>
   </data>
-  <data name="MenuTheme" xml:space="preserve">
+  <data name="SubMenuViewTheme" xml:space="preserve">
     <value>Tema</value>
   </data>
   <data name="MenuThemeDark" xml:space="preserve">
@@ -248,5 +248,8 @@
   </data>
   <data name="SideClientBarHeader" xml:space="preserve">
     <value>Ostali povezani klijenti</value>
+  </data>
+  <data name="SubMenuViewFullScreen" xml:space="preserve">
+    <value>Cijeli zaslon</value>
   </data>
 </root>

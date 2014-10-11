@@ -11,17 +11,20 @@ namespace RemoteEducationApplication.Helpers
         /// </summary>
         /// <param name="menuItem">The <see cref="System.Windows.Controls.MenuItem"/> instance
         /// containing the tag value.</param>
-        public static void SetSelectedThemeNameInMenu(MenuItem menuItem)
+        public static void SetSelectedItemInMenu(MenuItem menuItem, bool isSubMenu)
         {
-            ItemCollection itemCollection = menuItem.Items;
-
-            foreach (object item in itemCollection)
+            if (isSubMenu)
             {
-                MenuItem mItem = item as MenuItem;
+                ItemCollection itemCollection = menuItem.Items;
 
-                if (mItem != null)
-                    mItem.FontWeight = mItem.GetTag().Equals(App.CurrentThemeName)
-                        ? FontWeights.Bold : FontWeights.Normal;
+                foreach (object item in itemCollection)
+                    item.ExecuteIfNotNull<MenuItem>(x => x.FontWeight = x.GetTag().Equals(App.CurrentThemeName)
+                        ? FontWeights.Bold : FontWeights.Normal);
+            }
+            else
+            {
+                menuItem.FontWeight = menuItem.FontWeight == FontWeights.Normal
+                    ? FontWeights.Bold : FontWeights.Normal;
             }
         }
     }

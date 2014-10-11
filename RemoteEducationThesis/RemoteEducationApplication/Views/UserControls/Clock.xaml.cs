@@ -66,7 +66,7 @@ namespace RemoteEducationApplication.Views.UserControls
         {
             Window window = Window.GetWindow(this);
 
-            if(window != null)
+            if (window != null)
                 window.Closing += window_Closing;
         }
 
@@ -116,21 +116,19 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="disposing">The <see cref="System.Boolean"/> value indicating if dispose should be executed.</param>
+        /// <param name="disposing">The <see cref="System.Boolean"/> value indicating if 
+        /// dispose should be executed.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposing && _timer != null)
             {
-                if(_timer != null)
-                {
-                    _timer.Dispose();
-                    _timer = null;
-                }     
+                _timer.Dispose();
+                _timer = null;  
             }
         }
 
         /// <summary>
-        /// 
+        /// Dispose.
         /// </summary>
         public void Dispose()
         {

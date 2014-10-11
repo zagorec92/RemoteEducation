@@ -39,7 +39,7 @@
                     <MenuItem Header="{x:Static global:Resources.MenuView}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
                         <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
-                                  Header="{x:Static global:Resources.MenuTheme}"
+                                  Header="{x:Static global:Resources.SubMenuViewTheme}"
                                   SubmenuOpened="MenuItem_SubmenuOpened">
                             <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                       Header="{x:Static global:Resources.MenuThemeClassic}"
@@ -53,6 +53,12 @@
                                         Header="{x:Static global:Resources.MenuThemeOrange}"
                                         Tag="{x:Static global:Resources.MenuThemeOrange}"
                                         Click="SubMenuItem_Click"/>
+                        </MenuItem>
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.SubMenuViewFullScreen}"
+                                  Tag="{x:Static global:Resources.SubMenuViewFullScreen}"
+                                  Click="SubMenuItem_Click">
+                            
                         </MenuItem>
                     </MenuItem>
 
@@ -206,6 +212,15 @@
                
             </Grid>
        
+            <Grid Grid.Column="1"
+                  Visibility="{Binding IsFullScreen, 
+                    Converter={StaticResource VisibilityConverter}, 
+                    ConverterParameter=Clock}">
+                <uc:Clock HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                </uc:Clock>
+            </Grid>
+
         </Grid>
 
     </Grid>

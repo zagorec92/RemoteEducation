@@ -49,6 +49,7 @@ namespace RemoteEducationApplication.Views.Server
         private int _clientNumber;
         private double _sideGridWidth;
         private bool _hasClients;
+        private bool _isFullScreen;
 
         #endregion
 
@@ -171,6 +172,22 @@ namespace RemoteEducationApplication.Views.Server
             }
         }
 
+        /// <summary>
+        /// Gets or sets the value indicating if the window if in full screen mode.
+        /// </summary>
+        public bool IsFullScreen
+        {
+            get
+            {
+                return _isFullScreen;
+            }
+            set
+            {
+                _isFullScreen = value;
+                NotifyPropertyChanged("IsFullScreen");
+            }
+        }
+
         #endregion
 
         #region Constructor
@@ -180,7 +197,7 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         public MainWindow()
         {
-            HandleFullScreenResize();
+            HandleFullScreenResize(false);
             InitializeComponent();
             Loaded += MainWindow_Loaded;
         }
@@ -219,6 +236,7 @@ namespace RemoteEducationApplication.Views.Server
             }
 
             DataContext = this;
+            IsFullScreen = false;
 
             //Start();
         }
@@ -266,6 +284,11 @@ namespace RemoteEducationApplication.Views.Server
                 if (tag == ApplicationHelper.CommandTags.Close ||
                     tag == ApplicationHelper.CommandTags.Logoff)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
+                else if (tag == ApplicationHelper.CommandTags.FullScreen)
+                {
+                    HandleFullScreenResize(true);
+                    MenuHelper.SetSelectedItemInMenu(menuItem, false);
+                }
                 else if (tag == ApplicationHelper.CommandTags.Question)
                     SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers());
                 else if (ApplicationHelper.IsThemeTag(tag))
@@ -283,7 +306,7 @@ namespace RemoteEducationApplication.Views.Server
         /// containing the event data.</param>
         private void MenuItem_SubmenuOpened(object sender, RoutedEventArgs e)
         {
-            sender.ExecuteIfNotNull<MenuItem>(x => MenuHelper.SetSelectedThemeNameInMenu(x));
+            sender.ExecuteIfNotNull<MenuItem>(x => MenuHelper.SetSelectedItemInMenu(x, true));
         }
 
         #endregion
@@ -330,13 +353,25 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// 
         /// </summary>
-        private void HandleFullScreenResize()
+        private void HandleFullScreenResize(bool fullScreen)
         {
-            Width = System.Windows.SystemParameters.WorkArea.Width;
-            Height = System.Windows.SystemParameters.WorkArea.Height;
-            Left = default(int);
-            Top = default(int);
-            WindowState = WindowState.Normal;
+            if (fullScreen && WindowState != WindowState.Maximized)
+            {
+                Height = SystemParameters.PrimaryScreenHeight;
+                WindowState = WindowState.Maximized;
+
+                IsFullScreen = true;
+            }
+            else
+            {
+                Width = SystemParameters.WorkArea.Width;
+                Height = SystemParameters.WorkArea.Height;
+                Left = default(int);
+                Top = default(int);
+                WindowState = WindowState.Normal;
+
+                IsFullScreen = false;
+            }
         }
 
         #endregion

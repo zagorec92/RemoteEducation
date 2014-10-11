@@ -24,7 +24,7 @@
     <!--clock control-->
     <Style x:Key="UserControlClockStyle" TargetType="UserControl">
         <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Width" Value="150" />
+        <Setter Property="Width" Value="155" />
     </Style>
     
     <Style x:Key="UserControlClockTextBlock" TargetType="TextBlock">

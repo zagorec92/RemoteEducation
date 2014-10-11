@@ -259,15 +259,6 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Theme.
-        /// </summary>
-        public static string MenuTheme {
-            get {
-                return ResourceManager.GetString("MenuTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Classic.
         /// </summary>
         public static string MenuThemeClassic {
@@ -372,6 +363,24 @@ namespace RemoteEducationApplication.Properties {
         public static string StatusBarLastImageRefresh {
             get {
                 return ResourceManager.GetString("StatusBarLastImageRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full screen.
+        /// </summary>
+        public static string SubMenuViewFullScreen {
+            get {
+                return ResourceManager.GetString("SubMenuViewFullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        public static string SubMenuViewTheme {
+            get {
+                return ResourceManager.GetString("SubMenuViewTheme", resourceCulture);
             }
         }
         

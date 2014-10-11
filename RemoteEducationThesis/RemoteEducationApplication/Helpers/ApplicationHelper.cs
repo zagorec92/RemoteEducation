@@ -34,6 +34,7 @@ namespace RemoteEducationApplication.Helpers
             public static string Minimize = AppResources.WindowBarMinimize;
             public static string Cancel = AppResources.CancelAction;
             public static string Clear = AppResources.LoginPageClear;
+            public static string FullScreen = AppResources.SubMenuViewFullScreen;
             
             public static string Connect = AppResources.WindowBarConnect;
            
