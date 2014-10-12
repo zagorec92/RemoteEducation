@@ -6,7 +6,8 @@
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                       xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
-                      Style="{StaticResource WindowBarUserControlStyle}">
+                      Style="{StaticResource WindowBarUserControlStyle}"
+                      x:Name="windowBar">
     <base:UserControlBase.Resources>
         <c:WindowBarVisibilityConverter x:Key="WindowBarVisibilityConverter" />
     </base:UserControlBase.Resources>
@@ -25,7 +26,7 @@
             <Rectangle.Visibility>
                 <MultiBinding Converter="{StaticResource WindowBarVisibilityConverter}"
                               ConverterParameter="{x:Static global:Resources.WindowBarExpand}">
-                    <Binding Path="ClientBarVisibility" />
+                    <Binding Path="ClientBarVisibility" ElementName="windowBar" />
                     <Binding Path="IsExpanded"/>
                 </MultiBinding>
             </Rectangle.Visibility>
@@ -42,7 +43,7 @@
             <Rectangle.Visibility>
                 <MultiBinding Converter="{StaticResource WindowBarVisibilityConverter}"
                               ConverterParameter="{x:Static global:Resources.WindowBarShrink}">
-                    <Binding Path="ClientBarVisibility" />
+                    <Binding Path="ClientBarVisibility" ElementName="windowBar" />
                     <Binding Path="IsExpanded"/>
                 </MultiBinding>
             </Rectangle.Visibility>
@@ -56,7 +57,7 @@
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
                    Tag="{x:Static global:Resources.WindowBarMinimize}"
                    ToolTip="{x:Static global:Resources.WindowBarMinimize}"
-                   Visibility="{Binding MinimizeIconVisibility}"
+                   Visibility="{Binding MinimizeIconVisibility, ElementName=windowBar}"
                    Grid.Column="1"
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
             <Rectangle.OpacityMask>
@@ -68,7 +69,7 @@
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
                    Tag="{x:Static global:Resources.WindowBarConnect}"
                    ToolTip="{x:Static global:Resources.WindowBarConnect}"
-                   Visibility="{Binding ClientBarVisibility}"
+                   Visibility="{Binding ClientBarVisibility, ElementName=windowBar}"
                    Grid.Column="1"
                    MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
             <Rectangle.OpacityMask>

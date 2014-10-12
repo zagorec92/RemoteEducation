@@ -35,9 +35,9 @@
                        Text="{Binding Name}" />
 
             <uc:WindowBar Grid.Column="2"
-                                 WindowRole="ClientBar"
-                                 IsExpanded="{Binding IsExpanded}"
-                                 WindowBarClick="appBar_RectangleClick"/>
+                          WindowRole="ClientBar"
+                          IsExpanded="{Binding IsExpanded}"
+                          WindowBarClick="appBar_RectangleClick"/>
         </Grid>
 
         <TextBlock Grid.Row="1" 

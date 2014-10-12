@@ -13,6 +13,16 @@ namespace RemoteEducationApplication.Views.UserControls
     /// </summary>
     public partial class WindowBar : UserControlBase
     {
+        #region Fields
+
+        private Visibility _applicationBarVisibility;
+        private Visibility _clientBarVisibility;
+        private Visibility _minimizeIconVisibility;
+
+        #endregion
+
+        #region Properties
+
         #region Dependecy properties
 
         /// <summary>
@@ -23,8 +33,6 @@ namespace RemoteEducationApplication.Views.UserControls
 
         #endregion
 
-        #region Properties
-
         /// <summary>
         /// Gets or sets the visibility of minimize icon.
         /// </summary>
@@ -33,22 +41,55 @@ namespace RemoteEducationApplication.Views.UserControls
         /// <summary>
         /// Gets or sets the application bar visibility.
         /// </summary>
-        public Visibility ApplicationBarVisibility { get; set; }
+        public Visibility ApplicationBarVisibility 
+        {
+            get 
+            { 
+                return _applicationBarVisibility; 
+            }
+            set 
+            { 
+                _applicationBarVisibility = value; 
+                NotifyPropertyChanged("ApplicationBarVisibility"); 
+            } 
+        }
 
         /// <summary>
         /// Gets or sets the client bar visibility.
         /// </summary>
-        public Visibility ClientBarVisibility { get; set; }
+        public Visibility ClientBarVisibility 
+        {
+            get 
+            { 
+                return _clientBarVisibility; 
+            }
+            set 
+            { 
+                _clientBarVisibility = value; 
+                NotifyPropertyChanged("ClientBarVisibility"); 
+            } 
+        }
 
         /// <summary>
         /// Gets or sets the minimize icon visibility.
         /// </summary>
-        public Visibility MinimizeIconVisibility { get; set; }
+        public Visibility MinimizeIconVisibility
+        {
+            get
+            {
+                return _minimizeIconVisibility;
+            }
+            set
+            {
+                _minimizeIconVisibility = value;
+                NotifyPropertyChanged("MinimizeIconVisibility");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the value indicating if the control is expanded.
         /// </summary>
-        public bool IsExpanded 
+        public bool IsExpanded
         {
             get
             {

@@ -39,7 +39,7 @@
             
             <!--minimize and close-->
             <uc:WindowBar WindowBarClick="ApplicationBar_Click"
-                                   WindowRole="ApplicationBar"/>
+                          WindowRole="ApplicationBar"/>
 
         </Grid>
 

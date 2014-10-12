@@ -26,7 +26,6 @@ namespace RemoteEducationApplication.Converters
 
             if (values.First() != DependencyProperty.UnsetValue)
             {
-
                 string callingObjectCommandName = parameter == null ? String.Empty : parameter.ToString();
                 Visibility visibility = (Visibility)values.First();
 
