@@ -1,6 +1,4 @@
-﻿using AppResources = RemoteEducationApplication.Properties.Resources;
-
-namespace RemoteEducationApplication.Helpers
+﻿namespace RemoteEducationApplication.Helpers
 {
     public abstract class BaseHelper
     {
@@ -86,21 +84,6 @@ namespace RemoteEducationApplication.Helpers
             /// LoginStoryboards resource dictionary.
             /// </summary>
             LoginStoryboards = 8
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the application default settings.
-        /// </summary>
-        internal AppResources AppResources
-        {
-            get
-            {
-                return AppResources;
-            }
         }
 
         #endregion
