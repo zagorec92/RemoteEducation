@@ -29,9 +29,9 @@ namespace Education.DAL.Repositories
         #region Constructor
 
         /// <summary>
-        /// Creates a new instance of the <see cref="Education.DAL.Repositories.RoleRepostiory"/> class.
+        /// Creates a new instance of the <see cref="Education.DAL.Repositories.RoleRepository"/> class.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The <see cref="Education.DAL.EEducationDbContext"/> instance.</param>
         public RoleRepository(EEducationDbContext context)
             : base(context) { }
 

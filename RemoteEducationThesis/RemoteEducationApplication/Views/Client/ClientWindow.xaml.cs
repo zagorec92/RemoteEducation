@@ -331,7 +331,7 @@ namespace RemoteEducationApplication.Views.Client
                 var stream = Client.GetClientStream();
                 int waitingLengthIndex = stream.ReadByte();
 
-                SleepTime = ExtensionMethods.GetValueByIndex<WaitingTime>(waitingLengthIndex);
+                SleepTime = GeneralExtender.GetValueByIndex<WaitingTime>(waitingLengthIndex);
                 isConnected = true;
 
                 Client.SendName();

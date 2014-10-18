@@ -1,12 +1,15 @@
-﻿using Education.Model;
-using Microsoft.Win32;
-using Education.DAL;
+﻿using Education.DAL;
 using Education.DAL.Repositories;
+using Education.Model;
+using Microsoft.Win32;
+using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -14,13 +17,23 @@ namespace RemoteEducationApplication.Helpers
     {
         #region Const
 
+        /// <summary>
+        /// Represents a constant value for file extensions.
+        /// </summary>
         private const string Filter = "HTML Files |*.html";
+
+        /// <summary>
+        /// Represents a constant value for answer delimiter string.
+        /// </summary>
         private const string AnswerDelimiter = "@--";
 
         #endregion
 
         #region Struct
 
+        /// <summary>
+        /// Represents a holder for helper html tags in form of <see cref="System.String"/> values.
+        /// </summary>
         private struct HtmlTags
         {
             public const string BodyOpen = "<body";
@@ -34,6 +47,9 @@ namespace RemoteEducationApplication.Helpers
 
         #region Properties
 
+        /// <summary>
+        /// Gets or sets the current question.
+        /// </summary>
         public static Question CurrentQuestion { get; set; }
 
         #endregion
@@ -43,6 +59,7 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// Shows OpenFileDialog, reads question and answers from a given file and saves them into database.
         /// </summary>
+        /// <returns>Question identification number if succeded, default <see cref="System.Int32"/> value otherwise.</returns>
         public static int CreateQuestionWithAnswers()
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -56,8 +73,7 @@ namespace RemoteEducationApplication.Helpers
                 string htmlContent = File.ReadAllText(ofd.FileName);
                 
                 question.Answers = ParseAnswersFromContent(htmlContent);
-                question.Content = CleanHtmlContent(htmlContent);
-                question.Content = WrapInFormTags(question.Content);
+                question.Content = WrapInFormTags(CleanHtmlContent(htmlContent));
 
                 SaveQuestion(question);
                 SaveAnswers(question.Answers);
@@ -71,7 +87,7 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// Saves question in database.
         /// </summary>
-        /// <param name="question"></param>
+        /// <param name="question">The <see cref="Education.Model.Question"/> instance.</param>
         private static void SaveQuestion(Question question)
         {
             if (!question.Content.Equals(String.Empty))
@@ -86,14 +102,16 @@ namespace RemoteEducationApplication.Helpers
             }
             else
             {
-                //throw exception
+
             }
         }
 
         /// <summary>
         /// Saves answers in database.
         /// </summary>
-        /// <param name="answers"></param>
+        /// <typeparam name="T">Type derived from <see cref="Education.Model.Answer"/> class.</typeparam>
+        /// <param name="answers">The <see cref="System.Collections.Generic.ICollection"/> collection containing
+        /// instances of type T.</param>
         private static void SaveAnswers(ICollection<Answer> answers)
         {
             using (EEducationDbContext context = new EEducationDbContext())
@@ -118,9 +136,9 @@ namespace RemoteEducationApplication.Helpers
         /// <summary>
         /// Gets the question by ID.
         /// </summary>
-        /// <param name="questionId"></param>
-        /// <returns></returns>
-        public static Question GetQuestion (int questionId)
+        /// <param name="questionId">The <see cref="System.Int32"/> value.</param>
+        /// <returns>The <see cref="Education.Model.Question"/> instance if succeded, null otherwise.</returns>
+        public static Question GetQuestion(int questionId)
         {
             using(EEducationDbContext context = new EEducationDbContext())
             {
@@ -220,6 +238,25 @@ namespace RemoteEducationApplication.Helpers
             }
 
             return score;
+        }
+
+        /// <summary>
+        /// Sends question identification number to every client.
+        /// </summary>
+        /// <param name="questionId"></param>
+        /// <param name="clients"></param>
+        public static void SendQuestionIDToClient(int questionId, ObservableCollection<ClientHandler> clients)
+        {
+            if (questionId != default(int))
+            {
+                foreach (var client in clients)
+                {
+                    NetworkStream stream = client.GetDataExchangeStream();
+                    stream.Flush();
+                    stream.WriteByte((byte)questionId);
+                    stream.Flush();
+                }
+            }
         }
 
         #endregion

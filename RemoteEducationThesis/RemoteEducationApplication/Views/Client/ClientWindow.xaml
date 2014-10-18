@@ -5,7 +5,6 @@
                  xmlns:wb="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  xmlns:ext="clr-namespace:RemoteEducationApplication.Extensions"
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-                 Title="ClientWindow"
                  Style="{StaticResource ClientWindowStyle}"
                  MouseLeftButtonDown="ClientWindow_MouseLeftButtonDown">
     <Grid>
@@ -26,7 +25,7 @@
 
             <!--minimize and close-->
             <wb:WindowBar WindowBarClick="ApplicationBar_AppBarClick"
-                               WindowRole="ApplicationBar"/>
+                          WindowRole="ApplicationBar"/>
 
         </Grid>
 
@@ -46,9 +45,9 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Grid.Column="1"
-                       Style="{StaticResource StatusBarTextBlockStyle}"
-                       Foreground="{StaticResource LightBlackBrush}"
-                       Text="{Binding ConnectionStatus}"/>
+                           Style="{StaticResource StatusBarTextBlockStyle}"
+                           Foreground="{StaticResource LightBlackBrush}"
+                           Text="{Binding ConnectionStatus}"/>
             </Grid>
 
             <Grid Grid.Row="1" 
@@ -63,13 +62,13 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
                 <TextBlock Grid.Column="1"
-                       Style="{StaticResource StatusBarTextBlockStyle}"
-                       Foreground="{StaticResource LightBlackBrush}"
-                       Text="{Binding ProcessStatus}"/>
+                           Style="{StaticResource StatusBarTextBlockStyle}"
+                           Foreground="{StaticResource LightBlackBrush}"
+                           Text="{Binding ProcessStatus}"/>
             </Grid>
         </Grid>
         
-        <WebBrowser ext:WebBrowserExtender.BindableSource="{Binding QuestionSource}"
+        <WebBrowser ext:WebBrowserExtension.BindableSource="{Binding QuestionSource}"
                     Grid.Row="2" 
                     Visibility="Collapsed" 
                     Height="300" 

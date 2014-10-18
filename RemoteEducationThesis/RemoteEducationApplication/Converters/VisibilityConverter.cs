@@ -27,16 +27,20 @@ namespace RemoteEducationApplication.Converters
             if (values.First() != DependencyProperty.UnsetValue)
             {
                 string callingObjectCommandName = parameter == null ? String.Empty : parameter.ToString();
-                Visibility visibility = (Visibility)values.First();
 
-                if (visibility == Visibility.Visible)
+                if (callingObjectCommandName != String.Empty)
                 {
-                    bool isExpanded = bool.Parse(values.Last().ToString());
+                    Visibility? visibility = values.First() as Visibility?;
 
-                    if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
-                        retVal = isExpanded ? Visibility.Hidden : Visibility.Visible;
-                    else if (callingObjectCommandName == ApplicationHelper.CommandTags.Shrink)
-                        retVal = isExpanded ? Visibility.Visible : Visibility.Hidden;
+                    if (visibility.Value == Visibility.Visible)
+                    {
+                        bool isExpanded = bool.Parse(values.Last().ToString());
+
+                        if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
+                            retVal = isExpanded ? Visibility.Hidden : Visibility.Visible;
+                        else if (callingObjectCommandName == ApplicationHelper.CommandTags.Shrink)
+                            retVal = isExpanded ? Visibility.Visible : Visibility.Hidden;
+                    }
                 }
             }
 
@@ -93,7 +97,7 @@ namespace RemoteEducationApplication.Converters
 
             bool condition = value.To<bool>();
 
-            switch(param)
+            switch (param)
             {
                 case SenderType.Image:
                 case SenderType.Other:
@@ -126,4 +130,18 @@ namespace RemoteEducationApplication.Converters
 
         #endregion
     }
+
+    public class WindowTagConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            return String.Concat(values.First(),  values.Last());
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException("No need for converting back.");
+        }
+    }
+
 }

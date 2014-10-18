@@ -101,8 +101,9 @@
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
-    <Compile Include="Extensions\ExtensionMethods.cs" />
-    <Compile Include="Extensions\WebBrowserExtender.cs" />
+    <Compile Include="Extensions\GeneralExtender.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtension.cs" />
+    <Compile Include="Extensions\WebBrowserExtension.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />

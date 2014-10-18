@@ -22,9 +22,9 @@ namespace Education.DAL.Repositories
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Creates a new instance of the <see cref="Education.DAL.Repositories.ScoreLogRepository"/> class.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The <see cref="Education.DAL.EEducationDbContext"/> instance.</param>
         public ScoreLogRepository(EEducationDbContext context)
             : base(context) { }
 

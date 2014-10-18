@@ -285,16 +285,13 @@ namespace RemoteEducationApplication.Views.Server
                     tag == ApplicationHelper.CommandTags.Logoff)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
                 else if (tag == ApplicationHelper.CommandTags.FullScreen)
-                {
                     HandleFullScreenResize(true);
-                    MenuHelper.SetSelectedItemInMenu(menuItem, false);
-                }
                 else if (tag == ApplicationHelper.CommandTags.Question)
-                    SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers());
+                    QuestionHelper.SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers(), ConnectedClients);
                 else if (ApplicationHelper.IsThemeTag(tag))
-                    ApplicationHelper.ChangeTheme(tag);
-                else if (tag == ApplicationHelper.CommandTags.ScoreList)
-                    this.NavigateTo(new ScoreList(), false);
+                    StyleHelper.ChangeTheme(tag);
+                else if (tag.Contains(AppSettings.WindowIdentifier))
+                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false);
             }
         }
 
@@ -359,7 +356,7 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// 
         /// </summary>
-        private void HandleFullScreenResize(bool fullScreen)
+        private void HandleFullScreenResize(bool fullScreen, MenuItem menuItem = null)
         {
             if (fullScreen && WindowState != WindowState.Maximized)
             {
@@ -378,6 +375,9 @@ namespace RemoteEducationApplication.Views.Server
 
                 IsFullScreen = false;
             }
+
+            if(menuItem != null)
+                MenuHelper.SetSelectedItemInMenu(menuItem, false);
         }
 
         #endregion
@@ -454,10 +454,10 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         /// <summary>
-        /// Changes the client width and height.
+        ///  
         /// </summary>
-        /// <param name="clientName"></param>
-        /// <param name="commandName"></param>
+        /// <param name="clientID">Identification number of client.</param>
+        /// <param name="commandName">Name of the command.</param>
         private void ChangeClientHeightAndWidth(int clientID, string commandName)
         {
             if (ConnectedClients.Any(x => x.ID == clientID))
@@ -465,20 +465,16 @@ namespace RemoteEducationApplication.Views.Server
                 if (commandName == ApplicationHelper.CommandTags.Expand && !HasClientExpanded)
                 {
                     ClientHandler clientHandler = ConnectedClients.Single(x => x.ID == clientID);
-                    clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
 
-                    ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
-                    SideClients.TakeExceptFirst(ConnectedClients);
-                    SideClients.SortClients();
-
+                    HandleConnectedClientsExpand(clientHandler);
                     HandleClientResize(clientHandler, true);
                 }
                 else if (commandName == ApplicationHelper.CommandTags.Shrink)
                 {
                     ClientHandler clientHandler = ConnectedClients.First();
 
-                    ConnectedClients.TakeAll(SideClients);
-                    ConnectedClients.SortClients();
+                    if (SideClients.Any())
+                        HandleConnectedClientsShrink();
 
                     HandleClientResize(clientHandler, false);
                 }
@@ -487,37 +483,34 @@ namespace RemoteEducationApplication.Views.Server
             {
                 if(commandName == ApplicationHelper.CommandTags.Expand)
                 {
-                    ConnectedClients.TakeAll(SideClients);
-                    ConnectedClients.SortClients();
+                    HandleConnectedClientsShrink();
 
                     ClientHandler clientHandler = ConnectedClients.Single(x => x.ID == clientID);
-                    clientHandler.ListIndex = ConnectedClients.IndexOf(clientHandler);
 
-                    ConnectedClients.MoveExtended(clientHandler.ListIndex, 0);
-                    SideClients.TakeExceptFirst(ConnectedClients);
-                    SideClients.SortClients();
-
+                    HandleConnectedClientsExpand(clientHandler);
                     HandleClientResize(clientHandler, true);
                 }
             }
         }
 
         /// <summary>
-        /// Sends question identification number to every client.
+        /// 
         /// </summary>
-        /// <param name="questionId"></param>
-        private void SendQuestionIDToClient(int questionId)
+        /// <param name="clientHandler"></param>
+        private void HandleConnectedClientsExpand(ClientHandler clientHandler)
         {
-            if(questionId != default(int))
-            {
-                foreach (var client in ConnectedClients)
-                {
-                    var stream = client.GetDataExchangeStream();
-                    stream.Flush();
-                    stream.WriteByte((byte)questionId);
-                    stream.Flush();
-                }
-            }
+            ConnectedClients.MoveExtended(ConnectedClients.IndexOf(clientHandler), 0);
+            SideClients.TakeExceptFirst(ConnectedClients);
+            SideClients.SortClients();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void HandleConnectedClientsShrink()
+        {
+            ConnectedClients.TakeAll(SideClients);
+            ConnectedClients.SortClients();
         }
 
         #endregion
@@ -584,7 +577,7 @@ namespace RemoteEducationApplication.Views.Server
                         if (ClientNumber > 0 && !HasClients)
                             HasClients = true;
 
-                        SendSleepTimeValue(client.GetClientStream());
+                        ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
                         client.Name = GetUserIdentification(client.GetDataExchangeStream());                    
                     }
                 }
@@ -660,18 +653,6 @@ namespace RemoteEducationApplication.Views.Server
         }
 
         #region DataExchange
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="stream"></param>
-        private void SendSleepTimeValue(NetworkStream stream)
-        {
-            int sleepTimeIndex = ExtensionMethods.GetIndexOfValue<ConnectionHelper.SleepTime>
-                (ConnectionHelper.SleepTime.Moderate);
-            stream.WriteByte((byte)sleepTimeIndex);
-            stream.Flush();
-        }
 
         /// <summary>
         /// 

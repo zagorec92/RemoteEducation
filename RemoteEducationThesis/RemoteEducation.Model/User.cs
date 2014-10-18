@@ -39,7 +39,7 @@ namespace Education.Model
         }
 
         /// <summary>
-        /// 
+        /// Roles
         /// </summary>
         public virtual ICollection<Role> Roles { get; set; }
     }

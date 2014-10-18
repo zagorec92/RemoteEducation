@@ -4,12 +4,12 @@ using System.Windows.Controls;
 
 namespace RemoteEducationApplication.Extensions
 {
-    public static class WebBrowserExtender
+    public static class WebBrowserExtension
     {
         #region Properties
 
         public static readonly DependencyProperty BindableSourceProperty =
-            DependencyProperty.RegisterAttached("BindableSource", typeof(Uri), typeof(WebBrowserExtender),
+            DependencyProperty.RegisterAttached("BindableSource", typeof(Uri), typeof(WebBrowserExtension),
                 new UIPropertyMetadata(null, BindableSourcePropertyChanged));
         
         #endregion

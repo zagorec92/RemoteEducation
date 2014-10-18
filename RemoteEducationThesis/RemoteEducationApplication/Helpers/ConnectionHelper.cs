@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using RemoteEducationApplication.Extensions;
+using System.Net;
 using System.Net.Sockets;
 
 namespace RemoteEducationApplication.Helpers
@@ -40,6 +41,8 @@ namespace RemoteEducationApplication.Helpers
 
         #endregion
 
+        #region Methods
+
         #region GetIPAddress
 
         /// <summary>
@@ -58,6 +61,24 @@ namespace RemoteEducationApplication.Helpers
             return ipAddress;
         }
         
+        #endregion
+
+        #region SendSleepTime
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        public static void SendSleepTimeValue(NetworkStream stream)
+        {
+            int sleepTimeIndex = GeneralExtender.GetIndexOfValue<ConnectionHelper.SleepTime>
+                (ConnectionHelper.SleepTime.Moderate);
+            stream.WriteByte((byte)sleepTimeIndex);
+            stream.Flush();
+        }
+
+        #endregion
+
         #endregion
     }
 }

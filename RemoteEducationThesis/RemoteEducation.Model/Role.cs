@@ -17,7 +17,7 @@ namespace Education.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// 
+        /// Users.
         /// </summary>
         public virtual ICollection<User> Users { get; set; }
     }

@@ -46,7 +46,7 @@ namespace RemoteEducationApplication.Views.Menu
         /// containing the event data.</param>
         private void ScoreList_Loaded(object sender, RoutedEventArgs e)
         {
-            Scores = new ObservableCollection<ScoreLog>(ScoreHelper.GetScoreLogs());
+            //Scores = new ObservableCollection<ScoreLog>(ScoreHelper.GetScoreLogs());
             DataContext = this;
         }
 

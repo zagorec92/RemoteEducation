@@ -11,5 +11,14 @@
     <Setting Name="DefaultTimeout" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="WindowIdentifier" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">WID_001</Value>
+    </Setting>
+    <Setting Name="WindowScoreList" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ScoreList</Value>
+    </Setting>
+    <Setting Name="CurrentThemeName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Dark</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

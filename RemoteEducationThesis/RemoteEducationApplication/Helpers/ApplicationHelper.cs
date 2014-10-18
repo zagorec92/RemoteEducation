@@ -2,6 +2,7 @@
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Views.Login;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using AppResources = RemoteEducationApplication.Properties.Resources;
@@ -10,15 +11,6 @@ namespace RemoteEducationApplication.Helpers
 {
     public abstract class ApplicationHelper : BaseHelper
     {
-        #region Const
-
-        /// <summary>
-        /// Represents theme folder path format string.
-        /// </summary>
-        private const string ThemeFolderPathFormat = "Resources/Style/Theme/{0}.xaml";
-
-        #endregion
-
         #region Struct
 
         /// <summary>
@@ -98,6 +90,7 @@ namespace RemoteEducationApplication.Helpers
 
         #region Methods
 
+        #region Basic Commands
         /// <summary>
         /// Executes given command on the main application window.
         /// </summary>
@@ -126,6 +119,10 @@ namespace RemoteEducationApplication.Helpers
                 window.WindowState = WindowState.Minimized;
         }
 
+        #endregion
+
+        #region Theme
+
         /// <summary>
         /// Chekcs if the given tag is a theme tag.
         /// </summary>
@@ -143,25 +140,7 @@ namespace RemoteEducationApplication.Helpers
             return themes.Contains(tag);
         }
 
-        /// <summary>
-        /// Change the application theme.
-        /// </summary>
-        /// <param name="themeName">
-        /// <para>Theme name.</para>
-        /// <para>Use the <c>ApplicationHelper.ThemeDictionaries</c> structure.</para>
-        /// </param>
-        public static void ChangeTheme(string themeName)
-        {
-            string dictionaryPath = String.Format(ThemeFolderPathFormat, themeName);
-
-            ResourceDictionary resourceDictionary = new ResourceDictionary();
-            resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
-
-            Application.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] 
-                = resourceDictionary;
-
-            App.CurrentThemeName = themeName;
-        }
+        #endregion
 
         #endregion
     }

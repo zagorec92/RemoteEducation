@@ -5,9 +5,11 @@
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                  xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  Style="{StaticResource MainWindowStyle}">
     <base:WindowBase.Resources>
         <c:StatusTextVisibilityConverter x:Key="VisibilityConverter" />
+        <c:WindowTagConverter x:Key="WindowTagConverter" />
     </base:WindowBase.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -70,8 +72,14 @@
                                   Click="SubMenuItem_Click" />
                         <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                   Header="{x:Static global:Resources.OptionsSubMenuScoreList}"
-                                  Tag="{x:Static global:Resources.OptionsSubMenuScoreList}"
-                                  Click="SubMenuItem_Click"/>
+                                  Click="SubMenuItem_Click">
+                            <MenuItem.Tag>
+                                <MultiBinding ConverterParameter="Window" Converter="{StaticResource WindowTagConverter}">
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowScoreList" />
+                                </MultiBinding>
+                            </MenuItem.Tag>
+                        </MenuItem>
                     </MenuItem>
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"

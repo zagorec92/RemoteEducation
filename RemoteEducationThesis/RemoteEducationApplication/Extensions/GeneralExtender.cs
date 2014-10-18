@@ -1,10 +1,7 @@
 ﻿using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.Entity;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -17,7 +14,7 @@ using System.Windows.Media.Imaging;
 
 namespace RemoteEducationApplication.Extensions
 {
-    public static class ExtensionMethods
+    public static class GeneralExtender
     {
         #region Button
 
@@ -89,7 +86,8 @@ namespace RemoteEducationApplication.Extensions
         /// </summary>
         /// <param name="window">The <see cref="System.Windows.Window"/>.</param>
         /// <param name="navigateToWindow">The <see cref="System.Windows.Window"/>.</param>
-        /// <param name="isClosing">Close current window.</param>
+        /// <param name="isClosing">The <see cref="Systm.Bool"/> value indicating if 
+        /// the current window should be closed.</param>
         public static void NavigateTo(this Window window, Window navigateToWindow, bool isClosing)
         {
             if (isClosing)
@@ -99,6 +97,20 @@ namespace RemoteEducationApplication.Extensions
             }
 
             navigateToWindow.Show();
+        }
+
+        /// <summary>
+        /// Navigates to a new <see cref="System.Windows.Window"/> instance.
+        /// </summary>
+        /// <param name="window">The <see cref="System.Windows.Window"/>.</param>
+        /// <param name="windowClassIdentifier">The <see cref="System.String"/> value representing the class name.</param>
+        /// <param name="isClosing">The <see cref="Systm.Bool"/> value indicating if 
+        /// the current window should be closed.</param>
+        /// <remarks>Only used for menu items which open a new window.</remarks>
+        public static void NavigateTo(this Window window, string windowClassIdentifier, bool isClosing)
+        {
+            Type type = Type.GetType(String.Concat("RemoteEducationApplication.Views.Menu.", windowClassIdentifier));
+            window.NavigateTo((Window)Activator.CreateInstance(type), isClosing);
         }
 
         #endregion
@@ -127,7 +139,7 @@ namespace RemoteEducationApplication.Extensions
         }
 
         #endregion
-
+        
         #region Object
 
         #region Convert
@@ -150,11 +162,11 @@ namespace RemoteEducationApplication.Extensions
         #region ExecuteIfNotNull
 
         /// <summary>
-        /// 
+        /// Converts object into given type and executes an action if object is not null.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type to convert into.</typeparam>
+        /// <param name="value">The <see cref="System.Object"/> value.</param>
+        /// <param name="action">The <see cref="System.Action"/> to invoke.</param>
         public static void ExecuteIfNotNull<T>(this object value, Action<T> action)
         {
             T item = To<T>(value);
@@ -236,93 +248,6 @@ namespace RemoteEducationApplication.Extensions
 
         #endregion
 
-        #region ObservableCollection
-
-        #region Generic
-
-        /// <summary>
-        /// Moves item from current index to another.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
-        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
-        /// instance on which move is executed.</param>
-        /// <param name="oldIndex">Current index.</param>
-        /// <param name="newIndex">New index.</param>
-        public static void MoveExtended<T>(this ObservableCollection<T> collection, int oldIndex, int newIndex)
-        {
-            T item = collection[oldIndex];
-            collection.Remove(item);
-            collection.Insert(newIndex, item);
-        }
-
-        /// <summary>
-        /// Removes all items execpt the first one from existing collection and adds thme to another collection.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
-        /// <param name="addCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
-        /// instance in which items will be added.</param>
-        /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
-        /// instance from which items will be removed.</param>
-        public static void TakeExceptFirst<T>(this ObservableCollection<T> addCollection, 
-            ObservableCollection<T> removeCollection)
-        {
-            int length = removeCollection.Count - 1;
-
-            for (int i = length; i > 0; i--)
-            {
-                addCollection.Add(removeCollection[i]);
-                removeCollection.RemoveAt(i);
-            }
-        }
-
-        /// <summary>
-        /// Removes all items from existing collection and adds them to another collection.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="System.Object"/></typeparam>
-        /// <param name="addCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
-        /// instance in which items will be added.</param>
-        /// <param name="removeCollection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> 
-        /// instance from which items will be removed.</param>
-        public static void TakeAll<T>(this ObservableCollection<T> addCollection,
-            ObservableCollection<T> removeCollection)
-        {
-            int length = removeCollection.Count - 1;
-
-            for (int i = length; i > -1; i--)
-            {
-                addCollection.Add(removeCollection[i]);
-                removeCollection.RemoveAt(i);
-            }
-        }
-
-        #endregion
-
-        #region ClientHandler
-
-        /// <summary>
-        /// Sorts the collection which contains clients.
-        /// </summary>
-        /// <typeparam name="T">Type of <see cref="RemoteEducationApplication.Client.ClientHandler"/>.</typeparam>
-        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> instance </param>
-        public static void SortClients(this ObservableCollection<ClientHandler> collection)
-        {
-            for (int i = 1; i < collection.Count; i++)
-            {
-                for (int j = 0; j < collection.Count - i; j++)
-                {
-                    if (collection[j].ID > collection[j + 1].ID)
-                        collection.MoveExtended(j, j + 1);
-
-                    if (j == 0)
-                        collection.MoveExtended(0, 0);
-                }
-            }
-        }
-
-        #endregion
-
-        #endregion
-
         #region ClientHandler
 
         /// <summary>
@@ -370,6 +295,21 @@ namespace RemoteEducationApplication.Extensions
                     return true;
 
             return false;
+        }
+
+        #endregion
+
+        #region String
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="partToRemove"></param>
+        /// <returns></returns>
+        public static string Remove(this string value, string partToRemove)
+        {
+            return value.Remove(value.IndexOf(partToRemove), partToRemove.Length);
         }
 
         #endregion
