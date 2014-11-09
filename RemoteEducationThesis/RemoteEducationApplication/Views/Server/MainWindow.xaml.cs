@@ -73,9 +73,10 @@ namespace RemoteEducationApplication.Views.Server
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ObservableCollection<ClientHandler> SideClients { get; set; }
-
-        //public List<ClientHandler> ClientServerConnections { get; set; }
 
         /// <summary>
         /// Gets or sets the server handler.
@@ -280,18 +281,20 @@ namespace RemoteEducationApplication.Views.Server
             if (menuItem != null)
             {
                 string tag = menuItem.GetTag();
+                string header = menuItem.GetHeader();
 
                 if (tag == ApplicationHelper.CommandTags.Close ||
                     tag == ApplicationHelper.CommandTags.Logoff)
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
                 else if (tag == ApplicationHelper.CommandTags.FullScreen)
-                    HandleFullScreenResize(true);
+                    HandleFullScreenResize(true, menuItem);
                 else if (tag == ApplicationHelper.CommandTags.Question)
                     QuestionHelper.SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers(), ConnectedClients);
                 else if (ApplicationHelper.IsThemeTag(tag))
                     StyleHelper.ChangeTheme(tag);
                 else if (tag.Contains(AppSettings.WindowIdentifier))
-                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false);
+                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false, 
+                        ApplicationHelper.IsSharedMenu(header) ? new object[]{ header } : null);
             }
         }
 

@@ -6,7 +6,7 @@
                  xmlns:ext="clr-namespace:RemoteEducationApplication.Extensions"
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                  Style="{StaticResource ClientWindowStyle}"
-                 MouseLeftButtonDown="ClientWindow_MouseLeftButtonDown">
+                 MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -72,6 +72,6 @@
                     Grid.Row="2" 
                     Visibility="Collapsed" 
                     Height="300" 
-                    Navigated="wb_Navigated"/>
+                    Navigated="WebBrowser_Navigated"/>
     </Grid>
 </base:WindowBase>

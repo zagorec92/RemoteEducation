@@ -74,7 +74,7 @@
                                   Header="{x:Static global:Resources.OptionsSubMenuScoreList}"
                                   Click="SubMenuItem_Click">
                             <MenuItem.Tag>
-                                <MultiBinding ConverterParameter="Window" Converter="{StaticResource WindowTagConverter}">
+                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
                                     <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
                                     <Binding Source="{x:Static global:Settings.Default}" Path="WindowScoreList" />
                                 </MultiBinding>
@@ -84,6 +84,26 @@
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.MenuHelpViewHelp}"
+                                  Click="SubMenuItem_Click">
+                            <MenuItem.Tag>
+                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowHelp" />
+                                </MultiBinding>
+                            </MenuItem.Tag>
+                        </MenuItem>
+                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+                                  Header="{x:Static global:Resources.MenuHelpAbout}"
+                                  Click="SubMenuItem_Click">
+                            <MenuItem.Tag>
+                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
+                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowHelp" />
+                                </MultiBinding>
+                            </MenuItem.Tag>
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
             </Grid>

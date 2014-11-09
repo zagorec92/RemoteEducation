@@ -124,10 +124,10 @@ namespace RemoteEducationApplication.Helpers
         #region Theme
 
         /// <summary>
-        /// Chekcs if the given tag is a theme tag.
+        /// Checks if the given tag is a theme tag.
         /// </summary>
-        /// <param name="tag"></param>
-        /// <returns>True if tthe tag is theme tag, otherwise false.</returns>
+        /// <param name="tag">The <see cref="System.String"/> value representing the tag of the element.</param>
+        /// <returns>True if the tag is theme tag, otherwise false.</returns>
         public static bool IsThemeTag(string tag)
         {
             string[] themes = new string[] 
@@ -138,6 +138,26 @@ namespace RemoteEducationApplication.Helpers
             };
 
             return themes.Contains(tag);
+        }
+
+        #endregion
+
+        #region Menu
+
+        /// <summary>
+        /// Checks if the given header is a shared menu.
+        /// </summary>
+        /// <param name="header">The <see cref="System.String"/> value representing the header of the element.</param>
+        /// <returns></returns>
+        public static bool IsSharedMenu(string header)
+        {
+            string[] sharedMenu = new string[] 
+            {
+                AppResources.MenuHelpViewHelp,
+                AppResources.MenuHelpAbout
+            };
+
+            return sharedMenu.Contains(header);
         }
 
         #endregion

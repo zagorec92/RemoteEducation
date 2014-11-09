@@ -9,6 +9,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login
@@ -153,17 +155,6 @@ namespace RemoteEducationApplication.Views.Login
         void Login_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
-        }
-
-        /// <summary>
-        /// Handles the MouseLeftButtonDown event of the Window control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> instance
-        /// containing the event data.</param>
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
         }
 
         /// <summary>

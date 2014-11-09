@@ -232,7 +232,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log off.
+        ///   Looks up a localized string similar to Log Off.
         /// </summary>
         public static string MenuFileLogoff {
             get {
@@ -246,6 +246,24 @@ namespace RemoteEducationApplication.Properties {
         public static string MenuHelp {
             get {
                 return ResourceManager.GetString("MenuHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string MenuHelpAbout {
+            get {
+                return ResourceManager.GetString("MenuHelpAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Help.
+        /// </summary>
+        public static string MenuHelpViewHelp {
+            get {
+                return ResourceManager.GetString("MenuHelpViewHelp", resourceCulture);
             }
         }
         
@@ -313,7 +331,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show scores.
+        ///   Looks up a localized string similar to Show Scores.
         /// </summary>
         public static string OptionsSubMenuScoreList {
             get {

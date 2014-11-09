@@ -252,4 +252,10 @@
   <data name="SubMenuViewFullScreen" xml:space="preserve">
     <value>Cijeli zaslon</value>
   </data>
+  <data name="MenuHelpAbout" xml:space="preserve">
+    <value>O aplikaciji</value>
+  </data>
+  <data name="MenuHelpViewHelp" xml:space="preserve">
+    <value>Prikaži pomoć</value>
+  </data>
 </root>

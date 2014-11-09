@@ -5,7 +5,7 @@
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                  xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  Style="{StaticResource LoginWindowStyle}"
-                 MouseLeftButtonDown="Window_MouseLeftButtonDown"
+                 MouseLeftButtonDown="WindowBase_MouseLeftButtonDown"
                  KeyDown="Window_KeyDown">
     <base:WindowBase.Triggers>
 		<EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="textBlock">

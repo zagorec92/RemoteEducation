@@ -10,8 +10,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Navigation;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
@@ -55,22 +55,22 @@ namespace RemoteEducationApplication.Views.Client
         #region Properties
 
         /// <summary>
-        /// 
+        /// Gets or sets the client.
         /// </summary>
         protected ClientHandler Client { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the IP address.
         /// </summary>
         protected IPAddress IpAddress { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the sleep time.
         /// </summary>
         public WaitingTime SleepTime { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the connection status.
         /// </summary>
         public string ConnectionStatus
         {
@@ -86,7 +86,7 @@ namespace RemoteEducationApplication.Views.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the process status.
         /// </summary>
         public string ProcessStatus
         {
@@ -102,7 +102,7 @@ namespace RemoteEducationApplication.Views.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the client height.
         /// </summary>
         public double ClientHeight
         {
@@ -118,7 +118,7 @@ namespace RemoteEducationApplication.Views.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the client width.
         /// </summary>
         public double ClientWidth
         {
@@ -134,7 +134,7 @@ namespace RemoteEducationApplication.Views.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the question source.
         /// </summary>
         public Uri QuestionSource
         {
@@ -150,7 +150,7 @@ namespace RemoteEducationApplication.Views.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the value indicating if the question has been answered.
         /// </summary>
         public bool HasAnswered
         {
@@ -170,7 +170,7 @@ namespace RemoteEducationApplication.Views.Client
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="RemoteEducationApplication.View.Client.ClientHandler"/> class.
         /// </summary>
         public ClientWindow()
         {
@@ -185,11 +185,12 @@ namespace RemoteEducationApplication.Views.Client
         #region Window
 
         /// <summary>
-        /// 
+        /// Handles the Loaded event of the ClientWindow control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClientWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance 
+        /// containing the event data.</param>
+        private void ClientWindow_Loaded(object sender, RoutedEventArgs e)
         {
             Initialize();
             DataContext = this;
@@ -197,26 +198,17 @@ namespace RemoteEducationApplication.Views.Client
             Start();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ClientWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
         #endregion
 
         #region WebBrowser
 
         /// <summary>
-        /// 
+        /// Handles the Navigated event of the WebBrowser control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void wb_Navigated(object sender, NavigationEventArgs e)
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.Navigation.NavigationEventArgs"/> 
+        /// instance containing the event data.</param>
+        private void WebBrowser_Navigated(object sender, NavigationEventArgs e)
         {
             WebBrowser webBrowser = sender as WebBrowser;
 
@@ -247,10 +239,11 @@ namespace RemoteEducationApplication.Views.Client
         #region ApplicationBar
 
         /// <summary>
-        /// 
+        /// Handles the AppBarClick event of the ApplicationBar control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
+        /// instance containing the event data.</param>
         private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName);
@@ -265,7 +258,7 @@ namespace RemoteEducationApplication.Views.Client
         #region Initialize
 
         /// <summary>
-        /// 
+        /// Initializes default values.
         /// </summary>
         private void Initialize()
         {
@@ -331,7 +324,7 @@ namespace RemoteEducationApplication.Views.Client
                 var stream = Client.GetClientStream();
                 int waitingLengthIndex = stream.ReadByte();
 
-                SleepTime = GeneralExtender.GetValueByIndex<WaitingTime>(waitingLengthIndex);
+                SleepTime = GeneralExtensions.GetValueByIndex<WaitingTime>(waitingLengthIndex);
                 isConnected = true;
 
                 Client.SendName();

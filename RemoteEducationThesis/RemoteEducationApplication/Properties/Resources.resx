@@ -232,7 +232,7 @@
     <comment>Name of the theme - no translation</comment>
   </data>
   <data name="MenuFileLogoff" xml:space="preserve">
-    <value>Log off</value>
+    <value>Log Off</value>
   </data>
   <data name="ClientStatusDisconnected" xml:space="preserve">
     <value>Client has disconnected...</value>
@@ -241,7 +241,7 @@
     <value>Score</value>
   </data>
   <data name="OptionsSubMenuScoreList" xml:space="preserve">
-    <value>Show scores</value>
+    <value>Show Scores</value>
   </data>
   <data name="MenuWindowScoreListTitle" xml:space="preserve">
     <value>Scores</value>
@@ -251,5 +251,11 @@
   </data>
   <data name="SubMenuViewFullScreen" xml:space="preserve">
     <value>Full screen</value>
+  </data>
+  <data name="MenuHelpAbout" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="MenuHelpViewHelp" xml:space="preserve">
+    <value>View Help</value>
   </data>
 </root>

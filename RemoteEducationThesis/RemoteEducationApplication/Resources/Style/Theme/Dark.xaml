@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!--Background-->
-    <SolidColorBrush x:Key="BackgroundBrush" Color="{Binding Source={StaticResource LightBlackBrush}, Path=Color}" />
+    <SolidColorBrush x:Key="BackgroundBrush" x:Shared="False" Color="{Binding Source={StaticResource LightBlackBrush}, Path=Color}" />
     
     <!--Foreground-->
     <SolidColorBrush x:Key="ForegroundBrush" Color="{Binding Source={StaticResource BetterWhiteBrush}, Path=Color}" />
@@ -23,6 +23,6 @@
     <SolidColorBrush x:Key="SubMenuBackgroundBrush" Color="{Binding Source={StaticResource LightBlackBrush}, Path=Color}" />
 
     <!--button hover-->
-    <SolidColorBrush x:Key="ButtonHoverBrush" Color="{Binding Source={StaticResource MenuHoverBrush}, Path=Color}" />
+    <SolidColorBrush x:Key="ButtonHoverBrush" x:Shared="False" Color="{Binding Source={StaticResource MenuHoverBrush}, Path=Color}" />
 
 </ResourceDictionary>

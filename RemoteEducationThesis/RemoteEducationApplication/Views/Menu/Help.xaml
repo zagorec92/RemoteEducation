@@ -1,0 +1,34 @@
+﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.Menu.Help"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 Style="{StaticResource MainWindowStyle}"
+                 WindowState="Normal"
+                 Height="300" Width="300"
+                 Loaded="Help_Loaded"
+                 MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Grid Background="{DynamicResource BackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+                       Text="{Binding WindowTitle}"/>
+
+            <uc:WindowBar Grid.Column="1" 
+                          ApplicationBarVisibility="Collapsed"
+                          WindowRole="ApplicationBar" 
+                          WindowBarClick="ApplicationBar_AppBarClick"/>
+
+        </Grid>
+    </Grid>
+</base:WindowBase>

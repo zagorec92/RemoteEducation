@@ -20,5 +20,8 @@
     <Setting Name="CurrentThemeName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Dark</Value>
     </Setting>
+    <Setting Name="WindowHelp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Help</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

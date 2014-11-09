@@ -22,4 +22,7 @@
     <SolidColorBrush x:Key="DarkOrangeWin8Brush" Color="#DA532C" />
     <SolidColorBrush x:Key="DarkRedWin8Brush" Color="#B91D47" />
     
+    <!--custom-->
+    <SolidColorBrush x:Key="CustomOrangeWin8Brush" Color="#E18119" />
+
 </ResourceDictionary>

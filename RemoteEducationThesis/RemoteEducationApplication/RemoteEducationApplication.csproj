@@ -101,7 +101,7 @@
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
-    <Compile Include="Extensions\GeneralExtender.cs" />
+    <Compile Include="Extensions\GeneralExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtension.cs" />
     <Compile Include="Extensions\WebBrowserExtension.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
@@ -126,6 +126,9 @@
     <Compile Include="Shared\NativeMethods.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
+    <Compile Include="Views\Menu\Help.xaml.cs">
+      <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ClientMiniControl.xaml.cs">
       <DependentUpon>ClientMiniControl.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\Theme\Classic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\Help.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

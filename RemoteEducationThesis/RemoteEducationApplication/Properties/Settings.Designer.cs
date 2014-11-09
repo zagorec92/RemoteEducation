@@ -79,5 +79,14 @@ namespace RemoteEducationApplication.Properties {
                 this["CurrentThemeName"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Help")]
+        public string WindowHelp {
+            get {
+                return ((string)(this["WindowHelp"]));
+            }
+        }
     }
 }

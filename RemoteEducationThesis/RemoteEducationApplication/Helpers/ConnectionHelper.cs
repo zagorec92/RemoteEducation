@@ -71,7 +71,7 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="stream"></param>
         public static void SendSleepTimeValue(NetworkStream stream)
         {
-            int sleepTimeIndex = GeneralExtender.GetIndexOfValue<ConnectionHelper.SleepTime>
+            int sleepTimeIndex = GeneralExtensions.GetIndexOfValue<ConnectionHelper.SleepTime>
                 (ConnectionHelper.SleepTime.Moderate);
             stream.WriteByte((byte)sleepTimeIndex);
             stream.Flush();
