@@ -19,10 +19,10 @@ namespace Education.DAL.Repositories
         #region Methods
 
         /// <summary>
-        /// Gets the user by first name.
+        /// Gets user by first name.
         /// </summary>
-        /// <param name="username">Username.</param>
-        /// <returns></returns>
+        /// <param name="firstName">The <see cref="System.String"/> value representing first name.</param>
+        /// <returns>The <see cref="Education.Model.User"/> instance if found, null otherwise.</returns>
         public User GetByFirstName(string firstName)
         {
             return base.GetAll()
@@ -30,10 +30,10 @@ namespace Education.DAL.Repositories
         }
 
         /// <summary>
-        /// Gets the user by last name.
+        /// Gets user by last name.
         /// </summary>
-        /// <param name="lastName"></param>
-        /// <returns></returns>
+        /// <param name="lastName">The <see cref="System.String"/> value representing last name.</param>
+        /// <returns>The <see cref="Education.Model.User"/> instance if found, null otherwise.</returns>
         public User GetByLastName(string lastName)
         {
             return base.GetAll()
@@ -41,10 +41,10 @@ namespace Education.DAL.Repositories
         }
 
         /// <summary>
-        /// Gets the user by email.
+        /// Gets user by email.
         /// </summary>
-        /// <param name="email"></param>
-        /// <returns></returns>
+        /// <param name="email">The <see cref="System.String"/> value representing email address</param>
+        /// <returns>The <see cref="Education.Model.User"/> instance if found, null otherwise.</returns>
         public User GetByEmail(string email)
         {
             return base.GetAll()

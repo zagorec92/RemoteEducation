@@ -7,17 +7,17 @@ namespace Education.Model
     public class Role : EntityBase
     {
         /// <summary>
-        /// Name.
+        /// Gets or sets the name.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Description.
+        /// Gets or sets the description.
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Users.
+        /// Gets or sets the users.
         /// </summary>
         public virtual ICollection<User> Users { get; set; }
     }

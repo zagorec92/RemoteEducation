@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
-    <!-- FocusVisual --><!--
+
+    <!-- FocusVisual -->
+    <!--
 
     <Style x:Key="ButtonFocusVisual">
         <Setter Property="Control.Template">
@@ -28,7 +29,7 @@
                 <ControlTemplate TargetType="Button">
                     <Border TextBlock.Foreground="{TemplateBinding Foreground}"
                             x:Name="Border"
-                            Background="{StaticResource BackgroundBrush}">
+                            Background="{DynamicResource BackgroundBrush}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>

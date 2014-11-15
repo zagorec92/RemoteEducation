@@ -35,8 +35,8 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Gets the score based on username.
         /// </summary>
-        /// <param name="username"></param>
-        /// <returns>Total score.</returns>
+        /// <param name="username">The <see cref="System.String"/> value representing username.</param>
+        /// <returns>The <see cref="System.Decimal"/> value.</returns>
         public decimal GetScoreByUsername(string name)
         {
             ScoreLog scoreLog = base.GetAll().
@@ -48,8 +48,10 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Sorts users based on score.
         /// </summary>
-        /// <param name="sortDirection"></param>
-        /// <returns></returns>
+        /// <param name="sortDirection">The <see cref="Education.DAL.Repositories.ScoreLogRepository.SortDirection"/>
+        /// value representing sort direction.</param>
+        /// <typeparam name="T">T is <see cref="Education.Model.User"/>.</typeparam>
+        /// <returns>The <see cref="System.Collections.Generic.IEnumerable{T}"/> collection.</returns>
         public IEnumerable<User> SortUsersByScore(SortDirection sortDirection)
         {
             IEnumerable<User> users = null;
@@ -72,9 +74,9 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Add points to the user.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="points"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="System.Int32"/> value representing score ID.</param>
+        /// <param name="points">The <see cref="System.Decimal"/> value representing points.</param>
+        /// <returns>The <see cref="System.Boolean"/> value indicating if the operation succeded.</returns>
         public bool AddPoints(int id, decimal points)
         {
             ScoreLog scoreLog = base.Get(id);
@@ -86,9 +88,9 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Subtract points from the user.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="points"></param>
-        /// <returns></returns>
+        /// <param name="id">The <see cref="System.Int32"/> value representing score ID.</param>
+        /// <param name="points">The <see cref="System.Decimal"/> value representing points.</param>
+        /// <returns>The <see cref="System.Boolean"/> value indicating if the operation succeded.</returns>
         public bool SubtractPoints(int id, decimal points)
         {
             ScoreLog scoreLog = base.Get(id);

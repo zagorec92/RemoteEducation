@@ -21,7 +21,7 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Creates a new instance of the <see cref="Education.DAL.EEducationDbContext"/> class.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">The<see cref="Education.DAL.EEducationDbContext"/> instance.</param>
         public RepositoryBase(EEducationDbContext context)
         {
             Context = context;
@@ -34,8 +34,8 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// Gets all items from database.
         /// </summary>
-        /// <typeparam name="T">Type derived from <see cref="Education.Model.EntityBase"/> class.</typeparam>
-        /// <returns>The <see cref="System.Linq.IQueryable"/> collection containing instances of type T.</returns>
+        /// <typeparam name="T">T is <see cref="Education.Model.EntityBase"/>.</typeparam>
+        /// <returns>The <see cref="System.Linq.IQueryable{T}"/> collection.</returns>
         public virtual IQueryable<T> GetAll()
         {
             return Context.Set<T>();
@@ -45,8 +45,8 @@ namespace Education.DAL.Repositories
         /// Gets the specified item from database.
         /// </summary>
         /// <param name="id">The <see cref="System.Int32"/> value.</param>
-        /// <typeparam name="T">Type derived from <see cref="Education.Model.EntityBase"/> class.</typeparam>
-        /// <returns>The instance of type T, if found.</returns>
+        /// <typeparam name="T">T is <see cref="Education.Model.EntityBase"/>.</typeparam>
+        /// <returns>T</returns>
         public virtual T Get(int id)
         {
             return Context.Set<T>().Find(id);
@@ -56,7 +56,7 @@ namespace Education.DAL.Repositories
         /// Inserts or updates item in database.
         /// </summary>
         /// <param name="entity">The instance of type T.</param>
-        /// <typeparam name="T">Type derived from <see cref="Education.Model.EntityBase"/> class.</typeparam>
+        /// <typeparam name="T">T is <see cref="Education.Model.EntityBase"/>.</typeparam>
         /// <returns>True if the insert or update operation succeded, false otherwise.</returns>
         public virtual bool InsertOrUpdate(T entity)
         {

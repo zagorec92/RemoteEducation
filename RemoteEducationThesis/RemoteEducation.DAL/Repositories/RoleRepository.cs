@@ -6,6 +6,9 @@ namespace Education.DAL.Repositories
     {
         #region Enum
 
+        /// <summary>
+        /// Role types.
+        /// </summary>
         public enum RoleType
         {
             /// <summary>
@@ -19,7 +22,7 @@ namespace Education.DAL.Repositories
             Student = 2,
 
             /// <summary>
-            /// Proffesor role
+            /// Professor role
             /// </summary>
             Professor = 3
         }

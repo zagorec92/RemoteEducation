@@ -3,12 +3,12 @@
     public class Answer : EntityBase
     {
         /// <summary>
-        /// Content of the answer.
+        /// Gets or sets the content of the answer.
         /// </summary>
         public string Content { get; set; }
 
         /// <summary>
-        /// Score
+        /// Gets or sets the score.
         /// </summary>
         public int Score { get; set; }
     }

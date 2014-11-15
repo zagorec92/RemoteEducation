@@ -14,9 +14,9 @@ namespace Education.DAL.Repositories
             : base(context) { }
 
         /// <summary>
-        /// 
+        /// Gets the last IP address.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The <see cref="Systemm.Net.IPAddress"/> instance if exists, null otherwise.</returns>
         public IPAddress GetLastIPAddress()
         {
             ServerInfo serverInfo = base.GetAll().

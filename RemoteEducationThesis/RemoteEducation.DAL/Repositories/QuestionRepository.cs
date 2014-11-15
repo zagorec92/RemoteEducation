@@ -14,9 +14,9 @@ namespace Education.DAL.Repositories
             : base(context) { }
 
         /// <summary>
-        /// 
+        /// Gets the question with answers.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">The <see cref="System.Int32"/> value representing question ID.</param>
         /// <returns></returns>
         public override Question Get(int id)
         {

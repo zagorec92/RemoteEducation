@@ -10,28 +10,28 @@ namespace Education.Model
     public class User : EntityBase
     {
         /// <summary>
-        /// UserDetails ID.
+        /// Gets or sets user details ID.
         /// </summary>
         [ForeignKey("UserDetail")]
         public int UserDetailsID { get; set; }
 
         /// <summary>
-        /// The <see cref="RemoteEducation.Model.UserDetails"/> instance.
+        /// Gets or sets the user detail.
         /// </summary>
         public virtual UserDetails UserDetail { get; set; }
 
         /// <summary>
-        /// First name.
+        /// Gets or sets the first name.
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Last name.
+        /// Gets or sets the last name.
         /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
-        /// First and last name combined.
+        /// Gets the first and last name combined.
         /// </summary>
         public string FullName 
         {
@@ -39,7 +39,7 @@ namespace Education.Model
         }
 
         /// <summary>
-        /// Roles
+        /// Gets or sets the roles.
         /// </summary>
         public virtual ICollection<Role> Roles { get; set; }
     }

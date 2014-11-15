@@ -1,10 +1,8 @@
-﻿using Education.Model;
-using Education.DAL;
+﻿using Education.DAL;
 using Education.DAL.Repositories;
+using Education.Model;
 using RemoteEducationApplication.Extensions;
 using System;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -49,7 +47,7 @@ namespace RemoteEducationApplication.Authentication
         #region Properties
 
         /// <summary>
-        /// 
+        /// Gets or sets the current user.
         /// </summary>
         public static User LoggedInUser { get; set; }
 
@@ -60,8 +58,8 @@ namespace RemoteEducationApplication.Authentication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="username">Username.</param>
-        /// <param name="password">Password.</param>
+        /// <param name="username">The <see cref="System.String"/> value representing the username.</param>
+        /// <param name="password">The <see cref="System.String"/> value representing the password.</param>
         public static int AuthenticateUser(string email, string password)
         {
             if(email == String.Empty && password == String.Empty)

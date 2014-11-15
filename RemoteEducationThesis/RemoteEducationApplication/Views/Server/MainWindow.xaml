@@ -113,6 +113,13 @@
                                WindowRole="ApplicationBar"/>
 
         </Grid>
+
+        <!--<Button Margin="520, 10, 20, 20"
+                    Grid.Column="1"
+                    Content="{x:Static global:Resources.LoginPageClear}"
+                    Style="{StaticResource ButtonLoginStyle}"
+                    HorizontalAlignment="Left"
+                    CommandParameter="{x:Static global:Resources.LoginPageClear}"/>-->
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

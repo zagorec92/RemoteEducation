@@ -1,10 +1,10 @@
-﻿using System;
+﻿using RemoteEducationApplication.Extensions;
+using System;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
 using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Client
 {
@@ -34,14 +34,8 @@ namespace RemoteEducationApplication.Client
         /// </summary>
         public TcpClient TcpClient
         {
-            get 
-            { 
-                return _tcpClient; 
-            }
-            set
-            {
-                _tcpClient = value;
-            }
+            get { return _tcpClient; }
+            set { _tcpClient = value; }
         }
 
         /// <summary>
@@ -49,18 +43,12 @@ namespace RemoteEducationApplication.Client
         /// </summary>
         public TcpClient TcpClientDataExchange
         {
-            get 
-            {
-                return _tcpClientDataExchange;
-            }
-            set
-            {
-                _tcpClientDataExchange = value;
-            }
+            get { return _tcpClientDataExchange; }
+            set { _tcpClientDataExchange = value; }
         }
 
         /// <summary>
-        /// Port
+        /// Gets or sets the port.
         /// </summary>
         public int ClientPort
         {
@@ -93,12 +81,12 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// Gets or sets the ControlIdentifier.
+        /// Gets or sets the control identifier.
         /// </summary>
         public string ControlIdentifier { get; set; }
 
         /// <summary>
-        /// Gets or sets the Name.
+        /// Gets or sets the name.
         /// </summary>
         public string Name 
         {
@@ -114,17 +102,17 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// Gets or sets the HostName.
+        /// Gets or sets the hostname.
         /// </summary>
         public string HostName { get; set; }
 
         /// <summary>
-        /// Gets or sets the IsClosing.
+        /// Gets or sets the value indicating if the client is closing.
         /// </summary>
         public bool IsClosing { get; set; }
 
         /// <summary>
-        /// Gets or sets the LocalEndPoint.
+        /// Gets or sets the local endpoint.
         /// </summary>
         public EndPoint ClientLocalEndPoint 
         {
@@ -132,7 +120,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// Gets or sets the RemoteEndPoint.
+        /// Gets or sets the remote endpoint.
         /// </summary>
         public EndPoint ClientRemoteEndPoint 
         {
@@ -140,7 +128,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// Gets or sets the DesktopImage.
+        /// Gets or sets the desktop image.
         /// </summary>
         public ImageSource DesktopImage 
         {
@@ -162,12 +150,12 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// Gets or sets the LastUpdate.
+        /// Gets or sets the date of the last update.
         /// </summary>
         public DateTime LastUpdate { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the height.
         /// </summary>
         public double Height
         {
@@ -183,7 +171,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the width.
         /// </summary>
         public double Width
         {
@@ -199,12 +187,12 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the default index.
         /// </summary>
         public int DefaultIndex { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the value indicating if the client is expanded.
         /// </summary>
         public bool IsExpanded 
         {
@@ -220,7 +208,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the value indicating if client has picture.
         /// </summary>
         public bool HasPicture
         {
@@ -236,7 +224,7 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the status message.
         /// </summary>
         public string StatusMessage
         {
@@ -252,12 +240,12 @@ namespace RemoteEducationApplication.Client
         }
 
         /// <summary>
-        /// 
+        /// Gets or sets the list index.
         /// </summary>
         public int ListIndex { get; set; }
 
         /// <summary>
-        /// 
+        /// Gets or sets the total score.
         /// </summary>
         public int TotalScore
         {

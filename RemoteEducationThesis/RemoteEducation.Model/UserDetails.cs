@@ -6,17 +6,17 @@ namespace Education.Model
     public class UserDetails : EntityBase
     {
         /// <summary>
-        /// Password.
+        /// Gets or sets the password.
         /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// Password salt.
+        /// Gets or sets the password salt.
         /// </summary>
         public string PasswordSalt { get; set; }
 
         /// <summary>
-        /// Email.
+        /// Gets or sets the email.
         /// </summary>
         public string Email { get; set; }
     }
