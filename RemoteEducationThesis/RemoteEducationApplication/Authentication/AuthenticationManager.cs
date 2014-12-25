@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using WpfDesktopFramework.Extensions;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -85,7 +86,7 @@ namespace RemoteEducationApplication.Authentication
         /// <summary>
         /// Creates authentication data for the <see cref="Education.Model.User"/> instance.
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">The <see cref="Education.Model.User"/> instance.</param>
         public static void CreateUserAuthentication(User user)
         {
             user.UserDetail.PasswordSalt = GenerateSalt();
@@ -105,10 +106,10 @@ namespace RemoteEducationApplication.Authentication
         /// <summary>
         /// Checks if the given password is equal to the current user password.
         /// </summary>
-        /// <param name="enteredPassword">Entered password.</param>
-        /// <param name="salt">Password salt.</param>
-        /// <param name="userPassword">User password.</param>
-        /// <returns></returns>
+        /// <param name="enteredPassword">The <see cref="System.String"/> value representing entered password.</param>
+        /// <param name="salt">The <see cref="System.String"/> value representing password salt.</param>
+        /// <param name="userPassword">The <see cref="System.String"/> value representing user password.</param>
+        /// <returns>True if passwords match, false otherwise.</returns>
         private static bool CheckPassword(string enteredPassword, string salt, string userPassword)
         {
             byte[] enteredPasswordWithSaltBytes = UTF8Encoding.Default.GetBytes(enteredPassword + salt);
@@ -153,7 +154,11 @@ namespace RemoteEducationApplication.Authentication
             return Convert.ToBase64String(passwordWithSaltHashed);
         }
 
-        ///
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="email"></param>
         public static void RecoverPassword(string username, string email)
         {
 

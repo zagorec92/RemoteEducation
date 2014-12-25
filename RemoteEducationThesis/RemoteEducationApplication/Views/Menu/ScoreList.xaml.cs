@@ -3,7 +3,6 @@ using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Input;
 
 namespace RemoteEducationApplication.Views.Menu
 {

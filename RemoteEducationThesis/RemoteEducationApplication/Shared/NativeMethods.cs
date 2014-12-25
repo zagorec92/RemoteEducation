@@ -10,10 +10,10 @@ namespace RemoteEducationApplication.Shared
         /// </summary>
         internal struct CURSORINFO
         {
-            public int cbSize;
-            public int flags;
-            private IntPtr hCursor;
-            public POINTAPI ptScreenPos;
+            public int _cbSize;
+            public int _flags;
+            private IntPtr _hCursor;
+            public POINTAPI _ptScreenPos;
 
             /// <summary>
             /// Gets the <see cref="IntPtr"/> hCursor.
@@ -21,7 +21,7 @@ namespace RemoteEducationApplication.Shared
             /// <returns></returns>
             public IntPtr GetHCursor()
             {
-                return hCursor;
+                return _hCursor;
             }
         }
 

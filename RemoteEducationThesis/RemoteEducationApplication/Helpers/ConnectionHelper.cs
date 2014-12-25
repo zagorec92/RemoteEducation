@@ -1,6 +1,7 @@
 ﻿using RemoteEducationApplication.Extensions;
 using System.Net;
 using System.Net.Sockets;
+using WpfDesktopFramework.Helpers;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -43,26 +44,6 @@ namespace RemoteEducationApplication.Helpers
 
         #region Methods
 
-        #region GetIPAddress
-
-        /// <summary>
-        /// Gets the local IP address.
-        /// </summary>
-        /// <returns>The <see cref="System.Net.IPAddress"/> instance representing local IP address.</returns>
-        public static IPAddress GetLocalIPAddress()
-        {
-            IPAddress ipAddress = null;
-            IPAddress[] ipAddressList = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
-
-            foreach (IPAddress ip in ipAddressList)
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    ipAddress = ip;
-
-            return ipAddress;
-        }
-        
-        #endregion
-
         #region SendSleepTime
 
         /// <summary>
@@ -71,7 +52,7 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="stream"></param>
         public static void SendSleepTimeValue(NetworkStream stream)
         {
-            int sleepTimeIndex = GeneralExtensions.GetIndexOfValue<ConnectionHelper.SleepTime>
+            int sleepTimeIndex = EnumHelper.GetIndexOfValue<ConnectionHelper.SleepTime>
                 (ConnectionHelper.SleepTime.Moderate);
             stream.WriteByte((byte)sleepTimeIndex);
             stream.Flush();

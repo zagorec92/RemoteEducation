@@ -1,6 +1,5 @@
 ﻿using Education.DAL.Repositories;
 using RemoteEducationApplication.Authentication;
-using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Client;
@@ -9,8 +8,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
+using WpfDesktopFramework.Exceptions;
+using WpfDesktopFramework.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using RemoteEducationApplication.Extensions;
+using WpfDesktopFramework.Extensions;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication.Helpers
@@ -36,7 +37,7 @@ namespace RemoteEducationApplication.Helpers
         }
 
         /// <summary>
-        /// Change the application theme.
+        /// Changes the application theme.
         /// </summary>
         /// <param name="themeName">
         /// <para>Theme name.</para>

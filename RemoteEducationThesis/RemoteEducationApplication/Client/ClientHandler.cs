@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
+using WpfDesktopFramework.Extensions;
 using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
 
 namespace RemoteEducationApplication.Client

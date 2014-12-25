@@ -74,23 +74,9 @@
     <Reference Include="WindowsInput">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
     </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.DataGrid">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.2.2.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="WpfDesktopFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\WpfDesktopFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -108,13 +94,11 @@
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
-    <Compile Include="Helpers\ExceptionHelper.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\QuestionHelper.cs" />
     <Compile Include="Helpers\ScoreHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
-    <Compile Include="Helpers\WebBrowserHelper.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">
       <DependentUpon>Resources.hr-HR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -339,6 +323,8 @@
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\client_connect.png" />
     <Resource Include="Resources\Images\client_upload_picture.png" />
+    <Content Include="Libraries\WpfDesktopFramework.dll" />
+    <Content Include="Libraries\WpfDesktopFramework.pdb" />
     <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,6 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Views.Menu;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +15,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using WpfDesktopFramework.Extensions;
+using WpfDesktopFramework.Network;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Server
@@ -293,8 +294,8 @@ namespace RemoteEducationApplication.Views.Server
                 else if (ApplicationHelper.IsThemeTag(tag))
                     StyleHelper.ChangeTheme(tag);
                 else if (tag.Contains(AppSettings.WindowIdentifier))
-                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false, 
-                        ApplicationHelper.IsSharedMenu(header) ? new object[]{ header } : null);
+                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false,
+                        ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
             }
         }
 
@@ -525,7 +526,7 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         private void Start()
         {
-            IPAddress address = ConnectionHelper.GetLocalIPAddress();
+            IPAddress address = NetworkHelper.GetLocalIPAddress();
 
             ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
             ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));

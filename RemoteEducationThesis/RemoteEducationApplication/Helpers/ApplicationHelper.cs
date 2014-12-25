@@ -6,6 +6,8 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using AppResources = RemoteEducationApplication.Properties.Resources;
+using WpfDesktopFramework.Windows.Helpers;
+using WpfDesktopFramework.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -62,22 +64,6 @@ namespace RemoteEducationApplication.Helpers
         #region BasicAppCommands
 
         /// <summary>
-        /// Closes the application.
-        /// </summary>
-        public static void Close()
-        {
-            Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Minimizes window.
-        /// </summary>
-        public static void Minimize()
-        {
-            Application.Current.MainWindow.WindowState = WindowState.Minimized;
-        }
-
-        /// <summary>
         /// Logs off current user.
         /// </summary>
         public static void Logoff()
@@ -98,9 +84,9 @@ namespace RemoteEducationApplication.Helpers
         public static void ExecuteBasicCommand(string command)
         {
             if (command == CommandTags.Minimize)
-                Minimize();
+                WindowHelper.Minimize();
             else if (command == CommandTags.Close)
-                Close();
+                WindowHelper.Close();
             else if (command == CommandTags.Logoff)
                 Logoff();
         }

@@ -16,6 +16,14 @@ namespace RemoteEducationApplication
     /// </summary>
     public partial class App : Application
     {
+        #region Const
+
+        internal const string MenuWindowPath = "RemoteEducationApplication.Views.Menu.";
+
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Gets or sets the current theme name.
         /// </summary>
@@ -30,6 +38,8 @@ namespace RemoteEducationApplication
                 AppSettings.Default.CurrentThemeName = value;
             }
         }
+
+        #endregion
 
         /// <summary>
         /// Handles Application Startup event. of the Application window.

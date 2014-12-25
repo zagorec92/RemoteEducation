@@ -1,6 +1,5 @@
 ﻿using Education.Model;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System;
@@ -13,6 +12,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
+using WpfDesktopFramework.Controls.WebBrowser;
+using WpfDesktopFramework.Extensions;
+using WpfDesktopFramework.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
@@ -223,7 +225,7 @@ namespace RemoteEducationApplication.Views.Client
                     ClientWidth = ClientSizes.InitialWidth;
 
                     Dictionary<int, String> urlParams =
-                        WebBrowserHelper.GetParsedUrlParameters(urlParameters);
+                        ParamsHelper.GetParsedUrlParameters(urlParameters);
 
                     Client.TotalScore += QuestionHelper.CheckAnswers(urlParams);
                     ScoreHelper.SaveUserScore(Client.TotalScore);
@@ -324,7 +326,7 @@ namespace RemoteEducationApplication.Views.Client
                 var stream = Client.GetClientStream();
                 int waitingLengthIndex = stream.ReadByte();
 
-                SleepTime = GeneralExtensions.GetValueByIndex<WaitingTime>(waitingLengthIndex);
+                SleepTime = EnumHelper.GetValueByIndex<WaitingTime>(waitingLengthIndex);
                 isConnected = true;
 
                 Client.SendName();

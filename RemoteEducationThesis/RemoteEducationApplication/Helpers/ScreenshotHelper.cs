@@ -77,13 +77,13 @@ namespace RemoteEducationApplication.Helpers
                 graphics.CopyFromScreen(0, 0, 0, 0, _bitmap.Size);
 
                 CURSORINFO pci;
-                pci.cbSize = Marshal.SizeOf(typeof(CURSORINFO));
+                pci._cbSize = Marshal.SizeOf(typeof(CURSORINFO));
 
                 if (GetCursorInfo(out pci))
                 {
-                    if (pci.flags == CURSOR_SHOWING)
+                    if (pci._flags == CURSOR_SHOWING)
                     {
-                        DrawIcon(graphics.GetHdc(), pci.ptScreenPos.x, pci.ptScreenPos.y, pci.GetHCursor());
+                        DrawIcon(graphics.GetHdc(), pci._ptScreenPos.x, pci._ptScreenPos.y, pci.GetHCursor());
                         graphics.ReleaseHdc();
                     }
                 }
