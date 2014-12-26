@@ -76,7 +76,7 @@
     </Reference>
     <Reference Include="WpfDesktopFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\WpfDesktopFramework.dll</HintPath>
+      <HintPath>..\..\..\..\Documents\GitHub\RemoteEducationThesis\RemoteEducationThesis\RemoteEducationApplication\Libraries\WpfDesktopFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +94,7 @@
     <Compile Include="Helpers\BaseHelper.cs" />
     <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
     <Compile Include="Helpers\QuestionHelper.cs" />
     <Compile Include="Helpers\ScoreHelper.cs" />
@@ -107,7 +108,6 @@
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Shared\ApplicationBarEventArgs.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
-    <Compile Include="Shared\NativeMethods.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
     <Compile Include="Views\Menu\Help.xaml.cs">
@@ -280,7 +280,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Global\" />
@@ -323,8 +325,8 @@
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\client_connect.png" />
     <Resource Include="Resources\Images\client_upload_picture.png" />
-    <Content Include="Libraries\WpfDesktopFramework.dll" />
-    <Content Include="Libraries\WpfDesktopFramework.pdb" />
+    <Content Include="Libraries\WPFDesktopFramework.dll" />
+    <Content Include="Libraries\WPFDesktopFramework.pdb" />
     <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -56,7 +56,7 @@
             </Grid.RowDefinitions>
             
             <!--first row-->
-            <TextBlock Text="{x:Static global:Resources.LoginPageUsername}" 
+            <TextBlock Text="{x:Static global:Resources.LoginPageUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1" 
                      Text="{Binding Username, Mode=TwoWay}"
@@ -130,20 +130,20 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{x:Static global:Resources.UserDataEmail}" 
+            <TextBlock Text="{x:Static global:Resources.LoginPageUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
-            <TextBox Grid.Column="1" 
-                     Name="tbxEmail"
+            <TextBox Grid.Column="1"
+                     Text="{Binding Username, Mode=TwoWay}"
                      Style="{StaticResource TextBoxLoginStyle}"
                      TextChanged="TextBox_TextChanged" 
                      Width="225"/>
 
             <TextBlock Grid.Row="1" 
-                       Text="{x:Static global:Resources.LoginPageUsername}" 
+                       Text="{x:Static global:Resources.LoginPageFullName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1" 
                      Grid.Row="1"
-                     Name="tbxUsernameRecover"
+                     Text="{Binding FullName, Mode=TwoWay}"
                      Style="{StaticResource TextBoxLoginStyle}"
                      TextChanged="TextBox_TextChanged" 
                      Width="225"/>

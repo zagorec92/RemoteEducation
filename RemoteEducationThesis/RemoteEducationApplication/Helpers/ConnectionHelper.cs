@@ -1,7 +1,5 @@
-﻿using RemoteEducationApplication.Extensions;
-using System.Net;
-using System.Net.Sockets;
-using WpfDesktopFramework.Helpers;
+﻿using System.Net.Sockets;
+using WpfDesktopFramework.Enums.Helpers;
 
 namespace RemoteEducationApplication.Helpers
 {

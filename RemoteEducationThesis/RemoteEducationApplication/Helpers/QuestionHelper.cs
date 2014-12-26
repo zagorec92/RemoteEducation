@@ -3,13 +3,13 @@ using Education.DAL.Repositories;
 using Education.Model;
 using Microsoft.Win32;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {

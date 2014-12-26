@@ -1,17 +1,15 @@
 ﻿using RemoteEducationApplication.Client;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using WpfDesktopFramework.Extensions;
+using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
+using WpfDesktopFramework.Enums.Extensions;
 
 namespace RemoteEducationApplication.Extensions
 {
@@ -29,45 +27,13 @@ namespace RemoteEducationApplication.Extensions
         /// <remarks>Only used for menu items which open a new window.</remarks>
         public static void NavigateTo(this Window window, string windowClassIdentifier, bool isClosing, object[] value)
         {
-            Type type = Type.GetType(String.Concat("RemoteEducationApplication.Views.Menu.", windowClassIdentifier));
+            Type type = Type.GetType(String.Concat(App.MenuWindowPath, windowClassIdentifier));
             window.NavigateTo((Window)Activator.CreateInstance(type, value), isClosing);
         }
 
         #endregion
 
-        #region FrameworkElement
-
-        /// <summary>
-        /// Gets the Tag property of the <see cref="System.Windows.FrameworkElement"/> element as a custom type.
-        /// </summary>
-        /// <typeparam name="T">Type of the return value.</typeparam>
-        /// <param name="frameworkElement">The <see cref="System.Windows.FrameworkElement"/> instance.</param>
-        /// <returns>Tag as a custom type.</returns>
-        public static T GetTag<T>(this FrameworkElement frameworkElement)
-        {
-            return To<T>(frameworkElement.Tag);
-        }
-
-        #endregion
-
         #region Object
-
-        #region Convert
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static T To<T>(this object value)
-        {
-            Type type = typeof(T);
-
-            return (T)Convert.ChangeType(value, type);
-        }
-
-        #endregion
 
         #region ExecuteIfNotNull
 
@@ -79,7 +45,7 @@ namespace RemoteEducationApplication.Extensions
         /// <param name="action">The <see cref="System.Action"/> to invoke.</param>
         public static void ExecuteIfNotNull<T>(this object value, Action<T> action)
         {
-            T item = To<T>(value);
+            T item = GenericExtensions.To<T>(value);
 
             if (item != null)
                 action.Invoke(item);

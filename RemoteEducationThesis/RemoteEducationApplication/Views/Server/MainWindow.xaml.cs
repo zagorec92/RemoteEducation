@@ -15,8 +15,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WpfDesktopFramework.Extensions;
-using WpfDesktopFramework.Network;
+using WpfDesktopFramework.Arrays.Extensions;
+using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Extensions;
+using WpfDesktopFramework.Enums.Extensions;
+using WpfDesktopFramework.Network.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Server

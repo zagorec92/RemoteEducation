@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Extensions
 {

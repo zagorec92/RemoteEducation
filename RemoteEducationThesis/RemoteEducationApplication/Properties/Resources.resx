@@ -151,8 +151,8 @@
   <data name="LoginPageRecovery" xml:space="preserve">
     <value>Forgot password?</value>
   </data>
-  <data name="LoginPageUsername" xml:space="preserve">
-    <value>Username:</value>
+  <data name="LoginPageFullName" xml:space="preserve">
+    <value>Full name:</value>
   </data>
   <data name="MenuFile" xml:space="preserve">
     <value>_File</value>
@@ -257,5 +257,8 @@
   </data>
   <data name="MenuHelpViewHelp" xml:space="preserve">
     <value>View Help</value>
+  </data>
+  <data name="LoginPageUserName" xml:space="preserve">
+    <value>Username:</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Shared;
+using WpfDesktopFramework.Controls.Extensions;
 
 namespace RemoteEducationApplication.Views.UserControls
 {

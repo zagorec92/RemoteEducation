@@ -1,8 +1,7 @@
-﻿using Education.Model;
-using Education.DAL;
+﻿using Education.DAL;
 using Education.DAL.Repositories;
+using Education.Model;
 using System.Net;
-using RemoteEducationApplication.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {

@@ -1,13 +1,11 @@
 ﻿using RemoteEducationApplication.Authentication;
-using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Views.Login;
-using System;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
+using WpfDesktopFramework.App;
+using WpfDesktopFramework.Arrays.Extensions;
+using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.Controls.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
-using WpfDesktopFramework.Windows.Helpers;
-using WpfDesktopFramework.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -86,7 +84,7 @@ namespace RemoteEducationApplication.Helpers
             if (command == CommandTags.Minimize)
                 WindowHelper.Minimize();
             else if (command == CommandTags.Close)
-                WindowHelper.Close();
+                WpfApplication.Close();
             else if (command == CommandTags.Logoff)
                 Logoff();
         }

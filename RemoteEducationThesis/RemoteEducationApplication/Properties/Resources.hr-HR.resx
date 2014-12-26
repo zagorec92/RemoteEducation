@@ -151,8 +151,8 @@
   <data name="LoginPageRecovery" xml:space="preserve">
     <value>Zaboravili ste zaporku?</value>
   </data>
-  <data name="LoginPageUsername" xml:space="preserve">
-    <value>Korisničko ime:</value>
+  <data name="LoginPageFullName" xml:space="preserve">
+    <value>Ime i prezime:</value>
   </data>
   <data name="MenuFile" xml:space="preserve">
     <value>_Datoteka</value>
@@ -257,5 +257,8 @@
   </data>
   <data name="MenuHelpViewHelp" xml:space="preserve">
     <value>Prikaži pomoć</value>
+  </data>
+  <data name="LoginPageUserName" xml:space="preserve">
+    <value>Korisnično ime:</value>
   </data>
 </root>

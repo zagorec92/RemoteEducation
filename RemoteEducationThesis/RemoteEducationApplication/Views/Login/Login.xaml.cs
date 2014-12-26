@@ -8,8 +8,9 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfDesktopFramework.Exceptions;
-using WpfDesktopFramework.Extensions;
+using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.Enums.Extensions;
+using WpfDesktopFramework.Exceptions.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login
@@ -124,6 +125,8 @@ namespace RemoteEducationApplication.Views.Login
             }
         }
 
+        public string FullName { get; set; }
+
         #endregion
 
         #region Constructor
@@ -231,7 +234,7 @@ namespace RemoteEducationApplication.Views.Login
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
         /// instance containing the event data.</param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             CapsLockMessage = String.Empty;
             Button bttn = sender as Button;
@@ -244,11 +247,11 @@ namespace RemoteEducationApplication.Views.Login
                     AuthenticateUser();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
                 {
-                    tbxEmail.Text = String.Empty;
+                    Username = String.Empty;
                     WindowRole = WindowRoles.Login;
                 }
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Recover)
-                    AuthenticationManager.RecoverPassword(tbxUsernameRecover.Text, tbxEmail.Text);
+                    await AuthenticationManager.RecoverPassword(Username, FullName);
             }
         }
 
@@ -266,8 +269,8 @@ namespace RemoteEducationApplication.Views.Login
             try
             {
                 //int roleID = AuthenticationManager.AuthenticateUser
-                  //  (Username, pbxPassword.Password);
-                int roleID = 3;
+                //    (Username, pbxPassword.Password);
+                int roleID = 3; //test
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
                     roleID == RoleRepository.RoleType.Professor.GetValue())

@@ -12,9 +12,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using WpfDesktopFramework.Controls.WebBrowser;
-using WpfDesktopFramework.Extensions;
-using WpfDesktopFramework.Helpers;
+using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.Controls.Helpers;
+using WpfDesktopFramework.Enums.Extensions;
+using WpfDesktopFramework.Enums.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
@@ -225,7 +226,7 @@ namespace RemoteEducationApplication.Views.Client
                     ClientWidth = ClientSizes.InitialWidth;
 
                     Dictionary<int, String> urlParams =
-                        ParamsHelper.GetParsedUrlParameters(urlParameters);
+                        WebBrowserHelper.GetUrlParameters(urlParameters);
 
                     Client.TotalScore += QuestionHelper.CheckAnswers(urlParams);
                     ScoreHelper.SaveUserScore(Client.TotalScore);

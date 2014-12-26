@@ -1,6 +1,6 @@
-﻿using Education.Model;
-using Education.DAL;
+﻿using Education.DAL;
 using Education.DAL.Repositories;
+using Education.Model;
 using RemoteEducationApplication.Authentication;
 using System.Collections.Generic;
 using System.Data.Entity;

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows;
-using RemoteEducationApplication.Extensions;
-using WpfDesktopFramework.Extensions;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
+using WpfDesktopFramework.Enums.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {

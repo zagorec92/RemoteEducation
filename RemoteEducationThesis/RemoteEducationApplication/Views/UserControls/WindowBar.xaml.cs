@@ -3,7 +3,7 @@ using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
-using WpfDesktopFramework.Extensions;
+using WpfDesktopFramework.Controls.Extensions;
 using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
 
 namespace RemoteEducationApplication.Views.UserControls

@@ -1,23 +1,17 @@
-﻿using RemoteEducationApplication.Shared;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows;
+using WpfDesktopFramework.Native;
 
 namespace RemoteEducationApplication.Helpers
 {
-    public class ScreenshotHelper : NativeMethods
+    public class ScreenshotHelper : MouseNative
     {
         #region Fields
         
         private static Bitmap _bitmap;
-
-        #endregion
-
-        #region MousePointer
-
-        private const Int32 CURSOR_SHOWING = 0x00000001;
 
         #endregion
 
@@ -76,14 +70,15 @@ namespace RemoteEducationApplication.Helpers
                 graphics.CompositingQuality = CompositingQuality.HighSpeed;
                 graphics.CopyFromScreen(0, 0, 0, 0, _bitmap.Size);
 
-                CURSORINFO pci;
-                pci._cbSize = Marshal.SizeOf(typeof(CURSORINFO));
+                CURSORINFO pci = new CURSORINFO();
+                pci.SetCbSize(Marshal.SizeOf(typeof(CURSORINFO)));
 
                 if (GetCursorInfo(out pci))
                 {
-                    if (pci._flags == CURSOR_SHOWING)
+                    if (pci.GetFlags() == CURSOR_SHOWING)
                     {
-                        DrawIcon(graphics.GetHdc(), pci._ptScreenPos.x, pci._ptScreenPos.y, pci.GetHCursor());
+                        DrawIcon(graphics.GetHdc(), pci.GetScreenPosXCoord(), 
+                            pci.GetScreenPosYCoord(), pci.GetHCursor());
                         graphics.ReleaseHdc();
                     }
                 }

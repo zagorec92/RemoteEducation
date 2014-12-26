@@ -1,12 +1,13 @@
 ﻿using Education.DAL;
 using Education.DAL.Repositories;
 using Education.Model;
-using RemoteEducationApplication.Extensions;
+using RemoteEducationApplication.Helpers;
 using System;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using WpfDesktopFramework.Extensions;
+using System.Threading.Tasks;
+using WpfDesktopFramework.Arrays.Extensions;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -15,7 +16,7 @@ namespace RemoteEducationApplication.Authentication
         #region Const
 
         private const int BYTE_SIZE_SALT = 16;
-        private const int GEN_PASS_SIZE = 8;
+        private const int GEN_PASS_SIZE = 10;
 
         #endregion
 
@@ -157,11 +158,30 @@ namespace RemoteEducationApplication.Authentication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="username"></param>
         /// <param name="email"></param>
-        public static void RecoverPassword(string username, string email)
+        /// <param name="fullName"></param>
+        /// <returns></returns>
+        public static async Task RecoverPassword(string email, string fullName)
         {
+            using (EEducationDbContext context = new EEducationDbContext())
+            {
+                UserRepository userRepository = new UserRepository(context);
+                User user = userRepository.GetByEmail(email);
 
+                if (user != null && user.FullName.Equals(fullName))
+                {
+                    string password = GetRandomPassword(GEN_PASS_SIZE);
+
+                    user.UserDetail.PasswordSalt = GenerateSalt();
+                    user.UserDetail.Password =
+                        CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
+
+                    await MailHelper.SendMail(password, user.UserDetail.Email);
+
+                    if (userRepository.InsertOrUpdate(user))
+                        userRepository.Save();
+                }
+            }
         }
 
         /// <summary>
@@ -171,17 +191,24 @@ namespace RemoteEducationApplication.Authentication
         /// <returns></returns>
         private static string GetRandomPassword(int size)
         {
-            string generatedPassword = String.Empty;
+            StringBuilder stringBuilder = new StringBuilder();
             char ch;
+            int seed = 5;
             Random random = new Random();
 
             for (int i = 0; i < size; i++)
             {
-                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));                 
-                generatedPassword += ch.ToString();
+                if(i % random.Next(1, seed) == 0)
+                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(10 * random.NextDouble() + 48))); 
+                else if((i + seed) % (random.Next(1, seed)) == 1)
+                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 97))); 
+                else
+                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+
+                stringBuilder.Append(ch);
             }
 
-            return generatedPassword;
+            return stringBuilder.ToString();
         }
 
         #endregion
