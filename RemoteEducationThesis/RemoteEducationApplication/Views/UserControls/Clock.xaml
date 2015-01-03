@@ -1,11 +1,11 @@
-﻿<base:UserControlBase x:Class="RemoteEducationApplication.Views.UserControls.Clock"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                      xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
-                      Style="{StaticResource UserControlClockStyle}">
+﻿<base:WpfUserControl x:Class="RemoteEducationApplication.Views.UserControls.Clock"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                     xmlns:base="clr-namespace:WpfDesktopFramework.App.Base;assembly=WPFDesktopFramework"
+                     Style="{StaticResource UserControlClockStyle}">
     <Grid>
         <TextBlock Text="{Binding Time}" 
                    Style="{StaticResource UserControlClockTextBlock}"/>
     </Grid>
-</base:UserControlBase>
+</base:WpfUserControl>

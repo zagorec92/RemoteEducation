@@ -9,6 +9,13 @@ namespace RemoteEducationApplication.Helpers
     public static class MailHelper
     {
         private const string MailSubject = "EEducation password reset";
+      
+        private struct MailParameters
+        {
+            public static string Username = "#Username";
+            public static string Password = "#Password";
+            public static string RequestDateTime = "#RequestDateTime";
+        }
 
         /// <summary>
         /// 
@@ -26,9 +33,9 @@ namespace RemoteEducationApplication.Helpers
             mailMessage.Subject = MailSubject;
             mailMessage.Body = File.ReadAllText(@"..\..\Resources\Mail\RecoveryMail.html");
 
-            mailMessage.Body = mailMessage.Body.Replace("#Username", userName);
-            mailMessage.Body = mailMessage.Body.Replace("#Password", password);
-            mailMessage.Body = mailMessage.Body.Replace("#RequestDateTime", dateRequested.ToString());
+            mailMessage.Body = mailMessage.Body.Replace(MailParameters.Username, userName);
+            mailMessage.Body = mailMessage.Body.Replace(MailParameters.Password, password);
+            mailMessage.Body = mailMessage.Body.Replace(MailParameters.RequestDateTime, dateRequested.ToString());
 
             mailMessage.IsBodyHtml = true;
 

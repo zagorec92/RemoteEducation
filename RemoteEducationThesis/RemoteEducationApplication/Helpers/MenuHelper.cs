@@ -1,7 +1,7 @@
-﻿using RemoteEducationApplication.Extensions;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {

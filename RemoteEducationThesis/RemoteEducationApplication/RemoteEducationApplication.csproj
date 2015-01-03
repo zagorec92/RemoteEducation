@@ -28,6 +28,11 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,6 +61,7 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -86,6 +92,7 @@
     </ApplicationDefinition>
     <Compile Include="Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
+    <Compile Include="Client\ClientManager.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="Extensions\GeneralExtensions.cs" />
     <Compile Include="Extensions\ObservableCollectionExtension.cs" />
@@ -100,6 +107,7 @@
     <Compile Include="Helpers\ScoreHelper.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
+    <Compile Include="Helpers\SubjectHelper.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">
       <DependentUpon>Resources.hr-HR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -110,8 +118,11 @@
     <Compile Include="Shared\ITcpConnectionBase.cs" />
     <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
-    <Compile Include="Views\Menu\Help.xaml.cs">
+    <Compile Include="Views\Menu\Help\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\Options\SelectQuestions.xaml.cs">
+      <DependentUpon>SelectQuestions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ClientMiniControl.xaml.cs">
       <DependentUpon>ClientMiniControl.xaml</DependentUpon>
@@ -149,11 +160,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Style\Menu\SelectQuestionsMenuStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Style\Theme\Classic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Menu\Help.xaml">
+    <Page Include="Views\Menu\Help\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\Options\SelectQuestions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,7 +345,7 @@
     <Resource Include="Resources\Images\client_connect.png" />
     <Resource Include="Resources\Images\client_upload_picture.png" />
     <Content Include="Libraries\WPFDesktopFramework.dll" />
-    <Content Include="Libraries\WPFDesktopFramework.pdb" />
+    <Resource Include="Libraries\WPFDesktopFramework.XML" />
     <Content Include="Resources\Mail\RecoveryMail.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

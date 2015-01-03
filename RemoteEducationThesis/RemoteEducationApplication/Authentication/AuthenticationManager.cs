@@ -7,7 +7,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDesktopFramework.Arrays.Extensions;
+using WpfDesktopFramework.Collections.Extensions;
+using WpfDesktopFramework.Security;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -80,7 +81,7 @@ namespace RemoteEducationApplication.Authentication
 
                 LoggedInUser = user;
 
-                return user.Roles.First().ID;
+                return user.Roles.FirstOrDefault().ID;
             }
         }
 
@@ -90,11 +91,10 @@ namespace RemoteEducationApplication.Authentication
         /// <param name="user">The <see cref="Education.Model.User"/> instance.</param>
         public static void CreateUserAuthentication(User user)
         {
-            user.UserDetail.PasswordSalt = GenerateSalt();
-            user.UserDetail.Password = CreateSaltedPasswordHash(user.UserDetail.Password,
+            user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
+            user.UserDetail.Password = SecurityManager.CreateSaltedPasswordHash(user.UserDetail.Password,
                 user.UserDetail.PasswordSalt);
 
-            //save
             using (EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
@@ -126,36 +126,6 @@ namespace RemoteEducationApplication.Authentication
         }
 
         /// <summary>
-        /// Generates pseudo-random salt.
-        /// </summary>
-        /// <returns></returns>
-        private static string GenerateSalt()
-        {
-            byte[] bytes = new byte[BYTE_SIZE_SALT];
-
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(bytes);
-
-            return Convert.ToBase64String(bytes);
-        }
-
-        /// <summary>
-        /// Creates hashed password with salt.
-        /// </summary>
-        /// <param name="password"></param>
-        /// <param name="salt"></param>
-        /// <returns></returns>
-        private static string CreateSaltedPasswordHash(string password, string salt)
-        {
-            byte[] passwordAndSaltBytes = UTF8Encoding.Default.GetBytes(password + salt);
-
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] passwordWithSaltHashed = md5.ComputeHash(passwordAndSaltBytes);
-
-            return Convert.ToBase64String(passwordWithSaltHashed);
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="email"></param>
@@ -170,45 +140,18 @@ namespace RemoteEducationApplication.Authentication
 
                 if (user != null && user.FullName.Equals(fullName))
                 {
-                    string password = GetRandomPassword(GEN_PASS_SIZE);
+                    string password = SecurityManager.GetRandomPassword(GEN_PASS_SIZE, 5);
 
-                    user.UserDetail.PasswordSalt = GenerateSalt();
+                    user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
                     user.UserDetail.Password =
-                        CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
+                        SecurityManager.CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
 
                     await MailHelper.SendMail(password, user.UserDetail.Email);
 
                     if (userRepository.InsertOrUpdate(user))
-                        userRepository.Save();
+                        await userRepository.SaveAsync();
                 }
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        private static string GetRandomPassword(int size)
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-            char ch;
-            int seed = 5;
-            Random random = new Random();
-
-            for (int i = 0; i < size; i++)
-            {
-                if(i % random.Next(1, seed) == 0)
-                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(10 * random.NextDouble() + 48))); 
-                else if((i + seed) % (random.Next(1, seed)) == 1)
-                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 97))); 
-                else
-                    ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
-
-                stringBuilder.Append(ch);
-            }
-
-            return stringBuilder.ToString();
         }
 
         #endregion

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
 
 namespace RemoteEducationApplication.Views.UserControls
@@ -50,7 +51,7 @@ namespace RemoteEducationApplication.Views.UserControls
             set 
             { 
                 _applicationBarVisibility = value; 
-                NotifyPropertyChanged("ApplicationBarVisibility"); 
+                OnPropertyChanged("ApplicationBarVisibility"); 
             } 
         }
 
@@ -66,7 +67,7 @@ namespace RemoteEducationApplication.Views.UserControls
             set 
             { 
                 _clientBarVisibility = value; 
-                NotifyPropertyChanged("ClientBarVisibility"); 
+                OnPropertyChanged("ClientBarVisibility"); 
             } 
         }
 
@@ -82,7 +83,7 @@ namespace RemoteEducationApplication.Views.UserControls
             set
             {
                 _minimizeIconVisibility = value;
-                NotifyPropertyChanged("MinimizeIconVisibility");
+                OnPropertyChanged("MinimizeIconVisibility");
             }
         }
 
@@ -98,7 +99,7 @@ namespace RemoteEducationApplication.Views.UserControls
             set
             {
                 SetValue(IsExpandedDependencyProperty, value);
-                NotifyPropertyChanged("IsExpanded");
+                OnPropertyChanged("IsExpanded");
             }
         }
 

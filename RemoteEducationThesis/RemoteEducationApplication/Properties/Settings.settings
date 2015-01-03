@@ -21,7 +21,7 @@
       <Value Profile="(Default)">Dark</Value>
     </Setting>
     <Setting Name="WindowHelp" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Help</Value>
+      <Value Profile="(Default)">Help.Help</Value>
     </Setting>
   </Settings>
 </SettingsFile>

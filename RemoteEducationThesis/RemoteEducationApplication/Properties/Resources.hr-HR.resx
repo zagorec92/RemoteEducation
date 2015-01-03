@@ -261,4 +261,43 @@
   <data name="LoginPageUserName" xml:space="preserve">
     <value>Korisnično ime:</value>
   </data>
+  <data name="SubMenuQuestions" xml:space="preserve">
+    <value>_Pitanja</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
+  <data name="SubMenuQuestionSelect" xml:space="preserve">
+    <value>_Odaberi</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
+  <data name="SubMenuQuestionUpload" xml:space="preserve">
+    <value>_Učitaj</value>
+    <comment>Prefixed with '_' because of the hotkey.</comment>
+  </data>
+  <data name="QuestionSelectSubjectText" xml:space="preserve">
+    <value>Predmet:</value>
+  </data>
+  <data name="QuestionSelectDifficulty" xml:space="preserve">
+    <value>Težina:</value>
+  </data>
+  <data name="QuestionSelectUploadedBy" xml:space="preserve">
+    <value>Učitao:</value>
+  </data>
+  <data name="QuestionSelectFilter" xml:space="preserve">
+    <value>Pronađi</value>
+  </data>
+  <data name="QuestionSelectDifficultyDefault" xml:space="preserve">
+    <value>Svi</value>
+  </data>
+  <data name="QuestionSelectWindowTitle" xml:space="preserve">
+    <value>Odaberi pitanje</value>
+  </data>
+  <data name="QuestionSelectSort" xml:space="preserve">
+    <value>Sortiranje</value>
+  </data>
+  <data name="QuestionSelectSortDateCreated" xml:space="preserve">
+    <value>Kreirano:</value>
+  </data>
+  <data name="QuestionSelectSortTitle" xml:space="preserve">
+    <value>Naslov:</value>
+  </data>
 </root>

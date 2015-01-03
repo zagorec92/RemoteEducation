@@ -4,6 +4,7 @@
 
     <sys:Double x:Key="ExtraTinyFont">6</sys:Double>
     <sys:Double x:Key="TinyFont">8</sys:Double>
+    <sys:Double x:Key="SmallerFont">10</sys:Double>
     <sys:Double x:Key="SmallFont">12</sys:Double>
     <sys:Double x:Key="MediumFont">16</sys:Double>
     <sys:Double x:Key="LargeFont">18</sys:Double>

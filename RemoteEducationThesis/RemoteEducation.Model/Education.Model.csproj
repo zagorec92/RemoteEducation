@@ -11,6 +11,10 @@
     <AssemblyName>Education.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +52,7 @@
     <Compile Include="Role.cs" />
     <Compile Include="ScoreLog.cs" />
     <Compile Include="ServerInfo.cs" />
+    <Compile Include="Subject.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDetails.cs" />
   </ItemGroup>

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Education.Model
 {
@@ -18,7 +15,7 @@ namespace Education.Model
         /// <summary>
         /// Gets or sets the user detail.
         /// </summary>
-        public virtual UserDetails UserDetail { get; set; }
+        public UserDetails UserDetail { get; set; }
 
         /// <summary>
         /// Gets or sets the first name.

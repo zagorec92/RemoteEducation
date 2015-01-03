@@ -2,7 +2,7 @@
 using RemoteEducationApplication.Views.Login;
 using System.Windows;
 using WpfDesktopFramework.App;
-using WpfDesktopFramework.Arrays.Extensions;
+using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.Controls.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
@@ -33,7 +33,8 @@ namespace RemoteEducationApplication.Helpers
             public static string Expand = AppResources.WindowBarExpand;
             public static string Shrink = AppResources.WindowBarShrink;
 
-            public static string Question = AppResources.OptionsSubMenuOpenQuestion;
+            public static string QuestionUpload = AppResources.SubMenuQuestionUpload;
+            public static string QuestionSelect = AppResources.SubMenuQuestionSelect;
             public static string ScoreList = AppResources.OptionsSubMenuScoreList;
         }
 
@@ -67,7 +68,7 @@ namespace RemoteEducationApplication.Helpers
         public static void Logoff()
         {
             AuthenticationManager.LoggedInUser = null;
-            App.Current.MainWindow.NavigateTo(new Login(), true);
+            App.WpfMainWindow.NavigateTo(new Login(), true);
         }
 
         #endregion
@@ -84,7 +85,7 @@ namespace RemoteEducationApplication.Helpers
             if (command == CommandTags.Minimize)
                 WindowHelper.Minimize();
             else if (command == CommandTags.Close)
-                WpfApplication.Close();
+                App.Close();
             else if (command == CommandTags.Logoff)
                 Logoff();
         }

@@ -19,9 +19,9 @@ namespace Education.DAL.Repositories
         /// <returns>The <see cref="Systemm.Net.IPAddress"/> instance if exists, null otherwise.</returns>
         public IPAddress GetLastIPAddress()
         {
-            ServerInfo serverInfo = base.GetAll().
-                OrderByDescending(x => x.DateCreated).
-                FirstOrDefault();
+            ServerInfo serverInfo = base.GetAll()
+                .OrderByDescending(x => x.DateCreated)
+                .FirstOrDefault();
 
             return serverInfo != null ? 
                 IPAddress.Parse(serverInfo.IpAddress) : null;

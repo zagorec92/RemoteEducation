@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Threading;
+using WpfDesktopFramework.App;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication
@@ -14,7 +15,7 @@ namespace RemoteEducationApplication
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : WpfApplication
     {
         #region Const
 
@@ -27,7 +28,7 @@ namespace RemoteEducationApplication
         /// <summary>
         /// Gets or sets the current theme name.
         /// </summary>
-        public static string CurrentThemeName 
+        internal static string CurrentThemeName 
         { 
             get
             {
@@ -37,6 +38,16 @@ namespace RemoteEducationApplication
             {
                 AppSettings.Default.CurrentThemeName = value;
             }
+        }
+
+        #endregion
+
+        #region Constructor
+
+        public App()
+            : base()
+        {
+            ShutdownMode = ShutdownMode.OnExplicitShutdown;
         }
 
         #endregion

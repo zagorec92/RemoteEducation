@@ -36,6 +36,11 @@ namespace Education.DAL
         public DbSet<Question> Questions { get; set; }
 
         /// <summary>
+        /// Gets or sets the Subjects DbSet.
+        /// </summary>
+        public DbSet<Subject> Subjects { get; set; }
+
+        /// <summary>
         /// Gets or sets the Answers DbSet.
         /// </summary>
         public DbSet<Answer> Answers { get; set; }

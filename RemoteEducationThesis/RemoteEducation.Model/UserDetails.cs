@@ -1,7 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-
-namespace Education.Model
+﻿namespace Education.Model
 {
     public class UserDetails : EntityBase
     {

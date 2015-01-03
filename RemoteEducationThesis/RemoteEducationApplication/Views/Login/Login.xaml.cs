@@ -57,7 +57,7 @@ namespace RemoteEducationApplication.Views.Login
             set 
             {
                 _usernameValidationMessage = value;
-                NotifyPropertyChanged("UsernameValidationMessage");
+                OnPropertyChanged("UsernameValidationMessage");
             } 
         }
 
@@ -73,7 +73,7 @@ namespace RemoteEducationApplication.Views.Login
             set
             {
                 _passwordValidationMessage = value;
-                NotifyPropertyChanged("PasswordValidationMessage");
+                OnPropertyChanged("PasswordValidationMessage");
             }
         }
 
@@ -89,7 +89,7 @@ namespace RemoteEducationApplication.Views.Login
             set
             {
                 _capsLockMessage = value;
-                NotifyPropertyChanged("CapsLockMessage");
+                OnPropertyChanged("CapsLockMessage");
             }
         }
 
@@ -105,7 +105,7 @@ namespace RemoteEducationApplication.Views.Login
             set
             {
                 _windowRole = value;
-                NotifyPropertyChanged("WindowRole");
+                OnPropertyChanged("WindowRole");
             }
         }
 
@@ -121,7 +121,7 @@ namespace RemoteEducationApplication.Views.Login
             set
             {
                 _username = value;
-                NotifyPropertyChanged("Username");
+                OnPropertyChanged("Username");
             }
         }
 

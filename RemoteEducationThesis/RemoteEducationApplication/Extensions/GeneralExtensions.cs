@@ -1,14 +1,8 @@
 ﻿using RemoteEducationApplication.Client;
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Net.Sockets;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using WpfDesktopFramework.Controls.Extensions;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WpfDesktopFramework.Enums.Extensions;
 
 namespace RemoteEducationApplication.Extensions
@@ -29,56 +23,6 @@ namespace RemoteEducationApplication.Extensions
         {
             Type type = Type.GetType(String.Concat(App.MenuWindowPath, windowClassIdentifier));
             window.NavigateTo((Window)Activator.CreateInstance(type, value), isClosing);
-        }
-
-        #endregion
-
-        #region Object
-
-        #region ExecuteIfNotNull
-
-        /// <summary>
-        /// Converts object into given type and executes an action if object is not null.
-        /// </summary>
-        /// <typeparam name="T">The type to convert into.</typeparam>
-        /// <param name="value">The <see cref="System.Object"/> value.</param>
-        /// <param name="action">The <see cref="System.Action"/> to invoke.</param>
-        public static void ExecuteIfNotNull<T>(this object value, Action<T> action)
-        {
-            T item = GenericExtensions.To<T>(value);
-
-            if (item != null)
-                action.Invoke(item);
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Bitmap
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bitmap"></param>
-        /// <returns></returns>
-        public static ImageSource GetImageSource(this Bitmap bitmap)
-        {
-            BitmapImage bitmapImage;
-
-            MemoryStream ms = new MemoryStream();
-            bitmap.Save(ms, ImageFormat.Bmp);
-            ms.Seek(0, SeekOrigin.Begin);
-
-            bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-
-            bitmapImage.StreamSource = ms;
-            bitmapImage.CacheOption = BitmapCacheOption.None;
-
-            bitmapImage.EndInit();
-
-            return bitmapImage;
         }
 
         #endregion

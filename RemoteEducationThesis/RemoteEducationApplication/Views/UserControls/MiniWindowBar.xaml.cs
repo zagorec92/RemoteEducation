@@ -3,6 +3,7 @@ using RemoteEducationApplication.Shared;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Views.UserControls
 {

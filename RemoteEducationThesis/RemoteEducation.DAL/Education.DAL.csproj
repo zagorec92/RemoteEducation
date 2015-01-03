@@ -11,6 +11,10 @@
     <AssemblyName>RemoteEducation.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,9 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201409141501211_Initial.cs" />
-    <Compile Include="Migrations\201409141501211_Initial.Designer.cs">
-      <DependentUpon>201409141501211_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201412271407440_QuestionUpdate.cs" />
+    <Compile Include="Migrations\201412271407440_QuestionUpdate.Designer.cs">
+      <DependentUpon>201412271407440_QuestionUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412281027560_Subject.cs" />
+    <Compile Include="Migrations\201412281027560_Subject.Designer.cs">
+      <DependentUpon>201412281027560_Subject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201412281444049_Update.QuestionTitle.cs" />
+    <Compile Include="Migrations\201412281444049_Update.QuestionTitle.Designer.cs">
+      <DependentUpon>201412281444049_Update.QuestionTitle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +72,7 @@
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\ScoreLogRepository.cs" />
     <Compile Include="Repositories\ServerInfoRepository.cs" />
+    <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,8 +86,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409141501211_Initial.resx">
-      <DependentUpon>201409141501211_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201412271407440_QuestionUpdate.resx">
+      <DependentUpon>201412271407440_QuestionUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412281027560_Subject.resx">
+      <DependentUpon>201412281027560_Subject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412281444049_Update.QuestionTitle.resx">
+      <DependentUpon>201412281444049_Update.QuestionTitle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

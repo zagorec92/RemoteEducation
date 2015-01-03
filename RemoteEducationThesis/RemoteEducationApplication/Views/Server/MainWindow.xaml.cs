@@ -3,11 +3,14 @@ using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
+using RemoteEducationApplication.Views.Menu.Options;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -15,8 +18,10 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WpfDesktopFramework.Arrays.Extensions;
+using System.Windows.Media.Imaging;
+using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WpfDesktopFramework.DataTypes.Extensions;
 using WpfDesktopFramework.Enums.Extensions;
 using WpfDesktopFramework.Network.Helpers;
@@ -104,7 +109,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _lastImageUpdate = value;
-                NotifyPropertyChanged("LastImageUpdate");
+                OnPropertyChanged("LastImageUpdate");
             }
         }
 
@@ -120,7 +125,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _lastConnectionUpdate = value;
-                NotifyPropertyChanged("LastConnectionUpdate");
+                OnPropertyChanged("LastConnectionUpdate");
             }
         }
 
@@ -136,7 +141,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _clientNumber = value;
-                NotifyPropertyChanged("ClientNumber");
+                OnPropertyChanged("ClientNumber");
             }
         }
 
@@ -152,7 +157,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _hasClients = value;
-                NotifyPropertyChanged("HasClients");
+                OnPropertyChanged("HasClients");
             }
         }
 
@@ -173,7 +178,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _sideGridWidth = value;
-                NotifyPropertyChanged("SideGridWidth");
+                OnPropertyChanged("SideGridWidth");
             }
         }
 
@@ -189,7 +194,7 @@ namespace RemoteEducationApplication.Views.Server
             set
             {
                 _isFullScreen = value;
-                NotifyPropertyChanged("IsFullScreen");
+                OnPropertyChanged("IsFullScreen");
             }
         }
 
@@ -222,23 +227,24 @@ namespace RemoteEducationApplication.Views.Server
         {
             ConnectedClients = new ObservableCollection<ClientHandler>();
             SideClients = new ObservableCollection<ClientHandler>();
+            ClientManager.Clients = new ObservableCollection<ClientHandler>();
             ClientNumber = GetClientCount();
 
-            for (int i = 0; i < 4; i++)
-            {
-                ClientHandler client = new ClientHandler()
-                {
-                    Name = String.Format("Client {0}", i),
-                    HasPicture = true,
-                    TotalScore = 0,
-                    Height = ClientSizes.InitialHeight,
-                    Width = ClientSizes.InitialWidth,
-                    ID = i
-                };
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    ClientHandler client = new ClientHandler()
+            //    {
+            //        Name = String.Format("Client {0}", i),
+            //        HasPicture = true,
+            //        TotalScore = 0,
+            //        Height = ClientSizes.InitialHeight,
+            //        Width = ClientSizes.InitialWidth,
+            //        ID = i
+            //    };
 
-                //SideClients.Add(client);
-                ConnectedClients.Add(client);
-            }
+            //    //SideClients.Add(client);
+            //    ConnectedClients.Add(client);
+            //}
 
             DataContext = this;
             IsFullScreen = false;
@@ -289,16 +295,30 @@ namespace RemoteEducationApplication.Views.Server
 
                 if (tag == ApplicationHelper.CommandTags.Close ||
                     tag == ApplicationHelper.CommandTags.Logoff)
+                {
                     ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
+                }
                 else if (tag == ApplicationHelper.CommandTags.FullScreen)
+                {
                     HandleFullScreenResize(true, menuItem);
-                else if (tag == ApplicationHelper.CommandTags.Question)
-                    QuestionHelper.SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers(), ConnectedClients);
+                }
+                else if (tag == ApplicationHelper.CommandTags.QuestionUpload)
+                {
+                    QuestionHelper.SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers(), ClientManager.Clients);
+                }
+                else if (tag == ApplicationHelper.CommandTags.QuestionSelect)
+                {
+                    this.NavigateTo(new SelectQuestions(), false, WindowStartupLocation.CenterOwner);
+                }
                 else if (ApplicationHelper.IsThemeTag(tag))
+                {
                     StyleHelper.ChangeTheme(tag);
+                }
                 else if (tag.Contains(AppSettings.WindowIdentifier))
+                {
                     this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false,
-                        ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
+                       ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
+                }
             }
         }
 
@@ -415,6 +435,7 @@ namespace RemoteEducationApplication.Views.Server
             {
                 clientHandler.CloseClient();
                 ConnectedClients.Remove(clientHandler);
+                ClientManager.Clients.Remove(clientHandler);
 
                 if (HasClientExpanded)
                 {
@@ -430,6 +451,7 @@ namespace RemoteEducationApplication.Views.Server
             {
                 clientHandler.CloseClient();
                 SideClients.Remove(clientHandler);
+                ClientManager.Clients.Remove(clientHandler);
             }
 
             ClientNumber = GetClientCount();
@@ -577,7 +599,10 @@ namespace RemoteEducationApplication.Views.Server
                         client.StatusMessage = AppResources.ClientStatusImageWait;
 
                         if (client.TcpClient != null)
+                        {
                             ConnectedClients.Add(client);
+                            ClientManager.Clients.Add(client);
+                        }
 
                         ClientNumber = GetClientCount();
 
@@ -585,7 +610,7 @@ namespace RemoteEducationApplication.Views.Server
                             HasClients = true;
 
                         ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
-                        client.Name = GetUserIdentification(client.GetDataExchangeStream());                    
+                        client.Name = ClientManager.GetUserIdentification(client.GetDataExchangeStream());                    
                     }
                 }
                 else
@@ -611,7 +636,7 @@ namespace RemoteEducationApplication.Views.Server
                         {
                             BinaryFormatter bFormatter = new BinaryFormatter();
                             Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
-                            client.DesktopImage = bitmap.GetImageSource();
+                            client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp, SeekOrigin.Begin, BitmapCacheOption.None);
                         }
                     }
                     catch
@@ -659,24 +684,6 @@ namespace RemoteEducationApplication.Views.Server
             }
         }
 
-        #region DataExchange
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        private string GetUserIdentification(NetworkStream stream)
-        {
-            int length = stream.ReadByte();
-            byte[] buffer = new byte[length];
-
-            stream.Read(buffer, 0, length);
-            return buffer.GetString();
-        }
-
-        #endregion
-
         /// <summary>
         /// Updates the client state and closes the client connection.
         /// </summary>
@@ -696,7 +703,11 @@ namespace RemoteEducationApplication.Views.Server
         /// <param name="clientsToRemove"></param>
         private void HandleDisconnectedClients(List<ClientHandler> clientsToRemove)
         {
-            clientsToRemove.ForEach(x => ConnectedClients.Remove(x));
+            clientsToRemove.ForEach(x =>
+            { 
+                ConnectedClients.Remove(x);
+                ClientManager.Clients.Remove(x);
+            });
             ClientNumber = GetClientCount();
 
             if (ClientNumber < 1 && HasClients)

@@ -84,7 +84,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _connectionStatus = value;
-                NotifyPropertyChanged("ConnectionStatus");
+                OnPropertyChanged("ConnectionStatus");
             }
         }
 
@@ -100,7 +100,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _processStatus = value;
-                NotifyPropertyChanged("ProcessStatus");
+                OnPropertyChanged("ProcessStatus");
             }
         }
 
@@ -116,7 +116,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _clientHeight = value;
-                NotifyPropertyChanged("ClientHeight");
+                OnPropertyChanged("ClientHeight");
             }
         }
 
@@ -132,7 +132,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _clientWidth = value;
-                NotifyPropertyChanged("ClientWidth");
+                OnPropertyChanged("ClientWidth");
             }
         }
 
@@ -148,7 +148,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _questionSource = value;
-                NotifyPropertyChanged("QuestionSource");
+                OnPropertyChanged("QuestionSource");
             }
         }
 
@@ -164,7 +164,7 @@ namespace RemoteEducationApplication.Views.Client
             set
             {
                 _hasAnswered = value;
-                NotifyPropertyChanged("HasAnswered");
+                OnPropertyChanged("HasAnswered");
             }
         }
 

@@ -331,20 +331,92 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Open question.
-        /// </summary>
-        public static string OptionsSubMenuOpenQuestion {
-            get {
-                return ResourceManager.GetString("OptionsSubMenuOpenQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Show Scores.
         /// </summary>
         public static string OptionsSubMenuScoreList {
             get {
                 return ResourceManager.GetString("OptionsSubMenuScoreList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty:.
+        /// </summary>
+        public static string QuestionSelectDifficulty {
+            get {
+                return ResourceManager.GetString("QuestionSelectDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string QuestionSelectDifficultyDefault {
+            get {
+                return ResourceManager.GetString("QuestionSelectDifficultyDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string QuestionSelectFilter {
+            get {
+                return ResourceManager.GetString("QuestionSelectFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        public static string QuestionSelectSort {
+            get {
+                return ResourceManager.GetString("QuestionSelectSort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date created:.
+        /// </summary>
+        public static string QuestionSelectSortDateCreated {
+            get {
+                return ResourceManager.GetString("QuestionSelectSortDateCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title:.
+        /// </summary>
+        public static string QuestionSelectSortTitle {
+            get {
+                return ResourceManager.GetString("QuestionSelectSortTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject:.
+        /// </summary>
+        public static string QuestionSelectSubjectText {
+            get {
+                return ResourceManager.GetString("QuestionSelectSubjectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploaded by:.
+        /// </summary>
+        public static string QuestionSelectUploadedBy {
+            get {
+                return ResourceManager.GetString("QuestionSelectUploadedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Question.
+        /// </summary>
+        public static string QuestionSelectWindowTitle {
+            get {
+                return ResourceManager.GetString("QuestionSelectWindowTitle", resourceCulture);
             }
         }
         
@@ -390,6 +462,33 @@ namespace RemoteEducationApplication.Properties {
         public static string StatusBarLastImageRefresh {
             get {
                 return ResourceManager.GetString("StatusBarLastImageRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Questions.
+        /// </summary>
+        public static string SubMenuQuestions {
+            get {
+                return ResourceManager.GetString("SubMenuQuestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Select.
+        /// </summary>
+        public static string SubMenuQuestionSelect {
+            get {
+                return ResourceManager.GetString("SubMenuQuestionSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Upload.
+        /// </summary>
+        public static string SubMenuQuestionUpload {
+            get {
+                return ResourceManager.GetString("SubMenuQuestionUpload", resourceCulture);
             }
         }
         

@@ -21,8 +21,20 @@ namespace Education.DAL.Repositories
         public override Question Get(int id)
         {
             return base.GetAll()
-                .Include("Answers")
+                .Include(x => x.Answers)
                 .First(x => x.ID == id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="subjectId"></param>
+        /// <returns></returns>
+        public IQueryable<Question> GetBySubject(int subjectId)
+        {
+            return base.GetAll()
+                .Include(x => x.UploadedByUser)
+                .Where(x => x.SubjectID == subjectId);
         }
     }
 }

@@ -1,15 +1,15 @@
-﻿using RemoteEducationApplication.Shared;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Timers;
 using System.Windows;
+using WpfDesktopFramework.App.Base;
 
 namespace RemoteEducationApplication.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for Clock.xaml
     /// </summary>
-    public partial class Clock : UserControlBase, IDisposable
+    public partial class Clock : WpfUserControl, IDisposable
     {
         #region Fields
 
@@ -32,7 +32,7 @@ namespace RemoteEducationApplication.Views.UserControls
             set
             {
                 _time = value;
-                NotifyPropertyChanged("Time");
+                OnPropertyChanged("Time");
             }
         }
 

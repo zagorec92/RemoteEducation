@@ -82,7 +82,7 @@ namespace RemoteEducationApplication.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Help")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Help.Help")]
         public string WindowHelp {
             get {
                 return ((string)(this["WindowHelp"]));

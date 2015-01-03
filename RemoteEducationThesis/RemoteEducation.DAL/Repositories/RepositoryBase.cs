@@ -1,7 +1,11 @@
 ﻿using Education.Model;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Education.DAL.Repositories
 {
@@ -31,6 +35,8 @@ namespace Education.DAL.Repositories
 
         #region Methods
 
+        #region GetAll
+
         /// <summary>
         /// Gets all items from database.
         /// </summary>
@@ -42,6 +48,39 @@ namespace Education.DAL.Repositories
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="include"></param>
+        /// <returns></returns>
+        public virtual IQueryable<T> GetAll(Expression<Func<T, object>> include)
+        {
+            return GetAll().Include(include);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async virtual Task<List<T>> GetAllAsync()
+        {
+            return await GetAll().ToListAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="include"></param>
+        /// <returns></returns>
+        public async virtual Task<List<T>> GetAllAsync(Expression<Func<T, object>> include)
+        {
+            return await GetAll().Include(include).ToListAsync();
+        }
+
+        #endregion
+
+        #region Get
+
+        /// <summary>
         /// Gets the specified item from database.
         /// </summary>
         /// <param name="id">The <see cref="System.Int32"/> value.</param>
@@ -51,6 +90,20 @@ namespace Education.DAL.Repositories
         {
             return Context.Set<T>().Find(id);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async virtual Task<T> GetAsync(int id)
+        {
+            return await Context.Set<T>().FindAsync(id);
+        }
+
+        #endregion
+
+        #region InsertOrUpdate
 
         /// <summary>
         /// Inserts or updates item in database.
@@ -81,6 +134,10 @@ namespace Education.DAL.Repositories
             return true;
         }
 
+        #endregion
+
+        #region Delete
+
         /// <summary>
         /// Deletes specified item from database.
         /// </summary>
@@ -101,6 +158,10 @@ namespace Education.DAL.Repositories
             return true;
         }
 
+        #endregion
+
+        #region Save
+
         /// <summary>
         /// Saves changes.
         /// </summary>
@@ -108,6 +169,54 @@ namespace Education.DAL.Repositories
         {
             Context.SaveChanges();
         }
+
+        /// <summary>
+        /// Saves changes.
+        /// </summary>
+        public virtual int SaveWithCount()
+        {
+            return Context.SaveChanges();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async virtual Task SaveAsync()
+        {
+            await Context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async virtual Task<int> SaveWithCountAsync()
+        {
+            return await Context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async virtual Task SaveAsync(CancellationToken cancellationToken)
+        {
+            await Context.SaveChangesAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async virtual Task<int> SaveWithCountAsync(CancellationToken cancellationToken)
+        {
+            return await Context.SaveChangesAsync(cancellationToken);
+        }
+
+        #endregion
 
         #endregion
     }

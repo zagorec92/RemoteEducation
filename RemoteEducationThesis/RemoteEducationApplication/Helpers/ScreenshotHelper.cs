@@ -73,11 +73,11 @@ namespace RemoteEducationApplication.Helpers
                 CURSORINFO pci = new CURSORINFO();
                 pci.SetCbSize(Marshal.SizeOf(typeof(CURSORINFO)));
 
-                if (GetCursorInfo(out pci))
+                if (NativeMethods.InvokeGetCursorInfo(out pci))
                 {
                     if (pci.GetFlags() == CURSOR_SHOWING)
                     {
-                        DrawIcon(graphics.GetHdc(), pci.GetScreenPosXCoord(), 
+                        NativeMethods.InvokeDrawIcon(graphics.GetHdc(), pci.GetScreenPosXCoord(), 
                             pci.GetScreenPosYCoord(), pci.GetHCursor());
                         graphics.ReleaseHdc();
                     }

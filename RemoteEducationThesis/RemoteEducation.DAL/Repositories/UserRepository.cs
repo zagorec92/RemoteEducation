@@ -1,5 +1,6 @@
 ﻿using Education.Model;
 using System.Linq;
+using System.Data.Entity;
 
 namespace Education.DAL.Repositories
 {
@@ -48,6 +49,7 @@ namespace Education.DAL.Repositories
         public User GetByEmail(string email)
         {
             return base.GetAll()
+                .Include(x => x.UserDetail)
                 .FirstOrDefault(x => x.UserDetail.Email.Equals(email));
         }
 
