@@ -77,8 +77,7 @@ namespace RemoteEducationApplication.Helpers
                 {
                     if (pci.GetFlags() == CURSOR_SHOWING)
                     {
-                        NativeMethods.InvokeDrawIcon(graphics.GetHdc(), pci.GetScreenPosXCoord(), 
-                            pci.GetScreenPosYCoord(), pci.GetHCursor());
+                        NativeMethods.InvokeDrawIcon(graphics.GetHdc(), pci.GetScreenPosXCoord(), pci.GetScreenPosYCoord(), pci.GetHCursor());
                         graphics.ReleaseHdc();
                     }
                 }

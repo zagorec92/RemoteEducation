@@ -39,7 +39,7 @@ namespace RemoteEducationApplication.Helpers
                 ScoreLogRepository scoreLogRepository = new ScoreLogRepository(context);
 
                 return scoreLogRepository.GetAll()
-                    .Include("User")
+                    .Include(x => x.User)
                     .ToList();
             }
         }

@@ -2,15 +2,19 @@
 using Education.DAL.Repositories;
 using Education.Model;
 using RemoteEducationApplication.Client;
+using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WpfDesktopFramework.Enums.Helpers;
@@ -23,6 +27,12 @@ namespace RemoteEducationApplication.Views.Menu.Options
     /// </summary>
     public partial class SelectQuestions : WindowBase
     {
+        #region Fields
+
+        private Visibility _detailsVisibility;
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -48,6 +58,19 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// <summary>
         /// 
         /// </summary>
+        public Visibility DetailsVisibility
+        {
+            get { return _detailsVisibility; }
+            set
+            {
+                _detailsVisibility = value;
+                OnPropertyChanged("DetailsVisibility");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private double Difficulty { get; set; }
 
         /// <summary>
@@ -66,7 +89,6 @@ namespace RemoteEducationApplication.Views.Menu.Options
         {
             InitializeComponent();
             Loaded += SelectQuestions_Loaded;
-            SubjectQuestions = new ObservableCollection<Question>();
         }
 
         #endregion
@@ -80,16 +102,18 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-        private void SelectQuestions_Loaded(object sender, RoutedEventArgs e)
+        private async void SelectQuestions_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Dispatcher.BeginInvoke(new Action(() => 
+            await Task.Run(() =>
             {
                 Subjects = SubjectHelper.GetSubjects();
                 Difficulties = new ObservableCollection<string>();
                 SubjectQuestions = new ObservableCollection<Question>();
-            }));
+            });
 
             UploadedByName = String.Empty;
+            DetailsVisibility = Visibility.Collapsed;
+
             DataContext = this;
         }
 
@@ -122,13 +146,9 @@ namespace RemoteEducationApplication.Views.Menu.Options
             sender.ExecuteIfNotNull<ComboBox>(x => 
             {
                 if(x.GetTag() == AppResources.QuestionSelectDifficulty.Remove(AppResources.QuestionSelectDifficulty.Length - 1))
-                {
                     Difficulty = x.SelectedItem.ToNullable<double>();
-                }
                 else
-                {
-                    PopulateDifficulty(x);
-                }
+                    PopulateSubjectAndDifficulty(((Subject)x.SelectedItem).ID);
             });
 
             Filter();
@@ -179,6 +199,17 @@ namespace RemoteEducationApplication.Views.Menu.Options
             QuestionHelper.SendQuestionIDToClient(QuestionId, ClientManager.Clients);
         }
 
+        /// <summary>
+        /// Handles the Click event of the Button control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void ButtonDetails_Click(object sender, RoutedEventArgs e)
+        {
+            Question question = SubjectQuestions.First(x => x.ID == QuestionId);
+            this.NavigateToChild(new QuestionDetails(question), WindowStartupLocation.CenterOwner);
+        }
+
         #region RadioButton
 
         /// <summary>
@@ -188,7 +219,11 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// <param name="e">The <see cref="System.Window.RoutedEventArgs"/> instance containing the event data.</param>
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            sender.ExecuteIfNotNull<RadioButton>(x => QuestionId = x.GetTag<int>());
+            sender.ExecuteIfNotNull<RadioButton>(x =>
+            {
+                QuestionId = x.GetTag<int>();
+                DetailsVisibility = Visibility.Visible;
+            });
         }
 
         #endregion
@@ -240,10 +275,8 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// 
         /// </summary>
         /// <param name="comboBox"></param>
-        private void PopulateDifficulty(ComboBox comboBox)
+        private void PopulateSubjectAndDifficulty(int subjectId)
         {
-            int subjectId = ((Subject)comboBox.SelectedItem).ID;
-
             using (EEducationDbContext context = new EEducationDbContext())
             {
                 QuestionRepository questionRepository = new QuestionRepository(context);
@@ -252,9 +285,7 @@ namespace RemoteEducationApplication.Views.Menu.Options
                 foreach (Question question in questionRepository.GetBySubject(subjectId))
                 {
                     SubjectQuestions.Add(question);
-
-                    if (!Difficulties.Contains(question.Difficulty.ToString()))
-                        Difficulties.Add(question.Difficulty.ToString());
+                    Difficulties.AddDistinct(question.Difficulty.ToString());
                 }
             }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
@@ -10,7 +9,7 @@ namespace RemoteEducationApplication.Extensions
         #region Properties
 
         public static readonly DependencyProperty BindableSourceProperty =
-            DependencyProperty.RegisterAttached("BindableSource", typeof(Uri), typeof(WebBrowserExtension),
+            DependencyProperty.RegisterAttached("BindableSource", typeof(string), typeof(WebBrowserExtension),
                 new UIPropertyMetadata(null, BindableSourcePropertyChanged));
         
         #endregion
@@ -26,12 +25,7 @@ namespace RemoteEducationApplication.Extensions
         /// instance containing the event data.</param>
         public static void BindableSourcePropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            WebBrowser browser = o as WebBrowser;
-            if (browser != null)
-            {
-                Uri uri = e.NewValue as Uri;
-                browser.Source = uri;
-            }
+            o.ExecuteIfNotNull<WebBrowser>(x => x.NavigateToString(e.NewValue.ToString()));
         }
 
         #endregion
@@ -45,7 +39,7 @@ namespace RemoteEducationApplication.Extensions
         /// <returns></returns>
         public static string GetBindableSource(DependencyObject obj)
         {
-            return obj.GetValue(BindableSourceProperty).To<string>();
+            return obj.GetValue(BindableSourceProperty).ToString();
         }
 
         /// <summary>

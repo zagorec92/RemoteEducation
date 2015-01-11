@@ -308,7 +308,7 @@ namespace RemoteEducationApplication.Views.Server
                 }
                 else if (tag == ApplicationHelper.CommandTags.QuestionSelect)
                 {
-                    this.NavigateTo(new SelectQuestions(), false, WindowStartupLocation.CenterOwner);
+                    this.NavigateTo(new SelectQuestions(), false, WindowStartupLocation.CenterScreen);
                 }
                 else if (ApplicationHelper.IsThemeTag(tag))
                 {

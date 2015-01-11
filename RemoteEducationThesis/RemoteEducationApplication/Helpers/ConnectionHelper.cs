@@ -50,8 +50,7 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="stream"></param>
         public static void SendSleepTimeValue(NetworkStream stream)
         {
-            int sleepTimeIndex = EnumHelper.GetIndexOfValue<ConnectionHelper.SleepTime>
-                (ConnectionHelper.SleepTime.Moderate);
+            int sleepTimeIndex = EnumHelper.GetIndexOfValue(ConnectionHelper.SleepTime.Moderate);
             stream.WriteByte((byte)sleepTimeIndex);
             stream.Flush();
         }

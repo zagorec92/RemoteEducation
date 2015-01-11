@@ -47,11 +47,11 @@ namespace RemoteEducationApplication.Views.Client
 
         private string _connectionStatus;
         private string _processStatus;
+        private string _questionSource;
 
         private double _clientHeight;
         private double _clientWidth;
 
-        private Uri _questionSource;
 
         #endregion
 
@@ -139,7 +139,7 @@ namespace RemoteEducationApplication.Views.Client
         /// <summary>
         /// Gets or sets the question source.
         /// </summary>
-        public Uri QuestionSource
+        public string QuestionSource
         {
             get
             {
@@ -406,7 +406,7 @@ namespace RemoteEducationApplication.Views.Client
                         Question question = QuestionHelper.GetQuestion(id);
                         ClientHeight = ClientSizes.QuestionHeight;
                         ClientWidth = ClientSizes.QuestionWidth;
-                        QuestionSource = QuestionHelper.GetQuestionContentUri(question.Content);
+                        QuestionSource = question.Content;
                         HasAnswered = false;
                     }
                     else if (HasAnswered)

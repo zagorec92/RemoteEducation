@@ -34,7 +34,7 @@ namespace RemoteEducationApplication.Converters
 
                     if (visibility.Value == Visibility.Visible)
                     {
-                        bool isExpanded = bool.Parse(values.Last().ToString());
+                        bool isExpanded = values.Last().ToString().To<bool>();
 
                         if (callingObjectCommandName == ApplicationHelper.CommandTags.Expand)
                             retVal = isExpanded ? Visibility.Hidden : Visibility.Visible;

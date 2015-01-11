@@ -110,7 +110,7 @@ namespace RemoteEducationApplication.Helpers
         /// Saves answers in database.
         /// </summary>
         /// <typeparam name="T">Type derived from <see cref="Education.Model.Answer"/> class.</typeparam>
-        /// <param name="answers">The <see cref="System.Collections.Generic.ICollection"/> collection containing
+        /// <param name="answers">The <see cref="System.Collections.Generic.ICollection{T}"/> collection containing
         /// instances of type T.</param>
         private static void SaveAnswers(ICollection<Answer> answers)
         {
@@ -204,18 +204,6 @@ namespace RemoteEducationApplication.Helpers
             }
 
             return answers;
-        }
-
-        /// <summary>
-        /// Saves the content to a file on disk and returns a path to the file.
-        /// </summary>
-        /// <param name="htmlContent"></param>
-        /// <returns></returns>
-        public static Uri GetQuestionContentUri(string htmlContent)
-        {
-            string filePath = @"C:\Users\" + Environment.UserName + @"\AppData\LocalLow\Temp\question.htm";
-            File.WriteAllText(filePath, htmlContent);
-            return new Uri(filePath);
         }
 
         /// <summary>

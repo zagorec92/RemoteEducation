@@ -12,7 +12,7 @@ namespace RemoteEducationApplication.Extensions
         /// Sorts the collection which contains clients.
         /// </summary>
         /// <typeparam name="T">Type of <see cref="RemoteEducationApplication.Client.ClientHandler"/>.</typeparam>
-        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection"/> instance </param>
+        /// <param name="collection">The <see cref="System.Collections.ObjectModel.ObservableCollection{T}"/> instance.</param>
         public static void SortClients(this ObservableCollection<ClientHandler> collection)
         {
             for (int i = 1; i < collection.Count; i++)

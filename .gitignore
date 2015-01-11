@@ -177,5 +177,8 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 # Custom
-App.config 
- 
+App.config 
+RemoteEducationThesis/RemoteEducation.DAL/Migrations/
+RemoteEducationThesis/RemoteEducationApplication/Libraries/
+*.sln
+*.ide

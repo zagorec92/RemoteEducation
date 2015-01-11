@@ -340,6 +340,69 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Answers:.
+        /// </summary>
+        public static string QuestionDetailsAnswers {
+            get {
+                return ResourceManager.GetString("QuestionDetailsAnswers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty:.
+        /// </summary>
+        public static string QuestionDetailsDifficulty {
+            get {
+                return ResourceManager.GetString("QuestionDetailsDifficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject:.
+        /// </summary>
+        public static string QuestionDetailsSubject {
+            get {
+                return ResourceManager.GetString("QuestionDetailsSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title:.
+        /// </summary>
+        public static string QuestionDetailsTitle {
+            get {
+                return ResourceManager.GetString("QuestionDetailsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploaded by:.
+        /// </summary>
+        public static string QuestionDetailsUploadedBy {
+            get {
+                return ResourceManager.GetString("QuestionDetailsUploadedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Question details.
+        /// </summary>
+        public static string QuestionDetailsWindowTitle {
+            get {
+                return ResourceManager.GetString("QuestionDetailsWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string QuestionSelectDetails {
+            get {
+                return ResourceManager.GetString("QuestionSelectDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty:.
         /// </summary>
         public static string QuestionSelectDifficulty {
@@ -358,11 +421,29 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string QuestionSelectEdit {
+            get {
+                return ResourceManager.GetString("QuestionSelectEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string QuestionSelectFilter {
             get {
                 return ResourceManager.GetString("QuestionSelectFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string QuestionSelectSend {
+            get {
+                return ResourceManager.GetString("QuestionSelectSend", resourceCulture);
             }
         }
         
@@ -381,6 +462,15 @@ namespace RemoteEducationApplication.Properties {
         public static string QuestionSelectSortDateCreated {
             get {
                 return ResourceManager.GetString("QuestionSelectSortDateCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploaded by:.
+        /// </summary>
+        public static string QuestionSelectSortName {
+            get {
+                return ResourceManager.GetString("QuestionSelectSortName", resourceCulture);
             }
         }
         
@@ -412,7 +502,7 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Question.
+        ///   Looks up a localized string similar to Select question.
         /// </summary>
         public static string QuestionSelectWindowTitle {
             get {

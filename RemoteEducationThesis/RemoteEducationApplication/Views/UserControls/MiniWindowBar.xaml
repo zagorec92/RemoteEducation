@@ -1,8 +1,8 @@
-﻿<base:UserControlBase x:Class="RemoteEducationApplication.Views.UserControls.MiniWindowBar"
+﻿<base:WpfUserControl x:Class="RemoteEducationApplication.Views.UserControls.MiniWindowBar"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                      xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                      xmlns:base="clr-namespace:WpfDesktopFramework.App.Base;assembly=WPFDesktopFramework"
                       xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                       Style="{StaticResource MiniWindowBarUserControlStyle}">
@@ -33,4 +33,4 @@
             </Rectangle.OpacityMask>
         </Rectangle>
     </Grid>
-</base:UserControlBase>
+</base:WpfUserControl>

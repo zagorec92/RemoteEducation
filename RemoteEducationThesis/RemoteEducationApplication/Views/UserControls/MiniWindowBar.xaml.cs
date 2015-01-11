@@ -1,7 +1,7 @@
-﻿using RemoteEducationApplication.Extensions;
-using RemoteEducationApplication.Shared;
+﻿using RemoteEducationApplication.Shared;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using WpfDesktopFramework.App.Base;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.DataTypes.Converters.Extensions;
 
@@ -10,7 +10,7 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for MiniWindowBar.xaml
     /// </summary>
-    public partial class MiniWindowBar : UserControlBase
+    public partial class MiniWindowBar : WpfUserControl
     {
         #region Constructor
 

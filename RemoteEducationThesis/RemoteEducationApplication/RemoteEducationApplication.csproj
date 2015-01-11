@@ -56,10 +56,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
@@ -116,10 +117,12 @@
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Shared\ApplicationBarEventArgs.cs" />
     <Compile Include="Shared\ITcpConnectionBase.cs" />
-    <Compile Include="Shared\UserControlBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
     <Compile Include="Views\Menu\Help\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\Options\QuestionDetails.xaml.cs">
+      <DependentUpon>QuestionDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu\Options\SelectQuestions.xaml.cs">
       <DependentUpon>SelectQuestions.xaml</DependentUpon>
@@ -164,11 +167,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Style\Shared\QuestionDetailsWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Style\Theme\Classic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menu\Help\Help.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\Options\QuestionDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

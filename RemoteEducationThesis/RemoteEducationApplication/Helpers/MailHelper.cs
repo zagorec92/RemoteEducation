@@ -8,14 +8,24 @@ namespace RemoteEducationApplication.Helpers
 {
     public static class MailHelper
     {
+        #region Const
+
         private const string MailSubject = "EEducation password reset";
-      
+
+        #endregion
+
+        #region Struct
+
         private struct MailParameters
         {
             public static string Username = "#Username";
             public static string Password = "#Password";
             public static string RequestDateTime = "#RequestDateTime";
         }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// 
@@ -59,5 +69,7 @@ namespace RemoteEducationApplication.Helpers
 
             await smtpClient.SendMailAsync(mailMessage);
         }
+
+        #endregion
     }
 }

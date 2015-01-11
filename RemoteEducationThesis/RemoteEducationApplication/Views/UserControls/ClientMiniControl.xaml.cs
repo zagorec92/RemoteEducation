@@ -1,5 +1,6 @@
 ﻿using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Shared;
+using WpfDesktopFramework.App.Base;
 using WpfDesktopFramework.Controls.Extensions;
 
 namespace RemoteEducationApplication.Views.UserControls
@@ -7,7 +8,7 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for ClientMiniWindow.xaml
     /// </summary>
-    public partial class ClientMiniControl : UserControlBase
+    public partial class ClientMiniControl : WpfUserControl
     {
         #region Constructor
 

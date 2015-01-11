@@ -141,18 +141,23 @@
   </data>
   <data name="LoginPageClear" xml:space="preserve">
     <value>Obriši</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageLogin" xml:space="preserve">
     <value>Prijavi se</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPagePassword" xml:space="preserve">
     <value>Zaporka:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageRecovery" xml:space="preserve">
     <value>Zaboravili ste zaporku?</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageFullName" xml:space="preserve">
     <value>Ime i prezime:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="MenuFile" xml:space="preserve">
     <value>_Datoteka</value>
@@ -212,9 +217,11 @@
   </data>
   <data name="LoginPageLoginTitle" xml:space="preserve">
     <value>PRIJAVA</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageRecoveryTitle" xml:space="preserve">
     <value>NOVA ZAPORKA</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="SubMenuViewTheme" xml:space="preserve">
     <value>Tema</value>
@@ -260,6 +267,7 @@
   </data>
   <data name="LoginPageUserName" xml:space="preserve">
     <value>Korisnično ime:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="SubMenuQuestions" xml:space="preserve">
     <value>_Pitanja</value>
@@ -275,29 +283,78 @@
   </data>
   <data name="QuestionSelectSubjectText" xml:space="preserve">
     <value>Predmet:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectDifficulty" xml:space="preserve">
     <value>Težina:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectUploadedBy" xml:space="preserve">
     <value>Učitao:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectFilter" xml:space="preserve">
     <value>Pronađi</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectDifficultyDefault" xml:space="preserve">
     <value>Svi</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectWindowTitle" xml:space="preserve">
     <value>Odaberi pitanje</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSort" xml:space="preserve">
     <value>Sortiranje</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSortDateCreated" xml:space="preserve">
     <value>Kreirano:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSortTitle" xml:space="preserve">
     <value>Naslov:</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionSelectSend" xml:space="preserve">
+    <value>Pošalji</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionSelectSortName" xml:space="preserve">
+    <value>Učitao:</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionDetailsWindowTitle" xml:space="preserve">
+    <value>Detalji pitanja</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionSelectDetails" xml:space="preserve">
+    <value>Detalji</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionDetailsAnswers" xml:space="preserve">
+    <value>Odgovori:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsDifficulty" xml:space="preserve">
+    <value>Težina:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsSubject" xml:space="preserve">
+    <value>Predmet:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsTitle" xml:space="preserve">
+    <value>Naslov:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsUploadedBy" xml:space="preserve">
+    <value>Učitao:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionSelectEdit" xml:space="preserve">
+    <value>Promijeni</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
 </root>

@@ -34,6 +34,8 @@ namespace Education.DAL.Repositories
         {
             return base.GetAll()
                 .Include(x => x.UploadedByUser)
+                .Include(x => x.Answers)
+                .Include(x => x.Subject)
                 .Where(x => x.SubjectID == subjectId);
         }
     }

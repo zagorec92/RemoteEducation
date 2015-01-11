@@ -141,18 +141,23 @@
   </data>
   <data name="LoginPageClear" xml:space="preserve">
     <value>Clear</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageLogin" xml:space="preserve">
     <value>Login</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPagePassword" xml:space="preserve">
     <value>Password:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageRecovery" xml:space="preserve">
     <value>Forgot password?</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageFullName" xml:space="preserve">
     <value>Full name:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="MenuFile" xml:space="preserve">
     <value>_File</value>
@@ -208,9 +213,11 @@
   </data>
   <data name="LoginPageLoginTitle" xml:space="preserve">
     <value>LOGIN</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="LoginPageRecoveryTitle" xml:space="preserve">
     <value>RECOVERY</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="SubMenuViewTheme" xml:space="preserve">
     <value>Theme</value>
@@ -256,6 +263,7 @@
   </data>
   <data name="LoginPageUserName" xml:space="preserve">
     <value>Username:</value>
+    <comment>Login.xaml</comment>
   </data>
   <data name="SubMenuQuestions" xml:space="preserve">
     <value>_Questions</value>
@@ -271,29 +279,78 @@
   </data>
   <data name="QuestionSelectSubjectText" xml:space="preserve">
     <value>Subject:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectDifficulty" xml:space="preserve">
     <value>Difficulty:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectUploadedBy" xml:space="preserve">
     <value>Uploaded by:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectFilter" xml:space="preserve">
     <value>Filter</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectDifficultyDefault" xml:space="preserve">
     <value>All</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectWindowTitle" xml:space="preserve">
-    <value>Select Question</value>
+    <value>Select question</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSort" xml:space="preserve">
     <value>Sort</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSortDateCreated" xml:space="preserve">
     <value>Date created:</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="QuestionSelectSortTitle" xml:space="preserve">
     <value>Title:</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionSelectSend" xml:space="preserve">
+    <value>Send</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionSelectSortName" xml:space="preserve">
+    <value>Uploaded by:</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionDetailsWindowTitle" xml:space="preserve">
+    <value>Question details</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionSelectDetails" xml:space="preserve">
+    <value>Details</value>
+    <comment>SelectQuestions.xaml</comment>
+  </data>
+  <data name="QuestionDetailsAnswers" xml:space="preserve">
+    <value>Answers:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsDifficulty" xml:space="preserve">
+    <value>Difficulty:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsSubject" xml:space="preserve">
+    <value>Subject:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsTitle" xml:space="preserve">
+    <value>Title:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionDetailsUploadedBy" xml:space="preserve">
+    <value>Uploaded by:</value>
+    <comment>QuestionDetails.xaml</comment>
+  </data>
+  <data name="QuestionSelectEdit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>SelectQuestions.xaml</comment>
   </data>
 </root>

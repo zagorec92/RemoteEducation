@@ -2,11 +2,14 @@
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"                 
                  xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:ext="clr-namespace:RemoteEducationApplication.Extensions"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                  xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
                  WindowState="Normal"
                  Style="{StaticResource MainWindowStyle}"
-                 Title="SelectQuestions" Height="550" Width="675"
+                 Title="SelectQuestions" 
+                 MaxHeight="640" 
+                 Width="725"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
 
     <!-- resources -->
@@ -48,7 +51,7 @@
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="92"/>
+                <ColumnDefinition Width="85"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -63,28 +66,44 @@
                       SelectionChanged="ComboBox_Filter_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"
-                                   Background="{StaticResource BetterWhiteBrush}"/>
+                        <TextBlock Text="{Binding Name}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
             <!-- second row -->
-            <GroupBox Grid.Row="1"
+            <Grid Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  Margin="0, 0, 0, 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" 
+                        BorderBrush="{StaticResource DarkenWin8Brush}" 
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2">
+                    <Viewbox Stretch="Fill" />
+                </Border>
+                <Label Content="{x:Static global:Resources.QuestionSelectFilter}"
+                       VerticalAlignment="Top"
+                       VerticalContentAlignment="Center"
+                       Background="{StaticResource BetterWhiteBrush}"
+                       Margin="8, -8, 8, 0"
+                       FontSize="14"
+                       Padding="2, 0, 2, 0"/>
+                <Grid  Grid.Row="1"
                       Grid.ColumnSpan="2"
-                      BorderBrush="{StaticResource DarkenWin8Brush}"
-                      BorderThickness="1">
-                <GroupBox.Header>
-                    <TextBlock Text="{x:Static global:Resources.QuestionSelectFilter}"
-                               Style="{StaticResource SelectQuestionsGroupBoxHeader}"/>
-                </GroupBox.Header>
-                <Grid>
+                      VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="85"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="Auto"/>
-                        <!--<ColumnDefinition />-->
                     </Grid.ColumnDefinitions>
 
                     <!-- difficulty -->
@@ -106,56 +125,82 @@
                          HorizontalAlignment="Right"
                          Padding="0, 0, -25, -26"
                          TextChanged="TextBox_TextChanged"/>
-
-                    <!-- filter -->
-                    <!--<Button Grid.Row="1"
-                        Grid.Column="4"
-                        Content="{x:Static global:Resources.QuestionSelectFilter}"
-                        Style="{StaticResource SelectQuestionsButtonStyle}"
-                        HorizontalAlignment="Right"
-                        Width="90"
-                        Click="Button_Click"/>-->
                 </Grid>
-            </GroupBox>
+            </Grid>
 
             <!-- third row -->
-            <GroupBox Grid.Row="2"
+            <Grid Grid.Row="2"
+                  Grid.ColumnSpan="2"
+                  Margin="0, 5, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border BorderThickness="1" 
+                        BorderBrush="{StaticResource DarkenWin8Brush}" 
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2">
+                    <Viewbox Stretch="Fill" />
+                </Border>
+                <Label Content="{x:Static global:Resources.QuestionSelectSort}"
+                       VerticalAlignment="Top"
+                       VerticalContentAlignment="Center"
+                       Background="{StaticResource BetterWhiteBrush}"
+                       Margin="8, -8, 8, 0"
+                       FontSize="14"
+                       Padding="2, 0, 2, 0"/>
+
+                <Grid Grid.Row="1"
                       Grid.ColumnSpan="2"
-                      BorderBrush="{StaticResource DarkenWin8Brush}"
-                      BorderThickness="1">
-                <GroupBox.Header>
-                    <TextBlock Text="{x:Static global:Resources.QuestionSelectSort}" 
-                               Style="{StaticResource SelectQuestionsGroupBoxHeader}"/>
-                </GroupBox.Header>
-                <Grid>
+                      VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
-                           Text="{x:Static global:Resources.QuestionSelectSortTitle}"/>
-                    <ComboBox Grid.Column="1"
-                          Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
-                          Tag="Title"
-                          Margin="0, 0, 0, 0"
-                          SelectionChanged="ComboBox_Sort_SelectionChanged">
+                               Text="{x:Static global:Resources.QuestionSelectSortTitle}"/>
+                    <ComboBox Grid.Column="1" 
+                              Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
+                              Tag="Title"
+                              Margin="0, 0, 0, 0"
+                              SelectionChanged="ComboBox_Sort_SelectionChanged">
                         <ComboBoxItem Content="Asc"
-                                  Tag="Ascending"/>
+                                      Tag="Ascending"/>
                         <ComboBoxItem Content="Desc"
-                                  Tag="Descending"/>
+                                      Tag="Descending"/>
                     </ComboBox>
 
-                    <TextBlock Grid.Column="2"
-                           Style="{StaticResource SelectQuestionsTextBlockStyle}"
-                           Text="{x:Static global:Resources.QuestionSelectSortDateCreated}"/>
-                    <ComboBox Grid.Column="3"
-                          Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
-                          Tag="DateCreated"
-                          Margin="0, 0, 0, 0"
-                          SelectionChanged="ComboBox_Sort_SelectionChanged">
+                    <TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
+                               Text="{x:Static global:Resources.QuestionSelectSortName}"
+                               Grid.Column="2"/>
+                    <ComboBox Grid.Column="3" 
+                              Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
+                              Tag="UploadedByUser.FullName"
+                              Margin="0, 0, 0, 0"
+                              SelectionChanged="ComboBox_Sort_SelectionChanged">
+                        <ComboBoxItem Content="Asc"
+                                      Tag="Ascending"/>
+                        <ComboBoxItem Content="Desc"
+                                      Tag="Descending"/>
+                    </ComboBox>
+
+                    <TextBlock Grid.Column="4"
+                               Style="{StaticResource SelectQuestionsTextBlockStyle}"
+                               Text="{x:Static global:Resources.QuestionSelectSortDateCreated}"/>
+                    <ComboBox Grid.Column="5"
+                              Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
+                              Tag="DateCreated"
+                              Margin="0, 0, 0, 0"
+                              SelectionChanged="ComboBox_Sort_SelectionChanged">
                         <ComboBoxItem Content="Asc"
                                   Tag="Ascending"/>
                         <ComboBoxItem Content="Desc"
@@ -163,13 +208,13 @@
                     </ComboBox>
 
                 </Grid>
-            </GroupBox>
-
+            </Grid>
 
             <!-- fourth row -->
             <ScrollViewer Grid.Row="3"
                           Grid.ColumnSpan="2" 
-                          VerticalScrollBarVisibility="Auto">
+                          VerticalScrollBarVisibility="Auto"
+                          Margin="0, 5, 0, 0">
                 <ItemsControl ItemsSource="{Binding SubjectQuestions}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -184,36 +229,32 @@
                                     <RowDefinition Height="1"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="15"/>
-                                    <ColumnDefinition Width="1.5*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="35"/>
-                                    <ColumnDefinition Width="85"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="55"/>
+                                    <ColumnDefinition Width="95"/>
                                     <ColumnDefinition Width="20"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding ID}"
-                                           VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="1" 
-                                           Text="{Binding Title}"
+                                <TextBlock Text="{Binding Title}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="2"
+                                <TextBlock Grid.Column="1"
                                            Text="{Binding UploadedByUser.FullName}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="3"
+                                <TextBlock Grid.Column="2"
                                            Text="{Binding Difficulty}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="4"
+                                <TextBlock Grid.Column="3"
                                            Text="{Binding DateCreated, StringFormat=d}"
                                            ToolTip="{Binding DateCreated}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <RadioButton Grid.Column="5"
+                                <RadioButton Grid.Column="4"
                                              GroupName="Questions"
                                              Tag="{Binding ID}"
                                              Checked="RadioButton_Checked"    
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Right"/>
                                 <Border Grid.Row="1"
-                                        Grid.ColumnSpan="6"
+                                        Grid.ColumnSpan="5"
                                         Height="1"
                                         Background="{StaticResource LightBlackBrush}" />
                             </Grid>
@@ -223,12 +264,25 @@
             </ScrollViewer>
 
             <!-- fifth row -->
-            <Button Grid.Row="4"
-                    Grid.Column="1"
-                    Style="{StaticResource SelectQuestionsButtonStyle}"
-                    HorizontalAlignment="Right"
-                    Content="Send"
-                    Click="ButtonSend_Click"/>
+            <StackPanel HorizontalAlignment="Right"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Orientation="Horizontal">            
+                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+                        Content="{x:Static global:Resources.QuestionSelectDetails}"
+                        Visibility="{Binding DetailsVisibility, FallbackValue=Collapsed}"
+                        Margin="0, 0, 15, 0"
+                        Click="ButtonDetails_Click"/>
+
+                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+                        Content="{x:Static global:Resources.QuestionSelectEdit}"
+                        Visibility="{Binding DetailsVisibility, FallbackValue=Collapsed}"
+                        Margin="0, 0, 15, 0" />
+
+                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+                        Content="{x:Static global:Resources.QuestionSelectSend}"
+                        Click="ButtonSend_Click"/>   
+            </StackPanel>
 
         </Grid>
     </Grid>

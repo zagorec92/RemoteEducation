@@ -1,8 +1,8 @@
-﻿using RemoteEducationApplication.Extensions;
-using RemoteEducationApplication.Shared;
+﻿using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using WpfDesktopFramework.App.Base;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
@@ -12,7 +12,7 @@ namespace RemoteEducationApplication.Views.UserControls
     /// <summary>
     /// Interaction logic for ApplicationBar.xaml
     /// </summary>
-    public partial class WindowBar : UserControlBase
+    public partial class WindowBar : WpfUserControl
     {
         #region Fields
 

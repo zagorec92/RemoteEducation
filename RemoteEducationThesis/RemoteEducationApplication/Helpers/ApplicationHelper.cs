@@ -1,7 +1,6 @@
 ﻿using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Views.Login;
 using System.Windows;
-using WpfDesktopFramework.App;
 using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.Controls.Helpers;
