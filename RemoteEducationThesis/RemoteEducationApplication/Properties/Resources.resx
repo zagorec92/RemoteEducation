@@ -353,4 +353,35 @@
     <value>Edit</value>
     <comment>SelectQuestions.xaml</comment>
   </data>
+  <data name="LoginPageLoginLoadingText" xml:space="preserve">
+    <value>Checking identity</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginPageRecoveryLoadingText" xml:space="preserve">
+    <value>Generating new password</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ExceptionWindowMessage" xml:space="preserve">
+    <value>Unexpected error has occured at {0:t}.</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowShortDescription" xml:space="preserve">
+    <value>Short description:</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowSendMail" xml:space="preserve">
+    <value>Send mail</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Error</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionMailSubject" xml:space="preserve">
+    <value>Unexpected exception - {0}</value>
+  </data>
+  <data name="ExceptionWindowSendMailTooltip" xml:space="preserve">
+    <value>Send an email with detailed description how this error has occured.</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
 </root>

@@ -182,3 +182,6 @@ RemoteEducationThesis/RemoteEducation.DAL/Migrations/
 RemoteEducationThesis/RemoteEducationApplication/Libraries/
 *.sln
 *.ide
+RemoteEducationThesis/RemoteEducation.DAL/Migrations/Configuration.cs
+RemoteEducationThesis/RemoteEducationApplication/App.config
+RemoteEducationThesis/RemoteEducation.Model/App.config

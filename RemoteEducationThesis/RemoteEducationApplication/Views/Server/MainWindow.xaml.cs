@@ -10,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -18,12 +17,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WpfDesktopFramework.DataTypes.Extensions;
 using WpfDesktopFramework.Enums.Extensions;
+using WpfDesktopFramework.NETFramework.Helpers;
 using WpfDesktopFramework.Network.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
@@ -316,8 +315,8 @@ namespace RemoteEducationApplication.Views.Server
                 }
                 else if (tag.Contains(AppSettings.WindowIdentifier))
                 {
-                    this.NavigateTo(tag.Remove(AppSettings.WindowIdentifier), false,
-                       ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
+                    string fullTypeName = String.Concat(App.MenuWindowPath, tag.Remove(AppSettings.WindowIdentifier), ",", NETFrameworkHelper.GetAssemblyName<App>());
+                    this.NavigateTo(fullTypeName, false, ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
                 }
             }
         }
@@ -549,14 +548,13 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// 
         /// </summary>
-        private void Start()
+        private async void Start()
         {
             IPAddress address = NetworkHelper.GetLocalIPAddress();
 
             ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
             ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
-            ServerImage.MaxConnections = ServerData.MaxConnections =
-                ConnectionHelper.MaxConnections.Twenty.GetValue();
+            ServerImage.MaxConnections = ServerData.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
             ServerImage.IsListening = ServerData.IsListening = true;
 
             ServerImage.Start();
@@ -566,12 +564,12 @@ namespace RemoteEducationApplication.Views.Server
 
             LastImageUpdate = LastConnectionUpdate = DateTime.Now;
 
-            Task[] tasks = new Task[]
-            {
+            
+
+            await Task.WhenAll(new Task[]{ 
                 ListeningForConnections(),
                 GetDesktopImage(),
-                ExchangeDataWithClient()
-            };
+                ExchangeDataWithClient()});
         }
 
         #endregion
@@ -636,7 +634,7 @@ namespace RemoteEducationApplication.Views.Server
                         {
                             BinaryFormatter bFormatter = new BinaryFormatter();
                             Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
-                            client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp, SeekOrigin.Begin, BitmapCacheOption.None);
+                            client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp);
                         }
                     }
                     catch
@@ -708,6 +706,7 @@ namespace RemoteEducationApplication.Views.Server
                 ConnectedClients.Remove(x);
                 ClientManager.Clients.Remove(x);
             });
+
             ClientNumber = GetClientCount();
 
             if (ClientNumber < 1 && HasClients)

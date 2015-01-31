@@ -75,6 +75,7 @@ namespace RemoteEducationApplication.Helpers
         #region Methods
 
         #region Basic Commands
+
         /// <summary>
         /// Executes given command on the main application window.
         /// </summary>

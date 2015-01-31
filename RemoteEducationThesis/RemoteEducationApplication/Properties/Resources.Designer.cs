@@ -151,6 +151,60 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected exception - {0}.
+        /// </summary>
+        public static string ExceptionMailSubject {
+            get {
+                return ResourceManager.GetString("ExceptionMailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error has occured at {0:t}..
+        /// </summary>
+        public static string ExceptionWindowMessage {
+            get {
+                return ResourceManager.GetString("ExceptionWindowMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send mail.
+        /// </summary>
+        public static string ExceptionWindowSendMail {
+            get {
+                return ResourceManager.GetString("ExceptionWindowSendMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send an email with detailed description how this error has occured..
+        /// </summary>
+        public static string ExceptionWindowSendMailTooltip {
+            get {
+                return ResourceManager.GetString("ExceptionWindowSendMailTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short description:.
+        /// </summary>
+        public static string ExceptionWindowShortDescription {
+            get {
+                return ResourceManager.GetString("ExceptionWindowShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string ExceptionWindowTitle {
+            get {
+                return ResourceManager.GetString("ExceptionWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Exit.
         /// </summary>
         public static string FileSubMenuItemExit {
@@ -187,6 +241,15 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checking identity.
+        /// </summary>
+        public static string LoginPageLoginLoadingText {
+            get {
+                return ResourceManager.GetString("LoginPageLoginLoadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LOGIN.
         /// </summary>
         public static string LoginPageLoginTitle {
@@ -210,6 +273,15 @@ namespace RemoteEducationApplication.Properties {
         public static string LoginPageRecovery {
             get {
                 return ResourceManager.GetString("LoginPageRecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating new password.
+        /// </summary>
+        public static string LoginPageRecoveryLoadingText {
+            get {
+                return ResourceManager.GetString("LoginPageRecoveryLoadingText", resourceCulture);
             }
         }
         

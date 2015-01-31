@@ -146,7 +146,7 @@ namespace RemoteEducationApplication.Views.Menu.Options
             sender.ExecuteIfNotNull<ComboBox>(x => 
             {
                 if(x.GetTag() == AppResources.QuestionSelectDifficulty.Remove(AppResources.QuestionSelectDifficulty.Length - 1))
-                    Difficulty = x.SelectedItem.ToNullable<double>();
+                    Difficulty = x.SelectedItem.ToSafe<double>();
                 else
                     PopulateSubjectAndDifficulty(((Subject)x.SelectedItem).ID);
             });

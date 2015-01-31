@@ -6,7 +6,7 @@ namespace RemoteEducationApplication.Extensions
 {
     public static class WebBrowserExtension
     {
-        #region Properties
+        #region DependencyProperties
 
         public static readonly DependencyProperty BindableSourceProperty =
             DependencyProperty.RegisterAttached("BindableSource", typeof(string), typeof(WebBrowserExtension),

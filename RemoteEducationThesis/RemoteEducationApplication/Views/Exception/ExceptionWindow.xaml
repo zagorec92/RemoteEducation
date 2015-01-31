@@ -1,0 +1,61 @@
+﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.ExceptionViewer.ExceptionWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 WindowStyle="None"
+                 WindowState="Normal"
+                 Style="{StaticResource MainWindowStyle}"
+                 Height="195" 
+                 Width="450"
+                 MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
+    <base:WindowBase.Resources>
+        <ResourceDictionary Source="..\..\Resources\Style\Shared\ExceptionWindowStyle.xaml" />
+    </base:WindowBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Background="{DynamicResource BackgroundBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+                       Text="{x:Static global:Resources.ExceptionWindowTitle}"/>
+
+            <uc:WindowBar Grid.Column="1" 
+                          ApplicationBarVisibility="Collapsed"
+                          WindowRole="ApplicationBar" 
+                          WindowBarClick="ApplicationBar_AppBarClick"/>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Margin="5, 0, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+                <RowDefinition Height="35" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="{Binding Message}"
+                       VerticalAlignment="Center"/>
+            
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="{x:Static global:Resources.ExceptionWindowShortDescription}" />
+                <TextBox Style="{StaticResource TextBoxShortDescriptionStyle}"
+                         Text="{Binding ShortDescription}"/>
+            </StackPanel>          
+            
+            <Button Grid.Row="2"
+                    Style="{StaticResource ButtonSendMailStyle}"
+                    Content="{x:Static global:Resources.ExceptionWindowSendMail}"
+                    ToolTip="{x:Static global:Resources.ExceptionWindowSendMailTooltip}"
+                    Click="Button_Click"/>           
+        </Grid>
+    </Grid>
+</base:WindowBase>

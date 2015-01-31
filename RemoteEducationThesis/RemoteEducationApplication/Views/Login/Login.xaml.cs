@@ -5,13 +5,17 @@ using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Client;
 using RemoteEducationApplication.Views.Server;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfDesktopFramework.Controls.Extensions;
 using WpfDesktopFramework.Enums.Extensions;
 using WpfDesktopFramework.Exceptions.Helpers;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
+using RemoteEducationApplication.Views.ExceptionViewer;
+using WpfDesktopFramework.Controls.Helpers;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -50,14 +54,11 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public string UsernameValidationMessage 
         {
-            get 
-            {
-                return _usernameValidationMessage; 
-            }
+            get { return _usernameValidationMessage; }
             set 
             {
                 _usernameValidationMessage = value;
-                OnPropertyChanged("UsernameValidationMessage");
+                OnPropertyChanged(this, x => x.UsernameValidationMessage);
             } 
         }
 
@@ -66,14 +67,11 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public string PasswordValidationMessage
         {
-            get
-            {
-                return _passwordValidationMessage;
-            }
+            get { return _passwordValidationMessage; }
             set
             {
                 _passwordValidationMessage = value;
-                OnPropertyChanged("PasswordValidationMessage");
+                OnPropertyChanged(this, x => x.PasswordValidationMessage);
             }
         }
 
@@ -82,14 +80,11 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public string CapsLockMessage
         {
-            get
-            {
-                return _capsLockMessage;
-            }
+            get { return _capsLockMessage; }
             set
             {
                 _capsLockMessage = value;
-                OnPropertyChanged("CapsLockMessage");
+                OnPropertyChanged(this, x => x.CapsLockMessage);
             }
         }
 
@@ -98,14 +93,11 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public string WindowRole
         {
-            get 
-            {
-                return _windowRole;
-            }
+            get { return _windowRole; }
             set
             {
                 _windowRole = value;
-                OnPropertyChanged("WindowRole");
+                OnPropertyChanged(this, x => x.WindowRole);
             }
         }
 
@@ -114,18 +106,13 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public string Username
         {
-            get
-            {
-                return _username;
-            }
+            get { return _username; }
             set
             {
                 _username = value;
-                OnPropertyChanged("Username");
+                OnPropertyChanged(this, x => x.Username);
             }
         }
-
-        public string FullName { get; set; }
 
         #endregion
 
@@ -136,10 +123,10 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         public Login()
         {
-            WindowRole = WindowRoles.Login;
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeStartupParameters();
             InitializeComponent();
             Loaded += Login_Loaded;
+            //App.HandledException += App_ExceptionHandled;
         }
 
         #endregion
@@ -232,27 +219,22 @@ namespace RemoteEducationApplication.Views.Login
         /// Handles the Click event of the Button control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> 
-        /// instance containing the event data.</param>
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             CapsLockMessage = String.Empty;
-            Button bttn = sender as Button;
 
-            if (bttn != null)
+            sender.ExecuteIfNotNull<Button>(bttn =>
             {
                 if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Clear)
                     Username = pbxPassword.Password = String.Empty;
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Login)
                     AuthenticateUser();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
-                {
-                    Username = String.Empty;
-                    WindowRole = WindowRoles.Login;
-                }
+                    SetLoginScreenText();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Recover)
-                    await AuthenticationManager.RecoverPassword(Username, FullName);
-            }
+                    ResetPassword();
+            });
         }
 
         #endregion
@@ -261,15 +243,16 @@ namespace RemoteEducationApplication.Views.Login
 
         #region Methods
 
+        #region Authentication
+
         /// <summary>
         /// Authenticates user and initializes application module depending on the role.
         /// </summary>
-        private void AuthenticateUser()
+        private async void AuthenticateUser()
         {
             try
             {
-                //int roleID = AuthenticationManager.AuthenticateUser
-                //    (Username, pbxPassword.Password);
+                //int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
                 int roleID = 3; //test
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
@@ -280,7 +263,6 @@ namespace RemoteEducationApplication.Views.Login
             }
             catch (ArgumentException ex)
             {
-                //ProgressBarVisibility = System.Windows.Visibility.Collapsed;
                 string message = ExceptionHelper.GetMessage(ex);
 
                 if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
@@ -291,6 +273,34 @@ namespace RemoteEducationApplication.Views.Login
                     ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsDatabase)
                     UsernameValidationMessage = PasswordValidationMessage = message;
             }
+        }
+
+        /// <summary>
+        /// Resets password.
+        /// </summary>
+        private async void ResetPassword()
+        {
+            SetLoginScreenText();
+            await Task.Run(() => AuthenticationManager.RecoverPassword(Username));
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetLoginScreenText()
+        {
+            WindowRole = WindowRoles.Login;
+        }
+
+        /// <summary>
+        /// Initializes parameters.
+        /// </summary>
+        private void InitializeStartupParameters()
+        {
+            WindowRole = WindowRoles.Login;
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
         #endregion

@@ -357,4 +357,35 @@
     <value>Promijeni</value>
     <comment>SelectQuestions.xaml</comment>
   </data>
+  <data name="LoginPageLoginLoadingText" xml:space="preserve">
+    <value>Provjeravam podatke prijave</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginPageRecoveryLoadingText" xml:space="preserve">
+    <value>Stvaram novu zaporku</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ExceptionWindowMessage" xml:space="preserve">
+    <value>Neočekivana greška se dogodila u {0:t}.</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowShortDescription" xml:space="preserve">
+    <value>Kratki opis:</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowSendMail" xml:space="preserve">
+    <value>Pošalji poruku</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Greška</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="ExceptionMailSubject" xml:space="preserve">
+    <value>Neočekivana greška - {0}</value>
+  </data>
+  <data name="ExceptionWindowSendMailTooltip" xml:space="preserve">
+    <value>Pošalji poruku sa detaljnim opisom kako je došlo do greške.</value>
+    <comment>ExceptionWindow.xaml</comment>
+  </data>
 </root>

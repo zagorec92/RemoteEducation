@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using WpfDesktopFramework.Collections.Extensions;
+using WpfDesktopFramework.Enums.Extensions;
 
 namespace RemoteEducationApplication.Client
 {
@@ -32,5 +33,18 @@ namespace RemoteEducationApplication.Client
         }
 
         #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clientHandler"></param>
+        /// <returns></returns>
+        public static bool IsClientConnected(this ClientHandler clientHandler)
+        {
+            if (clientHandler.IsClientConnected)
+                return true;
+            else
+                throw new SocketException(SocketError.ConnectionAborted.GetValue());
+        }
     }
 }

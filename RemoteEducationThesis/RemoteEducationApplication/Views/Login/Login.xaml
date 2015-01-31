@@ -12,10 +12,14 @@
 			<BeginStoryboard x:Name="SlideOutLogin_BeginStoryboard" Storyboard="{StaticResource SlideOutLogin}"/>
 			<BeginStoryboard x:Name="SlideInRecovery_BeginStoryboard" Storyboard="{StaticResource SlideInRecovery}"/>
 		</EventTrigger>
-		<EventTrigger RoutedEvent="ButtonBase.Click" SourceName="button">
+		<EventTrigger RoutedEvent="ButtonBase.Click" SourceName="bttnCancel">
 			<BeginStoryboard x:Name="SlideOutRecovery_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
 			<BeginStoryboard x:Name="SlideInLogin_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
 		</EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="bttnRecover">
+            <BeginStoryboard x:Name="SlideOutRecover_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
+            <BeginStoryboard x:Name="SlideInLoginAfterRecover_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
+        </EventTrigger>
 	</base:WindowBase.Triggers>
     <Grid>
         <Grid.RowDefinitions>
@@ -44,10 +48,11 @@
         </Grid>
 
         <!--content-->
-        <Grid x:Name="ContentLogin" Grid.Row="1">
+        <Grid x:Name="ContentLogin" 
+              Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="1.6*" />
+                <ColumnDefinition Width="0.9*"/>
+                <ColumnDefinition Width="1.5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -103,6 +108,7 @@
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
                     Content="{x:Static global:Resources.LoginPageLogin}" 
+                    Margin="30, 0, 0, 0"
                     CommandParameter="{x:Static global:Resources.LoginPageLogin}"
                     Click="Button_Click" />
             <TextBlock Grid.Row="2"
@@ -125,8 +131,7 @@
                 <ColumnDefinition Width="2.5*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="2*"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -138,18 +143,9 @@
                      TextChanged="TextBox_TextChanged" 
                      Width="225"/>
 
-            <TextBlock Grid.Row="1" 
-                       Text="{x:Static global:Resources.LoginPageFullName}" 
-                       Style="{StaticResource TextBlockLoginStyle}"/>
-            <TextBox Grid.Column="1" 
-                     Grid.Row="1"
-                     Text="{Binding FullName, Mode=TwoWay}"
-                     Style="{StaticResource TextBoxLoginStyle}"
-                     TextChanged="TextBox_TextChanged" 
-                     Width="225"/>
-
             <!--cancel-->
-            <Button x:Name="button" Grid.Row="2"
+            <Button x:Name="bttnCancel" 
+                    Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
                     Content="{x:Static global:Resources.CancelAction}" 
@@ -159,7 +155,8 @@
                     Click="Button_Click"/>
             
             <!--recover-->
-            <Button Grid.Row="2"
+            <Button x:Name="bttnRecover" 
+                    Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
                     Content="{x:Static global:Resources.RecoveryAction}" 
@@ -167,6 +164,5 @@
                     Margin="40, 0, 0, 0"
                     Click="Button_Click"/>
         </Grid>
-
     </Grid>
 </base:WindowBase>

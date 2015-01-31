@@ -12,7 +12,7 @@ namespace RemoteEducationApplication.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -52,7 +52,7 @@ namespace RemoteEducationApplication.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("WID_001")]
+        [global::System.Configuration.DefaultSettingValueAttribute("WID_")]
         public string WindowIdentifier {
             get {
                 return ((string)(this["WindowIdentifier"]));
@@ -86,6 +86,15 @@ namespace RemoteEducationApplication.Properties {
         public string WindowHelp {
             get {
                 return ((string)(this["WindowHelp"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("example@example.com")]
+        public string ReportMailAdress {
+            get {
+                return ((string)(this["ReportMailAdress"]));
             }
         }
     }
