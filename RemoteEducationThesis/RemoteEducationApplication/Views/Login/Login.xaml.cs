@@ -10,12 +10,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WpfDesktopFramework.Controls.Extensions;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using WpfDesktopFramework.Enums.Extensions;
 using WpfDesktopFramework.Exceptions.Helpers;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
-using RemoteEducationApplication.Views.ExceptionViewer;
-using WpfDesktopFramework.Controls.Helpers;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -27,9 +25,9 @@ namespace RemoteEducationApplication.Views.Login
         #region Struct
 
         /// <summary>
-        /// WindowRoles
+        /// Window titles.
         /// </summary>
-        private struct WindowRoles
+        private struct WindowTitles
         {
             public static string Login = AppResources.LoginPageLoginTitle;
             public static string Recovery = AppResources.LoginPageRecoveryTitle;
@@ -126,7 +124,6 @@ namespace RemoteEducationApplication.Views.Login
             InitializeStartupParameters();
             InitializeComponent();
             Loaded += Login_Loaded;
-            //App.HandledException += App_ExceptionHandled;
         }
 
         #endregion
@@ -208,7 +205,7 @@ namespace RemoteEducationApplication.Views.Login
         /// instance containing the event data.</param>
         private void textBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            WindowRole = WindowRoles.Recovery;
+            SetWindowTitle(WindowTitles.Recovery);
         }
 
         #endregion
@@ -231,7 +228,7 @@ namespace RemoteEducationApplication.Views.Login
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Login)
                     AuthenticateUser();
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
-                    SetLoginScreenText();
+                    SetWindowTitle(WindowTitles.Login);
                 else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Recover)
                     ResetPassword();
             });
@@ -252,8 +249,7 @@ namespace RemoteEducationApplication.Views.Login
         {
             try
             {
-                //int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
-                int roleID = 3; //test
+                int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
                     roleID == RoleRepository.RoleType.Professor.GetValue())
@@ -280,7 +276,7 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         private async void ResetPassword()
         {
-            SetLoginScreenText();
+            SetWindowTitle(WindowTitles.Login);
             await Task.Run(() => AuthenticationManager.RecoverPassword(Username));
         }
 
@@ -289,9 +285,10 @@ namespace RemoteEducationApplication.Views.Login
         /// <summary>
         /// 
         /// </summary>
-        private void SetLoginScreenText()
+        /// <param name="windowTitle"></param>
+        private void SetWindowTitle(string windowTitle)
         {
-            WindowRole = WindowRoles.Login;
+            WindowRole = windowTitle;
         }
 
         /// <summary>
@@ -299,7 +296,7 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         private void InitializeStartupParameters()
         {
-            WindowRole = WindowRoles.Login;
+            SetWindowTitle(WindowTitles.Login);
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 

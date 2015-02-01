@@ -61,7 +61,7 @@
             </Grid.RowDefinitions>
             
             <!--first row-->
-            <TextBlock Text="{x:Static global:Resources.LoginPageUserName}" 
+            <TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1" 
                      Text="{Binding Username, Mode=TwoWay}"
@@ -135,7 +135,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{x:Static global:Resources.LoginPageUserName}" 
+            <TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
             <TextBox Grid.Column="1"
                      Text="{Binding Username, Mode=TwoWay}"

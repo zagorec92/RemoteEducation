@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfDesktopFramework.Collections.Extensions;
 using WpfDesktopFramework.Security;
+using WpfDesktopFramework.DataTypes.Converters.Extensions;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -22,17 +24,6 @@ namespace RemoteEducationApplication.Authentication
         #endregion
 
         #region Struct
-
-        /// <summary>
-        /// Exception error messages.
-        /// </summary>
-        private struct ErrorMessages
-        {
-            public const string InvalidParameters = "Parameter is empty.";
-            public const string InvalidUsername = "Incorrect username.";
-            public const string InvalidPassword = "Incorrect password.";
-            public const string NoConnection = "There is no connection to the database.";
-        }
 
         /// <summary>
         /// Authentication exception parameters.
@@ -65,8 +56,8 @@ namespace RemoteEducationApplication.Authentication
         /// <param name="password">The <see cref="System.String"/> value representing the password.</param>
         public static int AuthenticateUser(string email, string password)
         {
-            if(email == String.Empty && password == String.Empty)
-                throw new ArgumentException(ErrorMessages.InvalidParameters, AuthenticateExParameters.IsParameters);
+            if(email == String.Empty || password == String.Empty)
+                throw new ArgumentException(AppResources.ValidationMessageEmptyData, AuthenticateExParameters.IsParameters);
 
             using(EEducationDbContext context = new EEducationDbContext())
             {
@@ -74,10 +65,10 @@ namespace RemoteEducationApplication.Authentication
                 User user = userRepository.GetByEmail(email);
 
                 if (user == null)
-                    throw new ArgumentException(ErrorMessages.InvalidUsername, AuthenticateExParameters.IsUsername);
+                    throw new ArgumentException(AppResources.ValidationMessageUsername, AuthenticateExParameters.IsUsername);
 
                 if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
-                    throw new ArgumentException(ErrorMessages.InvalidPassword, AuthenticateExParameters.IsPassword);
+                    throw new ArgumentException(AppResources.ValidationMessagePassword, AuthenticateExParameters.IsPassword);
 
                 LoggedInUser = user;
 
@@ -129,27 +120,28 @@ namespace RemoteEducationApplication.Authentication
         /// 
         /// </summary>
         /// <param name="email"></param>
-        /// <param name="fullName"></param>
-        /// <returns></returns>
-        public static async Task RecoverPassword(string email, string fullName)
+        /// <param name="securityNum"></param>
+        public static void RecoverPassword(string email)
         {
             using (EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
                 User user = userRepository.GetByEmail(email);
 
-                if (user != null && user.FullName.Equals(fullName))
+                if (user != null)
                 {
-                    string password = SecurityManager.GetRandomPassword(GEN_PASS_SIZE, 5);
-
+                    string password = SecurityManager.GetRandomPassword(GEN_PASS_SIZE);
                     user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
-                    user.UserDetail.Password =
-                        SecurityManager.CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
+                    user.UserDetail.Password = SecurityManager.CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
 
-                    await MailHelper.SendMail(password, user.UserDetail.Email);
+                    Task.Run(async () => await MailHelper.SendPasswordResetMail(password, user.UserDetail.Email, user.FirstName));
 
                     if (userRepository.InsertOrUpdate(user))
-                        await userRepository.SaveAsync();
+                        userRepository.Save();
+                }
+                else
+                {
+                    throw new ArgumentException(Properties.Resources.ValidationMessagePasswordReset);
                 }
             }
         }

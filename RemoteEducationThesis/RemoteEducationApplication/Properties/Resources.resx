@@ -261,10 +261,6 @@
   <data name="MenuHelpViewHelp" xml:space="preserve">
     <value>View Help</value>
   </data>
-  <data name="LoginPageUserName" xml:space="preserve">
-    <value>Username:</value>
-    <comment>Login.xaml</comment>
-  </data>
   <data name="SubMenuQuestions" xml:space="preserve">
     <value>_Questions</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
@@ -357,10 +353,6 @@
     <value>Checking identity</value>
     <comment>Login.xaml</comment>
   </data>
-  <data name="LoginPageRecoveryLoadingText" xml:space="preserve">
-    <value>Generating new password</value>
-    <comment>Login.xaml</comment>
-  </data>
   <data name="ExceptionWindowMessage" xml:space="preserve">
     <value>Unexpected error has occured at {0:t}.</value>
     <comment>ExceptionWindow.xaml</comment>
@@ -383,5 +375,37 @@
   <data name="ExceptionWindowSendMailTooltip" xml:space="preserve">
     <value>Send an email with detailed description how this error has occured.</value>
     <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="LoginWindowSecurityCode" xml:space="preserve">
+    <value>Security code:</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginWindowUserName" xml:space="preserve">
+    <value>Username:</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessagePasswordReset" xml:space="preserve">
+    <value>Entered data is not valid</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessageDBNoConnection" xml:space="preserve">
+    <value>Connection to the database failed.</value>
+    <comment>App</comment>
+  </data>
+  <data name="ValidationMessageEmptyData" xml:space="preserve">
+    <value>Data is empty.</value>
+    <comment>App</comment>
+  </data>
+  <data name="ValidationMessagePassword" xml:space="preserve">
+    <value>Incorrect password.</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessageUsername" xml:space="preserve">
+    <value>Incorrect username.</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginPageRecoverySuccessText" xml:space="preserve">
+    <value>New password generated</value>
+    <comment>Login.xaml</comment>
   </data>
 </root>

@@ -118,7 +118,9 @@ namespace Education.DAL.Repositories
                 if (entity.ID == default(int))
                 {
                     Context.Set<T>().Add(entity);
-                    entity.DateCreated = entity.DateModified = DateTime.Now;
+
+                    if(!entity.DateCreated.HasValue && !entity.DateModified.HasValue)
+                        entity.DateCreated = entity.DateModified = DateTime.Now;
                 }
                 else
                 {

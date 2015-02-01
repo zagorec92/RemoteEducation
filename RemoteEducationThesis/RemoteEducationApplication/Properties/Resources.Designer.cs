@@ -277,11 +277,11 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generating new password.
+        ///   Looks up a localized string similar to New password generated.
         /// </summary>
-        public static string LoginPageRecoveryLoadingText {
+        public static string LoginPageRecoverySuccessText {
             get {
-                return ResourceManager.GetString("LoginPageRecoveryLoadingText", resourceCulture);
+                return ResourceManager.GetString("LoginPageRecoverySuccessText", resourceCulture);
             }
         }
         
@@ -295,11 +295,20 @@ namespace RemoteEducationApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Security code:.
+        /// </summary>
+        public static string LoginWindowSecurityCode {
+            get {
+                return ResourceManager.GetString("LoginWindowSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username:.
         /// </summary>
-        public static string LoginPageUserName {
+        public static string LoginWindowUserName {
             get {
-                return ResourceManager.GetString("LoginPageUserName", resourceCulture);
+                return ResourceManager.GetString("LoginWindowUserName", resourceCulture);
             }
         }
         
@@ -678,6 +687,51 @@ namespace RemoteEducationApplication.Properties {
         public static string UserDataEmail {
             get {
                 return ResourceManager.GetString("UserDataEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection to the database failed..
+        /// </summary>
+        public static string ValidationMessageDBNoConnection {
+            get {
+                return ResourceManager.GetString("ValidationMessageDBNoConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data is empty..
+        /// </summary>
+        public static string ValidationMessageEmptyData {
+            get {
+                return ResourceManager.GetString("ValidationMessageEmptyData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect password..
+        /// </summary>
+        public static string ValidationMessagePassword {
+            get {
+                return ResourceManager.GetString("ValidationMessagePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entered data is not valid.
+        /// </summary>
+        public static string ValidationMessagePasswordReset {
+            get {
+                return ResourceManager.GetString("ValidationMessagePasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect username..
+        /// </summary>
+        public static string ValidationMessageUsername {
+            get {
+                return ResourceManager.GetString("ValidationMessageUsername", resourceCulture);
             }
         }
         

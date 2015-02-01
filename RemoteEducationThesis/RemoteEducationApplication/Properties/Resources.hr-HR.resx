@@ -119,6 +119,7 @@
   </resheader>
   <data name="ApplicationWindowTitle" xml:space="preserve">
     <value>ƎEducation</value>
+    <comment>App</comment>
   </data>
   <data name="CancelAction" xml:space="preserve">
     <value>Odustani</value>
@@ -265,10 +266,6 @@
   <data name="MenuHelpViewHelp" xml:space="preserve">
     <value>Prikaži pomoć</value>
   </data>
-  <data name="LoginPageUserName" xml:space="preserve">
-    <value>Korisnično ime:</value>
-    <comment>Login.xaml</comment>
-  </data>
   <data name="SubMenuQuestions" xml:space="preserve">
     <value>_Pitanja</value>
     <comment>Prefixed with '_' because of the hotkey.</comment>
@@ -358,11 +355,7 @@
     <comment>SelectQuestions.xaml</comment>
   </data>
   <data name="LoginPageLoginLoadingText" xml:space="preserve">
-    <value>Provjeravam podatke prijave</value>
-    <comment>Login.xaml</comment>
-  </data>
-  <data name="LoginPageRecoveryLoadingText" xml:space="preserve">
-    <value>Stvaram novu zaporku</value>
+    <value>Provjeravam podatke</value>
     <comment>Login.xaml</comment>
   </data>
   <data name="ExceptionWindowMessage" xml:space="preserve">
@@ -383,9 +376,42 @@
   </data>
   <data name="ExceptionMailSubject" xml:space="preserve">
     <value>Neočekivana greška - {0}</value>
+    <comment>Outlook mail subject</comment>
   </data>
   <data name="ExceptionWindowSendMailTooltip" xml:space="preserve">
     <value>Pošalji poruku sa detaljnim opisom kako je došlo do greške.</value>
     <comment>ExceptionWindow.xaml</comment>
+  </data>
+  <data name="LoginWindowSecurityCode" xml:space="preserve">
+    <value>Sigurnosni kod:</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginWindowUserName" xml:space="preserve">
+    <value>Korisničko ime:</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessagePasswordReset" xml:space="preserve">
+    <value>Uneseni podaci nisu ispravni</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessageDBNoConnection" xml:space="preserve">
+    <value>Ne može se uspostaviti veza prema bazi.</value>
+    <comment>App</comment>
+  </data>
+  <data name="ValidationMessageEmptyData" xml:space="preserve">
+    <value>Podaci su prazni.</value>
+    <comment>App</comment>
+  </data>
+  <data name="ValidationMessagePassword" xml:space="preserve">
+    <value>Netočna zaporka.</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="ValidationMessageUsername" xml:space="preserve">
+    <value>Netočno korisničko ime.</value>
+    <comment>Login.xaml</comment>
+  </data>
+  <data name="LoginPageRecoverySuccessText" xml:space="preserve">
+    <value>Stvorena je nova zaporka</value>
+    <comment>Login.xaml</comment>
   </data>
 </root>
