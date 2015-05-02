@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using WpfDesktopFramework.Collections.Extensions;
-using WpfDesktopFramework.Controls.Extensions;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
-using WpfDesktopFramework.Enums.Helpers;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Enums.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Menu.Options

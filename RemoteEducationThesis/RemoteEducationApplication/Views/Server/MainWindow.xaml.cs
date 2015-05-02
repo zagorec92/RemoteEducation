@@ -1,29 +1,26 @@
-﻿using RemoteEducationApplication.Client;
+﻿using Education.Network.Helpers;
+using Education.Network.Server;
+using Education.Network.Server.Socket;
+using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Server;
 using RemoteEducationApplication.Shared;
 using RemoteEducationApplication.Views.Menu.Options;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
-using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WpfDesktopFramework.Collections.Extensions;
-using WpfDesktopFramework.Controls.Extensions;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
-using WpfDesktopFramework.DataTypes.Extensions;
-using WpfDesktopFramework.Enums.Extensions;
-using WpfDesktopFramework.NETFramework.Helpers;
-using WpfDesktopFramework.Network.Helpers;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.DataTypes.Extensions;
+using ExtensionLibrary.NETFramework.Helpers;
+using ExtensionLibrary.Network.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Server
@@ -550,26 +547,23 @@ namespace RemoteEducationApplication.Views.Server
         /// </summary>
         private async void Start()
         {
-            IPAddress address = NetworkHelper.GetLocalIPAddress();
+			// IPAddress address = NetworkHelper.GetLocalIPAddress();
+            // ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
+            // ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
+            // ServerImage.MaxConnections = ServerData.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
+            // ServerImage.IsListening = ServerData.IsListening = true;
 
-            ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
-            ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
-            ServerImage.MaxConnections = ServerData.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
-            ServerImage.IsListening = ServerData.IsListening = true;
+            // ServerImage.Start();
+            // ServerData.Start();
 
-            ServerImage.Start();
-            ServerData.Start();
+            // DatabaseHelper.SaveServerInfo(address);
 
-            DatabaseHelper.SaveServerInfo(address);
+            // LastImageUpdate = LastConnectionUpdate = DateTime.Now;          
 
-            LastImageUpdate = LastConnectionUpdate = DateTime.Now;
-
-            
-
-            await Task.WhenAll(new Task[]{ 
-                ListeningForConnections(),
-                GetDesktopImage(),
-                ExchangeDataWithClient()});
+            // await Task.WhenAll(new Task[]{ 
+				// ListeningForConnections(),
+				// GetDesktopImage(),
+				// ExchangeDataWithClient()});
         }
 
         #endregion
@@ -582,38 +576,38 @@ namespace RemoteEducationApplication.Views.Server
         /// <returns></returns>
         private async Task ListeningForConnections()
         {
-            while (ServerImage.IsListening)
-            {
-                LastConnectionUpdate = DateTime.Now;
-                if (ServerImage.Pending())
-                {
-                    if (ConnectedClients.Count < ServerImage.MaxConnections)
-                    {
-                        ClientHandler client = new ClientHandler();
-                        client.Height = ClientSizes.InitialHeight;
-                        client.Width = ClientSizes.InitialWidth;
-                        client.TcpClient = ServerImage.AcceptTcpClient();
-                        client.TcpClientDataExchange = ServerData.AcceptTcpClient();
-                        client.StatusMessage = AppResources.ClientStatusImageWait;
+            // while (ServerImage.IsListening)
+            // {
+               // LastConnectionUpdate = DateTime.Now;
+               // if (ServerImage.Pending())
+               // {
+                   // if (ConnectedClients.Count < ServerImage.MaxConnections)
+                   // {
+                       // ClientHandler client = new ClientHandler();
+                       // client.Height = ClientSizes.InitialHeight;
+                       // client.Width = ClientSizes.InitialWidth;
+                       // client.TcpClient = ServerImage.AcceptTcpClient();
+                       // client.TcpClientDataExchange = ServerData.AcceptTcpClient();
+                       // client.StatusMessage = AppResources.ClientStatusImageWait;
 
-                        if (client.TcpClient != null)
-                        {
-                            ConnectedClients.Add(client);
-                            ClientManager.Clients.Add(client);
-                        }
+                       // if (client.TcpClient != null)
+                       // {
+                           // ConnectedClients.Add(client);
+                           // ClientManager.Clients.Add(client);
+                       // }
 
-                        ClientNumber = GetClientCount();
+                       // ClientNumber = GetClientCount();
 
-                        if (ClientNumber > 0 && !HasClients)
-                            HasClients = true;
+                       // if (ClientNumber > 0 && !HasClients)
+                           // HasClients = true;
 
-                        ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
-                        client.Name = ClientManager.GetUserIdentification(client.GetDataExchangeStream());                    
-                    }
-                }
-                else
-                    await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
-            }
+                       // ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
+                       // client.Name = ClientManager.GetUserIdentification(client.GetDataExchangeStream());                    
+                   // }
+               // }
+               // else
+                   // await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
+            // }
         }
 
         /// <summary>
@@ -622,33 +616,33 @@ namespace RemoteEducationApplication.Views.Server
         /// <returns></returns>
         private async Task GetDesktopImage()
         {
-            List<ClientHandler> clientsToRemove = new List<ClientHandler>();
+            //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
 
-            while (ConnectedClients != null)
-            {
-                foreach (ClientHandler client in ConnectedClients)
-                {
-                    try
-                    {
-                        if (client.IsClientConnected())
-                        {
-                            BinaryFormatter bFormatter = new BinaryFormatter();
-                            Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
-                            client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp);
-                        }
-                    }
-                    catch
-                    {
-                        clientsToRemove.Add(ClientDisconnecting(client));
-                    }
-                }       
+            //while (ConnectedClients != null)
+            //{
+            //    foreach (ClientHandler client in ConnectedClients)
+            //    {
+            //        try
+            //        {
+            //            if (client.IsClientConnected())
+            //            {
+            //                BinaryFormatter bFormatter = new BinaryFormatter();
+            //                Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
+            //                client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp);
+            //            }
+            //        }
+            //        catch
+            //        {
+            //            clientsToRemove.Add(ClientDisconnecting(client));
+            //        }
+            //    }       
 
-                LastImageUpdate = DateTime.Now;
+            //    LastImageUpdate = DateTime.Now;
 
-                await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
+            //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
 
-                HandleDisconnectedClients(clientsToRemove);
-            }
+            //    HandleDisconnectedClients(clientsToRemove);
+            //}
         }
 
         /// <summary>
@@ -657,29 +651,29 @@ namespace RemoteEducationApplication.Views.Server
         /// <returns></returns>
         private async Task ExchangeDataWithClient()
         {
-            List<ClientHandler> clientsToRemove = new List<ClientHandler>();
+            //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
 
-            while (ServerData.IsListening)
-            {
-                foreach (ClientHandler client in ConnectedClients)
-                {
-                    try
-                    {
-                        NetworkStream stream = client.GetDataExchangeStream();
+            //while (ServerData.IsListening)
+            //{
+            //    foreach (ClientHandler client in ConnectedClients)
+            //    {
+            //        try
+            //        {
+            //            NetworkStream stream = client.GetDataExchangeStream();
 
-                        if (stream.DataAvailable)
-                            client.TotalScore += stream.ReadByte();
-                    }
-                    catch
-                    {
-                        clientsToRemove.Add(ClientDisconnecting(client));
-                    }
-                }
+            //            if (stream.DataAvailable)
+            //                client.TotalScore += stream.ReadByte();
+            //        }
+            //        catch
+            //        {
+            //            clientsToRemove.Add(ClientDisconnecting(client));
+            //        }
+            //    }
 
-                await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
+            //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
 
-                HandleDisconnectedClients(clientsToRemove);
-            }
+            //    HandleDisconnectedClients(clientsToRemove);
+            //}
         }
 
         /// <summary>

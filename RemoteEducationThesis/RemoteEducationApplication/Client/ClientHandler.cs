@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
-using WpfDesktopFramework.DataTypes.Extensions;
+using ExtensionLibrary.DataTypes.Extensions;
 using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
 
 namespace RemoteEducationApplication.Client

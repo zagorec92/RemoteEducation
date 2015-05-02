@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ExtensionLibrary.Native;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows;
-using WpfDesktopFramework.Native;
 
 namespace RemoteEducationApplication.Helpers
 {
     public class ScreenshotHelper : MouseNative
     {
         #region Fields
-        
+
         private static Bitmap _bitmap;
 
         #endregion

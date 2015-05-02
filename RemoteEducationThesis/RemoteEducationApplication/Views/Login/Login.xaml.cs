@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using WpfDesktopFramework.Controls.Extensions;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
-using WpfDesktopFramework.Enums.Extensions;
-using WpfDesktopFramework.Exceptions.Helpers;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Enums.Extensions;
+using ExtensionLibrary.Exceptions.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login
@@ -42,6 +42,7 @@ namespace RemoteEducationApplication.Views.Login
         private string _capsLockMessage;
         private string _windowRole;
         private string _username;
+        private string _securityCode;
 
         #endregion
 
@@ -109,6 +110,19 @@ namespace RemoteEducationApplication.Views.Login
             {
                 _username = value;
                 OnPropertyChanged(this, x => x.Username);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the security code.
+        /// </summary>
+        public string SecurityCode
+        {
+            get { return _securityCode; }
+            set
+            {
+                _securityCode = value;
+                OnPropertyChanged(this, x => x.SecurityCode);
             }
         }
 
@@ -247,9 +261,13 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         private async void AuthenticateUser()
         {
+            //throw new Exception("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus magna, eu viverra nisl scelerisque at. Duis non libero tellus. Praesent lorem ipsum, dapibus sit amet massa ut, interdum lacinia augue. Suspendisse placerat sollicitudin venenatis. Aenean sem justo, maximus eu tellus a, tincidunt dapibus sem. In facilisis metus nec sodales malesuada. Nam blandit leo et mauris vehicula blandit.");
             try
             {
-                int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
+                await Task.Delay(BaseHelper.SleepTime.Short.GetValue());
+
+                //int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
+                int roleID = 3; //test
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
                     roleID == RoleRepository.RoleType.Professor.GetValue())
@@ -277,7 +295,17 @@ namespace RemoteEducationApplication.Views.Login
         private async void ResetPassword()
         {
             SetWindowTitle(WindowTitles.Login);
-            await Task.Run(() => AuthenticationManager.RecoverPassword(Username));
+
+            try
+            {
+                await Task.Run(() => AuthenticationManager.RecoverPassword(Username, SecurityCode));
+            }
+            catch(ArgumentException ae)
+            {
+                
+            }
+
+            await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
         }
 
         #endregion

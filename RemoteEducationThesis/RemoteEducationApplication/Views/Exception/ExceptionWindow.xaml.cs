@@ -4,6 +4,7 @@ using System;
 using System.Windows;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using AppResources = RemoteEducationApplication.Properties.Resources;
+using ExtensionLibrary.Controls.Helpers;
 
 namespace RemoteEducationApplication.Views.ExceptionViewer
 {
@@ -65,6 +66,7 @@ namespace RemoteEducationApplication.Views.ExceptionViewer
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MailHelper.GetExceptionMail(ExceptionId, DateTimeOfException).Display();
+            WindowHelper.Minimize();
         }
 
         /// <summary>
@@ -74,7 +76,10 @@ namespace RemoteEducationApplication.Views.ExceptionViewer
         /// <param name="e"></param>
         private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
-            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+            if (e.CommandName == ApplicationHelper.CommandTags.Minimize)
+                ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
+            else
+                ApplicationHelper.ExecuteBasicCommand(e.CommandName);
         }
     }
 }

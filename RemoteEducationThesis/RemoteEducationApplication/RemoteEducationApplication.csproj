@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExtensionLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\ExtensionLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -82,9 +86,9 @@
     <Reference Include="WindowsInput">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
     </Reference>
-    <Reference Include="WpfDesktopFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="WPFFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Documents\GitHub\RemoteEducationThesis\RemoteEducationThesis\RemoteEducationApplication\Libraries\WpfDesktopFramework.dll</HintPath>
+      <HintPath>Libraries\WPFFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -100,7 +104,6 @@
     <Compile Include="Extensions\WebBrowserExtension.cs" />
     <Compile Include="Helpers\ApplicationHelper.cs" />
     <Compile Include="Helpers\BaseHelper.cs" />
-    <Compile Include="Helpers\ConnectionHelper.cs" />
     <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
@@ -352,6 +355,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Education.Network\Education.Network.csproj">
+      <Project>{77c825cd-55ba-4369-9c68-c04d058d4618}</Project>
+      <Name>Education.Network</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RemoteEducation.DAL\Education.DAL.csproj">
       <Project>{12268ab2-e999-43ef-87f5-cde16e7a1556}</Project>
       <Name>Education.DAL</Name>
@@ -362,14 +369,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Libraries\ExtensionLibrary.dll" />
+    <Resource Include="Libraries\ExtensionLibrary.xml" />
+    <Content Include="Libraries\WPFFramework.dll" />
+    <Resource Include="Libraries\WPFFramework.xml" />
     <Content Include="Resources\Mail\MailStyle.css" />
     <Content Include="Resources\Mail\RecoveryMail.en.html" />
     <Resource Include="Resources\Images\connect.png" />
     <Resource Include="Resources\Images\expand.png" />
     <Resource Include="Resources\Images\client_connect.png" />
     <Resource Include="Resources\Images\client_upload_picture.png" />
-    <Content Include="Libraries\WPFDesktopFramework.dll" />
-    <Resource Include="Libraries\WPFDesktopFramework.XML" />
     <Resource Include="Resources\Images\sign_in.png" />
     <Content Include="Resources\Mail\RecoveryMail.hr.html" />
   </ItemGroup>

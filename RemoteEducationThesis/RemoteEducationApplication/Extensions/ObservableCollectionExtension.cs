@@ -1,6 +1,6 @@
 ﻿using RemoteEducationApplication.Client;
 using System.Collections.ObjectModel;
-using WpfDesktopFramework.Collections.Extensions;
+using ExtensionLibrary.Collections.Extensions;
 
 namespace RemoteEducationApplication.Extensions
 {

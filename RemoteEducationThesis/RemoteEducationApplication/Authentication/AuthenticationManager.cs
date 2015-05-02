@@ -1,16 +1,16 @@
 ﻿using Education.DAL;
 using Education.DAL.Repositories;
 using Education.Model;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Security;
 using RemoteEducationApplication.Helpers;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using WpfDesktopFramework.Collections.Extensions;
-using WpfDesktopFramework.Security;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
 using AppResources = RemoteEducationApplication.Properties.Resources;
+using ExtensionLibrary.Enums.Extensions;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -45,9 +45,34 @@ namespace RemoteEducationApplication.Authentication
         /// </summary>
         public static User LoggedInUser { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Methods
+		#region Methods
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public static void Logout()
+		{
+			try
+			{
+				using (EEducationDbContext context = new EEducationDbContext())
+				{
+					ApplicationLogRepository applicationLogRepository = new ApplicationLogRepository(context);
+					ApplicationLog applicationLog = new ApplicationLog();
+					applicationLog.UserID = LoggedInUser.ID;
+					applicationLog.LogType = ApplicationLogRepository.LogType.Info.GetValue();
+					applicationLog.Message = String.Format("User {0} has logged out.", LoggedInUser.ID);
+
+					if (applicationLogRepository.InsertOrUpdate(applicationLog))
+						applicationLogRepository.Save();
+				}
+			}
+			finally
+			{
+				LoggedInUser = null;
+			}
+		}
 
         /// <summary>
         /// 
@@ -56,13 +81,13 @@ namespace RemoteEducationApplication.Authentication
         /// <param name="password">The <see cref="System.String"/> value representing the password.</param>
         public static int AuthenticateUser(string email, string password)
         {
-            if(email == String.Empty || password == String.Empty)
+            if(String.IsNullOrEmpty(email)|| String.IsNullOrEmpty(password))
                 throw new ArgumentException(AppResources.ValidationMessageEmptyData, AuthenticateExParameters.IsParameters);
 
             using(EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
-                User user = userRepository.GetByEmail(email);
+                User user = userRepository.GetByUsername(email);
 
                 if (user == null)
                     throw new ArgumentException(AppResources.ValidationMessageUsername, AuthenticateExParameters.IsUsername);
@@ -72,7 +97,7 @@ namespace RemoteEducationApplication.Authentication
 
                 LoggedInUser = user;
 
-                return user.Roles.FirstOrDefault().ID;
+                return LoggedInUser.Roles.FirstOrDefault().ID;
             }
         }
 
@@ -106,9 +131,7 @@ namespace RemoteEducationApplication.Authentication
         {
             byte[] enteredPasswordWithSaltBytes = UTF8Encoding.Default.GetBytes(enteredPassword + salt);
             byte[] userPasswordBytes = UTF8Encoding.Default.GetBytes(userPassword);
-            
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] enteredPasswordWithSaltHashed = md5.ComputeHash(enteredPasswordWithSaltBytes);
+            byte[] enteredPasswordWithSaltHashed = SecurityManager.GetMD5Hash(enteredPasswordWithSaltBytes);
 
             enteredPasswordWithSaltHashed = UTF8Encoding.Default.GetBytes(
                 Convert.ToBase64String(enteredPasswordWithSaltHashed));
@@ -119,16 +142,17 @@ namespace RemoteEducationApplication.Authentication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="email"></param>
+        /// <param name="username"></param>
         /// <param name="securityNum"></param>
-        public static void RecoverPassword(string email)
+        public static void RecoverPassword(string username, string securityNum)
         {
             using (EEducationDbContext context = new EEducationDbContext())
             {
                 UserRepository userRepository = new UserRepository(context);
-                User user = userRepository.GetByEmail(email);
+                User user = userRepository.GetByUsername(username);
+                int securityCode = securityNum.ToSafe<int>();
 
-                if (user != null)
+                if (user != null && user.UserDetail.SecurityCode == securityCode)
                 {
                     string password = SecurityManager.GetRandomPassword(GEN_PASS_SIZE);
                     user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
@@ -141,7 +165,7 @@ namespace RemoteEducationApplication.Authentication
                 }
                 else
                 {
-                    throw new ArgumentException(Properties.Resources.ValidationMessagePasswordReset);
+                    throw new ArgumentException(AppResources.ValidationMessagePasswordReset);
                 }
             }
         }

@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Helpers
 {

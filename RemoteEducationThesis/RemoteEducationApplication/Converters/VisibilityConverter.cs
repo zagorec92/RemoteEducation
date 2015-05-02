@@ -4,13 +4,18 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using WpfDesktopFramework.DataTypes.Converters.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
 
 namespace RemoteEducationApplication.Converters
 {
+    internal static class NotImplementedHelper
+    {
+        public static string NotImplementedMessage = "No need for converting back";
+    }
+
     public class WindowBarVisibilityConverter : IMultiValueConverter
     {
-        #region Methods
+        #region Convert
 
         /// <summary>
         /// 
@@ -47,6 +52,10 @@ namespace RemoteEducationApplication.Converters
             return retVal;
         }
 
+        #endregion
+
+        #region ConvertBack
+
         /// <summary>
         /// 
         /// </summary>
@@ -57,7 +66,7 @@ namespace RemoteEducationApplication.Converters
         /// <returns></returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException("No need for converting back.");
+            throw new NotImplementedException(NotImplementedHelper.NotImplementedMessage);
         }
 
         #endregion
@@ -80,7 +89,7 @@ namespace RemoteEducationApplication.Converters
 
         #endregion
 
-        #region IValueConverterMethods
+        #region Convert
 
         /// <summary>
         /// 
@@ -115,6 +124,10 @@ namespace RemoteEducationApplication.Converters
             return visibility;
         }
 
+        #endregion
+
+        #region ConvertBack
+
         /// <summary>
         /// 
         /// </summary>
@@ -125,7 +138,48 @@ namespace RemoteEducationApplication.Converters
         /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException("No need for converting back.");
+            throw new NotImplementedException(NotImplementedHelper.NotImplementedMessage);
+        }
+
+        #endregion
+    }
+
+    public class BoolToVisibilityConverter : IValueConverter
+    {
+        #region Convert
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool isVisible = value.ToSafe<bool>();
+
+            return isVisible ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        #endregion
+
+        #region ConvertBack
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Visibility visibility = value.ToSafe<Visibility>();
+
+            return visibility == Visibility.Visible ? true : false;
         }
 
         #endregion
@@ -133,15 +187,39 @@ namespace RemoteEducationApplication.Converters
 
     public class WindowTagConverter : IMultiValueConverter
     {
+        #region Convert
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            return String.Concat(values.First(),  values.Last());
+            return String.Concat(values.First(), values.Last());
         }
 
+        #endregion
+
+        #region ConvertBack
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetTypes"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException("No need for converting back.");
+            return value.ToString().Split(' ');
         }
+
+        #endregion
     }
 
 }

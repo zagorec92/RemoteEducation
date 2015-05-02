@@ -6,7 +6,7 @@
                      xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
                      xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                      xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-                     xmlns:base="clr-namespace:WpfDesktopFramework.App.Base;assembly=WPFDesktopFramework"
+                     xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
                      Style="{StaticResource UserControlWindowStyle}"
                      Tag="{Binding ID}">
     <base:WpfUserControl.Resources>

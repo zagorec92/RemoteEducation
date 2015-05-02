@@ -1,24 +1,25 @@
 ﻿using Education.DAL;
 using Education.DAL.Repositories;
 using Education.Model;
+using ExtensionLibrary.Controls.Helpers;
+using ExtensionLibrary.Exceptions.Helpers;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Views.ExceptionViewer;
 using System;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Markup;
 using System.Windows.Threading;
-using WpfDesktopFramework.App;
-using WpfDesktopFramework.Controls.Helpers;
-using WpfDesktopFramework.Exceptions.Helpers;
+using WPFFramework.App;
+using AppResources = RemoteEducationApplication.Properties.Resources;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
+using ExtensionLibrary.Enums.Extensions;
 
 namespace RemoteEducationApplication
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : WpfApplication
+	/// <summary>
+	/// Interaction logic for App.xaml
+	/// </summary>
+	public partial class App : WpfApplication
     {
         #region Const
 
@@ -26,7 +27,18 @@ namespace RemoteEducationApplication
 
         #endregion
 
+        #region Fields
+        
+        private static readonly AppResources _appResources;
+        
+        #endregion
+
         #region Properties
+
+        internal static AppResources ApplicationResources
+        { 
+            get { return _appResources; } 
+        }
 
         /// <summary>
         /// 
@@ -58,6 +70,9 @@ namespace RemoteEducationApplication
 
         #region Constructor
 
+		/// <summary>
+		/// 
+		/// </summary>
         public App()
             : base()
         {
@@ -65,6 +80,8 @@ namespace RemoteEducationApplication
         }
 
         #endregion
+
+        #region EventHandling
 
         /// <summary>
         /// Handles Application Startup event of the windows application.
@@ -77,16 +94,16 @@ namespace RemoteEducationApplication
             StyleHelper.ChangeTheme(CurrentThemeName);
 
             CurrentUICulture = new CultureInfo("hr-HR");
-            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
-                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+			ApplicationHelper.InitializeCommandMappings();
+            //FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
+            //    new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
         }
 
         /// <summary>
         /// Handles the DispatcherUnhandledException event of the windows application.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.Windows.Threading.DispatcherUnhandledExceptionEventArgs"/>
-        /// instance containing the event data.</param>
+        /// <param name="e">The <see cref="System.Windows.Threading.DispatcherUnhandledExceptionEventArgs"/> instance containing the event data.</param>
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
@@ -98,15 +115,16 @@ namespace RemoteEducationApplication
             {
                 using (EEducationDbContext context = new EEducationDbContext())
                 {
-                    ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context); ;
+                    ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context);
 
-                    ApplicationLog applicationLog = new ApplicationLog()
-                    {
-                        Name = exception.Message,
-                        Description = exception.InnerException == null ? String.Empty : exception.InnerException.Message,
-                        StackTrace = exception.StackTrace,
-                        DateCreated = exceptionOccured,
-                        DateModified = exceptionOccured
+					ApplicationLog applicationLog = new ApplicationLog()
+					{
+						Message = exception.Message,
+						Description = exception.InnerException == null ? String.Empty : exception.InnerException.Message,
+						StackTrace = exception.StackTrace,
+						DateCreated = exceptionOccured,
+						DateModified = exceptionOccured,
+						LogType = ApplicationLogRepository.LogType.Error.GetValue()
                     };
 
                     if (appLogRepository.InsertOrUpdate(applicationLog))
@@ -123,7 +141,8 @@ namespace RemoteEducationApplication
             }
             finally
             {
-                WindowHelper.OpenDialog<ExceptionWindow>(exceptionId, ExceptionHelper.GetShortMessage(exception), exceptionOccured);
+                HandleWindowsOnCriticalException();
+                WindowHelper.OpenMainWindowDialog<ExceptionWindow>(exceptionId, ExceptionHelper.GetShortMessage(exception), exceptionOccured);
             }
         }
 
@@ -134,7 +153,19 @@ namespace RemoteEducationApplication
         /// <param name="e">The <see cref="System.Windows.ExitEventArgs"/> instance containing the event data.</param>
         private void Application_Exit(object sender, ExitEventArgs e)
         {
-            AppSettings.Default.Save();
+			AppSettings.Default.Save();
         }
+
+        #endregion
+
+        #region Methods
+
+        private void HandleWindowsOnCriticalException()
+        {
+            WpfMainWindow = null;
+            base.CloseAllWindows();
+        }
+
+        #endregion
     }
 }

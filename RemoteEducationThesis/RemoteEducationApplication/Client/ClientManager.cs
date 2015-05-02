@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Net.Sockets;
-using WpfDesktopFramework.Collections.Extensions;
-using WpfDesktopFramework.Enums.Extensions;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.Enums.Extensions;
 
 namespace RemoteEducationApplication.Client
 {

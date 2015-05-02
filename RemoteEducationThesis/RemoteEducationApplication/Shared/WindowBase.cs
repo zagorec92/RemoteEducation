@@ -1,5 +1,6 @@
-﻿using System.Windows.Input;
-using WpfDesktopFramework.App.Base;
+﻿using RemoteEducationApplication.Views.ExceptionViewer;
+using System.Windows.Input;
+using WPFFramework.App.Base;
 using AppSettings = RemoteEducationApplication.Properties.Settings;
 
 namespace RemoteEducationApplication.Shared

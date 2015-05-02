@@ -12,12 +12,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using WpfDesktopFramework.Controls.Extensions;
-using WpfDesktopFramework.Controls.Helpers;
-using WpfDesktopFramework.Enums.Extensions;
-using WpfDesktopFramework.Enums.Helpers;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.Controls.Helpers;
+using ExtensionLibrary.Enums.Extensions;
+using ExtensionLibrary.Enums.Helpers;
 using AppResources = RemoteEducationApplication.Properties.Resources;
-using WaitingTime = RemoteEducationApplication.Helpers.ConnectionHelper.SleepTime;
 
 namespace RemoteEducationApplication.Views.Client
 {
@@ -70,7 +69,7 @@ namespace RemoteEducationApplication.Views.Client
         /// <summary>
         /// Gets or sets the sleep time.
         /// </summary>
-        public WaitingTime SleepTime { get; set; }
+        //public WaitingTime SleepTime { get; set; }
 
         /// <summary>
         /// Gets or sets the connection status.
@@ -221,19 +220,21 @@ namespace RemoteEducationApplication.Views.Client
 
                 if (urlParameters.Length > 0)
                 {
-                    webBrowser.Visibility = System.Windows.Visibility.Collapsed;
+                    webBrowser.Visibility = Visibility.Collapsed;
                     ClientHeight = ClientSizes.InitialHeight;
                     ClientWidth = ClientSizes.InitialWidth;
 
-                    Dictionary<int, String> urlParams =
-                        WebBrowserHelper.GetUrlParameters(urlParameters);
+                    Dictionary<int, string> urlParams =
+                        WebBrowserHelper.GetUrlParameters<int, string>(urlParameters);
 
                     Client.TotalScore += QuestionHelper.CheckAnswers(urlParams);
                     ScoreHelper.SaveUserScore(Client.TotalScore);
                     HasAnswered = true;
                 }
                 else
-                    webBrowser.Visibility = System.Windows.Visibility.Visible;
+                {
+                    webBrowser.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -300,44 +301,44 @@ namespace RemoteEducationApplication.Views.Client
         /// <returns></returns>
         private async Task<bool> Connect()
         {
-            int timeout = 0;
+            //int timeout = 0;
             bool isConnected = false;
 
-            ConnectionStatus = AppResources.ClientWindowConnectTry;
+            //ConnectionStatus = AppResources.ClientWindowConnectTry;
 
-            while (timeout < AppSettings.DefaultTimeout)
-            {
-                try
-                {
-                    Client.TcpClient.Connect(IpAddress, AppSettings.DefaultServerImagePort);
-                    Client.TcpClientDataExchange.Connect(IpAddress, AppSettings.DefaultServerDataPort);
-                    ConnectionStatus = AppResources.ClientWindowConnected;
-                    break;
-                }
-                catch
-                {
-                    timeout++;
-                }
+            //while (timeout < AppSettings.DefaultTimeout)
+            //{
+            //    try
+            //    {
+            //        Client.TcpClient.Connect(IpAddress, AppSettings.DefaultServerImagePort);
+            //        Client.TcpClientDataExchange.Connect(IpAddress, AppSettings.DefaultServerDataPort);
+            //        ConnectionStatus = AppResources.ClientWindowConnected;
+            //        break;
+            //    }
+            //    catch
+            //    {
+            //        timeout++;
+            //    }
 
-                await Task.Delay(WaitingTime.Short.GetValue());
-            }
+            //    await Task.Delay(WaitingTime.Short.GetValue());
+            //}
 
-            if (Client.TcpClient.Connected)
-            {
-                var stream = Client.GetClientStream();
-                int waitingLengthIndex = stream.ReadByte();
+            //if (Client.TcpClient.Connected)
+            //{
+            //    var stream = Client.GetClientStream();
+            //    int waitingLengthIndex = stream.ReadByte();
 
-                SleepTime = EnumHelper.GetValueByIndex<WaitingTime>(waitingLengthIndex);
-                isConnected = true;
+            //    SleepTime = EnumHelper.GetValueByIndex<WaitingTime>(waitingLengthIndex);
+            //    isConnected = true;
 
-                Client.SendName();
+            //    Client.SendName();
 
-                Task[] tasks = new Task[]
-                {
-                    SendImage(),
-                    ExchangeDataWithServer()
-                };
-            }
+            //    Task[] tasks = new Task[]
+            //    {
+            //        SendImage(),
+            //        ExchangeDataWithServer()
+            //    };
+            //}
 
             return isConnected;
         }
@@ -352,35 +353,35 @@ namespace RemoteEducationApplication.Views.Client
         /// <returns></returns>
         private async Task SendImage()
         {
-            NetworkStream ns = Client.GetClientStream();
-            BinaryFormatter bFormatter = new BinaryFormatter();
-            ProcessStatus = AppResources.ClientWindowSendingImage;
+            //NetworkStream ns = Client.GetClientStream();
+            //BinaryFormatter bFormatter = new BinaryFormatter();
+            //ProcessStatus = AppResources.ClientWindowSendingImage;
 
-            while (true)
-            {
-                try
-                {
-                    Bitmap bitmap = ScreenshotHelper.TakeScreenshot();
-                    bFormatter.Serialize(ns, bitmap);
-                }
-                catch
-                {
-                    Client.CloseDataExchange();
-                    Client.CloseClient();
-                    break;
-                }
+            //while (true)
+            //{
+            //    try
+            //    {
+            //        Bitmap bitmap = ScreenshotHelper.TakeScreenshot();
+            //        bFormatter.Serialize(ns, bitmap);
+            //    }
+            //    catch
+            //    {
+            //        Client.CloseDataExchange();
+            //        Client.CloseClient();
+            //        break;
+            //    }
 
-                await Task.Delay(SleepTime.GetValue());
-            }
+            //    await Task.Delay(SleepTime.GetValue());
+            //}
 
-            ConnectionStatus = AppResources.ClientWindowsDisconnected;
-            ProcessStatus = AppResources.ClientWindowProcessWaiting;
+            //ConnectionStatus = AppResources.ClientWindowsDisconnected;
+            //ProcessStatus = AppResources.ClientWindowProcessWaiting;
 
-            bool isConnected = false;
-            Client = new ClientHandler();
+            //bool isConnected = false;
+            //Client = new ClientHandler();
 
-            while (!isConnected)
-                isConnected = await Connect();
+            //while (!isConnected)
+            //    isConnected = await Connect();
         }
 
         #endregion
@@ -393,36 +394,36 @@ namespace RemoteEducationApplication.Views.Client
         /// <returns></returns>
         private async Task ExchangeDataWithServer()
         {
-            NetworkStream stream = Client.GetDataExchangeStream();
+            //NetworkStream stream = Client.GetDataExchangeStream();
 
-            while (true)
-            {
-                try
-                {
-                    if (stream.DataAvailable)
-                    {
-                        int id = stream.ReadByte();
+            //while (true)
+            //{
+            //    try
+            //    {
+            //        if (stream.DataAvailable)
+            //        {
+            //            int id = stream.ReadByte();
 
-                        Question question = QuestionHelper.GetQuestion(id);
-                        ClientHeight = ClientSizes.QuestionHeight;
-                        ClientWidth = ClientSizes.QuestionWidth;
-                        QuestionSource = question.Content;
-                        HasAnswered = false;
-                    }
-                    else if (HasAnswered)
-                    {
-                        stream.WriteByte((byte)Client.TotalScore);
-                        stream.Flush();
-                        HasAnswered = false;
-                    }
-                    else
-                        await Task.Delay(SleepTime.GetValue());
-                }
-                catch
-                {
-                    break;
-                }
-            }
+            //            Question question = QuestionHelper.GetQuestion(id);
+            //            ClientHeight = ClientSizes.QuestionHeight;
+            //            ClientWidth = ClientSizes.QuestionWidth;
+            //            QuestionSource = question.Content;
+            //            HasAnswered = false;
+            //        }
+            //        else if (HasAnswered)
+            //        {
+            //            stream.WriteByte((byte)Client.TotalScore);
+            //            stream.Flush();
+            //            HasAnswered = false;
+            //        }
+            //        else
+            //            await Task.Delay(SleepTime.GetValue());
+            //    }
+            //    catch
+            //    {
+            //        break;
+            //    }
+            //}
 
             return;
         }
