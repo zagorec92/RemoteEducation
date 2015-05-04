@@ -1,0 +1,25 @@
+﻿.full {
+    background-color: #eee;
+    font-family: 'Trebuchet MS';
+}
+
+    .full h2 {
+        margin-bottom: -10px;
+    }
+
+    .full ul {
+        list-style: circle;
+    }
+
+        .full ul li:first-child {
+            margin-top: -5px;
+        }
+
+    .full p:nth-last-of-type(2) {
+        margin-bottom: -15px;
+    }
+
+    .full hr {
+        border-color: #333;
+        border-width: 1px;
+    }
