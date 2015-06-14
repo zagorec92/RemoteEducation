@@ -1,6 +1,10 @@
-﻿using Education.Network.Helpers;
-using Education.Network.Server;
-using Education.Network.Server.Socket;
+﻿using Education.Application.Managers;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.DataTypes.Extensions;
+using ExtensionLibrary.DataTypes.Helpers;
+using ExtensionLibrary.NETFramework.Helpers;
 using RemoteEducationApplication.Client;
 using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
@@ -11,17 +15,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using ExtensionLibrary.Collections.Extensions;
-using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
-using ExtensionLibrary.DataTypes.Extensions;
-using ExtensionLibrary.NETFramework.Helpers;
-using ExtensionLibrary.Network.Helpers;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using WPFFramework.Attributes;
+using AppResources = Education.Application.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Server
 {
@@ -86,12 +85,12 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// Gets or sets the server handler.
         /// </summary>
-        public ServerHandler ServerImage { get; set; }
+        //public ServerExtended Server { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public ServerHandler ServerData { get; set; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //public ServerHandler ServerData { get; set; }
 
         /// <summary>
         /// Gets or sets the last refresh date.
@@ -221,10 +220,10 @@ namespace RemoteEducationApplication.Views.Server
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ConnectedClients = new ObservableCollection<ClientHandler>();
-            SideClients = new ObservableCollection<ClientHandler>();
-            ClientManager.Clients = new ObservableCollection<ClientHandler>();
-            ClientNumber = GetClientCount();
+            //ConnectedClients = new ObservableCollection<ClientHandler>();
+            //SideClients = new ObservableCollection<ClientHandler>();
+            //ClientManager.Clients = new ObservableCollection<ClientHandler>();
+            //ClientNumber = GetClientCount();
 
             //for (int i = 0; i < 4; i++)
             //{
@@ -287,7 +286,6 @@ namespace RemoteEducationApplication.Views.Server
             if (menuItem != null)
             {
                 string tag = menuItem.GetTag();
-                string header = menuItem.GetHeader();
 
                 if (tag == ApplicationHelper.CommandTags.Close ||
                     tag == ApplicationHelper.CommandTags.Logoff)
@@ -300,7 +298,7 @@ namespace RemoteEducationApplication.Views.Server
                 }
                 else if (tag == ApplicationHelper.CommandTags.QuestionUpload)
                 {
-                    QuestionHelper.SendQuestionIDToClient(QuestionHelper.CreateQuestionWithAnswers(), ClientManager.Clients);
+                    QuestionManager.SendQuestionIDToClient(QuestionManager.CreateQuestionWithAnswers(), ClientManager.Clients);
                 }
                 else if (tag == ApplicationHelper.CommandTags.QuestionSelect)
                 {
@@ -310,12 +308,17 @@ namespace RemoteEducationApplication.Views.Server
                 {
                     StyleHelper.ChangeTheme(tag);
                 }
-                else if (tag.Contains(AppSettings.WindowIdentifier))
-                {
-                    string fullTypeName = String.Concat(App.MenuWindowPath, tag.Remove(AppSettings.WindowIdentifier), ",", NETFrameworkHelper.GetAssemblyName<App>());
-                    this.NavigateTo(fullTypeName, false, ApplicationHelper.IsSharedMenu(header) ? new object[] { header } : null);
-                }
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the MenuItem element.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void SubMenuItemGeneric_Click(object sender, RoutedEventArgs e)
+        {
+            sender.ExecuteIfNotNull<MenuItem>(x => NavigationManager.NavigateTo(this, x.GetTag(), x.GetHeader()));
         }
 
         /// <summary>
@@ -545,26 +548,29 @@ namespace RemoteEducationApplication.Views.Server
         /// <summary>
         /// 
         /// </summary>
-        private async void Start()
-        {
-			// IPAddress address = NetworkHelper.GetLocalIPAddress();
-            // ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
-            // ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
-            // ServerImage.MaxConnections = ServerData.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
-            // ServerImage.IsListening = ServerData.IsListening = true;
+        //private async void Start()
+        //{
+        //    //IPEndPoint endPoint = new IPEndPoint(NetworkHelper.GetLocalIPAddress(), AppSettings.DefaultServerImagePort);
+        //    //ServerHandler serverHandler = new ServerHandler(endPoint, ConnectionHelper.BufferSize.Large, ConnectionHelper.MaxConnections.Ten);
 
-            // ServerImage.Start();
-            // ServerData.Start();
+        //    //serverHandler.Start(ConnectionHelper.SleepTime.VeryShort);
+        //    //ServerImage = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerImagePort));
+        //    //ServerData = new ServerHandler(new IPEndPoint(address, AppSettings.DefaultServerDataPort));
+        //    //ServerImage.MaxConnections = ServerData.MaxConnections = ConnectionHelper.MaxConnections.Twenty.GetValue();
+        //    //ServerImage.IsListening = ServerData.IsListening = true;
 
-            // DatabaseHelper.SaveServerInfo(address);
+        //    //ServerImage.Start();
+        //    //ServerData.Start();
 
-            // LastImageUpdate = LastConnectionUpdate = DateTime.Now;          
+        //    //DatabaseHelper.SaveServerInfo(address);
 
-            // await Task.WhenAll(new Task[]{ 
-				// ListeningForConnections(),
-				// GetDesktopImage(),
-				// ExchangeDataWithClient()});
-        }
+        //    //LastImageUpdate = LastConnectionUpdate = DateTime.Now;          
+
+        //    //await Task.WhenAll(new Task[]{ 
+        //    //    ListeningForConnections(),
+        //    //    GetDesktopImage(),
+        //    //    ExchangeDataWithClient()});
+        //}
 
         #endregion
 
@@ -574,107 +580,107 @@ namespace RemoteEducationApplication.Views.Server
         /// 
         /// </summary>
         /// <returns></returns>
-        private async Task ListeningForConnections()
-        {
-            // while (ServerImage.IsListening)
-            // {
-               // LastConnectionUpdate = DateTime.Now;
-               // if (ServerImage.Pending())
-               // {
-                   // if (ConnectedClients.Count < ServerImage.MaxConnections)
-                   // {
-                       // ClientHandler client = new ClientHandler();
-                       // client.Height = ClientSizes.InitialHeight;
-                       // client.Width = ClientSizes.InitialWidth;
-                       // client.TcpClient = ServerImage.AcceptTcpClient();
-                       // client.TcpClientDataExchange = ServerData.AcceptTcpClient();
-                       // client.StatusMessage = AppResources.ClientStatusImageWait;
+        //private async Task ListeningForConnections()
+        //{
+        //    //while (ServerImage.IsListening)
+        //    //{
+        //    //    LastConnectionUpdate = DateTime.Now;
+        //    //    if (ServerImage.Pending())
+        //    //    {
+        //    //        if (ConnectedClients.Count < ServerImage.MaxConnections)
+        //    //        {
+        //    //            ClientHandler client = new ClientHandler();
+        //    //            client.Height = ClientSizes.InitialHeight;
+        //    //            client.Width = ClientSizes.InitialWidth;
+        //    //            client.TcpClient = ServerImage.AcceptTcpClient();
+        //    //            client.TcpClientDataExchange = ServerData.AcceptTcpClient();
+        //    //            client.StatusMessage = AppResources.ClientStatusImageWait;
 
-                       // if (client.TcpClient != null)
-                       // {
-                           // ConnectedClients.Add(client);
-                           // ClientManager.Clients.Add(client);
-                       // }
+        //    //            if (client.TcpClient != null)
+        //    //            {
+        //    //                ConnectedClients.Add(client);
+        //    //                ClientManager.Clients.Add(client);
+        //    //            }
 
-                       // ClientNumber = GetClientCount();
+        //    //            ClientNumber = GetClientCount();
 
-                       // if (ClientNumber > 0 && !HasClients)
-                           // HasClients = true;
+        //    //            if (ClientNumber > 0 && !HasClients)
+        //    //                HasClients = true;
 
-                       // ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
-                       // client.Name = ClientManager.GetUserIdentification(client.GetDataExchangeStream());                    
-                   // }
-               // }
-               // else
-                   // await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
-            // }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        private async Task GetDesktopImage()
-        {
-            //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
-
-            //while (ConnectedClients != null)
-            //{
-            //    foreach (ClientHandler client in ConnectedClients)
-            //    {
-            //        try
-            //        {
-            //            if (client.IsClientConnected())
-            //            {
-            //                BinaryFormatter bFormatter = new BinaryFormatter();
-            //                Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
-            //                client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp);
-            //            }
-            //        }
-            //        catch
-            //        {
-            //            clientsToRemove.Add(ClientDisconnecting(client));
-            //        }
-            //    }       
-
-            //    LastImageUpdate = DateTime.Now;
-
-            //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
-
-            //    HandleDisconnectedClients(clientsToRemove);
-            //}
-        }
+        //    //            ConnectionHelper.SendSleepTimeValue(client.GetClientStream());
+        //    //            client.Name = ClientManager.GetUserIdentification(client.GetDataExchangeStream());                    
+        //    //        }
+        //    //    }
+        //    //    else
+        //    //        await Task.Delay(ConnectionHelper.SleepTime.Short.GetValue());
+        //    //}
+        //}
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        private async Task ExchangeDataWithClient()
-        {
-            //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
+        //private async Task GetDesktopImage()
+        //{
+        //    //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
 
-            //while (ServerData.IsListening)
-            //{
-            //    foreach (ClientHandler client in ConnectedClients)
-            //    {
-            //        try
-            //        {
-            //            NetworkStream stream = client.GetDataExchangeStream();
+        //    //while (ConnectedClients != null)
+        //    //{
+        //    //    foreach (ClientHandler client in ConnectedClients)
+        //    //    {
+        //    //        try
+        //    //        {
+        //    //            if (client.IsClientConnected())
+        //    //            {
+        //    //                BinaryFormatter bFormatter = new BinaryFormatter();
+        //    //                Bitmap bitmap = bFormatter.Deserialize(client.GetClientStream()) as Bitmap;
+        //    //                client.DesktopImage = bitmap.GetImageSource(ImageFormat.Bmp);
+        //    //            }
+        //    //        }
+        //    //        catch
+        //    //        {
+        //    //            clientsToRemove.Add(ClientDisconnecting(client));
+        //    //        }
+        //    //    }       
 
-            //            if (stream.DataAvailable)
-            //                client.TotalScore += stream.ReadByte();
-            //        }
-            //        catch
-            //        {
-            //            clientsToRemove.Add(ClientDisconnecting(client));
-            //        }
-            //    }
+        //    //    LastImageUpdate = DateTime.Now;
 
-            //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
+        //    //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
 
-            //    HandleDisconnectedClients(clientsToRemove);
-            //}
-        }
+        //    //    HandleDisconnectedClients(clientsToRemove);
+        //    //}
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        //private async Task ExchangeDataWithClient()
+        //{
+        //    //List<ClientHandler> clientsToRemove = new List<ClientHandler>();
+
+        //    //while (ServerData.IsListening)
+        //    //{
+        //    //    foreach (ClientHandler client in ConnectedClients)
+        //    //    {
+        //    //        try
+        //    //        {
+        //    //            NetworkStream stream = client.GetDataExchangeStream();
+
+        //    //            if (stream.DataAvailable)
+        //    //                client.TotalScore += stream.ReadByte();
+        //    //        }
+        //    //        catch
+        //    //        {
+        //    //            clientsToRemove.Add(ClientDisconnecting(client));
+        //    //        }
+        //    //    }
+
+        //    //    await Task.Delay(ConnectionHelper.SleepTime.Moderate.GetValue());
+
+        //    //    HandleDisconnectedClients(clientsToRemove);
+        //    //}
+        //}
 
         /// <summary>
         /// Updates the client state and closes the client connection.

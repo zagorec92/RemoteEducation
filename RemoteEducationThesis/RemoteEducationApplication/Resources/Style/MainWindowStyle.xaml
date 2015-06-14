@@ -8,7 +8,7 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ButtonLoginStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-        <Setter Property="Width" Value="75" />
+        <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />

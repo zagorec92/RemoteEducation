@@ -49,7 +49,6 @@ namespace RemoteEducationApplication.Helpers
             resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
 
             Application.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] = resourceDictionary;
-
             App.CurrentThemeName = themeName;
         }
 

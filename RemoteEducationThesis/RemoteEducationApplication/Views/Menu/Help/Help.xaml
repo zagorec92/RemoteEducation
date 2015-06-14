@@ -3,7 +3,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
-                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 xmlns:global="clr-namespace:Education.Application.Properties"
                  Style="{StaticResource MainWindowStyle}"
                  WindowState="Normal"
                  Height="300" Width="300"

@@ -3,11 +3,11 @@
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                     xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
-                     xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
-                     xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
                      Style="{StaticResource WindowBarUserControlStyle}"
-                     x:Name="windowBar">
+                     x:Name="windowBar"
+                     xmlns:global="clr-namespace:Education.Application.Properties"
+                     xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
+                     xmlns:c="clr-namespace:RemoteEducationApplication.Converters">
     <base:WpfUserControl.Resources>
         <c:WindowBarVisibilityConverter x:Key="WindowBarVisibilityConverter" />
     </base:WpfUserControl.Resources>
@@ -20,9 +20,9 @@
 
         <!--expand-->
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                    Tag="{x:Static global:Resources.WindowBarExpand}"
-                   ToolTip="{x:Static global:Resources.WindowBarExpand}"             
-                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                   ToolTip="{x:Static global:Resources.WindowBarExpand}">             
             <Rectangle.Visibility>
                 <MultiBinding Converter="{StaticResource WindowBarVisibilityConverter}"
                               ConverterParameter="{x:Static global:Resources.WindowBarExpand}">
@@ -37,9 +37,9 @@
 
         <!--shrink-->
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
                    Tag="{x:Static global:Resources.WindowBarShrink}"
-                   ToolTip="{x:Static global:Resources.WindowBarShrink}"
-                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                   ToolTip="{x:Static global:Resources.WindowBarShrink}">
             <Rectangle.Visibility>
                 <MultiBinding Converter="{StaticResource WindowBarVisibilityConverter}"
                               ConverterParameter="{x:Static global:Resources.WindowBarShrink}">
@@ -55,11 +55,11 @@
 
         <!--minimize-->
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
-                   Tag="{x:Static global:Resources.WindowBarMinimize}"
-                   ToolTip="{x:Static global:Resources.WindowBarMinimize}"
                    Visibility="{Binding MinimizeIconVisibility, ElementName=windowBar}"
                    Grid.Column="1"
-                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
+                   Tag="{x:Static global:Resources.WindowBarMinimize}"
+                   ToolTip="{x:Static global:Resources.WindowBarMinimize}">
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="../../Resources/Images/minimize.png"/>
             </Rectangle.OpacityMask>
@@ -67,11 +67,11 @@
         
         <!--connect-->
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
-                   Tag="{x:Static global:Resources.WindowBarConnect}"
-                   ToolTip="{x:Static global:Resources.WindowBarConnect}"
                    Visibility="{Binding ClientBarVisibility, ElementName=windowBar}"
                    Grid.Column="1"
-                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
+                   Tag="{x:Static global:Resources.WindowBarConnect}"
+                   ToolTip="{x:Static global:Resources.WindowBarConnect}">
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="../../Resources/Images/connect.png" />
             </Rectangle.OpacityMask>
@@ -79,10 +79,10 @@
 
         <!--close-->
         <Rectangle Style="{StaticResource WindowBarRectangleStyle}"
-                   Tag="{x:Static global:Resources.WindowBarClose}"
-                   ToolTip="{x:Static global:Resources.WindowBarClose}"
                    Grid.Column="2"
-                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                   MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
+                   Tag="{x:Static global:Resources.WindowBarClose}"
+                   ToolTip="{x:Static global:Resources.WindowBarClose}">
             <Rectangle.OpacityMask>
                 <ImageBrush ImageSource="../../Resources/Images/close.png"/>
             </Rectangle.OpacityMask>

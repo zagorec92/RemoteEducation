@@ -7,6 +7,12 @@ namespace Education.Model
     public class User : EntityBase
     {
         /// <summary>
+        /// Gets or sets the unique identifier,
+        /// </summary>
+        [Index(IsUnique = true)]
+        public Guid? Identifier { get; set; }
+
+        /// <summary>
         /// Gets or sets user details ID.
         /// </summary>
         [ForeignKey("UserDetail")]
@@ -18,22 +24,19 @@ namespace Education.Model
         public UserDetails UserDetail { get; set; }
 
         /// <summary>
-        /// Gets or sets the first name.
+        /// Gets or sets the password.
         /// </summary>
-        public string FirstName { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
-        /// Gets or sets the last name.
+        /// Gets or sets the password salt.
         /// </summary>
-        public string LastName { get; set; }
+        public string PasswordSalt { get; set; }
 
         /// <summary>
-        /// Gets the first and last name combined.
+        /// Gets or sets the security code.
         /// </summary>
-        public string FullName 
-        {
-            get { return String.Format("{0} {1}", FirstName, LastName); }
-        }
+        public int SecurityCode { get; set; }
 
         /// <summary>
         /// Gets or sets the roles.

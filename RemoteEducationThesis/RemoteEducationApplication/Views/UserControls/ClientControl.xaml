@@ -5,7 +5,7 @@
                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                      xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
                      xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
-                     xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                     xmlns:global="clr-namespace:Education.Application.Properties"
                      xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
                      Style="{StaticResource UserControlWindowStyle}"
                      Tag="{Binding ID}">

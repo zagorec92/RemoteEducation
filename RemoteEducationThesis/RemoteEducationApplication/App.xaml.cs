@@ -1,6 +1,5 @@
-﻿using Education.DAL;
+﻿using Education.Application.Managers;
 using Education.DAL.Repositories;
-using Education.Model;
 using ExtensionLibrary.Controls.Helpers;
 using ExtensionLibrary.Exceptions.Helpers;
 using RemoteEducationApplication.Helpers;
@@ -10,9 +9,8 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Threading;
 using WPFFramework.App;
-using AppResources = RemoteEducationApplication.Properties.Resources;
-using AppSettings = RemoteEducationApplication.Properties.Settings;
-using ExtensionLibrary.Enums.Extensions;
+using AppResources = Education.Application.Properties.Resources;
+using AppSettings = Education.Application.Properties.Settings;
 
 namespace RemoteEducationApplication
 {
@@ -113,26 +111,16 @@ namespace RemoteEducationApplication
 
             try
             {
-                using (EEducationDbContext context = new EEducationDbContext())
-                {
-                    ApplicationLogRepository appLogRepository = new ApplicationLogRepository(context);
+                string message = exception.Message;
+                string description = exception.InnerException == null ? String.Empty : exception.InnerException.Message;
+                string stackTrace = exception.StackTrace;
 
-					ApplicationLog applicationLog = new ApplicationLog()
-					{
-						Message = exception.Message,
-						Description = exception.InnerException == null ? String.Empty : exception.InnerException.Message,
-						StackTrace = exception.StackTrace,
-						DateCreated = exceptionOccured,
-						DateModified = exceptionOccured,
-						LogType = ApplicationLogRepository.LogType.Error.GetValue()
-                    };
+                int logId = LogManager.Log(LogRepository.LogType.Error, message, description, stackTrace);
 
-                    if (appLogRepository.InsertOrUpdate(applicationLog))
-                        appLogRepository.Save();
-
-                    if (applicationLog.ID != default(int))
-                        exceptionId = applicationLog.ID;
-                }
+                if (logId > 0)
+                    exceptionId = logId;
+                else
+                    throw new Exception(AppResources.ExceptionDatabaseServer);
             }
             catch (Exception ex)
             {

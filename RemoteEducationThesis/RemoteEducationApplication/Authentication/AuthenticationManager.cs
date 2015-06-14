@@ -1,4 +1,5 @@
-﻿using Education.DAL;
+﻿using Education.Application.Managers;
+using Education.DAL;
 using Education.DAL.Repositories;
 using Education.Model;
 using ExtensionLibrary.Collections.Extensions;
@@ -9,8 +10,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppResources = RemoteEducationApplication.Properties.Resources;
-using ExtensionLibrary.Enums.Extensions;
+using AppResources = Education.Application.Properties.Resources;
 
 namespace RemoteEducationApplication.Authentication
 {
@@ -54,24 +54,15 @@ namespace RemoteEducationApplication.Authentication
 		/// </summary>
 		public static void Logout()
 		{
-			try
-			{
-				using (EEducationDbContext context = new EEducationDbContext())
-				{
-					ApplicationLogRepository applicationLogRepository = new ApplicationLogRepository(context);
-					ApplicationLog applicationLog = new ApplicationLog();
-					applicationLog.UserID = LoggedInUser.ID;
-					applicationLog.LogType = ApplicationLogRepository.LogType.Info.GetValue();
-					applicationLog.Message = String.Format("User {0} has logged out.", LoggedInUser.ID);
-
-					if (applicationLogRepository.InsertOrUpdate(applicationLog))
-						applicationLogRepository.Save();
-				}
-			}
-			finally
-			{
-				LoggedInUser = null;
-			}
+            //try
+            //{
+            //    string message = String.Format("User {0} has logged out.", AuthenticationManager.LoggedInUser.Identifier);
+            //    LogManager.Log(LogRepository.LogType.Info, message, null, null);
+            //}
+            //finally
+            //{
+            //    LoggedInUser = null;
+            //}
 		}
 
         /// <summary>
@@ -92,7 +83,7 @@ namespace RemoteEducationApplication.Authentication
                 if (user == null)
                     throw new ArgumentException(AppResources.ValidationMessageUsername, AuthenticateExParameters.IsUsername);
 
-                if (!CheckPassword(password, user.UserDetail.PasswordSalt, user.UserDetail.Password))
+                if (!CheckPassword(password, user.PasswordSalt, user.Password))
                     throw new ArgumentException(AppResources.ValidationMessagePassword, AuthenticateExParameters.IsPassword);
 
                 LoggedInUser = user;
@@ -107,9 +98,9 @@ namespace RemoteEducationApplication.Authentication
         /// <param name="user">The <see cref="Education.Model.User"/> instance.</param>
         public static void CreateUserAuthentication(User user)
         {
-            user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
-            user.UserDetail.Password = SecurityManager.CreateSaltedPasswordHash(user.UserDetail.Password,
-                user.UserDetail.PasswordSalt);
+            user.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
+            user.Password = SecurityManager.CreateSaltedPasswordHash(user.Password,
+                user.PasswordSalt);
 
             using (EEducationDbContext context = new EEducationDbContext())
             {
@@ -152,13 +143,13 @@ namespace RemoteEducationApplication.Authentication
                 User user = userRepository.GetByUsername(username);
                 int securityCode = securityNum.ToSafe<int>();
 
-                if (user != null && user.UserDetail.SecurityCode == securityCode)
+                if (user != null && user.SecurityCode == securityCode)
                 {
                     string password = SecurityManager.GetRandomPassword(GEN_PASS_SIZE);
-                    user.UserDetail.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
-                    user.UserDetail.Password = SecurityManager.CreateSaltedPasswordHash(password, user.UserDetail.PasswordSalt);
+                    user.PasswordSalt = SecurityManager.GenerateSalt(BYTE_SIZE_SALT);
+                    user.Password = SecurityManager.CreateSaltedPasswordHash(password, user.PasswordSalt);
 
-                    Task.Run(async () => await MailHelper.SendPasswordResetMail(password, user.UserDetail.Email, user.FirstName));
+                    Task.Run(async () => await MailHelper.SendPasswordResetMail(password, user.UserDetail.Email, user.UserDetail.FirstName));
 
                     if (userRepository.InsertOrUpdate(user))
                         userRepository.Save();

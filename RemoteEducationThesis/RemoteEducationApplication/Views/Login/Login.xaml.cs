@@ -1,4 +1,8 @@
 ﻿using Education.DAL.Repositories;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Enums.Extensions;
+using ExtensionLibrary.Exceptions.Helpers;
 using RemoteEducationApplication.Authentication;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
@@ -9,11 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
-using ExtensionLibrary.Enums.Extensions;
-using ExtensionLibrary.Exceptions.Helpers;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using AppResources = Education.Application.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Login
 {
@@ -43,6 +43,8 @@ namespace RemoteEducationApplication.Views.Login
         private string _windowRole;
         private string _username;
         private string _securityCode;
+        private string _loadingScreenText;
+        private bool _isLoading;
 
         #endregion
 
@@ -123,6 +125,32 @@ namespace RemoteEducationApplication.Views.Login
             {
                 _securityCode = value;
                 OnPropertyChanged(this, x => x.SecurityCode);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the text that is displayed on loading screen.
+        /// </summary>
+        public string LoadingScreenText
+        {
+            get { return _loadingScreenText; }
+            set
+            {
+                _loadingScreenText = value;
+                OnPropertyChanged(this, x => x.LoadingScreenText);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value indicating if application is loading information.
+        /// </summary>
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(this, x => x.IsLoading);
             }
         }
 
@@ -261,13 +289,21 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         private async void AuthenticateUser()
         {
-            //throw new Exception("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec posuere metus magna, eu viverra nisl scelerisque at. Duis non libero tellus. Praesent lorem ipsum, dapibus sit amet massa ut, interdum lacinia augue. Suspendisse placerat sollicitudin venenatis. Aenean sem justo, maximus eu tellus a, tincidunt dapibus sem. In facilisis metus nec sodales malesuada. Nam blandit leo et mauris vehicula blandit.");
             try
             {
+                UpdateLoadingScreen(loadingText: AppResources.LoginPageLoginLoadingText);
+
+                //loading screen test
                 await Task.Delay(BaseHelper.SleepTime.Short.GetValue());
 
                 //int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
-                int roleID = 3; //test
+                int roleID = 1; //test
+
+                //UpdateLoadingScreen(loadingText: "Uspješna prijava");
+                //await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
+
+                //UpdateLoadingScreen(loadingText: "Otvaram prozor");
+                //await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
 
                 if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
                     roleID == RoleRepository.RoleType.Professor.GetValue())
@@ -277,6 +313,7 @@ namespace RemoteEducationApplication.Views.Login
             }
             catch (ArgumentException ex)
             {
+                UpdateLoadingScreen(false);
                 string message = ExceptionHelper.GetMessage(ex);
 
                 if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
@@ -298,14 +335,17 @@ namespace RemoteEducationApplication.Views.Login
 
             try
             {
+                UpdateLoadingScreen(loadingText: AppResources.LoginPageLoginLoadingText);
                 await Task.Run(() => AuthenticationManager.RecoverPassword(Username, SecurityCode));
+                UpdateLoadingScreen(loadingText: AppResources.LoginPageRecoverySuccessText);
             }
-            catch(ArgumentException ae)
+            catch (ArgumentException ae)
             {
-                
+                UpdateLoadingScreen(loadingText: ExceptionHelper.GetShortMessage(ae));
             }
 
             await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
+            UpdateLoadingScreen(false);
         }
 
         #endregion
@@ -317,6 +357,16 @@ namespace RemoteEducationApplication.Views.Login
         private void SetWindowTitle(string windowTitle)
         {
             WindowRole = windowTitle;
+        }
+
+        /// <summary>
+        /// Sets the visibility and the display text of the loading control.
+        /// </summary>
+        /// <param name="isVisible"></param>
+        private void UpdateLoadingScreen(bool isVisible = true, string loadingText = null)
+        {
+            LoadingScreenText = loadingText ?? String.Empty;
+            IsLoading = isVisible;
         }
 
         /// <summary>

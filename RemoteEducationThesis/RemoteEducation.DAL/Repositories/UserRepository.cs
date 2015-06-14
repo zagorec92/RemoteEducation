@@ -27,7 +27,8 @@ namespace Education.DAL.Repositories
         public User GetByFirstName(string firstName)
         {
             return base.GetAll()
-                .FirstOrDefault(x => x.FirstName.Equals(firstName));
+                .Include(x => x.UserDetail)
+                .FirstOrDefault(x => x.UserDetail.FirstName.Equals(firstName));
         }
 
         /// <summary>
@@ -38,7 +39,8 @@ namespace Education.DAL.Repositories
         public User GetByLastName(string lastName)
         {
             return base.GetAll()
-                .FirstOrDefault(x => x.LastName.Equals(lastName));
+                .Include(x => x.UserDetail)
+                .FirstOrDefault(x => x.UserDetail.LastName.Equals(lastName));
         }
 
         /// <summary>
@@ -46,7 +48,7 @@ namespace Education.DAL.Repositories
         /// </summary>
         /// <param name="email">The <see cref="System.String"/> value representing email address</param>
         /// <returns>The <see cref="Education.Model.User"/> instance if found, null otherwise.</returns>
-        public User GetByEmail(string email)
+        public User GetByUsername(string email)
         {
             return base.GetAll()
                 .Include(x => x.UserDetail)

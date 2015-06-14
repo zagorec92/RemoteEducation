@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RemoteEducationApplication.Properties {
+namespace Education.Application.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace RemoteEducationApplication.Properties {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("RemoteEducationApplication.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Education.Application.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -147,6 +147,15 @@ namespace RemoteEducationApplication.Properties {
         public static string ClientWindowSendingImage {
             get {
                 return ResourceManager.GetString("ClientWindowSendingImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not establish connection to the database server..
+        /// </summary>
+        public static string ExceptionDatabaseServer {
+            get {
+                return ResourceManager.GetString("ExceptionDatabaseServer", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Education.Model
 {
@@ -14,6 +15,8 @@ namespace Education.Model
         /// <summary>
         /// Gets or sets the date created.
         /// </summary>
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? DateCreated { get; set; }
 
         /// <summary>

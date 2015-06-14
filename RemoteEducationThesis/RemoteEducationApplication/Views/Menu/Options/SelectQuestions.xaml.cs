@@ -1,8 +1,10 @@
-﻿using Education.DAL;
-using Education.DAL.Repositories;
+﻿using Education.Application.Managers;
 using Education.Model;
+using ExtensionLibrary.Collections.Extensions;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Enums.Helpers;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Extensions;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System;
@@ -14,11 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using ExtensionLibrary.Collections.Extensions;
-using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
-using ExtensionLibrary.Enums.Helpers;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using AppResources = Education.Application.Properties.Resources;
 
 namespace RemoteEducationApplication.Views.Menu.Options
 {
@@ -143,9 +141,9 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// <param name="e">The <see cref="System.Window.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
         private void ComboBox_Filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            sender.ExecuteIfNotNull<ComboBox>(x => 
+            sender.ExecuteIfNotNull<ComboBox>(x =>
             {
-                if(x.GetTag() == AppResources.QuestionSelectDifficulty.Remove(AppResources.QuestionSelectDifficulty.Length - 1))
+                if (x.GetTag() == AppResources.QuestionSelectDifficulty)
                     Difficulty = x.SelectedItem.ToSafe<double>();
                 else
                     PopulateSubjectAndDifficulty(((Subject)x.SelectedItem).ID);
@@ -196,7 +194,7 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         private void ButtonSend_Click(object sender, RoutedEventArgs e)
         {
-            QuestionHelper.SendQuestionIDToClient(QuestionId, ClientManager.Clients);
+            QuestionManager.SendQuestionIDToClient(QuestionId, ClientManager.Clients);
         }
 
         /// <summary>
@@ -239,6 +237,7 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// </summary>
         private void Filter()
         {
+            DetailsVisibility = Visibility.Hidden;
             ICollectionView view = CollectionViewSource.GetDefaultView(SubjectQuestions);
 
             if (view != null && (UploadedByName != null || Difficulty != default(double)))
@@ -247,10 +246,15 @@ namespace RemoteEducationApplication.Views.Menu.Options
                 {
                     Question question = (Question)obj;
 
-                    return UploadedByName != String.Empty ?
-                        (Difficulty != default(double)) ? question.UploadedByUser.FullName.Contains(UploadedByName)
-                        && question.Difficulty == Difficulty : question.UploadedByUser.FullName.Contains(UploadedByName)
-                        : (Difficulty != default(double)) ? question.Difficulty == Difficulty : question != null;
+                    return 
+                        UploadedByName != String.Empty
+                            ? (Difficulty != default(double))
+                                ? question.UploadedByUser.UserDetail.FullName.Contains(UploadedByName)
+                                && question.Difficulty == Difficulty
+                                : question.UploadedByUser.UserDetail.FullName.Contains(UploadedByName)
+                            : (Difficulty != default(double)) 
+                                ? question.Difficulty == Difficulty 
+                                : question != null;
                 };
             }
         }
@@ -266,8 +270,15 @@ namespace RemoteEducationApplication.Views.Menu.Options
 
             if(view != null)
             {
-                view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription(propertyName, listSortDirection));
+                SortDescription sortDescription = view.SortDescriptions.FirstOrDefault(x => x.PropertyName == propertyName);
+
+                if (sortDescription.PropertyName != null)
+                    view.SortDescriptions.Remove(sortDescription);
+                
+                sortDescription = new SortDescription(propertyName, listSortDirection);
+
+                //view.SortDescriptions.Clear();
+                view.SortDescriptions.Insert(0, sortDescription);
             }
         }
 
@@ -277,17 +288,34 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// <param name="comboBox"></param>
         private void PopulateSubjectAndDifficulty(int subjectId)
         {
-            using (EEducationDbContext context = new EEducationDbContext())
-            {
-                QuestionRepository questionRepository = new QuestionRepository(context);
-                Difficulties.Add(AppResources.QuestionSelectDifficultyDefault);
+            Reset();
+            Difficulties.Add(AppResources.QuestionSelectDifficultyDefault);
 
-                foreach (Question question in questionRepository.GetBySubject(subjectId))
-                {
-                    SubjectQuestions.Add(question);
-                    Difficulties.AddDistinct(question.Difficulty.ToString());
-                }
+            List<Question> questions = QuestionManager.GetQuestionsBySubject(subjectId);
+            List<double> difficulties = new List<double>();
+
+            foreach(Question question in questions)
+            {
+                SubjectQuestions.Add(question);
+                difficulties.AddDistinct(question.Difficulty);
             }
+
+            string[] orderedDifficulties = difficulties
+                .OrderByDescending(x => x)
+                .Select(x => x.ToString())
+                .ToArray();
+
+            Difficulties.AddRangeDistinct(orderedDifficulties);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Reset()
+        {
+            DetailsVisibility = Visibility.Hidden;
+            SubjectQuestions.Clear();
+            Difficulties.Clear();
         }
 
         #endregion

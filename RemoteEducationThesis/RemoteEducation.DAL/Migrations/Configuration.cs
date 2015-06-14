@@ -2,23 +2,31 @@ using Education.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
-using System.IO;
-using System.Linq;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
+using Education.DAL.Repositories;
+using System.Xml;
+using System.Reflection;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using ExtensionLibrary.Enums.Extensions;
+using System.Data.Entity.SqlServer;
+using System.Data.Entity.Migrations.Model;
 
 namespace Education.DAL.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<EEducationDbContext>
     {
         #region Constructor
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Education.DAL.Migrations.Configuration"/> class.
         /// </summary>
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            SetSqlGenerator("System.Data.SqlClient", new CustomSqlServerMigrationSqlGenerator());
         }
 
         #endregion
@@ -42,44 +50,52 @@ namespace Education.DAL.Migrations
             //    );
             //
         }
+    }
 
-        #region Temp methods
+    internal class CustomSqlServerMigrationSqlGenerator : SqlServerMigrationSqlGenerator
+    {
+        #region Table
 
-        private static string GenerateSalt()
+        protected override void Generate(CreateTableOperation createTableOperation)
         {
-            byte[] bytes = new byte[16];
-
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(bytes);
-
-            return Convert.ToBase64String(bytes);
+            SetCreatedDate(createTableOperation.Columns);
+            base.Generate(createTableOperation);
         }
 
-        private static string GetRandomPassword(int size)
+        protected override void Generate(AlterTableOperation alterTableOperation)
         {
-            string generatedPassword = String.Empty;
-            char ch;
-            Random random = new Random();
-
-            for (int i = 0; i < size; i++)
-            {
-                ch = Convert.ToChar(Convert.ToInt32(random.Next(97, 122)));
-                generatedPassword += ch.ToString();
-            }
-
-            return generatedPassword;
-        }
-
-        private static string CreateSaltedPasswordHash(string password, string salt)
-        {
-            byte[] passwordAndSaltBytes = UTF8Encoding.Default.GetBytes(password + salt);
-
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] passwordWithSaltHashed = md5.ComputeHash(passwordAndSaltBytes);
-
-            return Convert.ToBase64String(passwordWithSaltHashed);
+            SetCreatedDate(alterTableOperation.Columns);
+            base.Generate(alterTableOperation);
         }
 
         #endregion
+
+        #region Column
+
+        protected override void Generate(AddColumnOperation addColumnOperation)
+        {
+            SetCreatedDate(addColumnOperation.Column);
+            base.Generate(addColumnOperation);
+        }
+
+        protected override void Generate(AlterColumnOperation alterColumnOperation)
+        {
+            SetCreatedDate(alterColumnOperation.Column);
+            base.Generate(alterColumnOperation);
+        }
+
+        #endregion
+
+        private static void SetCreatedDate(IEnumerable<ColumnModel> columnModels)
+        {
+            foreach (ColumnModel columnModel in columnModels)
+                SetCreatedDate(columnModel);
+        }
+
+        private static void SetCreatedDate(PropertyModel model)
+        {
+            if (model.Name == "DateCreated")
+                model.DefaultValueSql = "GETDATE()";
+        }
     }
 }

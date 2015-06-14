@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using AppResources = Education.Application.Properties.Resources;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace RemoteEducationApplication.Helpers

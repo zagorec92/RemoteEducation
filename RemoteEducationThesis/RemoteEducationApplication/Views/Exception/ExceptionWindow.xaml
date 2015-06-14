@@ -3,10 +3,10 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
-                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 xmlns:global="clr-namespace:Education.Application.Properties"
+                 Style="{StaticResource MainWindowStyle}"
                  WindowStyle="None"
                  WindowState="Normal"
-                 Style="{StaticResource MainWindowStyle}"
                  Height="195" 
                  Width="450"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
@@ -55,7 +55,7 @@
                     Style="{StaticResource ButtonSendMailStyle}"
                     Content="{x:Static global:Resources.ExceptionWindowSendMail}"
                     ToolTip="{x:Static global:Resources.ExceptionWindowSendMailTooltip}"
-                    Click="Button_Click"/>           
+                    Click="Button_Click"/>
         </Grid>
     </Grid>
 </base:WindowBase>

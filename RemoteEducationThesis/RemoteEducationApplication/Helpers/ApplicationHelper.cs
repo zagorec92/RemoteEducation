@@ -6,7 +6,7 @@ using RemoteEducationApplication.Views.Login;
 using System;
 using System.Collections.Generic;
 using System.Windows;
-using AppResources = RemoteEducationApplication.Properties.Resources;
+using AppResources = Education.Application.Properties.Resources;
 
 namespace RemoteEducationApplication.Helpers
 {
@@ -76,7 +76,7 @@ namespace RemoteEducationApplication.Helpers
 		public static void InitializeCommandMappings()
 		{
 			CommandMapping = new Dictionary<string, Action>();
-			CommandMapping.Add(CommandTags.Minimize, () => WindowHelper.Minimize());
+			CommandMapping.Add(CommandTags.Minimize, () => App.Minimize());
 			CommandMapping.Add(CommandTags.Close, () => App.CloseApplication());
 			CommandMapping.Add(CommandTags.Logoff, () => Logoff());
 

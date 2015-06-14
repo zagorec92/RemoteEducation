@@ -1,9 +1,9 @@
-﻿using RemoteEducationApplication.Shared;
+﻿using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using RemoteEducationApplication.Shared;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using WPFFramework.App.Base;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
-using ExtensionLibrary.Controls.Extensions;
 
 namespace RemoteEducationApplication.Views.UserControls
 {

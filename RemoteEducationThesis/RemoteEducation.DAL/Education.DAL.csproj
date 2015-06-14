@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,13 +8,14 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Education.DAL</RootNamespace>
-    <AssemblyName>RemoteEducation.DAL</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <AssemblyName>Education.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,9 +43,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExtensionLibrary">
+      <HintPath>..\Education.Libraries\Libraries\ExtensionLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,23 +57,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201412271407440_QuestionUpdate.cs" />
-    <Compile Include="Migrations\201412271407440_QuestionUpdate.Designer.cs">
-      <DependentUpon>201412271407440_QuestionUpdate.cs</DependentUpon>
+    <Compile Include="MigrationHelper.cs" />
+    <Compile Include="Migrations\201505291949472_Initial.cs" />
+    <Compile Include="Migrations\201505291949472_Initial.Designer.cs">
+      <DependentUpon>201505291949472_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201412281027560_Subject.cs" />
-    <Compile Include="Migrations\201412281027560_Subject.Designer.cs">
-      <DependentUpon>201412281027560_Subject.cs</DependentUpon>
+    <Compile Include="Migrations\201506061033165_UserUpdate.cs" />
+    <Compile Include="Migrations\201506061033165_UserUpdate.Designer.cs">
+      <DependentUpon>201506061033165_UserUpdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201412281444049_Update.QuestionTitle.cs" />
-    <Compile Include="Migrations\201412281444049_Update.QuestionTitle.Designer.cs">
-      <DependentUpon>201412281444049_Update.QuestionTitle.cs</DependentUpon>
+    <Compile Include="Migrations\201506061204579_Update_1.cs" />
+    <Compile Include="Migrations\201506061204579_Update_1.Designer.cs">
+      <DependentUpon>201506061204579_Update_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506061211266_Update_2.cs" />
+    <Compile Include="Migrations\201506061211266_Update_2.Designer.cs">
+      <DependentUpon>201506061211266_Update_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506061237241_LogTypeUpdate.cs" />
+    <Compile Include="Migrations\201506061237241_LogTypeUpdate.Designer.cs">
+      <DependentUpon>201506061237241_LogTypeUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506061308018_Update_5.cs" />
+    <Compile Include="Migrations\201506061308018_Update_5.Designer.cs">
+      <DependentUpon>201506061308018_Update_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506061326064_Update_6.cs" />
+    <Compile Include="Migrations\201506061326064_Update_6.Designer.cs">
+      <DependentUpon>201506061326064_Update_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506071611215_Attachment.cs" />
+    <Compile Include="Migrations\201506071611215_Attachment.Designer.cs">
+      <DependentUpon>201506071611215_Attachment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EEducationDbContext.cs" />
     <Compile Include="Repositories\AnswerRepository.cs" />
-    <Compile Include="Repositories\ApplicationLogRepository.cs" />
+    <Compile Include="Repositories\LogRepository.cs" />
+    <Compile Include="Repositories\ETableRepository.cs" />
     <Compile Include="Repositories\QuestionRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
@@ -78,7 +105,9 @@
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,15 +117,44 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412271407440_QuestionUpdate.resx">
-      <DependentUpon>201412271407440_QuestionUpdate.cs</DependentUpon>
+    <Content Include="TestData\AttachmentType.xml" />
+    <Content Include="TestData\ClearDataAndResetIdentity.sql" />
+    <Content Include="TestData\LogType.xml" />
+    <Content Include="TestData\Roles.xml" />
+    <Content Include="TestData\Subjects.xml" />
+    <Content Include="TestData\UserDetails.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="TestData\Users.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505291949472_Initial.resx">
+      <DependentUpon>201505291949472_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412281027560_Subject.resx">
-      <DependentUpon>201412281027560_Subject.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506061033165_UserUpdate.resx">
+      <DependentUpon>201506061033165_UserUpdate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201412281444049_Update.QuestionTitle.resx">
-      <DependentUpon>201412281444049_Update.QuestionTitle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201506061204579_Update_1.resx">
+      <DependentUpon>201506061204579_Update_1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506061211266_Update_2.resx">
+      <DependentUpon>201506061211266_Update_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506061237241_LogTypeUpdate.resx">
+      <DependentUpon>201506061237241_LogTypeUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506061308018_Update_5.resx">
+      <DependentUpon>201506061308018_Update_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506061326064_Update_6.resx">
+      <DependentUpon>201506061326064_Update_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506071611215_Attachment.resx">
+      <DependentUpon>201506071611215_Attachment.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

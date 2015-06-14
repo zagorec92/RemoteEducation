@@ -1,6 +1,5 @@
-﻿using RemoteEducationApplication.Extensions;
+﻿using ExtensionLibrary.Controls.Extensions;
 using RemoteEducationApplication.Shared;
-using ExtensionLibrary.Controls.Extensions;
 using WPFFramework.App.Base;
 
 namespace RemoteEducationApplication.Views.UserControls

@@ -1,5 +1,8 @@
-﻿namespace Education.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Education.Model
 {
+    [Table("ServerInfo")]
     public class ServerInfo : EntityBase
     {
         /// <summary>

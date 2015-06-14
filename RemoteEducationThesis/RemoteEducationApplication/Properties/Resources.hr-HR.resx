@@ -414,4 +414,7 @@
     <value>Stvorena je nova zaporka</value>
     <comment>Login.xaml</comment>
   </data>
+  <data name="ExceptionDatabaseServer" xml:space="preserve">
+    <value>Nije moguće uspostaviti vezu sa serverom baze podataka.</value>
+  </data>
 </root>

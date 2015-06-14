@@ -408,4 +408,7 @@
     <value>New password generated</value>
     <comment>Login.xaml</comment>
   </data>
+  <data name="ExceptionDatabaseServer" xml:space="preserve">
+    <value>Could not establish connection to the database server.</value>
+  </data>
 </root>

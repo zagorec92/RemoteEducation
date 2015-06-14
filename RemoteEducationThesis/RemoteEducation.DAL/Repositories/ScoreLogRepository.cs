@@ -39,8 +39,8 @@ namespace Education.DAL.Repositories
         /// <returns>The <see cref="System.Decimal"/> value.</returns>
         public decimal GetScoreByUsername(string name)
         {
-            ScoreLog scoreLog = base.GetAll().
-                FirstOrDefault(x => x.User.FirstName.Equals(name));
+            ScoreLog scoreLog = base.GetAll()
+                .FirstOrDefault(x => x.User.UserDetail.FirstName.Equals(name));
 
             return scoreLog.TotalScore;
         }

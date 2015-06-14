@@ -25,6 +25,7 @@
                 
                 <!--storyboards-->
                 <ResourceDictionary Source="Resources\Storyboard\LoginStoryboards.xaml" />
+                <ResourceDictionary Source="Resources\Storyboard\LoadingControlStoryboard.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

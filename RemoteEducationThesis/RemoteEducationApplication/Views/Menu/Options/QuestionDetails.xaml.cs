@@ -47,10 +47,10 @@ namespace RemoteEducationApplication.Views.Menu.Options
         #region Window
 
         /// <summary>
-        /// 
+        /// Handles the Loaded event of the QuestionDetails control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
         private void QuestionDetails_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = Question;
@@ -64,8 +64,7 @@ namespace RemoteEducationApplication.Views.Menu.Options
         /// Handles the AppBarClick event of the ApplicationBar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/> instance
-        /// containing the event data.</param>
+        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/> instance containing the event data.</param>
         private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
             ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);

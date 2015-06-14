@@ -17,14 +17,14 @@ namespace Education.DAL.Repositories
             Admin = 1,
 
             /// <summary>
-            /// Student role
-            /// </summary>
-            Student = 2,
-
-            /// <summary>
             /// Professor role
             /// </summary>
-            Professor = 3
+            Professor = 2,
+
+            /// <summary>
+            /// Student role
+            /// </summary>
+            Student = 3
         }
 
         #endregion

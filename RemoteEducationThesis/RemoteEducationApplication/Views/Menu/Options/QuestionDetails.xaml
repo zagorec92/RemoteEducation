@@ -7,7 +7,7 @@
                  xmlns:ext="clr-namespace:RemoteEducationApplication.Extensions"
                  xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
                  xmlns:local="clr-namespace:RemoteEducationApplication.Views.Menu.Options"
-                 xmlns:global="clr-namespace:RemoteEducationApplication.Properties"
+                 xmlns:global="clr-namespace:Education.Application.Properties"
                  WindowState="Normal"
                  Style="{StaticResource MainWindowStyle}"
                  mc:Ignorable="d"
@@ -32,7 +32,7 @@
             <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
                        Text="{x:Static global:Resources.QuestionDetailsWindowTitle}"/>
 
-            <uc:WindowBar Grid.Column="1" 
+            <uc:WindowBar Grid.Column="1"
                           ApplicationBarVisibility="Collapsed"
                           WindowRole="ApplicationBar" 
                           WindowBarClick="ApplicationBar_AppBarClick"/>
@@ -67,32 +67,32 @@
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
                 
                 <TextBlock Grid.Row="1" 
-                           Text="{x:Static global:Resources.QuestionDetailsTitle}"
-                           Style="{StaticResource QuestionDetailsTextBlockStyle}" />
+                           Style="{StaticResource QuestionDetailsTextBlockStyle}" 
+                           Text="{x:Static global:Resources.QuestionDetailsTitle}"/>
                 <TextBlock Grid.Column="1" 
                            Grid.Row="1"
                            Text="{Binding Title}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
                 
                 <TextBlock Grid.Row="2"
-                           Text="{x:Static global:Resources.QuestionDetailsDifficulty}"
-                           Style="{StaticResource QuestionDetailsTextBlockStyle}"/>
+                           Style="{StaticResource QuestionDetailsTextBlockStyle}"
+                           Text="{x:Static global:Resources.QuestionDetailsDifficulty}"/>
                 <TextBlock Grid.Column="1" 
                            Grid.Row="2"
                            Text="{Binding Difficulty}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
                 
                 <TextBlock Grid.Row="3"
-                           Text="{x:Static global:Resources.QuestionDetailsUploadedBy}"
-                           Style="{StaticResource QuestionDetailsTextBlockStyle}"/>
+                           Style="{StaticResource QuestionDetailsTextBlockStyle}"
+                           Text="{x:Static global:Resources.QuestionDetailsUploadedBy}"/>
                 <TextBlock Grid.Column="1" 
                            Grid.Row="3"
                            Text="{Binding UploadedByUser.FullName}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
                               
                 <TextBlock Grid.Row="4"                       
-                           Text="{x:Static global:Resources.QuestionDetailsSubject}"
-                           Style="{StaticResource QuestionDetailsTextBlockStyle}"/>
+                           Style="{StaticResource QuestionDetailsTextBlockStyle}"
+                           Text="{x:Static global:Resources.QuestionDetailsSubject}"/>
                 <TextBlock Grid.Column="1" 
                            Grid.Row="4"
                            Text="{Binding Subject.Name}"
@@ -105,9 +105,8 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{x:Static global:Resources.QuestionDetailsAnswers}"
-                               Style="{StaticResource QuestionDetailsTextBlockStyle}"/>
-
+                    <TextBlock Style="{StaticResource QuestionDetailsTextBlockStyle}"
+                               Text="{x:Static global:Resources.QuestionDetailsAnswers}"/>
                     <ScrollViewer Grid.Row="1"
                                   VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding Answers}">

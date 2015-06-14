@@ -1,18 +1,15 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Education.Model
 {
-    public class Role : EntityBase
+    [Table("ERole")]
+    public class Role : ETableBase
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the authorization level.
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
+        public int AuthorizationLevel { get; set; }
 
         /// <summary>
         /// Gets or sets the users.

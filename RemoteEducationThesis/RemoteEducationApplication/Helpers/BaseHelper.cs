@@ -83,7 +83,12 @@
             /// <summary>
             /// LoginStoryboards resource dictionary.
             /// </summary>
-            LoginStoryboards = 8
+            LoginStoryboards = 8,
+
+            /// <summary>
+            /// LoadingControlStoryboard resource dictionary.
+            /// </summary>
+            LoadingControlStoryboard = 9
         }
 
         #endregion

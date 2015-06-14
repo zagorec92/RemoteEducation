@@ -1,9 +1,9 @@
-﻿using RemoteEducationApplication.Shared;
+﻿using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
+using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
-using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
 using WPFFramework.App.Base;
 using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
 
@@ -50,7 +50,7 @@ namespace RemoteEducationApplication.Views.UserControls
             }
             set 
             { 
-                _applicationBarVisibility = value; 
+                _applicationBarVisibility = value;
                 OnPropertyChanged("ApplicationBarVisibility"); 
             } 
         }
@@ -66,7 +66,7 @@ namespace RemoteEducationApplication.Views.UserControls
             }
             set 
             { 
-                _clientBarVisibility = value; 
+                _clientBarVisibility = value;
                 OnPropertyChanged("ClientBarVisibility"); 
             } 
         }

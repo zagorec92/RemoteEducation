@@ -1,14 +1,17 @@
-﻿using Education.Model;
+﻿using Education.Application.Managers;
+using Education.Model;
 using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System.Collections.ObjectModel;
 using System.Windows;
+using WPFFramework.Attributes;
 
 namespace RemoteEducationApplication.Views.Menu
 {
     /// <summary>
     /// Interaction logic for ScoreList.xaml
     /// </summary>
+    [MenuWindow(UseDefaultConstructor = true)]
     public partial class ScoreList : WindowBase
     {
         #region Properties
@@ -45,7 +48,7 @@ namespace RemoteEducationApplication.Views.Menu
         /// containing the event data.</param>
         private void ScoreList_Loaded(object sender, RoutedEventArgs e)
         {
-            //Scores = new ObservableCollection<ScoreLog>(ScoreHelper.GetScoreLogs());
+            Scores = new ObservableCollection<ScoreLog>(ScoreManager.GetScoreLogs());
             DataContext = this;
         }
 

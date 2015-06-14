@@ -370,7 +370,7 @@ namespace RemoteEducationApplication.Client
         public void SendName()
         {
             NetworkStream dataStream = TcpClientDataExchange.GetStream();
-            string userFullName = AuthManager.LoggedInUser.FullName;
+            string userFullName = AuthManager.LoggedInUser.UserDetail.FullName;
             int lenght = userFullName.Length * 2;
 
             dataStream.WriteByte((byte)lenght);

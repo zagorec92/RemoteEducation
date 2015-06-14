@@ -1,12 +1,14 @@
 ﻿using RemoteEducationApplication.Helpers;
 using RemoteEducationApplication.Shared;
 using System.Windows;
+using WPFFramework.Attributes;
 
 namespace RemoteEducationApplication.Views.Menu.Help
 {
     /// <summary>
     /// Interaction logic for Help.xaml
     /// </summary>
+    [MenuWindow]
     public partial class Help : WindowBase
     {
         #region Properties
@@ -26,15 +28,16 @@ namespace RemoteEducationApplication.Views.Menu.Help
         public Help()
         {
             InitializeComponent();
+            Loaded += Help_Loaded;
         }
 
         /// <summary>
         /// Initializes a new instace of the <see cref="RemoteEducationApplication.Views.Menu.Help"/> class.
         /// </summary>
         /// <param name="windowTitle">The <see cref="System.String"/> value representing the window title.</param>
-        public Help(string windowTitle)
+        public Help(string windowTitle) 
+            : this()
         {
-            InitializeComponent();
             WindowTitle = windowTitle;
         }
 
@@ -45,11 +48,11 @@ namespace RemoteEducationApplication.Views.Menu.Help
         #region Window
 
         /// <summary>
-        /// 
+        /// Handles the Loaded event of the Help control.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void Help_Loaded(object sender, RoutedEventArgs e)
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
+        private void Help_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = this;
         }

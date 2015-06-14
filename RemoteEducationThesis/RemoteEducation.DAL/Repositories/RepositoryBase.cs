@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Education.DAL.Repositories
 {
-    public abstract class RepositoryBase<T> where T : EntityBase
+    public abstract class RepositoryBase<T> 
+        where T : EntityBase
     {
         #region Properties
 
@@ -94,11 +95,31 @@ namespace Education.DAL.Repositories
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public virtual T Get(Predicate<T> predicate)
+        {
+            return Context.Set<T>().FirstOrDefault(x => predicate(x));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async virtual Task<T> GetAsync(int id)
         {
             return await Context.Set<T>().FindAsync(id);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async virtual Task<T> GetAsync(Predicate<T> predicate)
+        {
+            return await Context.Set<T>().FirstOrDefaultAsync(x => predicate(x));
         }
 
         #endregion
@@ -117,10 +138,8 @@ namespace Education.DAL.Repositories
             {
                 if (entity.ID == default(int))
                 {
+                    SetDates(entity);
                     Context.Set<T>().Add(entity);
-
-                    if(!entity.DateCreated.HasValue && !entity.DateModified.HasValue)
-                        entity.DateCreated = entity.DateModified = DateTime.Now;
                 }
                 else
                 {
@@ -134,6 +153,19 @@ namespace Education.DAL.Repositories
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        private void SetDates(T entity)
+        {
+            if (!entity.DateCreated.HasValue)
+                entity.DateCreated = DateTime.Now;
+
+            if (!entity.DateModified.HasValue)
+                entity.DateModified = DateTime.Now;
         }
 
         #endregion
