@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LogTypes>
+  <LogType>
+    <Name>Error</Name>
+    <Description>Marks the application log item as error.</Description>
+  </LogType>
+  <LogType>
+    <Name>Info</Name>
+    <Description>Marks the application log item as info.</Description>
+  </LogType>
+</LogTypes>

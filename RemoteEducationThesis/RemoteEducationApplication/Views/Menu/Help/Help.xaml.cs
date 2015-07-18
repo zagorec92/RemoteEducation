@@ -1,9 +1,9 @@
-﻿using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
+﻿using Education.Application.Helpers;
+using Education.Application.Shared;
 using System.Windows;
 using WPFFramework.Attributes;
 
-namespace RemoteEducationApplication.Views.Menu.Help
+namespace Education.Application.Views.Menu.Help
 {
     /// <summary>
     /// Interaction logic for Help.xaml

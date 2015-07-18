@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WPFFramework</name>
+    </assembly>
+    <members>
+        <member name="T:WPFFramework.App.Base.WpfUserControl">
+            <summary>
+            Interaction logic for WpfUserControl class.
+            </summary>
+        </member>
+        <member name="E:WPFFramework.App.Base.WpfUserControl.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfUserControl.#ctor">
+            <summary>
+            Initializes a new instance of the WpfUserControl class.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfUserControl.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the PropertyChanged event.
+            </summary>
+            <param name="propertyName">The <see cref="T:System.String"/> name of the changed property.</param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfUserControl.OnPropertyChanged``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Raises PropertyChanged event.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/>.</typeparam>
+            <typeparam name="TProperty">TProperty is a property of T.</typeparam>
+            <param name="control"></param>
+            <param name="expression"></param>
+        </member>
+        <member name="T:WPFFramework.App.Base.WpfWindowBase">
+            <summary>
+            Interaction logic for WpfWindowBase class.
+            </summary>
+        </member>
+        <member name="E:WPFFramework.App.Base.WpfWindowBase.PropertyChanged">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.#ctor">
+            <summary>
+            Creates a new instance of the WpfWindoBase class.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.#ctor(System.String)">
+            <summary>
+            Creates a new instance of the WpfWindowBase class.
+            </summary>
+            <param name="windowTitle">Title of the window.</param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.#ctor(System.Windows.Window)">
+            <summary>
+            Creates a new instance of the WpfWindowBase class.
+            </summary>
+            <param name="windowOwner">The <see cref="T:System.Windows.Window"/> owner of the WpfWindow.</param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.OnPropertyChanged(System.String)">
+            <summary>
+            Raises PropertyChanged event.
+            </summary>
+            <param name="propertyName">The name of the changed property.</param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.OnPropertyChanged``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Raises PropertyChanged event.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/>.</typeparam>
+            <typeparam name="TProperty">TProperty is a property of T.</typeparam>
+            <param name="control"></param>
+            <param name="expression"></param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.Close">
+            <summary>
+            Closes the window.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.OnClosing(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Overrides the OnClosing method of the Window class.
+            Closes the application if calling window is WpfMainWindow.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.Minimize">
+            <summary>
+            Minimizes the window.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.Maximize">
+            <summary>
+            Maximizes the window.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.Base.WpfWindowBase.FindChildInVisualTree``1(System.Windows.DependencyObject)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dependencyObject"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WPFFramework.App.IOnPropertyChanged`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.IOnPropertyChanged`1.OnPropertyChanged(System.String)">
+            <summary>
+            Raises PropertyChanged event.
+            </summary>
+            <param name="propertyName">The name of the changed property.</param>
+        </member>
+        <member name="M:WPFFramework.App.IOnPropertyChanged`1.OnPropertyChanged``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Raises PropertyChanged event.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/>.</typeparam>
+            <typeparam name="TProperty">TProperty is a property of T.</typeparam>
+            <param name="control"></param>
+            <param name="expression"></param>
+        </member>
+        <member name="T:WPFFramework.App.WpfApplication">
+            <summary>
+            Interaction logic for WpfApplication class.
+            </summary>
+        </member>
+        <member name="P:WPFFramework.App.WpfApplication.MainWindowType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WPFFramework.App.WpfApplication.WpfMainWindow">
+            <summary>
+            Gets or sets the main window of the application.
+            </summary>
+        </member>
+        <member name="P:WPFFramework.App.WpfApplication.Windows">
+            <summary>
+            Gets the opened windows associated with the current application.
+            </summary>
+        </member>
+        <member name="P:WPFFramework.App.WpfApplication.ResourceCount">
+            <summary>
+            Gets the resource count.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.WpfApplication.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:WPFFramework.App.WpfApplication"/> class.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.WpfApplication.CloseApplication">
+            <summary>
+            Closes the application.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.WpfApplication.CloseAllWindows">
+            <summary>
+            Closes all open windows.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.WpfApplication.Maximize">
+            <summary>
+            Maximizes main window.
+            </summary>
+        </member>
+        <member name="M:WPFFramework.App.WpfApplication.Minimize">
+            <summary>
+            Minimizes main window.
+            </summary>
+        </member>
+        <member name="T:WPFFramework.Attributes.MenuWindowAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:WPFFramework.Attributes.MenuWindowAttribute.UseDefaultConstructor">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,14 +1,14 @@
-﻿using Education.Model;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
+﻿using Education.Application.Helpers;
+using Education.Application.Shared;
+using Education.Model.Entities;
 using System.Windows;
 
-namespace RemoteEducationApplication.Views.Menu.Options
+namespace Education.Application.Views.Menu.Options
 {
-    /// <summary>
-    /// Interaction logic for QuestionDetails.xaml
-    /// </summary>
-    public partial class QuestionDetails : WindowBase
+	/// <summary>
+	/// Interaction logic for QuestionDetails.xaml
+	/// </summary>
+	public partial class QuestionDetails : WindowBase
     {
         #region Properties
 

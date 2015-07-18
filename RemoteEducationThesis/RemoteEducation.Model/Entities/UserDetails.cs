@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
     public class UserDetails : EntityBase
     {

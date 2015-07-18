@@ -1,11 +1,11 @@
 ﻿using Education.DAL;
 using Education.DAL.Repositories;
-using Education.Model;
+using Education.Model.Entities;
 using System.Collections.Generic;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
-    public static class SubjectHelper
+	public static class SubjectHelper
     {
         /// <summary>
         /// 

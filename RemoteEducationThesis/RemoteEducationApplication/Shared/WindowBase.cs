@@ -1,12 +1,10 @@
-﻿using RemoteEducationApplication.Views.ExceptionViewer;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using WPFFramework.App.Base;
 using AppSettings = Education.Application.Properties.Settings;
 
-namespace RemoteEducationApplication.Shared
+namespace Education.Application.Shared
 {
-    public class WindowBase : WpfWindowBase
+	public class WindowBase : WpfWindowBase
     {
         #region Properties
 

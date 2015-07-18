@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using ExtensionLibrary.Collections.Extensions;
 
-namespace RemoteEducationApplication.Extensions
+namespace Education.Application.Extensions
 {
     public static class ObservableCollectionExtension
     {

@@ -1,8 +1,8 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 
 namespace Education.DAL.Repositories
 {
-    public class AnswerRepository : RepositoryBase<Answer>
+	public class AnswerRepository : RepositoryBase<Answer>
     {
         /// <summary>
         /// Creates a new instance of the <see cref="Education.DAL.Repositories.AnswerRepository"/> class.

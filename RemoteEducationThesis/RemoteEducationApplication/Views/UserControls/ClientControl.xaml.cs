@@ -1,18 +1,18 @@
-﻿using ExtensionLibrary.Controls.Extensions;
-using RemoteEducationApplication.Shared;
+﻿using Education.Application.Shared;
+using ExtensionLibrary.Controls.Extensions;
 using WPFFramework.App.Base;
 
-namespace RemoteEducationApplication.Views.UserControls
+namespace Education.Application.Views.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ClientControl.xaml
-    /// </summary>
-    public partial class ClientControl : WpfUserControl
+	/// <summary>
+	/// Interaction logic for ClientControl.xaml
+	/// </summary>
+	public partial class ClientControl : WpfUserControl
     {
         #region Constructor
 
         /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.ClientControl"/> 
+        /// Creates a new instance of the <see cref="Education.Application.Views.UserControls.ClientControl"/> 
         /// class.
         /// </summary>
         public ClientControl()
@@ -20,17 +20,17 @@ namespace RemoteEducationApplication.Views.UserControls
             InitializeComponent();
         }
 
-        #endregion
+		#endregion
 
-        #region Events & Delegates
+		#region Events & Delegates
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
-        /// instance containing the event data.</param>
-        public delegate void ClientClickEventHandler(object sender, ApplicationEventArgs e);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender">The source of the event</param>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// instance containing the event data.</param>
+		public delegate void ClientClickEventHandler(object sender, ApplicationEventArgs e);
 
         /// <summary>
         /// ClientClickEventHandler handler.
@@ -51,13 +51,13 @@ namespace RemoteEducationApplication.Views.UserControls
                 ClientClick(this, new ApplicationEventArgs(commandName, clientID));
         }
 
-        /// <summary>
-        /// Handles the RectangleClick event of the appBar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
-        /// instance containing the event data.</param>
-        private void appBar_RectangleClick(object sender, ApplicationEventArgs e)
+		/// <summary>
+		/// Handles the RectangleClick event of the appBar control.
+		/// </summary>
+		/// <param name="sender">The source of the event.</param>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// instance containing the event data.</param>
+		private void appBar_RectangleClick(object sender, ApplicationEventArgs e)
         {
             OnCloseClick(this.GetTag<int>(), e.CommandName);
         }   

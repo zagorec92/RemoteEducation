@@ -1,20 +1,19 @@
-﻿<base:WpfUserControl x:Class="RemoteEducationApplication.Views.UserControls.LoadingControl"
+﻿<base:WpfUserControl x:Class="Education.Application.Views.UserControls.LoadingControl"
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:local="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                     xmlns:local="clr-namespace:Education.Application.Views.UserControls"
                      xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
-                     xmlns:global="clr-namespace:Education.Application.Properties">
-    <base:WpfUserControl.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource DotLoading}"/>
-        </EventTrigger>
-    </base:WpfUserControl.Triggers>
+                     xmlns:global="clr-namespace:Education.Application.Properties"
+                     xmlns:modern="http://metro.mahapps.com/winfx/xaml/controls"
+                     mc:Ignorable="d"  
+                     d:DesignHeight="250"
+                     d:DesignWidth="425">
     <Grid>
         <Grid VerticalAlignment="Center"
+              Background="{DynamicResource ButtonHoverBrush}"
               Height="{Binding LoadingAreaHeight, FallbackValue=75}"
-              Background="{Binding LoadingBackground}"
               Opacity="{Binding LoadingAreaOpacity, FallbackValue=0.7}"
               Panel.ZIndex="3"/>
 
@@ -24,11 +23,11 @@
                     HorizontalAlignment="Center">
             <TextBlock Text="{Binding LoadingText}"
                        FontSize="{Binding LoadingTextFontSize, FallbackValue=18}"
+                       Foreground="{DynamicResource ForegroundBrush}" 
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Foreground="{Binding LoadingForeground}" 
                        Padding="0, 10, 0, 10"/>
-            <Rectangle Fill="{Binding LoadingImageBrush}" 
+            <Rectangle Fill="{DynamicResource ForegroundBrush}" 
                        Height="40" 
                        Width="40"
                        Margin="5, 0, 0, 0">
@@ -38,14 +37,10 @@
             </Rectangle>
         </StackPanel>
 
-        <TextBlock x:Name="textBlock" 
-                   Text="..."
-                   Panel.ZIndex="5"
-                   FontSize="48"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Foreground="{Binding LoadingForeground}"
-                   Margin="0, 15, 0, 0"/>
+        <modern:MetroProgressBar Margin="0, 40, 0, 0" 
+                                 IsIndeterminate="True"
+                                 Foreground="{DynamicResource ForegroundBrush}"
+                                 Panel.ZIndex="5"/>
 
         <Grid Background="{Binding LoadingWindowBrush}"
               Opacity="{Binding LoadingOpacity, FallbackValue=0.5}"

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.ETypeEntities
 {
     [Table("EAttachmentType")]
-    public class AttachmentType : ETableBase
+    public class AttachmentType : EEntityBase
     { }
 }

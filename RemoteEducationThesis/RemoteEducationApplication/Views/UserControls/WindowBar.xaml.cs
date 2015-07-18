@@ -1,18 +1,18 @@
-﻿using ExtensionLibrary.Controls.Extensions;
+﻿using Education.Application.Shared;
+using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
-using RemoteEducationApplication.Shared;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using WPFFramework.App.Base;
-using WindowRole = RemoteEducationApplication.Helpers.ApplicationHelper.WindowBarRole;
+using WindowRole = Education.Application.Helpers.ApplicationHelper.WindowBarRole;
 
-namespace RemoteEducationApplication.Views.UserControls
+namespace Education.Application.Views.UserControls
 {
-    /// <summary>
-    /// Interaction logic for ApplicationBar.xaml
-    /// </summary>
-    public partial class WindowBar : WpfUserControl
+	/// <summary>
+	/// Interaction logic for ApplicationBar.xaml
+	/// </summary>
+	public partial class WindowBar : WpfUserControl
     {
         #region Fields
 
@@ -103,32 +103,32 @@ namespace RemoteEducationApplication.Views.UserControls
             }
         }
 
-        #endregion
+		#endregion
 
-        #region Events & Delegates
+		#region Events & Delegates
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
-        /// instance containing the event data.</param>
-        public delegate void RectangleClickEventHandler(object sender, ApplicationEventArgs e);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender">The source of the event</param>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// instance containing the event data.</param>
+		public delegate void WindowBarClickEventHandler(object sender, ApplicationEventArgs e);
 
         /// <summary>
         /// RectangleClickEvent handler.
         /// </summary>
-        public event RectangleClickEventHandler WindowBarClick;
+        public event WindowBarClickEventHandler WindowBarClick;
 
-        #endregion
+		#endregion
 
-        #region Constructor
+		#region Constructor
 
-        /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.WindowBar"/> class.
-        /// instance.
-        /// </summary>
-        public WindowBar()
+		/// <summary>
+		/// Creates a new instance of the <see cref="Education.Application.Views.UserControls.WindowBar"/> class.
+		/// instance.
+		/// </summary>
+		public WindowBar()
         {
             InitializeComponent();
             Loaded += ApplicationBar_Loaded;
@@ -150,13 +150,12 @@ namespace RemoteEducationApplication.Views.UserControls
         }
 
         /// <summary>
-        /// Invokes RectangleClickEventHandler.
+        /// Invokes WindowBarClickEventHandler.
         /// </summary>
         /// <param name="commandName">Name of the command.</param>
         protected void OnAppBarClick(string commandName)
         {
-            if(WindowBarClick != null)
-                WindowBarClick(this, new ApplicationEventArgs(commandName: commandName));
+            WindowBarClick.ExecuteSafe(x => x(this, new ApplicationEventArgs(commandName: commandName)));
         }
 
         /// <summary>

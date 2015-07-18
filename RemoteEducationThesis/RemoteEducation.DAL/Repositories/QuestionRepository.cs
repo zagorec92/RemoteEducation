@@ -1,10 +1,10 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 using System.Data.Entity;
 using System.Linq;
 
 namespace Education.DAL.Repositories
 {
-    public class QuestionRepository : RepositoryBase<Question>
+	public class QuestionRepository : RepositoryBase<Question>
     {
         /// <summary>
         /// Creates a new instance of the <see cref="Education.DAL.Repositories.QuestionRepository"/> class.

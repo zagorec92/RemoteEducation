@@ -1,12 +1,12 @@
-﻿using Education.Application.Managers;
-using Education.Model;
+﻿using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Shared;
+using Education.Model.Entities;
 using ExtensionLibrary.Collections.Extensions;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
 using ExtensionLibrary.Enums.Helpers;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,12 +18,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using AppResources = Education.Application.Properties.Resources;
 
-namespace RemoteEducationApplication.Views.Menu.Options
+namespace Education.Application.Views.Menu.Options
 {
-    /// <summary>
-    /// Interaction logic for SelectQuestions.xaml
-    /// </summary>
-    public partial class SelectQuestions : WindowBase
+	/// <summary>
+	/// Interaction logic for SelectQuestions.xaml
+	/// </summary>
+	public partial class SelectQuestions : WindowBase
     {
         #region Fields
 

@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
 
-namespace RemoteEducationApplication.Extensions
+namespace Education.Application.Extensions
 {
     public static class WebBrowserExtension
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
     [Table("ServerInfo")]
     public class ServerInfo : EntityBase

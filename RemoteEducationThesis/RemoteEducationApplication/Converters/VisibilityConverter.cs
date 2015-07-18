@@ -1,12 +1,12 @@
-﻿using RemoteEducationApplication.Helpers;
+﻿using Education.Application.Helpers;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
 
-namespace RemoteEducationApplication.Converters
+namespace Education.Application.Converters
 {
     internal static class NotImplementedHelper
     {

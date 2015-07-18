@@ -2,7 +2,7 @@
 using System.Windows;
 using ExtensionLibrary.Enums.Extensions;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
     public abstract class StyleHelper : BaseHelper
     {
@@ -26,7 +26,7 @@ namespace RemoteEducationApplication.Helpers
         {
             double retVal = 0;
 
-            ResourceDictionary resourceDictionary = Application.Current.Resources.MergedDictionaries[0];
+            ResourceDictionary resourceDictionary = App.Current.Resources.MergedDictionaries[0];
 
             object fontSize = resourceDictionary[key];
             retVal = Convert.ToDouble(fontSize);
@@ -48,7 +48,7 @@ namespace RemoteEducationApplication.Helpers
             ResourceDictionary resourceDictionary = new ResourceDictionary();
             resourceDictionary.Source = new Uri(dictionaryPath, UriKind.Relative);
 
-            Application.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] = resourceDictionary;
+			App.Current.Resources.MergedDictionaries[ResourceDictionaryIndex.Theme.GetValue()] = resourceDictionary;
             App.CurrentThemeName = themeName;
         }
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.ETypeEntities
 {
     [Table("ELogType")]
-    public class LogType : ETableBase { }
+    public class LogType : EEntityBase { }
 }

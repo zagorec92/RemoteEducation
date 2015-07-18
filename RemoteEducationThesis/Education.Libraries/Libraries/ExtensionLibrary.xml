@@ -1,0 +1,1041 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExtensionLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:ExtensionLibrary.Collections.Extensions.ArrayExtensions">
+            <summary>
+            Interaction logic for ArrayExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.ConvertTo``1(System.Object[])">
+            <summary>
+            Converts every item in array to a given type array.
+            </summary>
+            <typeparam name="T">Generic type T.</typeparam>
+            <param name="array"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.Split(System.Object[],System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="capacities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.Split(System.Object[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="array"></param>
+            <param name="pieces"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.EqualsByByte(System.Byte[],System.Byte[])">
+            <summary>
+            Checks if byte arrays are equal by compairing every byte.
+            </summary>
+            <param name="array">Main array.</param>
+            <param name="arrayToCompare">Array to compare.</param>
+            <returns>True if arrays are equal.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.GetString(System.Byte[])">
+            <summary>
+            Gets the string from a byte array.
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.Contains``1(``0[],``0)">
+            <summary>
+            Checks if the string array contains given string.
+            </summary>
+            <param name="array">The <see cref="T:System.String"/>[] instance</param>
+            <param name="item">The <see cref="T:System.String"/>[] instance to compare.</param>
+            <returns>True if array contains the item, otherwise false.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.Initialize``2(``0[],System.Object[],System.Linq.Expressions.Expression{System.Func{``0,``1}}[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TProperty"></typeparam>
+            <param name="array"></param>
+            <param name="values"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.AddRange``1(``0[],``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="array"></param>
+            <param name="items"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.AddRange``1(``0[],System.Collections.Generic.IList{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="array"></param>
+            <param name="items"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.AddRangeDistinct``1(``0[],``0[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="array"></param>
+            <param name="items"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ArrayExtensions.AddRangeDistinct``1(``0[],System.Collections.Generic.IList{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="array"></param>
+            <param name="items"></param>
+        </member>
+        <member name="T:ExtensionLibrary.Collections.Extensions.ListExtensions">
+            <summary>
+            Interaction logic for ListExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.Add``1(System.Collections.Generic.IList{``0},``0[])">
+            <summary>
+            Adds an objects to the end of the <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">T is object.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IList`1"/> instance.</param>
+            <param name="items">Items of type T.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.AddIfNotExist``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.AddDistinct``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.IList`1"/> only if object does not already exist in the <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">T is object.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IList`1"/> instance.</param>
+            <param name="item">Item of type T.</param>
+            <returns>True if item was added.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.AddDistinct``1(System.Collections.Generic.IList{``0},``0[])">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.IList`1"/> only if object does not already exist in the <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">T is object.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IList`1"/> instance.</param>
+            <param name="items">Items of type T.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.AddRange``1(System.Collections.Generic.IList{``0},``0[])">
+            <summary>
+            Adds an object from T[] array to the end of <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">T is object.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IList`1"/> instance.</param>
+            <param name="array">Array containing items of generic type T.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ListExtensions.AddRangeDistinct``1(System.Collections.Generic.IList{``0},``0[])">
+            <summary>
+            Adds an object from T[] array to the end of <see cref="T:System.Collections.Generic.IList`1"/> only if object does not already exist in <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">T is object.</typeparam>
+            <param name="collection">The <see cref="T:System.Collections.Generic.IList`1"/> instance.</param>
+            <param name="array">Array containing items of generic type T.</param>
+        </member>
+        <member name="T:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions">
+            <summary>
+            Interaction logic for ObservableCollectionExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions.MoveExtended``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Int32,System.Int32)">
+            <summary>
+            Moves item from current index to another and updates UI.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:System.Object"/></typeparam>
+            <param name="collection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance on which move is executed.</param>
+            <param name="oldIndex">Current index.</param>
+            <param name="newIndex">New index.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions.TakeExceptFirst``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.ObjectModel.ObservableCollection{``0})">
+            <summary>
+            Removes all items except the first one from existing collection, adds them to 
+            another collection and updates UI.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:System.Object"/></typeparam>
+            <param name="addCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance in which items will be added.</param>
+            <param name="removeCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance from which items will be removed.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions.TakeExceptLast``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.ObjectModel.ObservableCollection{``0})">
+            <summary>
+            Removes all items except the last one from existing collection, adds them to 
+            another collection and updates UI.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:System.Object"/></typeparam>
+            <param name="addCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance in which items will be added.</param>
+            <param name="removeCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance from which items will be removed.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions.TakeExcept``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.ObjectModel.ObservableCollection{``0},System.Int32)">
+            <summary>
+            Removes all items except the chosen one from existing collection, adds them to 
+            another collection and updates UI.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:System.Object"/></typeparam>
+            <param name="addCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance in which items will be added.</param>
+            <param name="removeCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance from which items will be removed.</param>
+            <param name="itemIndexToExclude">The <see cref="T:System.Int32"/> index to exclude from copying.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Extensions.ObservableCollectionExtensions.TakeAll``1(System.Collections.ObjectModel.ObservableCollection{``0},System.Collections.ObjectModel.ObservableCollection{``0})">
+            <summary>
+            Removes all items from existing collection, adds them to another collection and updates UI.
+            </summary>
+            <typeparam name="T">Type of <see cref="T:System.Object"/></typeparam>
+            <param name="addCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance in which items will be added.</param>
+            <param name="removeCollection">The <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance from which items will be removed.</param>
+        </member>
+        <member name="T:ExtensionLibrary.Collections.Helpers.ArrayHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Collections.Helpers.ArrayHelper.Shuffle``1(``0[],System.Int32)">
+            <summary>
+            Shuffles the elements in array.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="array">The T[] instance.</param>
+            <param name="iterationCount">The <see cref="T:System.Int32"/> value representing number of iterations. 
+            When array is large, higher the number of iterations, higher the possibility of elements changing places. 
+            If given value is substantially high, it may cause performance drop.</param>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Extensions.ButtonExtensions">
+            <summary>
+            Interaction logic for ButtonExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.ButtonExtensions.GetCommandParameter(System.Windows.Controls.Button)">
+            <summary>
+            Gets the command parameter as a string.
+            </summary>
+            <param name="button">The <see cref="T:System.Windows.Controls.Button"/> instance containing the command parameter.</param>
+            <returns>String</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.ButtonExtensions.GetCommandParameter``1(System.Windows.Controls.Button)">
+            <summary>
+            Gets the command parameter as a custom type.
+            </summary>
+            <typeparam name="T">Type of the return value derived from <see cref="T:System.Object"/>.</typeparam>
+            <param name="button">The <see cref="T:System.Windows.Controls.Button"/> instance containing the command parameter.</param>
+            <returns>T</returns>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions">
+            <summary>
+            Interaction logic for GeneralControlExtensions.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetTag(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the Tag property value as string.
+            </summary>
+            <param name="frameworkElement">The <see cref="T:System.Windows.FrameworkElement"/> instance.</param>
+            <returns>String</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetTag``1(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the Tag property of the <see cref="T:System.Windows.FrameworkElement"/> element as a custom type.
+            </summary>
+            <typeparam name="T">Type of the return value derived from <see cref="T:System.Object"/>.</typeparam>
+            <param name="frameworkElement">The <see cref="T:System.Windows.FrameworkElement"/> instance.</param>
+            <returns>T</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetToolTip(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the Tooltip property value as string.
+            </summary>
+            <param name="frameworkElement">The <see cref="T:System.Windows.FrameworkElement"/> instance.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetContent(System.Windows.Controls.ContentControl)">
+            <summary>
+            Gets the Content property value as string.
+            </summary>
+            <param name="contentControl">The <see cref="T:System.Windows.Controls.ContentControl"/> instance.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetContent``1(System.Windows.Controls.ContentControl)">
+            <summary>
+            Gets the content property value as a generic type.
+            </summary>
+            <typeparam name="T">Type of the return value derived from <see cref="T:System.Object"/>.</typeparam>
+            <param name="contentControl"></param>
+            <returns>T</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetHeader(System.Windows.Controls.HeaderedItemsControl)">
+            <summary>
+            Gets the Header property value as string.
+            </summary>
+            <param name="headeredItemsControl">The <see cref="T:System.Windows.Controls.HeaderedItemsControl"/> instance.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.GeneralControlExtensions.GetHeader``1(System.Windows.Controls.HeaderedItemsControl)">
+            <summary>
+            Gets the Header property value as a generic type.
+            </summary>
+            <typeparam name="T">Type of the return value derived from <see cref="T:System.Object"/>.</typeparam>
+            <param name="headeredItemsControl"></param>
+            <returns>T</returns>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Extensions.WebBrowserExtensions">
+            <summary>
+            Interaction logic for WebBrowserExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WebBrowserExtensions.GetQueryParams(System.Windows.Controls.WebBrowser)">
+            <summary>
+            Gets the query parameters.
+            </summary>
+            <param name="webBrowser">The <see cref="T:System.Windows.Controls.WebBrowser"/> instance containing the query parameters.</param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Extensions.WindowExtensions">
+            <summary>
+            Interaction logic for WindowsExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateTo(System.Windows.Window,System.Windows.Window,System.Boolean)">
+            <summary>
+            Navigates to a new window.
+            </summary>
+            <param name="window">The <see cref="T:System.Windows.Window"/> instance.</param>
+            <param name="navigateToWindow">The <see cref="T:System.Windows.Window"/> instance.</param>
+            <param name="isClosing">The <see cref="T:System.Boolean"/> value indicating if the current window should be closed.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateTo(System.Windows.Window,System.Windows.Window,System.Boolean,System.Windows.WindowStartupLocation)">
+            <summary>
+            Navigates to a new window.
+            </summary>
+            <param name="window">The <see cref="T:System.Windows.Window"/> instance.</param>
+            <param name="navigateToWindow">The <see cref="T:System.Windows.Window"/> instance.</param>
+            <param name="isClosing">The <see cref="T:System.Boolean"/> value indicating if the current window should be closed.</param>
+            <param name="windowStartupLocation">The <see cref="T:System.Windows.WindowStartupLocation"/> value representing the starting position of the window.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateTo(System.Windows.Window,System.String,System.Boolean,System.Object[])">
+            <summary>
+            Navigates to a new window.
+            </summary>
+            <param name="window">The <see cref="T:System.Windows.Window"/>.</param>
+            <param name="isClosing"></param>
+            <param name="fullTypeName"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateTo(System.Windows.Window,System.Boolean,System.Windows.Window[])">
+            <summary>
+            Opens new windows.
+            </summary>
+            <remarks>The main window is the first window in array.</remarks>
+            <param name="window"></param>
+            <param name="isClosing"></param>
+            <param name="navigateToWindows"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateToChild(System.Windows.Window,System.Windows.Window)">
+            <summary>
+            Navigates to a new child window.
+            </summary>
+            <param name="window"></param>
+            <param name="childWindow"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateToChild``1(System.Windows.Window)">
+            <summary>
+            Navigates to a new child window using activator.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/> child.</typeparam>
+            <param name="window">The <see cref="T:System.Windows.Window"/> instance.</param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateToChild(System.Windows.Window,System.Windows.Window,System.Windows.WindowStartupLocation)">
+            <summary>
+            Navigates to a new child window.
+            </summary>
+            <param name="window"></param>
+            <param name="childWindow"></param>
+            <param name="windowStartupLocation"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Extensions.WindowExtensions.NavigateToChild``1(System.Windows.Window,System.Windows.WindowStartupLocation)">
+            <summary>
+            Navigates to a new child window using activator.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/> child.</typeparam>
+            <param name="window">The <see cref="T:System.Windows.Window"/> instance.</param>
+            <param name="windowStartupLocation">The <see cref="T:System.Windows.WindowStartupLocation"/> location of the window.</param>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Helpers.WebBrowserHelper">
+            <summary>
+            Interaction logic for WebBrowserHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Helpers.WebBrowserHelper.GetUrlParameters``2(System.String)">
+            <summary>
+            Gets the url parameters parsed with values from a string.
+            </summary>
+            <typeparam name="TValue">The <see cref="T:System.String"/> value.</typeparam>
+            <param name="paramsString"></param>
+            <returns><see cref="T:System.Collections.Generic.Dictionary`2"/></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Controls.Helpers.WindowHelper">
+            <summary>
+            Interaction logic for WindowHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Helpers.WindowHelper.OpenWindows(System.Windows.Window[])">
+            <summary>
+            Opens one or multiple windows.
+            </summary>
+            <param name="windows"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Helpers.WindowHelper.OpenDialog``1(System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Windows.Window"/>.</typeparam>
+            <param name="args"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Controls.Helpers.WindowHelper.OpenMainWindowDialog``1(System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="args"></param>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Helpers.XmlHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.XmlHelper.MapXmlToObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="path"></param>
+            <param name="mapPairs"></param>
+            <param name="throwException"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper">
+            <summary>
+            Interaction logic for DataTypesHelper class.
+            </summary>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.PropertyAttributes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.PropertyAttributes.Name">
+            <summary>
+            Property name.
+            </summary>
+        </member>
+        <member name="F:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.PropertyAttributes.Value">
+            <summary>
+            Property value.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.EqualsDefaultValue``1(``0)">
+            <summary>
+            Checks if value is equal to the default value of its type T.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="value">Generic type T reference.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.CreateInstance``1(``0@)">
+            <summary>
+            Creates a new instance of T.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="item">Generic type T reference.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.CreateInstance(System.Type,System.Object[])">
+            <summary>
+            Gets the instance of given type using the default constructor.
+            </summary>
+            <param name="type">The <see cref="T:System.Type"/> instance.</param>
+            <param name="args">The <see cref="T:System.Object"/>[] instance.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.CreateInstance(System.Type)">
+            <summary>
+            Gets the instance of given type using the default constructor.
+            </summary>
+            <param name="type">The <see cref="T:System.Type"/> instance.</param>
+            <param name="args">The <see cref="T:System.Object"/>[] instance.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.CreateInstance``1(System.Object[])">
+            <summary>
+            Gets the instance of given type T by using constructor that best matches given parameters.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="args">The <see cref="T:System.Object"/>[] instance containing constructor arguments.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.SetValueIfNull``1(``0,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.GetPropertyNames``1">
+            <summary>
+            Gets the property names of type T.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.GetPropertyValues``1(``0)">
+            <summary>
+            Gets public property values of type T instance.
+            </summary>
+            <typeparam name="T">Generic type.</typeparam>
+            <param name="instance">The instance of type T.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.GetPropertyNameValuePairs``1(``0)">
+            <summary>
+            Gets the dictionary map of property names and values of type T.
+            </summary>
+            <typeparam name="T">Generic type T.</typeparam>
+            <param name="instance">The instance of type T.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.GetPropertyAttributes``1(ExtensionLibrary.DataTypes.Helpers.DataTypesHelper.PropertyAttributes,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyAttribute"></param>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions">
+            <summary>
+            Interaction logic for GenericExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.To``1(System.Object)">
+            <summary>
+            Changes the type of value.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.To(System.Object,System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ToSafe``1(System.Object,System.Boolean)">
+            <summary>
+            Changes the type of value and throws an exception if conversion fails.
+            If the parameter that controls exception throwing is set to false, method returns a default value.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <param name="throwException">The <see cref="T:System.Boolean"/> value indicating if exception will be thrown.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ToSafe(System.Object,System.Type,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="type"></param>
+            <param name="throwException"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ToNullable``1(System.Object,System.Boolean)">
+            <summary>
+            Changes the type of value and throws an exception if conversion fails.
+            If the parameter that controls exception throwing is set to false, method returns null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <param name="throwException">The <see cref="T:System.Boolean"/> value indicating if exception will be thrown.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteIfNotNull``1(System.Object,System.Action{``0})">
+            <summary>
+            Changes the object type and invokes an action (that takes one parameter) if type change result is not null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <param name="action">The <see cref="T:System.Action`1"/> to invoke.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteIfNotNull``1(System.Object,System.Action{``0},System.Action)">
+            <summary>
+            Changes the object type and invokes an action (that takes one parameter) depending on the type change result.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <param name="actionNotNull">The <see cref="T:System.Action`1"/> to invoke is value is not null.</param>
+            <param name="actionNull">The <see cref="T:System.Action`1"/> to invoke is value is null.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteIfNotNull``1(System.Object,System.Object,System.Action{``0,System.Object})">
+            <summary>
+            Changes the object type and invokes an action (that takes two parameters) if type change result is not null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">Value of generic type.</param>
+            <param name="additionalParam">The <see cref="T:System.Object"/> additional parameter used in invoked action.</param>
+            <param name="action">The <see cref="T:System.Action`2"/> to invoke.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteIfNotNull``2(System.Object,System.Func{``0,``1})">
+            <summary>
+            Changes the object type and invokes a func (that takes one parameters) if type change result is not null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <typeparam name="TResult">TResult is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value">The <see cref="T:System.Object"/> value.</param>
+            <param name="func">The <see cref="T:System.Func`2"/> to invoke.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``1(System.Object,System.Action{``0})">
+            <summary>
+            Casts object to a given type and invokes an action (that takes one parameter) if cast result is not null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value"></param>
+            <param name="action">The <see cref="T:System.Action`1"/> to invoke.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe(System.Object,System.Action)">
+            <summary>
+            Invokes an action if value is not null.
+            </summary>
+            <param name="value"></param>
+            <param name="action">The <see cref="T:System.Action"/> to invoke.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``1(``0,System.Action{``0})">
+            <summary>
+            Invokes an action (that takes one parameter) if value is not null.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value"></param>
+            <param name="action">The <see cref="T:System.Action`1"/> to invoke.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``1(System.Object,System.Action{``0},System.Action)">
+            <summary>
+            Casts object to a given type and invokes an action depending on the result of the cast.
+            </summary>
+            <typeparam name="T">T is <see cref="T:System.Object"/>.</typeparam>
+            <param name="value"></param>
+            <param name="actionNotNull">The <see cref="T:System.Action`1"/> to invoke if value is not null.</param>
+            <param name="actionNull">The <see cref="T:System.Action`1"/> to invoke if value is null.</param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``1(System.Object,System.Object,System.Action{``0,System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="additionalParam"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``2(System.Object,System.Func{``0,``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="value"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteSafe``2(``0,System.Func{``0,``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="value"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteAction``1(``0,System.Action)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteAction``1(``0,System.Action{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteActionWithAdditionalParam``1(``0,System.Object,System.Action{``0,System.Object})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="additionalParam"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteActions``1(``0,System.Action{``0},System.Action)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="item"></param>
+            <param name="actionTrue"></param>
+            <param name="actionFalse"></param>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Converters.Extensions.GenericExtensions.ExecuteFunc``2(``0,System.Func{``0,``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="item"></param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Extensions.BasicTypesExtensions">
+            <summary>
+            Interaction logic for BasicTypesExtensions.cs
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Extensions.BasicTypesExtensions.Remove(System.String,System.String)">
+            <summary>
+            Removes the given string from the original string.
+            </summary>
+            <param name="value"></param>
+            <param name="partToRemove"></param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Extensions.BasicTypesExtensions.Remove(System.String,System.Char[])">
+            <summary>
+            Removes the given characters in array from the original string.
+            </summary>
+            <param name="value"></param>
+            <param name="charactersToRemove"></param>
+            <returns><see cref="T:System.String"/></returns>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Extensions.BasicTypesExtensions.GetBytes(System.String)">
+            <summary>
+            Gets the byte array from a string.
+            </summary>
+            <param name="value"></param>
+            <returns><see cref="T:System.Byte"/>[]</returns>
+        </member>
+        <member name="T:ExtensionLibrary.DataTypes.Extensions.ComplexTypesExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.DataTypes.Extensions.ComplexTypesExtensions.GetImageSource(System.Drawing.Bitmap,System.Drawing.Imaging.ImageFormat,System.IO.SeekOrigin,System.Windows.Media.Imaging.BitmapCacheOption)">
+            <summary>
+            
+            </summary>
+            <param name="bitmap">The <see cref="T:System.Drawing.Bitmap"/> instance.</param>
+            <param name="imageFormat">The <see cref="T:System.Drawing.Imaging.ImageFormat"/> instance.</param>
+            <param name="seekOrigin"></param>
+            <param name="bitmapCacheOption"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.NETFramework.Helpers.NETFrameworkHelper">
+            <summary>
+            Interaction logic for NETFrameworkHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.NETFramework.Helpers.NETFrameworkHelper.GetAssembly``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.NETFramework.Helpers.NETFrameworkHelper.GetAssemblyName``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Enums.Extensions.EnumExtensions">
+            <summary>
+            Interaction logic for EnumExtensions class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Enums.Extensions.EnumExtensions.GetValue(System.Enum)">
+            <summary>
+            Gets the Int32 value from enum.
+            </summary>
+            <param name="enumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Enums.Extensions.EnumExtensions.GetName(System.Enum)">
+            <summary>
+            Gets the name of the enum value.
+            </summary>
+            <param name="enumValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Enums.Helpers.EnumHelper">
+            <summary>
+            Interaction logic for EnumHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Enums.Helpers.EnumHelper.GetIndexOfValue``1(``0)">
+            <summary>
+            Gets the value index in enum.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Object"/>.</typeparam>
+            <param name="enumValue">Value of generic type T.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Enums.Helpers.EnumHelper.GetValueByIndex``1(System.Int32)">
+            <summary>
+            Gets the value of an enum based on the enum index.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Object"/>.</typeparam>
+            <param name="index">The <see cref="T:System.Int32"/> enum index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Enums.Helpers.EnumHelper.GetValueByName``1(System.String)">
+            <summary>
+            Gets the value of an enum based on the enum name.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Object"/>.</typeparam>
+            <param name="enumName">The <see cref="T:System.String"/> enum name.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper">
+            <summary>
+            Interaction logic for ExceptionHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper.GetShortMessage(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="ex">The <see cref="T:System.Exception"/> instance containing the message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper.GetMessage(System.Exception)">
+            <summary>
+            Removes content after first carriage return (\r) from exception message.
+            </summary>
+            <param name="ex">The <see cref="T:System.Exception"/> instance containing the message.</param>
+            <returns>Message substring.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper.GetShortInnerExceptionMessage(System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="ex">The <see cref="T:System.Exception"/> instance containing the inner exception with message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper.GetInnerExceptionMessage(System.Exception)">
+            <summary>
+            Removes extra content from inner exception message.
+            </summary>
+            <param name="ex">The <see cref="T:System.Exception"/> instance containing the inner exception with message.</param>
+            <returns>Message substring.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Exceptions.Helpers.ExceptionHelper.ExtractMessage(System.Exception,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ex"></param>
+            <param name="endIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Native.MouseNative">
+            <summary>
+            Interaction logic for MouseNative class.
+            </summary>
+        </member>
+        <member name="F:ExtensionLibrary.Native.MouseNative.CURSOR_SHOWING">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ExtensionLibrary.Native.MouseNative.CURSORINFO">
+            <summary>
+            CURSORINFO
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetCbSize">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.SetCbSize(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetFlags">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.SetFlags(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetHCursor">
+            <summary>
+            Gets the <see cref="T:System.IntPtr"/> hCursor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetPtScreenPos">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetScreenPosXCoord">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.CURSORINFO.GetScreenPosYCoord">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Native.MouseNative.POINTAPI">
+            <summary>
+            POINTAPI
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.POINTAPI.GetX">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.MouseNative.POINTAPI.GetY">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Native.NativeMethods">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Native.NativeMethods.GetCursorInfo(ExtensionLibrary.Native.MouseNative.CURSORINFO@)">
+            <summary>
+            GetCursorInfo
+            </summary>
+            <param name="pci"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.NativeMethods.DrawIcon(System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            DrawIcon
+            </summary>
+            <param name="hDC"></param>
+            <param name="X"></param>
+            <param name="Y"></param>
+            <param name="hIcon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Native.NativeMethods.InvokeGetCursorInfo(ExtensionLibrary.Native.MouseNative.CURSORINFO@)">
+            <summary>
+            
+            </summary>
+            <param name="pci"></param>
+        </member>
+        <member name="M:ExtensionLibrary.Native.NativeMethods.InvokeDrawIcon(System.IntPtr,System.Int32,System.Int32,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hDC"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="hIcon"></param>
+        </member>
+        <member name="T:ExtensionLibrary.Network.Helpers.NetworkHelper">
+            <summary>
+            Interaction logic for NetworkHelper class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Network.Helpers.NetworkHelper.GetLocalIPAddress">
+            <summary>
+            Gets the local IP address.
+            </summary>
+            <returns>The <see cref="T:System.Net.IPAddress"/> instance representing local IP address.</returns>
+        </member>
+        <member name="M:ExtensionLibrary.Network.Helpers.NetworkHelper.GetIPAddresses">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ExtensionLibrary.Security.SecurityManager">
+            <summary>
+            Interaction logic for SecurityManager class.
+            </summary>
+        </member>
+        <member name="M:ExtensionLibrary.Security.SecurityManager.GenerateSalt(System.Int32)">
+            <summary>
+            Generates pseudo-random salt.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Security.SecurityManager.CreateSaltedPasswordHash(System.String,System.String)">
+            <summary>
+            Creates hashed password with salt.
+            </summary>
+            <param name="password"></param>
+            <param name="salt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Security.SecurityManager.GetRandomPassword(System.Int32)">
+            <summary>
+            Generates a random password.
+            </summary>
+            <param name="size">The <see cref="T:System.Int32"/> size of the password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ExtensionLibrary.Security.SecurityManager.GetMD5Hash(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="bytesToHash"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

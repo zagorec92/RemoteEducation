@@ -2,8 +2,9 @@
 using System.Windows.Controls;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
+using Education.Application;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
     public static class MenuHelper
     {

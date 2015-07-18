@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Education.Application</RootNamespace>
-    <AssemblyName>RemoteDesktopThesisServer</AssemblyName>
+    <AssemblyName>Education.Application</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -19,6 +19,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -33,7 +34,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -68,11 +68,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Education.Libraries\Libraries\ExtensionLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="MahApps.Metro, Version=1.1.2.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.1.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -97,7 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Authentication\AuthenticationManager.cs" />
+    <Compile Include="Managers\Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Client\ClientManager.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
@@ -122,10 +130,15 @@
     </Compile>
     <Compile Include="Server\ServerHandler.cs" />
     <Compile Include="Shared\ApplicationBarEventArgs.cs" />
-    <Compile Include="Shared\ITcpConnectionBase.cs" />
     <Compile Include="Shared\WindowBase.cs" />
+    <Compile Include="Views\Client\ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Exception\ExceptionWindow.xaml.cs">
       <DependentUpon>ExceptionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Login\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu\Help\Help.xaml.cs">
       <DependentUpon>Help.xaml</DependentUpon>
@@ -136,14 +149,20 @@
     <Compile Include="Views\Menu\Options\SelectQuestions.xaml.cs">
       <DependentUpon>SelectQuestions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Menu\ScoreList.xaml.cs">
+      <DependentUpon>ScoreList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Server\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ClientControl.xaml.cs">
+      <DependentUpon>ClientControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ClientMiniControl.xaml.cs">
       <DependentUpon>ClientMiniControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Client\ClientWindow.xaml.cs">
-      <DependentUpon>ClientWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Menu\ScoreList.xaml.cs">
-      <DependentUpon>ScoreList.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\Clock.xaml.cs">
+      <DependentUpon>Clock.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\LoadingControl.xaml.cs">
       <DependentUpon>LoadingControl.xaml</DependentUpon>
@@ -154,19 +173,6 @@
     <Compile Include="Views\UserControls\WindowBar.xaml.cs">
       <DependentUpon>WindowBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Login\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\ClientControl.xaml.cs">
-      <DependentUpon>ClientControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Clock.xaml.cs">
-      <DependentUpon>Clock.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Resources\Storyboard\LoadingControlStoryboard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Resources\Storyboard\LoginStoryboards.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,44 +201,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Exception\ExceptionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Menu\Help\Help.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Menu\Options\QuestionDetails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Menu\Options\SelectQuestions.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\ClientMiniControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Client\ClientWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Menu\ScoreList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Server\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Views\Server\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\Brushes\Brushes.xaml">
@@ -283,29 +253,61 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\LoadingControl.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Client\ClientWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\MiniWindowBar.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Exception\ExceptionWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\WindowBar.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Login\Login.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\Help\Help.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\Options\QuestionDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\Options\SelectQuestions.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Menu\ScoreList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Server\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\ClientControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ClientMiniControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\Clock.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\LoadingControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\MiniWindowBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\WindowBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -369,10 +371,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Education.Network\Education.Network.csproj">
-      <Project>{77c825cd-55ba-4369-9c68-c04d058d4618}</Project>
-      <Name>Education.Network</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RemoteEducation.DAL\Education.DAL.csproj">
       <Project>{12268ab2-e999-43ef-87f5-cde16e7a1556}</Project>
       <Name>Education.DAL</Name>

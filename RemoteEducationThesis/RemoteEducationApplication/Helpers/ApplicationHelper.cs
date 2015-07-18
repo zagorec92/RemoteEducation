@@ -1,14 +1,12 @@
-﻿using ExtensionLibrary.Collections.Extensions;
+﻿using Education.Application.Shared;
+using Education.Application.Views.Login;
+using ExtensionLibrary.Collections.Extensions;
 using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.Controls.Helpers;
-using RemoteEducationApplication.Authentication;
-using RemoteEducationApplication.Views.Login;
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using AppResources = Education.Application.Properties.Resources;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
 	public abstract class ApplicationHelper : BaseHelper
 	{
@@ -63,8 +61,7 @@ namespace RemoteEducationApplication.Helpers
 
 		#region Properties
 
-		private static Dictionary<string, Action> CommandMapping { get; set; }
-		private static Dictionary<string, Action<Window>> WindowCommandMapping { get; set; }
+		private static Dictionary<string, Action<WindowBase>> WindowCommandMapping { get; set; }
 
 		#endregion
 
@@ -75,14 +72,10 @@ namespace RemoteEducationApplication.Helpers
 		/// </summary>
 		public static void InitializeCommandMappings()
 		{
-			CommandMapping = new Dictionary<string, Action>();
-			CommandMapping.Add(CommandTags.Minimize, () => App.Minimize());
-			CommandMapping.Add(CommandTags.Close, () => App.CloseApplication());
-			CommandMapping.Add(CommandTags.Logoff, () => Logoff());
-
-			WindowCommandMapping = new Dictionary<string, Action<Window>>();
+			WindowCommandMapping = new Dictionary<string, Action<WindowBase>>();
 			WindowCommandMapping.Add(CommandTags.Close, x => x.Close());
-			WindowCommandMapping.Add(CommandTags.Minimize, x => x.WindowState = WindowState.Minimized);
+			WindowCommandMapping.Add(CommandTags.Minimize, x => x.Minimize());
+            WindowCommandMapping.Add(CommandTags.Logoff, x => Logoff());
 		}
 
 		#region BasicAppCommands
@@ -92,25 +85,18 @@ namespace RemoteEducationApplication.Helpers
 		/// </summary>
 		public static void Logoff()
 		{
+#if !DEBUG
+
 			AuthenticationManager.Logout();
+
+#endif
+
 			App.WpfMainWindow.NavigateTo(new Login(), true);
 		}
 
-		#endregion
+#endregion
 
-		#region Basic Commands
-
-		/// <summary>
-		/// Executes given command on the main application window.
-		/// </summary>
-		/// <param name="command">Command to execute.</param>
-		public static void ExecuteBasicCommand(string command)
-        {
-			if (CommandMapping.ContainsKey(command))
-				CommandMapping[command].Invoke();
-			else
-				throw new KeyNotFoundException("Command does not exist or its behaviour is not implemented.");
-        }
+#region Basic Commands
 
         /// <summary>
         /// Executes given command.
@@ -118,7 +104,7 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="command">Command to execute.</param>
         /// <param name="window">The <see cref="System.Windows.Window"/> instance on which the execution of the 
         /// command will be performed.</param>
-        public static void ExecuteBasicCommand(string command, Window window)
+        public static void ExecuteBasicCommand(string command, WindowBase window)
 		{
 			if (WindowCommandMapping.ContainsKey(command))
 				WindowCommandMapping[command].Invoke(window);
@@ -126,9 +112,9 @@ namespace RemoteEducationApplication.Helpers
 				throw new KeyNotFoundException("Command does not exist or its behaviour is not implemented.");
 		}
 
-        #endregion
+#endregion
 
-        #region Theme
+#region Theme
 
         /// <summary>
         /// Checks if the given tag is a theme tag.
@@ -147,9 +133,9 @@ namespace RemoteEducationApplication.Helpers
             return themes.Contains(tag);
         }
 
-        #endregion
+#endregion
 
-        #region Menu
+#region Menu
 
         /// <summary>
         /// Checks if the given header is a shared menu.
@@ -170,8 +156,8 @@ namespace RemoteEducationApplication.Helpers
             return sharedMenu.Contains(header);
         }
 
-        #endregion
+#endregion
 
-        #endregion
+#endregion
     }
 }

@@ -1,13 +1,14 @@
-﻿using Education.DAL.Repositories;
+﻿using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Managers.Authentication;
+using Education.Application.Shared;
+using Education.Application.Views.Client;
+using Education.Application.Views.Server;
+using Education.DAL;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
 using ExtensionLibrary.Enums.Extensions;
 using ExtensionLibrary.Exceptions.Helpers;
-using RemoteEducationApplication.Authentication;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Views.Client;
-using RemoteEducationApplication.Views.Server;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,12 +16,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using AppResources = Education.Application.Properties.Resources;
 
-namespace RemoteEducationApplication.Views.Login
+namespace Education.Application.Views.Login
 {
-    /// <summary>
-    /// Interaction logic for Login.xaml
-    /// </summary>
-    public partial class Login : WindowBase
+	/// <summary>
+	/// Interaction logic for Login.xaml
+	/// </summary>
+	public partial class Login : WindowBase
     {
         #region Struct
 
@@ -205,7 +206,7 @@ namespace RemoteEducationApplication.Views.Login
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationEventArgs e)
         {
-            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
         }
 
         #endregion
@@ -240,12 +241,12 @@ namespace RemoteEducationApplication.Views.Login
         }
 
         /// <summary>
-        /// Handles the MouseLeftButtonDow event of the textBlock control.
+        /// Handles the MouseLeftButtonDown event of the TextBlock control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Windows.Input.MouseButtonEventArgs"/> 
         /// instance containing the event data.</param>
-        private void textBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             SetWindowTitle(WindowTitles.Recovery);
         }
@@ -265,13 +266,15 @@ namespace RemoteEducationApplication.Views.Login
 
             sender.ExecuteIfNotNull<Button>(bttn =>
             {
-                if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Clear)
+                string commandParameter = bttn.GetCommandParameter();
+
+                if (commandParameter == ApplicationHelper.CommandTags.Clear)
                     Username = pbxPassword.Password = String.Empty;
-                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Login)
+                else if (commandParameter == ApplicationHelper.CommandTags.Login)
                     AuthenticateUser();
-                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Cancel)
+                else if (commandParameter == ApplicationHelper.CommandTags.Cancel)
                     SetWindowTitle(WindowTitles.Login);
-                else if (bttn.GetCommandParameter() == ApplicationHelper.CommandTags.Recover)
+                else if (commandParameter == ApplicationHelper.CommandTags.Recover)
                     ResetPassword();
             });
         }
@@ -289,31 +292,32 @@ namespace RemoteEducationApplication.Views.Login
         /// </summary>
         private async void AuthenticateUser()
         {
+            //throw new Exception("aksj");
             try
             {
+				int roleID;
+
                 UpdateLoadingScreen(loadingText: AppResources.LoginPageLoginLoadingText);
 
-                //loading screen test
-                await Task.Delay(BaseHelper.SleepTime.Short.GetValue());
+				//roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
 
-                //int roleID = await Task.Run(() => AuthenticationManager.AuthenticateUser(Username, pbxPassword.Password));
-                int roleID = 1; //test
+				//loading screen test
+				await Task.Delay(BaseHelper.SleepTime.Short.GetValue());
 
-                //UpdateLoadingScreen(loadingText: "Uspješna prijava");
-                //await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
+				roleID = EnumCollection.RoleType.Admin.GetValue(); //test
 
-                //UpdateLoadingScreen(loadingText: "Otvaram prozor");
-                //await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
+				UpdateLoadingScreen(loadingText: "Uspješna prijava");
+				await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
 
-                if (roleID == RoleRepository.RoleType.Admin.GetValue() ||
-                    roleID == RoleRepository.RoleType.Professor.GetValue())
-                    this.NavigateTo(new MainWindow(), true);
-                else if (roleID == RoleRepository.RoleType.Student.GetValue())
-                    this.NavigateTo(new ClientWindow(), true);
+				if (roleID == EnumCollection.RoleType.Admin.GetValue() ||
+                    roleID == EnumCollection.RoleType.Professor.GetValue())
+                    NavigationManager.NavigateTo<MainWindow>(true);
+                else if (roleID == EnumCollection.RoleType.Student.GetValue())
+                    NavigationManager.NavigateTo<ClientWindow>(true);
             }
             catch (ArgumentException ex)
             {
-                UpdateLoadingScreen(false);
+                UpdateLoadingScreen(isVisible: false);
                 string message = ExceptionHelper.GetMessage(ex);
 
                 if (ex.ParamName == AuthenticationManager.AuthenticateExParameters.IsUsername)
@@ -345,10 +349,10 @@ namespace RemoteEducationApplication.Views.Login
             }
 
             await Task.Delay(BaseHelper.SleepTime.Shortest.GetValue());
-            UpdateLoadingScreen(false);
+            UpdateLoadingScreen(isVisible: false);
         }
 
-        #endregion
+		#endregion
 
         /// <summary>
         /// 
@@ -378,6 +382,6 @@ namespace RemoteEducationApplication.Views.Login
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
-        #endregion
+		#endregion
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Education.Model.Entities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.ETypeEntities
 {
     [Table("ERole")]
-    public class Role : ETableBase
+    public class Role : EEntityBase
     {
         /// <summary>
         /// Gets or sets the authorization level.

@@ -1,11 +1,11 @@
-﻿using Education.Model;
+﻿using Education.Model.ETypeEntities;
 using System;
 using System.Linq;
 
 namespace Education.DAL.Repositories
 {
-    public class ETableRepository<T>
-        where T : ETableBase
+	public class ETableRepository<T>
+        where T : EEntityBase
     {
         #region Properties
 

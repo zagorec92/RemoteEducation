@@ -1,10 +1,11 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
+using Education.Model.ETypeEntities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace Education.DAL
 {
-    public class EEducationDbContext : DbContext
+	public class EEducationDbContext : DbContext
     {
         #region Properties
 

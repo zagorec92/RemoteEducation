@@ -1,8 +1,8 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 
 namespace Education.DAL.Repositories
 {
-    public class LogRepository : RepositoryBase<Log>
+	public class LogRepository : RepositoryBase<Log>
     {
 		#region Enum
 

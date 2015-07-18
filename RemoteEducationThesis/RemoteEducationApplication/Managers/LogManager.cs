@@ -1,13 +1,13 @@
-﻿using Education.DAL;
+﻿using Education.Application.Managers.Authentication;
+using Education.DAL;
 using Education.DAL.Repositories;
-using Education.Model;
+using Education.Model.Entities;
 using ExtensionLibrary.Enums.Extensions;
-using RemoteEducationApplication.Authentication;
 using System;
 
 namespace Education.Application.Managers
 {
-    public static class LogManager
+	public static class LogManager
     {
         public static int Log(LogRepository.LogType logType, string message, string description, string stackTrace)
         {

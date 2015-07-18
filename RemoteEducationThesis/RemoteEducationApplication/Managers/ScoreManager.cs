@@ -1,14 +1,13 @@
-﻿using Education.DAL;
+﻿using Education.Application.Managers.Authentication;
+using Education.DAL;
 using Education.DAL.Repositories;
-using Education.Model;
-using RemoteEducationApplication.Authentication;
+using Education.Model.Entities;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Education.Application.Managers
 {
-    public static class ScoreManager
+	public static class ScoreManager
     {
         /// <summary>
         /// Saves user score.

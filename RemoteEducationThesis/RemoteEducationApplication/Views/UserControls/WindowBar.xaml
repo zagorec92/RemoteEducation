@@ -1,4 +1,4 @@
-﻿<base:WpfUserControl x:Class="RemoteEducationApplication.Views.UserControls.WindowBar"
+﻿<base:WpfUserControl x:Class="Education.Application.Views.UserControls.WindowBar"
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
                      x:Name="windowBar"
                      xmlns:global="clr-namespace:Education.Application.Properties"
                      xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
-                     xmlns:c="clr-namespace:RemoteEducationApplication.Converters">
+                     xmlns:c="clr-namespace:Education.Application.Converters">
     <base:WpfUserControl.Resources>
         <c:WindowBarVisibilityConverter x:Key="WindowBarVisibilityConverter" />
     </base:WpfUserControl.Resources>

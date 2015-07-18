@@ -4,7 +4,7 @@ using System.Timers;
 using System.Windows;
 using WPFFramework.App.Base;
 
-namespace RemoteEducationApplication.Views.UserControls
+namespace Education.Application.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for Clock.xaml
@@ -33,14 +33,14 @@ namespace RemoteEducationApplication.Views.UserControls
             }
         }
 
-        #endregion
+		#endregion
 
-        #region Constructor
+		#region Constructor
 
-        /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.Clock"/> class.
-        /// </summary>
-        public Clock()
+		/// <summary>
+		/// Creates a new instance of the <see cref="Education.Application.Views.UserControls.Clock"/> class.
+		/// </summary>
+		public Clock()
         {
             InitializeComponent();
             InitializeTimer();

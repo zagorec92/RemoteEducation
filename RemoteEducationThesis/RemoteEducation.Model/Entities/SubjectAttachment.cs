@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Education.Model.ETypeEntities;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
-    public class SubjectAttachment : EntityBase
+	public class SubjectAttachment : EntityBase
     {
         /// <summary>
         /// Gets or sets the content.

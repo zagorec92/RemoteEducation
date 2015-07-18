@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Roles>
+  <Role>
+    <Name>Admin</Name>
+    <Description>Administrator</Description>
+    <AuthorizationLevel>100</AuthorizationLevel>
+  </Role>
+  <Role>
+    <Name>Professor</Name>
+    <Description>Professor</Description>
+    <AuthorizationLevel>50</AuthorizationLevel>
+  </Role>
+  <Role>
+    <Name>Student</Name>
+    <Description>Student</Description>
+    <AuthorizationLevel>10</AuthorizationLevel>
+  </Role>
+</Roles>

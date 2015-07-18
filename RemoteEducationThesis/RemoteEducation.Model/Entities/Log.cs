@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Education.Model.ETypeEntities;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
-    public class Log : EntityBase
+	public class Log : EntityBase
     {
 		/// <summary>
 		/// Gets or sets the user identifier.

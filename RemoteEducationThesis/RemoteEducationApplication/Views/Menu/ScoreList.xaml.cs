@@ -1,17 +1,17 @@
-﻿using Education.Application.Managers;
-using Education.Model;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
+﻿using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Shared;
+using Education.Model.Entities;
 using System.Collections.ObjectModel;
 using System.Windows;
 using WPFFramework.Attributes;
 
-namespace RemoteEducationApplication.Views.Menu
+namespace Education.Application.Views.Menu
 {
-    /// <summary>
-    /// Interaction logic for ScoreList.xaml
-    /// </summary>
-    [MenuWindow(UseDefaultConstructor = true)]
+	/// <summary>
+	/// Interaction logic for ScoreList.xaml
+	/// </summary>
+	[MenuWindow(UseDefaultConstructor = true)]
     public partial class ScoreList : WindowBase
     {
         #region Properties

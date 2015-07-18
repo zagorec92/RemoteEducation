@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
     public class ScreenshotHelper : MouseNative
     {

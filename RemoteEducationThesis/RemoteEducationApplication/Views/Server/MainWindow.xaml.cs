@@ -1,33 +1,27 @@
-﻿using Education.Application.Managers;
+﻿using Education.Application.Extensions;
+using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Shared;
+using Education.Application.Views.Menu.Options;
 using ExtensionLibrary.Collections.Extensions;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
-using ExtensionLibrary.DataTypes.Extensions;
-using ExtensionLibrary.DataTypes.Helpers;
-using ExtensionLibrary.NETFramework.Helpers;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Extensions;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
-using RemoteEducationApplication.Views.Menu.Options;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WPFFramework.Attributes;
 using AppResources = Education.Application.Properties.Resources;
 
-namespace RemoteEducationApplication.Views.Server
+namespace Education.Application.Views.Server
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : WindowBase
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : WindowBase
     {
         #region Struct
 
@@ -271,7 +265,7 @@ namespace RemoteEducationApplication.Views.Server
         /// instance containing the event data.</param>
         private void ApplicationBar_Click(object sender, ApplicationEventArgs e)
         {
-            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
         }
 
         /// <summary>
@@ -290,7 +284,7 @@ namespace RemoteEducationApplication.Views.Server
                 if (tag == ApplicationHelper.CommandTags.Close ||
                     tag == ApplicationHelper.CommandTags.Logoff)
                 {
-                    ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag());
+                    ApplicationHelper.ExecuteBasicCommand(menuItem.GetTag(), this);
                 }
                 else if (tag == ApplicationHelper.CommandTags.FullScreen)
                 {

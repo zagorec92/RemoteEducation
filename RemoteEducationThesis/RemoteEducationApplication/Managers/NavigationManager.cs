@@ -12,7 +12,24 @@ namespace Education.Application.Managers
 {
     public static class NavigationManager
     {
+        #region Properties
+
+        
+
+        #endregion
+
         #region Methods
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="closeCurrentWindow"></param>
+        public static void NavigateTo<T>(bool closeCurrentWindow)
+            where T : Window, new()
+        {
+            App.WpfMainWindow.NavigateTo(new T(), closeCurrentWindow);
+        }
 
         /// <summary>
         /// 

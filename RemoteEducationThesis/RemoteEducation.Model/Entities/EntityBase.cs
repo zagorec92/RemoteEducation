@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Education.Model.Shared;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
-    public abstract class EntityBase
+	public abstract class EntityBase : IEntity
     {
         /// <summary>
         /// Gets or sets the entity ID.
@@ -17,7 +18,7 @@ namespace Education.Model
         /// </summary>
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? DateCreated { get; set; }
+        public DateTime DateCreated { get; set; }
 
         /// <summary>
         /// Gets or sets the date modified.

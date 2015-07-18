@@ -1,9 +1,9 @@
-﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.Client.ClientWindow"
+﻿<base:WindowBase x:Class="Education.Application.Views.Client.ClientWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:ext="clr-namespace:RemoteEducationApplication.Extensions"
-                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
-                 xmlns:wb="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:ext="clr-namespace:Education.Application.Extensions"
+                 xmlns:base="clr-namespace:Education.Application.Shared"
+                 xmlns:wb="clr-namespace:Education.Application.Views.UserControls"
                  xmlns:global="clr-namespace:Education.Application.Properties"
                  Style="{StaticResource ClientWindowStyle}"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">

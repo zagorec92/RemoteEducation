@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RemoteEducationApplication.Shared
+namespace Education.Application.Shared
 {
     /// <summary>
     /// 
@@ -19,17 +19,17 @@ namespace RemoteEducationApplication.Shared
         /// </summary>
         public int ObjectID { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Constructor
+		#region Constructor
 
-        /// <summary>
-        /// Creates a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.RectangleEventArgs"/> class.
-        /// instance.
-        /// </summary>
-        /// <param name="commandName">Name of the command.<c>Optional.</c></param>
-        /// <param name="objectName">Name of the object.<c>Optional.</c></param>
-        public ApplicationEventArgs(string commandName = "", int objectID = 0)
+		/// <summary>
+		/// Creates a new instance of the <see cref="Education.Application.Views.UserControls.RectangleEventArgs"/> class.
+		/// instance.
+		/// </summary>
+		/// <param name="commandName">Name of the command.<c>Optional.</c></param>
+		/// <param name="objectName">Name of the object.<c>Optional.</c></param>
+		public ApplicationEventArgs(string commandName = "", int objectID = 0)
             : base()
         {
             CommandName = commandName;

@@ -1,6 +1,7 @@
 ﻿using Education.DAL;
 using Education.DAL.Repositories;
-using Education.Model;
+using Education.Model.Entities;
+using ExtensionLibrary.DataTypes.Converters.Extensions;
 using Microsoft.Win32;
 using RemoteEducationApplication.Client;
 using System;
@@ -9,11 +10,10 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using ExtensionLibrary.DataTypes.Converters.Extensions;
 
 namespace Education.Application.Managers
 {
-    public static class QuestionManager
+	public static class QuestionManager
     {
         #region Const
 

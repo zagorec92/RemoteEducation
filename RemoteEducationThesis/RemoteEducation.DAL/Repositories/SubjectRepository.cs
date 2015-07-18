@@ -1,4 +1,4 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 
 namespace Education.DAL.Repositories
 {

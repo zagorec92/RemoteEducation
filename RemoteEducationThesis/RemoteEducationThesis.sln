@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteEducationApplication", "RemoteEducationApplication\RemoteEducationApplication.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.Application", "RemoteEducationApplication\Education.Application.csproj", "{7AED2748-6B5C-48DF-917F-9451D9F33735}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Education.DAL", "RemoteEducation.DAL\Education.DAL.csproj", "{12268AB2-E999-43EF-87F5-CDE16E7A1556}"
 EndProject
@@ -31,6 +31,10 @@ Global
 		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{888B25B7-D27F-4F39-9DB4-9C66A223B489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C825CD-55BA-4369-9C68-C04D058D4618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C825CD-55BA-4369-9C68-C04D058D4618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C825CD-55BA-4369-9C68-C04D058D4618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C825CD-55BA-4369-9C68-C04D058D4618}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BDCA5877-6911-4ACB-B993-87A74614136F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BDCA5877-6911-4ACB-B993-87A74614136F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDCA5877-6911-4ACB-B993-87A74614136F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,5 +46,26 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://zagorec92.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = RemoteEducation.DAL\\Education.DAL.csproj
+		SccProjectName1 = RemoteEducation.DAL
+		SccLocalPath1 = RemoteEducation.DAL
+		SccProjectUniqueName2 = RemoteEducation.Model\\Education.Model.csproj
+		SccProjectName2 = RemoteEducation.Model
+		SccLocalPath2 = RemoteEducation.Model
+		SccProjectUniqueName4 = Test\\Test.csproj
+		SccProjectName4 = Test
+		SccLocalPath4 = Test
+		SccProjectUniqueName5 = Education.Libraries\\Education.Libraries.csproj
+		SccProjectName5 = Education.Libraries
+		SccLocalPath5 = Education.Libraries
+		SccProjectUniqueName6 = RemoteEducationApplication\\Education.Application.csproj
+		SccProjectName6 = RemoteEducationApplication
+		SccLocalPath6 = RemoteEducationApplication
 	EndGlobalSection
 EndGlobal

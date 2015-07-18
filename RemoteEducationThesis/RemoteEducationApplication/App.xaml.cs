@@ -1,9 +1,8 @@
-﻿using Education.Application.Managers;
+﻿using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Views.ExceptionViewer;
 using Education.DAL.Repositories;
 using ExtensionLibrary.Controls.Helpers;
-using ExtensionLibrary.Exceptions.Helpers;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Views.ExceptionViewer;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -12,31 +11,14 @@ using WPFFramework.App;
 using AppResources = Education.Application.Properties.Resources;
 using AppSettings = Education.Application.Properties.Settings;
 
-namespace RemoteEducationApplication
+namespace Education.Application
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
 	public partial class App : WpfApplication
     {
-        #region Const
-
-        internal const string MenuWindowPath = "RemoteEducationApplication.Views.Menu.";
-
-        #endregion
-
-        #region Fields
-        
-        private static readonly AppResources _appResources;
-        
-        #endregion
-
-        #region Properties
-
-        internal static AppResources ApplicationResources
-        { 
-            get { return _appResources; } 
-        }
+		#region Properties
 
         /// <summary>
         /// 
@@ -130,8 +112,8 @@ namespace RemoteEducationApplication
             finally
             {
                 HandleWindowsOnCriticalException();
-                WindowHelper.OpenMainWindowDialog<ExceptionWindow>(exceptionId, ExceptionHelper.GetShortMessage(exception), exceptionOccured);
-            }
+				WindowHelper.OpenMainWindowDialog<ExceptionWindow>(exceptionId, exception, exceptionOccured);
+			}
         }
 
         /// <summary>
@@ -148,6 +130,9 @@ namespace RemoteEducationApplication
 
         #region Methods
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void HandleWindowsOnCriticalException()
         {
             WpfMainWindow = null;

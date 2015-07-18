@@ -3,11 +3,12 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using AppResources = Education.Application.Properties.Resources;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
-namespace RemoteEducationApplication.Helpers
+namespace Education.Application.Helpers
 {
     public static class MailHelper
     {
@@ -68,7 +69,7 @@ namespace RemoteEducationApplication.Helpers
         /// <param name="exceptionId">The <see cref="System.Int32"/> exception ID.</param>
         /// <param name="dateTimeOfException">The <see cref="System.DateTime"/> date when exception occured.</param>
         /// <returns>The <see cref="Microsoft.Office.Interop.Outlook.MailItem"/> instance.</returns>
-        public static Outlook.MailItem GetExceptionMail(int? exceptionId, DateTime dateTimeOfException)
+        public static Outlook.MailItem GetExceptionMail(int? exceptionId, DateTime dateTimeOfException, Exception exception)
         {
             Outlook.Application outlookApp = new Outlook.Application();
             Outlook.MailItem mailItem = (Outlook.MailItem)outlookApp.CreateItem(Outlook.OlItemType.olMailItem);
@@ -77,9 +78,13 @@ namespace RemoteEducationApplication.Helpers
             string mailSubject = String.Empty;
 
             if (exceptionId.HasValue)
+            {
                 mailSubject = String.Format(AppResources.ExceptionMailSubject, exceptionId);
+            }
             else
+            {
                 mailSubject = String.Format(AppResources.ExceptionMailSubject, dateTimeOfException);
+            }
 
             mailItem.Subject = mailSubject;
             mailItem.FlagIcon = Outlook.OlFlagIcon.olRedFlagIcon;
@@ -87,6 +92,18 @@ namespace RemoteEducationApplication.Helpers
 
             return mailItem;
         }
+
+        //private static string CreateExceptionInfo(Exception exception)
+        //{
+        //    StringBuilder stringBuilder = new StringBuilder();
+
+        //    stringBuilder.AppendLine(exception.Message);
+        //    stringBuilder.AppendLine(exception.InnerException != null ? exception.InnerException.Message : String.Empty);
+        //    stringBuilder.AppendLine(exception.Source);
+        //    stringBuilder.AppendLine(exception.StackTrace);
+
+        //    return stringBuilder.ToString();
+        //}
 
         /// <summary>
         /// 

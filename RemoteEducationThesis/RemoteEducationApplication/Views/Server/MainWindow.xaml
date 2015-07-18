@@ -1,14 +1,14 @@
-﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.Server.MainWindow"
+﻿<base:WindowBase x:Class="Education.Application.Views.Server.MainWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
+                 xmlns:c="clr-namespace:Education.Application.Converters"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:global="clr-namespace:Education.Application.Properties"
-                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
-                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
+                 xmlns:base="clr-namespace:Education.Application.Shared"
                  Style="{StaticResource MainWindowStyle}">
     <base:WindowBase.Resources>
-        <c:StatusTextVisibilityConverter x:Key="VisibilityConverter" />
+        <c:BoolToVisibilityConverter x:Key="VisibilityConverter" />
         <c:WindowTagConverter x:Key="WindowTagConverter" />
     </base:WindowBase.Resources>
     <Grid>
@@ -18,10 +18,10 @@
             <RowDefinition Height="25" />
         </Grid.RowDefinitions>
 
-        <!--menu bar-->
+        <!-- menu bar -->
         <Grid Background="{DynamicResource BackgroundBrush}">
 
-            <!--menu-->
+            <!-- menu -->
             <Grid HorizontalAlignment="Left">
                 <Menu Style="{StaticResource MainWindowMenuStyle}">
                     <MenuItem Header="{x:Static global:Resources.MenuFile}"
@@ -118,7 +118,7 @@
                 </Menu>
             </Grid>
 
-            <!--minimize and close-->
+            <!-- minimize and close -->
             <uc:WindowBar WindowBarClick="ApplicationBar_Click"
                                WindowRole="ApplicationBar"/>
 
@@ -147,7 +147,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
             
-            <!--fix for the strange white space in the bottom right of the listbox-->
+            <!-- for the strange white space in the bottom right of the listbox -->
             <Rectangle Fill="{StaticResource BetterWhiteBrush}"
                        VerticalAlignment="Bottom"
                        HorizontalAlignment="Right"
@@ -196,7 +196,7 @@
             
         </Grid>
 
-        <!--status bar-->
+        <!-- status bar -->
         <Grid Grid.Row="2" 
               Background="{DynamicResource BackgroundBrush}">
             <Grid.ColumnDefinitions>

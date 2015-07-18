@@ -1,10 +1,10 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Education.DAL.Repositories
 {
-    public class ScoreLogRepository : RepositoryBase<ScoreLog>
+	public class ScoreLogRepository : RepositoryBase<ScoreLog>
     {
         #region Enum
 

@@ -1,10 +1,10 @@
-﻿<base:WindowBase x:Class="RemoteEducationApplication.Views.Login.Login"
+﻿<base:WindowBase x:Class="Education.Application.Views.Login.Login"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:c="clr-namespace:RemoteEducationApplication.Converters"
-                 xmlns:base="clr-namespace:RemoteEducationApplication.Shared"
+                 xmlns:c="clr-namespace:Education.Application.Converters"
+                 xmlns:base="clr-namespace:Education.Application.Shared"
                  xmlns:global="clr-namespace:Education.Application.Properties"
-                 xmlns:uc="clr-namespace:RemoteEducationApplication.Views.UserControls"
+                 xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
                  Style="{StaticResource LoginWindowStyle}"
                  KeyDown="Window_KeyDown"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
@@ -120,7 +120,7 @@
                        Style="{StaticResource UsernamePasswordRecoveryLinkStyle}">
                 <Hyperlink>
                     <TextBlock x:Name="textBlock" 
-                               MouseLeftButtonDown="textBlock_MouseLeftButtonDown" 
+                               MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" 
                                Text="{x:Static global:Resources.LoginPageRecovery}"/>
                 </Hyperlink>
             </TextBlock>
@@ -187,7 +187,7 @@
             <uc:LoadingControl LoadingText="{Binding LoadingScreenText, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Mode=TwoWay}"
                                LoadingBackground="{DynamicResource ResourceKey=ButtonHoverBrush}"     
                                LoadingForeground="{DynamicResource ResourceKey=ForegroundBrush}"
-                               LoadingAreaOpacity="0.9"/>
+                               LoadingAreaOpacity=".9"/>
         </Grid>
     </Grid>
 </base:WindowBase>

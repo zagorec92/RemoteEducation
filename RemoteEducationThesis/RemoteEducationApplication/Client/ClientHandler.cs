@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ExtensionLibrary.DataTypes.Extensions;
+using System;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Media;
-using ExtensionLibrary.DataTypes.Extensions;
-using AuthManager = RemoteEducationApplication.Authentication.AuthenticationManager;
+using AuthManager = Education.Application.Managers.Authentication.AuthenticationManager;
 
 namespace RemoteEducationApplication.Client
 {

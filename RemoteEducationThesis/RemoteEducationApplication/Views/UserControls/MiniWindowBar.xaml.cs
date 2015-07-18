@@ -1,39 +1,39 @@
-﻿using ExtensionLibrary.Controls.Extensions;
+﻿using Education.Application.Shared;
+using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
-using RemoteEducationApplication.Shared;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using WPFFramework.App.Base;
 
-namespace RemoteEducationApplication.Views.UserControls
+namespace Education.Application.Views.UserControls
 {
-    /// <summary>
-    /// Interaction logic for MiniWindowBar.xaml
-    /// </summary>
-    public partial class MiniWindowBar : WpfUserControl
+	/// <summary>
+	/// Interaction logic for MiniWindowBar.xaml
+	/// </summary>
+	public partial class MiniWindowBar : WpfUserControl
     {
-        #region Constructor
+		#region Constructor
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RemoteEducationApplication.Views.UserControls.MiniWindowBar"/>
-        /// class.
-        /// </summary>
-        public MiniWindowBar()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Education.Application.Views.UserControls.MiniWindowBar"/>
+		/// class.
+		/// </summary>
+		public MiniWindowBar()
         {
             InitializeComponent();
         }
 
-        #endregion
+		#endregion
 
-        #region Events & Delegates
+		#region Events & Delegates
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender">The source of the event</param>
-        /// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/>
-        /// instance containing the event data.</param>
-        public delegate void RectangleClickEventHandler(object sender, ApplicationEventArgs e);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender">The source of the event</param>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// instance containing the event data.</param>
+		public delegate void RectangleClickEventHandler(object sender, ApplicationEventArgs e);
 
         /// <summary>
         /// RectangleClickEvent handler.

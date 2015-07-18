@@ -1,30 +1,22 @@
-﻿using Education.Model;
+﻿using Education.Application.Helpers;
+using Education.Application.Managers;
+using Education.Application.Shared;
+using ExtensionLibrary.Controls.Extensions;
+using ExtensionLibrary.Controls.Helpers;
 using RemoteEducationApplication.Client;
-using RemoteEducationApplication.Helpers;
-using RemoteEducationApplication.Shared;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Net;
-using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
-using ExtensionLibrary.Controls.Extensions;
-using ExtensionLibrary.Controls.Helpers;
-using ExtensionLibrary.Enums.Extensions;
-using ExtensionLibrary.Enums.Helpers;
 using AppResources = Education.Application.Properties.Resources;
-using Education.Application.Managers;
 
-namespace RemoteEducationApplication.Views.Client
+namespace Education.Application.Views.Client
 {
-    /// <summary>
-    /// Interaction logic for ClientWindow.xaml
-    /// </summary>
-    public partial class ClientWindow : WindowBase
+	/// <summary>
+	/// Interaction logic for ClientWindow.xaml
+	/// </summary>
+	public partial class ClientWindow : WindowBase
     {
         #region Struct
 
@@ -251,7 +243,7 @@ namespace RemoteEducationApplication.Views.Client
         /// instance containing the event data.</param>
         private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
         {
-            ApplicationHelper.ExecuteBasicCommand(e.CommandName);
+            ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
         }
 
         #endregion

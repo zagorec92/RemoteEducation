@@ -1,4 +1,4 @@
-﻿namespace RemoteEducationApplication.Helpers
+﻿namespace Education.Application.Helpers
 {
     public abstract class BaseHelper
     {
@@ -83,12 +83,7 @@
             /// <summary>
             /// LoginStoryboards resource dictionary.
             /// </summary>
-            LoginStoryboards = 8,
-
-            /// <summary>
-            /// LoadingControlStoryboard resource dictionary.
-            /// </summary>
-            LoadingControlStoryboard = 9
+            LoginStoryboards = 8
         }
 
         #endregion

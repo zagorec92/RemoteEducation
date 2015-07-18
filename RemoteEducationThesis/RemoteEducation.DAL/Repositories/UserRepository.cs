@@ -1,10 +1,10 @@
-﻿using Education.Model;
-using System.Linq;
+﻿using Education.Model.Entities;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Education.DAL.Repositories
 {
-    public class UserRepository : RepositoryBase<User>
+	public class UserRepository : RepositoryBase<User>
     {
         #region Constructor
 

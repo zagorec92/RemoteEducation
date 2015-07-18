@@ -1,4 +1,4 @@
-﻿using Education.Model;
+﻿using Education.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Education.DAL.Repositories
 {
-    public abstract class RepositoryBase<T> 
+	public abstract class RepositoryBase<T> 
         where T : EntityBase
     {
         #region Properties
@@ -138,13 +138,13 @@ namespace Education.DAL.Repositories
             {
                 if (entity.ID == default(int))
                 {
-                    SetDates(entity);
+                    SetModifiedDate(entity);
                     Context.Set<T>().Add(entity);
                 }
                 else
                 {
                     Context.Entry<T>(entity).State = EntityState.Modified;
-                    entity.DateModified = DateTime.Now;
+                    SetModifiedDate(entity, true);
                 }
             }
             catch
@@ -159,12 +159,9 @@ namespace Education.DAL.Repositories
         /// 
         /// </summary>
         /// <param name="entity"></param>
-        private void SetDates(T entity)
+        private void SetModifiedDate(T entity, bool overwrite = false)
         {
-            if (!entity.DateCreated.HasValue)
-                entity.DateCreated = DateTime.Now;
-
-            if (!entity.DateModified.HasValue)
+            if (!entity.DateModified.HasValue || overwrite)
                 entity.DateModified = DateTime.Now;
         }
 

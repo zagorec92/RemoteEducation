@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Education.Model.ETypeEntities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Education.Model
+namespace Education.Model.Entities
 {
-    public class User : EntityBase
+	public class User : EntityBase
     {
         /// <summary>
         /// Gets or sets the unique identifier,
