@@ -1,7 +1,6 @@
 ﻿using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Helpers;
 using ExtensionLibrary.NETFramework.Helpers;
-using RemoteEducationApplication;
 using System;
 using System.Linq;
 using System.Reflection;

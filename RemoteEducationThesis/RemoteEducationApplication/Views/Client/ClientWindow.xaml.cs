@@ -3,7 +3,7 @@ using Education.Application.Managers;
 using Education.Application.Shared;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.Controls.Helpers;
-using RemoteEducationApplication.Client;
+using Education.Application.Client;
 using System.Collections.Generic;
 using System.Net;
 using System.Windows;
@@ -221,7 +221,7 @@ namespace Education.Application.Views.Client
                         WebBrowserHelper.GetUrlParameters<int, string>(urlParameters);
 
                     Client.TotalScore += QuestionManager.CheckAnswers(urlParams);
-                    ScoreManager.SaveUserScore(Client.TotalScore);
+					//ScoreManager.SaveUserScore(Client.TotalScore);
                     HasAnswered = true;
                 }
                 else

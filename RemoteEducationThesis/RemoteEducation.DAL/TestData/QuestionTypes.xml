@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<QuestionTypes>
+  <QuestionType>
+    <Name>YesNo</Name>
+    <Description>Answer is yes or no statement.</Description>
+  </QuestionType>
+  <QuestionType>
+    <Name>MultipleChoice</Name>
+    <Description>Answer is chosen from  a number of offered solutions.</Description>
+  </QuestionType>
+  <QuestionType>
+    <Name>NumericValue</Name>
+    <Description>Answer is a numeric value.</Description>
+  </QuestionType>
+  <QuestionType>
+    <Name>MathExpression</Name>
+    <Description>Answer is a valid mathematical expression.</Description>
+  </QuestionType>
+  <QuestionType>
+    <Name>Essay</Name>
+    <Description>Answer is a text in a few sentences and provides a thorough and meaningful response.</Description>
+  </QuestionType>
+  <QuestionType>
+    <Name>Code</Name>
+    <Description>Answer is a programming/scripting language code.</Description>
+  </QuestionType>
+</QuestionTypes>

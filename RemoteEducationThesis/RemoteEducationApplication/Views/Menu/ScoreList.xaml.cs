@@ -19,7 +19,7 @@ namespace Education.Application.Views.Menu
         /// <summary>
         /// Gets or sets the ScoreLog observable collection.
         /// </summary>
-        public ObservableCollection<ScoreLog> Scores { get; set; }
+        public ObservableCollection<Score> Scores { get; set; }
 
         #endregion
 
@@ -48,7 +48,7 @@ namespace Education.Application.Views.Menu
         /// containing the event data.</param>
         private void ScoreList_Loaded(object sender, RoutedEventArgs e)
         {
-            Scores = new ObservableCollection<ScoreLog>(ScoreManager.GetScoreLogs());
+			//Scores = new ObservableCollection<Score>(ScoreManager.GetScoreLogs());
             DataContext = this;
         }
 

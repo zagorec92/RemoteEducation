@@ -99,7 +99,6 @@
     <Compile Include="Repositories\ETableRepository.cs" />
     <Compile Include="Repositories\QuestionRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="Repositories\ScoreLogRepository.cs" />
     <Compile Include="Repositories\ServerInfoRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -118,8 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\AttachmentType.xml" />
-    <Content Include="TestData\ClearDataAndResetIdentity.sql" />
+    <Content Include="TestData\AttachmentTypes.xml" />
     <Content Include="TestData\LogType.xml" />
+    <Content Include="TestData\LogTypes.xml" />
+    <Content Include="TestData\QuestionTypes.xml" />
     <Content Include="TestData\Roles.xml" />
     <Content Include="TestData\Subjects.xml" />
     <Content Include="TestData\UserDetails.xml">

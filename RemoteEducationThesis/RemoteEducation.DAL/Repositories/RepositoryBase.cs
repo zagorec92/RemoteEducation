@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Education.DAL.Repositories
 {
 	public abstract class RepositoryBase<T> 
-        where T : EntityBase
+        where T : Entity
     {
         #region Properties
 

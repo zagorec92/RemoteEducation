@@ -119,7 +119,6 @@
     <Compile Include="Managers\LogManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />
     <Compile Include="Managers\NavigationManager.cs" />
-    <Compile Include="Managers\ScoreManager.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
     <Compile Include="Helpers\StyleHelper.cs" />
     <Compile Include="Helpers\SubjectHelper.cs" />

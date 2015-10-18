@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Users>
+	<User>
+		<UserDetailsID>@UserDetailsID1</UserDetailsID>
+		<Password>WcdD0iq1VfyKVkLjcTGe3ynGmbL9jdLvJbbi+dC1ddU=</Password>
+		<PasswordSalt>2+M8gnKzC+LAcCodJZWB59GkLpg3yDWJy07PC5IfCF4=</PasswordSalt>
+		<SecurityCode>1359</SecurityCode>
+		<Roles>null</Roles>
+	</User>
+	<User>
+		<UserDetailsID>@UserDetailsID2</UserDetailsID>
+		<Password>wRHb/PAmJIVHhQiSIx+Y0Z2LN0Wo95UD1Ike7ObWilY=</Password>
+		<PasswordSalt>VQyQaDQNFr7lUHDsLyR2/h3d+lraNsZTSsmgMv2fBNM=</PasswordSalt>
+		<SecurityCode>4605</SecurityCode>
+		<Roles>null</Roles>
+	</User>
+	<User>
+		<UserDetailsID>@UserDetailsID3</UserDetailsID>
+		<Password>+e6arNYYXg0ABrZpXvoaYwLI9GvErnXv4dSqytuo+1Y=</Password>
+		<PasswordSalt>U29X5jbY3I/dEIaq9v1BFjWdxAUu4ACQQTpF0M1AXVI=</PasswordSalt>
+		<SecurityCode>2398</SecurityCode>
+		<Roles>null</Roles>
+	</User>
+	<User>
+		<UserDetailsID>@UserDetailsID4</UserDetailsID>
+		<Password>inDLzFdcPFMVYIUdli0FC+23g9MTOFTw0mw+GzW7h5U=</Password>
+		<PasswordSalt>RcIlbrxXn6txaMXMXHk75qjcSxER6aIoUzWxWQtoGPk=</PasswordSalt>
+		<SecurityCode>9163</SecurityCode>
+		<Roles>null</Roles>
+	</User>
+</Users>

@@ -4,18 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{888B25B7-D27F-4F39-9DB4-9C66A223B489}</ProjectGuid>
+    <ProjectGuid>{1FC25BBE-68A9-4003-94F4-130A199FD1C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Education.Model</RootNamespace>
-    <AssemblyName>Education.Model</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>Education.Database</RootNamespace>
+    <AssemblyName>Education.Database</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,14 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -51,32 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Answer.cs" />
-    <Compile Include="Entities\Entity.cs" />
-    <Compile Include="Entities\Score.cs" />
-    <Compile Include="Entities\Session.cs" />
-    <Compile Include="ETypeEntities\AttachmentType.cs" />
-    <Compile Include="ETypeEntities\Country.cs" />
-    <Compile Include="ETypeEntities\EEntity.cs" />
-    <Compile Include="ETypeEntities\QuestionType.cs" />
-    <Compile Include="ETypeEntities\Town.cs" />
-    <Compile Include="Shared\EntityBase.cs" />
-    <Compile Include="Entities\Log.cs" />
-    <Compile Include="ETypeEntities\LogType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Question.cs" />
-    <Compile Include="ETypeEntities\Role.cs" />
-    <Compile Include="Entities\ServerInfo.cs" />
-    <Compile Include="Entities\Subject.cs" />
-    <Compile Include="Entities\SubjectAttachment.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="Entities\UserDetails.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
+    <Content Include="Test\ClearDataAndResetIdentity.sql" />
+    <Content Include="Views\vLogUser.sql" />
+    <Content Include="Views\vUser.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

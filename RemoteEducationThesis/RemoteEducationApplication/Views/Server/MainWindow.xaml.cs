@@ -6,7 +6,7 @@ using Education.Application.Views.Menu.Options;
 using ExtensionLibrary.Collections.Extensions;
 using ExtensionLibrary.Controls.Extensions;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
-using RemoteEducationApplication.Client;
+using Education.Application.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

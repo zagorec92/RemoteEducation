@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Subjects>
+  <Subject>
+    <Name>Subject 1A</Name>
+    <ProfessorID>@ProfessorID1</ProfessorID>
+  </Subject>
+  <Subject>
+    <Name>Subject 1B</Name>
+    <ProfessorID>@ProfessorID2</ProfessorID>
+  </Subject>
+  <Subject>
+    <Name>Subject 1C</Name>
+    <ProfessorID>@ProfessorID3</ProfessorID>
+  </Subject>
+  <Subject>
+    <Name>Subject 2A</Name>
+    <ProfessorID>@ProfessorID1</ProfessorID>
+  </Subject>
+  <Subject>
+    <Name>Subject 2B</Name>
+    <ProfessorID>@ProfessorID2</ProfessorID>
+  </Subject>
+  <Subject>
+    <Name>Subject 2C</Name>
+    <ProfessorID>@ProfessorID3</ProfessorID>
+  </Subject>
+</Subjects>

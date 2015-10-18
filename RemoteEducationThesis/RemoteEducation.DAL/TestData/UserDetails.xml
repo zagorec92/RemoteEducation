@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<UserDetails>
+  <UserDetail>
+    <Picture>null</Picture>
+    <FirstName>Ivan</FirstName>
+    <LastName>Perički</LastName>
+    <Email>ivan.pericki@outlook.com</Email>
+    <DateOfBirth>17-3-1992</DateOfBirth>
+    <Gender>M</Gender>
+  </UserDetail>
+  <UserDetail>
+    <Picture>null</Picture>
+    <FirstName>Charles</FirstName>
+    <LastName>Severance</LastName>
+    <Email>cs@hotmail.com</Email>
+    <DateOfBirth>16-2-1955</DateOfBirth>
+    <Gender>M</Gender>
+  </UserDetail>
+  <UserDetail>
+    <Picture>null</Picture>
+    <FirstName>Mike</FirstName>
+    <LastName>Brown</LastName>
+    <Email>mb@hotmail.com</Email>
+    <DateOfBirth>1-1-1969</DateOfBirth>
+    <Gender>M</Gender>
+  </UserDetail>
+  <UserDetail>
+    <Picture>null</Picture>
+    <FirstName>Bill</FirstName>
+    <LastName>Gates</LastName>
+    <Email>bg@hotmail.com</Email>
+    <DateOfBirth>10-9-1950</DateOfBirth>
+    <Gender>M</Gender>
+  </UserDetail>
+</UserDetails>

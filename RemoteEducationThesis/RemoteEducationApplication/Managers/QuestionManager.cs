@@ -3,7 +3,7 @@ using Education.DAL.Repositories;
 using Education.Model.Entities;
 using ExtensionLibrary.DataTypes.Converters.Extensions;
 using Microsoft.Win32;
-using RemoteEducationApplication.Client;
+using Education.Application.Client;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -218,7 +218,7 @@ namespace Education.Application.Managers
                 answers.Add(new Answer()
                 {
                     Content = value.Substring(0, scoreIndex++),
-                    Score = value.Substring(scoreIndex).To<int>()
+                    Points = value.Substring(scoreIndex).To<int>()
                 });
                 
             }
@@ -242,7 +242,7 @@ namespace Education.Application.Managers
                 var givenAnswer = answers[i];
 
                 if (correctAnswer.Equals(givenAnswer))
-                    score += correctAnswers[i].Score;
+                    score += correctAnswers[i].Points;
             }
 
             return score;

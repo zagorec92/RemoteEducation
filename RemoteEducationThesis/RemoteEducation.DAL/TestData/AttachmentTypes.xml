@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AttachmentTypes>
+  <AttachmentType>
+    <Name>.txt</Name>
+    <Description>Text file</Description>
+  </AttachmentType>
+	<AttachmentType>
+		<Name>.jpeg</Name>
+		<Description>JPEG image</Description>
+	</AttachmentType>
+	<AttachmentType>
+		<Name>.png</Name>
+		<Description>PNG image</Description>
+	</AttachmentType>
+  <AttachmentType>
+    <Name>.pdf</Name>
+    <Description>Portable Document Format</Description>
+  </AttachmentType>
+  <AttachmentType>
+    <Name>.docx</Name>
+    <Description>Microsoft Office Open XML Format Document</Description>
+  </AttachmentType>
+  <AttachmentType>
+    <Name>.xlsx</Name>
+    <Description>Microsoft Office Open XML Format Spreadsheet</Description>
+  </AttachmentType>
+  <AttachmentType>
+    <Name>.pptx</Name>
+    <Description>Microsoft PowerPoint Presentation</Description>
+  </AttachmentType>
+</AttachmentTypes>

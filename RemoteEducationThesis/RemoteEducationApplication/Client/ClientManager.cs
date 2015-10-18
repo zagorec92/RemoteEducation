@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using ExtensionLibrary.Collections.Extensions;
 using ExtensionLibrary.Enums.Extensions;
 
-namespace RemoteEducationApplication.Client
+namespace Education.Application.Client
 {
     public static class ClientManager
     {

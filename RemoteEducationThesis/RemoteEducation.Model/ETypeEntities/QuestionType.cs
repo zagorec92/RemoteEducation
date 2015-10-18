@@ -2,6 +2,6 @@
 
 namespace Education.Model.ETypeEntities
 {
-	[Table("EAttachmentType")]
-	public class AttachmentType : EEntity { }
+	[Table("EQuestionType")]
+	public class QuestionType : EEntity { }
 }

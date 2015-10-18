@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Windows.Media;
 using AuthManager = Education.Application.Managers.Authentication.AuthenticationManager;
 
-namespace RemoteEducationApplication.Client
+namespace Education.Application.Client
 {
     public class ClientHandler : INotifyPropertyChanged
     {

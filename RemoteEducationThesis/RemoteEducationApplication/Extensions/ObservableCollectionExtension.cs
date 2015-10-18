@@ -1,4 +1,4 @@
-﻿using RemoteEducationApplication.Client;
+﻿using Education.Application.Client;
 using System.Collections.ObjectModel;
 using ExtensionLibrary.Collections.Extensions;
 

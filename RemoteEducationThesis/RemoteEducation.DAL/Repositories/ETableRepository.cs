@@ -5,7 +5,7 @@ using System.Linq;
 namespace Education.DAL.Repositories
 {
 	public class ETableRepository<T>
-        where T : EEntityBase
+        where T : EEntity
     {
         #region Properties
 

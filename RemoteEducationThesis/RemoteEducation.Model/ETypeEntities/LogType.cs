@@ -2,6 +2,6 @@
 
 namespace Education.Model.ETypeEntities
 {
-    [Table("ELogType")]
-    public class LogType : EEntityBase { }
+	[Table("ELogType")]
+	public class LogType : EEntity { }
 }
