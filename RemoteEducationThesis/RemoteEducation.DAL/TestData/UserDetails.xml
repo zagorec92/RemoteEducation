@@ -2,9 +2,9 @@
 <UserDetails>
   <UserDetail>
     <Picture>null</Picture>
-    <FirstName>Ivan</FirstName>
-    <LastName>Perički</LastName>
-    <Email>ivan.pericki@outlook.com</Email>
+    <FirstName>John</FirstName>
+    <LastName>Doe</LastName>
+    <Email>jd@outlook.com</Email>
     <DateOfBirth>17-3-1992</DateOfBirth>
     <Gender>M</Gender>
   </UserDetail>

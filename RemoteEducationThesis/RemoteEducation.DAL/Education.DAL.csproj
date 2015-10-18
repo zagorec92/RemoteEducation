@@ -55,6 +55,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WPFFramework">
+      <HintPath>..\Education.Libraries\Libraries\WPFFramework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumCollection.cs" />
@@ -94,14 +97,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EEducationDbContext.cs" />
-    <Compile Include="Repositories\AnswerRepository.cs" />
-    <Compile Include="Repositories\LogRepository.cs" />
-    <Compile Include="Repositories\ETableRepository.cs" />
-    <Compile Include="Repositories\QuestionRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Providers\AnswerProvider.cs" />
+    <Compile Include="Providers\EProvider.cs" />
+    <Compile Include="Providers\LogProvider.cs" />
+    <Compile Include="Providers\QuestionProvider.cs" />
+    <Compile Include="Providers\ScoreProvider.cs" />
+    <Compile Include="Providers\SubjectProvider.cs" />
+    <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Repositories\ERepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\ServerInfoRepository.cs" />
-    <Compile Include="Repositories\SubjectRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
