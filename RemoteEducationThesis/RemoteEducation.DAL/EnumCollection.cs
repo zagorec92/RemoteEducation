@@ -260,6 +260,11 @@ namespace Education.DAL
 			UserControlStyle,
 
 			/// <summary>
+			/// ClockControlStyle resource dictionary
+			/// </summary>
+			ClockControlStyle,
+
+			/// <summary>
 			/// LoginStoryboards resource dictionary.
 			/// </summary>
 			LoginStoryboards
