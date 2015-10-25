@@ -38,12 +38,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExtensionLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Education.Network\Libraries\ExtensionLibrary.dll</HintPath>
+    <Reference Include="Education.DAL">
+      <HintPath>..\RemoteEducation.DAL\bin\Debug\Education.DAL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,15 @@
       <Project>{888b25b7-d27f-4f39-9db4-9c66a223b489}</Project>
       <Name>Education.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\ExtensionLibrary.xml" />
+    <Content Include="Libraries\WPFFramework.xml" />
+    <Content Include="TestData\Roles.xml" />
+    <Content Include="TestData\Subjects.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

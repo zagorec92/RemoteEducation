@@ -1,17 +1,17 @@
 ﻿<base:WindowBase x:Class="Education.Application.Views.Login.Login"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:c="clr-namespace:Education.Application.Converters"
+				 xmlns:fc="clr-namespace:WPFFramework.Converters;assembly=WPFFramework"
                  xmlns:base="clr-namespace:Education.Application.Shared"
                  xmlns:global="clr-namespace:Education.Application.Properties"
                  xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
                  Style="{StaticResource LoginWindowStyle}"
                  KeyDown="Window_KeyDown"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
-    <base:WindowBase.Resources>
-        <c:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-    </base:WindowBase.Resources>
-    <base:WindowBase.Triggers>
+	<base:WindowBase.Resources>
+		<fc:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+	</base:WindowBase.Resources>
+	<base:WindowBase.Triggers>
 		<EventTrigger RoutedEvent="UIElement.MouseLeftButtonDown" SourceName="textBlock">
 			<BeginStoryboard x:Name="SlideOutLogin_BeginStoryboard" Storyboard="{StaticResource SlideOutLogin}"/>
 			<BeginStoryboard x:Name="SlideInRecovery_BeginStoryboard" Storyboard="{StaticResource SlideInRecovery}"/>
@@ -20,102 +20,102 @@
 			<BeginStoryboard x:Name="SlideOutRecovery_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
 			<BeginStoryboard x:Name="SlideInLogin_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
 		</EventTrigger>
-        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="bttnRecover">
-            <BeginStoryboard x:Name="SlideOutRecover_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
-            <BeginStoryboard x:Name="SlideInLoginAfterRecover_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
-        </EventTrigger>
+		<EventTrigger RoutedEvent="ButtonBase.Click" SourceName="bttnRecover">
+			<BeginStoryboard x:Name="SlideOutRecover_BeginStoryboard" Storyboard="{StaticResource SlideOutRecovery}"/>
+			<BeginStoryboard x:Name="SlideInLoginAfterRecover_BeginStoryboard" Storyboard="{StaticResource SlideInLogin}"/>
+		</EventTrigger>
 	</base:WindowBase.Triggers>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="50" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-        <!--menu bar-->
-        <Grid Background="{DynamicResource BackgroundBrush}">
-            <TextBlock Style="{StaticResource TextBlockLoginStyle}"
+		<!--menu bar-->
+		<Grid Background="{DynamicResource BackgroundBrush}">
+			<TextBlock Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
                        Foreground="{DynamicResource ForegroundBrush}"
                        Margin="10, 0, 0, 0">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} {1}">
-                        <Binding Source="{x:Static global:Resources.ApplicationWindowTitle}" />
-                        <Binding Path="WindowRole" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            
-            <!--minimize and close-->
-            <uc:WindowBar WindowBarClick="ApplicationBar_Click"
+				<TextBlock.Text>
+					<MultiBinding StringFormat="{}{0} {1}">
+						<Binding Source="{x:Static global:Resources.ApplicationWindowTitle}" />
+						<Binding Path="WindowRole" />
+					</MultiBinding>
+				</TextBlock.Text>
+			</TextBlock>
+
+			<!--minimize and close-->
+			<uc:WindowBar WindowBarClick="ApplicationBar_Click"
                           WindowRole="ApplicationBar"/>
 
-        </Grid>
+		</Grid>
 
-        <!--content-->
-        <Grid x:Name="ContentLogin" 
+		<!--content-->
+		<Grid x:Name="ContentLogin" 
               Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.9*"/>
-                <ColumnDefinition Width="1.5*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            
-            <!--first row-->
-            <TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.9*"/>
+				<ColumnDefinition Width="1.5*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+
+			<!--first row-->
+			<TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
-            <TextBox Grid.Column="1" 
+			<TextBox Grid.Column="1" 
                      Text="{Binding Username, Mode=TwoWay}"
                      Style="{StaticResource TextBoxLoginStyle}"
                      TextChanged="TextBox_TextChanged"/>
-            <TextBlock Grid.Column="1"
+			<TextBlock Grid.Column="1"
                        Text="{Binding UsernameValidationMessage}"
                        Style="{StaticResource ValidationTextBlockLoginStyle}"/>
 
-            <!--second row-->
-            <TextBlock Grid.Row="1" 
+			<!--second row-->
+			<TextBlock Grid.Row="1" 
                        Text="{x:Static global:Resources.LoginPagePassword}" 
                        Style="{StaticResource TextBlockLoginStyle}"
                        Margin="0, 0, 5, 10"/>
-            <PasswordBox Grid.Column="1"
+			<PasswordBox Grid.Column="1"
                          Grid.Row="1"
                          Name="pbxPassword"
                          Style="{StaticResource TextBoxLoginStyle}"
                          Margin="5, 0, 0, 10"
                          PasswordChanged="pbxPassword_PasswordChanged"/>
-            <TextBlock Grid.Column="1"
+			<TextBlock Grid.Column="1"
                        Grid.Row="1"
                        Text="{Binding PasswordValidationMessage}"
                        Style="{StaticResource ValidationTextBlockLoginStyle}"
                        Margin="5, 0, 0, 8"/>
-            <TextBlock Grid.Column="1"
+			<TextBlock Grid.Column="1"
                        Grid.Row="1"
                        Text="{Binding CapsLockMessage}"
                        Style="{StaticResource ValidationTextBlockLoginStyle}"
                        Margin="5, 0, 0, 8"/>
 
-            <!--third row-->
-            <!--clear-->
-            <Button Grid.Row="2"
+			<!--third row-->
+			<!--clear-->
+			<Button Grid.Row="2"
                     Grid.Column="1"
                     Content="{x:Static global:Resources.LoginPageClear}"
                     Style="{StaticResource ButtonLoginStyle}"
                     HorizontalAlignment="Left"
                     CommandParameter="{x:Static global:Resources.LoginPageClear}"
                     Click="Button_Click"/>
-            
-            <!--login-->
-            <Button Grid.Row="2"
+
+			<!--login-->
+			<Button Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
                     Content="{x:Static global:Resources.LoginPageLogin}" 
                     Margin="30, 0, 0, 0"
                     CommandParameter="{x:Static global:Resources.LoginPageLogin}"
                     Click="Button_Click" />
-            <TextBlock Grid.Row="2"
+			<TextBlock Grid.Row="2"
                        Grid.Column="2"
                        Style="{StaticResource UsernamePasswordRecoveryLinkStyle}">
                 <Hyperlink>
@@ -124,35 +124,35 @@
                                Text="{x:Static global:Resources.LoginPageRecovery}"/>
                 </Hyperlink>
             </TextBlock>
-        </Grid>
+		</Grid>
 
-        <!--password recovery-->
-        <Grid x:Name="ContentRecovery" 
+		<!--password recovery-->
+		<Grid x:Name="ContentRecovery" 
               Grid.Row="1"
               Margin="0, 0, 425, 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="2.5*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="2.5*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="1.5*"/>
+				<RowDefinition Height="1.5*"/>
+				<RowDefinition />
+			</Grid.RowDefinitions>
 
-            <TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
+			<TextBlock Text="{x:Static global:Resources.LoginWindowUserName}" 
                        Style="{StaticResource TextBlockLoginStyle}"/>
-            <TextBox Grid.Column="1"
+			<TextBox Grid.Column="1"
                      Text="{Binding Username, Mode=TwoWay}"
                      Style="{StaticResource TextBoxLoginStyle}"
                      TextChanged="TextBox_TextChanged" 
                      Width="225"/>
-            
-            <TextBlock Text="{x:Static global:Resources.LoginWindowSecurityCode}"
+
+			<TextBlock Text="{x:Static global:Resources.LoginWindowSecurityCode}"
                        Grid.Row="1"
                        Style="{StaticResource TextBlockLoginStyle}"
                        Margin="0, 0, 5, 10"/>
-            <TextBox Grid.Column="1"
+			<TextBox Grid.Column="1"
                      Grid.Row="1"
                      Text="{Binding SecurityCode, Mode=TwoWay}"
                      Style="{StaticResource TextBoxLoginStyle}"
@@ -160,8 +160,8 @@
                      TextChanged="TextBox_TextChanged"
                      Width="225"/>
 
-            <!--cancel-->
-            <Button x:Name="bttnCancel" 
+			<!--cancel-->
+			<Button x:Name="bttnCancel" 
                     Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
@@ -170,9 +170,9 @@
                     HorizontalAlignment="Left"
                     Margin="30, 0, 0, 0"
                     Click="Button_Click"/>
-            
-            <!--recover-->
-            <Button x:Name="bttnRecover" 
+
+			<!--recover-->
+			<Button x:Name="bttnRecover" 
                     Grid.Row="2"
                     Grid.Column="1"
                     Style="{StaticResource ButtonLoginStyle}"
@@ -180,14 +180,14 @@
                     CommandParameter="{x:Static global:Resources.RecoveryAction}"
                     Margin="40, 0, 0, 0"
                     Click="Button_Click"/>
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1"
+		<Grid Grid.Row="1"
               Visibility="{Binding IsLoading, FallbackValue=Collapsed, Converter={StaticResource BoolToVisibilityConverter}}">
-            <uc:LoadingControl LoadingText="{Binding LoadingScreenText, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Mode=TwoWay}"
+			<uc:LoadingControl LoadingText="{Binding LoadingScreenText, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}, Mode=TwoWay}"
                                LoadingBackground="{DynamicResource ResourceKey=ButtonHoverBrush}"     
                                LoadingForeground="{DynamicResource ResourceKey=ForegroundBrush}"
                                LoadingAreaOpacity=".9"/>
-        </Grid>
-    </Grid>
+		</Grid>
+	</Grid>
 </base:WindowBase>

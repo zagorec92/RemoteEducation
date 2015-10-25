@@ -23,7 +23,7 @@ namespace Education.DAL.Providers
 		{
 			List<T> retVal = null;
 
-			using(EEducationDbContext context = new EEducationDbContext())
+			using (EEducationDbContext context = new EEducationDbContext())
 			{
 				ERepository<T> repository = new ERepository<T>(context);
 				IQueryable<T> items = repository.GetAll();
@@ -44,7 +44,7 @@ namespace Education.DAL.Providers
 		{
 			T retVal = null;
 
-			using(EEducationDbContext context = new EEducationDbContext())
+			using (EEducationDbContext context = new EEducationDbContext())
 			{
 				ERepository<T> repository = new ERepository<T>(context);
 				retVal = repository.Get(predicate);

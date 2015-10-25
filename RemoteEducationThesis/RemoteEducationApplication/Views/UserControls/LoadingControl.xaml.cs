@@ -16,19 +16,19 @@ namespace Education.Application.Views.UserControls
 		/// LoadingText dependency property.
 		/// </summary>
 		public static readonly DependencyProperty LoadingTextProperty =
-		    DependencyProperty.Register("LoadingText", typeof(string), typeof(LoadingControl), new UIPropertyMetadata(LoadingTextPropertyChanged));
+			DependencyProperty.Register("LoadingText", typeof(string), typeof(LoadingControl), new UIPropertyMetadata(LoadingTextPropertyChanged));
 
 		/// <summary>
 		/// LoadingBackground dependency property.
 		/// </summary>
 		public static readonly DependencyProperty LoadingBackgroundProperty =
-		    DependencyProperty.Register("LoadingBackground", typeof(SolidColorBrush), typeof(LoadingControl), new UIPropertyMetadata(LoadingBackgroundPropertyChanged));
+			DependencyProperty.Register("LoadingBackground", typeof(SolidColorBrush), typeof(LoadingControl), new UIPropertyMetadata(LoadingBackgroundPropertyChanged));
 
 		/// <summary>
 		/// LoadingForeground dependency property.
 		/// </summary>
 		public static readonly DependencyProperty LoadingForegroundProperty =
-		    DependencyProperty.Register("LoadingForeground", typeof(SolidColorBrush), typeof(LoadingControl), new UIPropertyMetadata(LoadingForegroundPropertyChanged));
+			DependencyProperty.Register("LoadingForeground", typeof(SolidColorBrush), typeof(LoadingControl), new UIPropertyMetadata(LoadingForegroundPropertyChanged));
 
 		/// <summary>
 		/// LoadingAreaOpacity dependency property.
@@ -46,8 +46,8 @@ namespace Education.Application.Views.UserControls
 		public string LoadingText
 		{
 			get { return GetValue(LoadingTextProperty).ToString(); }
-			set 
-			{ 
+			set
+			{
 				SetValue(LoadingTextProperty, value);
 				OnPropertyChanged(this, x => x.LoadingText);
 			}
@@ -58,12 +58,12 @@ namespace Education.Application.Views.UserControls
 		/// </summary>
 		public SolidColorBrush LoadingBackground
 		{
-		    get { return GetValue(LoadingBackgroundProperty) as SolidColorBrush; }
-		    set
-		    {
-		        SetValue(LoadingBackgroundProperty, value);
-		        OnPropertyChanged(this, x => x.LoadingBackground);
-		    }
+			get { return GetValue(LoadingBackgroundProperty) as SolidColorBrush; }
+			set
+			{
+				SetValue(LoadingBackgroundProperty, value);
+				OnPropertyChanged(this, x => x.LoadingBackground);
+			}
 		}
 
 		/// <summary>
@@ -72,7 +72,7 @@ namespace Education.Application.Views.UserControls
 		public SolidColorBrush LoadingForeground
 		{
 			get { return GetValue(LoadingForegroundProperty) as SolidColorBrush; }
-			set 
+			set
 			{
 				SetValue(LoadingForegroundProperty, value);
 				OnPropertyChanged(this, x => x.LoadingForeground);
@@ -96,32 +96,32 @@ namespace Education.Application.Views.UserControls
 		/// 
 		/// </summary>
 		public int? LoadingAreaHeight { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
 		public double? LoadingOpacity { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
 		public int? LoadingTextFontSize { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
 		public string ImageSourcePath { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
 		public SolidColorBrush LoadingWindowBrush { get; set; }
-		
+
 		/// <summary>
 		/// 
 		/// </summary>
 		public SolidColorBrush LoadingImageBrush { get; set; }
-		
+
 		#endregion
 
 		#region Constructor
@@ -131,8 +131,8 @@ namespace Education.Application.Views.UserControls
 		/// </summary>
 		public LoadingControl()
 		{
-		    InitializeComponent();
-		    Loaded += LoadingStaticControl_Loaded;
+			InitializeComponent();
+			Loaded += LoadingStaticControl_Loaded;
 		}
 
 		#endregion

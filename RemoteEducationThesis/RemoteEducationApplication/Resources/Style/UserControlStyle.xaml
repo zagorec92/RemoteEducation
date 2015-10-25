@@ -15,20 +15,19 @@
         <Setter Property="Margin" Value="7.5, 0, 0, 0" />
     </Style>
 
-    <Style x:Key="UserControlImageWaitTextBlockStyle" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
+	<Style x:Key="UserControlImageWaitTextBlockStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
+		<Setter Property="HorizontalAlignment" Value="Center" />
+		<Setter Property="VerticalAlignment" Value="Center" />
+	</Style>
 
-    <!--clock control-->
-    <Style x:Key="UserControlClockStyle" TargetType="UserControl">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Width" Value="155" />
-    </Style>
-    
-    <Style x:Key="UserControlClockTextBlock" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-    </Style>
+	<!--user control-->
+	<Style x:Key="UserControlInfoStyle" TargetType="TextBlock">
+		<Setter Property="Foreground" Value="{StaticResource BetterGrayBrush}" />
+		<Setter Property="FontSize" Value="{StaticResource SmallFont}" />
+		<Setter Property="Padding" Value="0, 0, 0, 0" />
+	</Style>
+	
+	<!--add file control-->
+	
 </ResourceDictionary>

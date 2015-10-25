@@ -1,5 +1,5 @@
 ﻿using Education.Application.Shared;
-using ExtensionLibrary.Controls.Extensions;
+using WPFFramework.Controls;
 using WPFFramework.App.Base;
 
 namespace Education.Application.Views.UserControls
@@ -8,16 +8,16 @@ namespace Education.Application.Views.UserControls
 	/// Interaction logic for ClientMiniWindow.xaml
 	/// </summary>
 	public partial class ClientMiniControl : WpfUserControl
-    {
+	{
 		#region Constructor
 
 		/// <summary>
 		/// Initializes new instance of the <see cref="Education.Application.Views.UserControls.ClientMiniWindow"/> class.
 		/// </summary>
 		public ClientMiniControl()
-        {
-            InitializeComponent();
-        }
+		{
+			InitializeComponent();
+		}
 
 		#endregion
 
@@ -27,41 +27,41 @@ namespace Education.Application.Views.UserControls
 		/// 
 		/// </summary>
 		/// <param name="sender">The source of the event</param>
-		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationBarEventArgs"/>
 		/// instance containing the event data.</param>
-		public delegate void ClientMiniClickEventHandler(object sender, ApplicationEventArgs e);
+		public delegate void ClientMiniClickEventHandler(object sender, ApplicationBarEventArgs e);
 
-        /// <summary>
-        /// ClientMiniClickEventHandler handler.
-        /// </summary>
-        public event ClientMiniClickEventHandler ClientMiniClick;
+		/// <summary>
+		/// ClientMiniClickEventHandler handler.
+		/// </summary>
+		public event ClientMiniClickEventHandler ClientMiniClick;
 
-        #endregion
+		#endregion
 
-        #region EventHandling
+		#region EventHandling
 
-        /// <summary>
-        /// Invokes ClientMiniClickEventHandler.
-        /// </summary>
-        /// <param name="clientID"></param>
-        /// <param name="commandName"></param>
-        private void OnClientClick(int clientID, string commandName)
-        {
-            if (ClientMiniClick != null)
-                ClientMiniClick(this, new ApplicationEventArgs(commandName, clientID));
-        }
+		/// <summary>
+		/// Invokes ClientMiniClickEventHandler.
+		/// </summary>
+		/// <param name="clientID"></param>
+		/// <param name="commandName"></param>
+		private void OnClientClick(int clientID, string commandName)
+		{
+			if (ClientMiniClick != null)
+				ClientMiniClick(this, new ApplicationBarEventArgs(commandName, clientID));
+		}
 
 		/// <summary>
 		/// Handles the WindowBarClick event of the ApplicationBar control.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationBarEventArgs"/>
 		/// instance containing the event data.</param>
-		private void ApplicationBar_WindowBarClick(object sender, ApplicationEventArgs e)
-        {
-            OnClientClick(this.GetTag<int>(), e.CommandName);
-        }
-        
-        #endregion
-    }
+		private void ApplicationBar_WindowBarClick(object sender, ApplicationBarEventArgs e)
+		{
+			OnClientClick(this.GetTag<int>(), e.CommandName);
+		}
+
+		#endregion
+	}
 }

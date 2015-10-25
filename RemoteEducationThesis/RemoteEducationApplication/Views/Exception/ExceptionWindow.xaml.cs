@@ -1,7 +1,8 @@
 ﻿using Education.Application;
 using Education.Application.Helpers;
-using Education.Application.Managers.Authentication;
+using Education.Application.Managers;
 using Education.Application.Shared;
+using Education.DAL.Providers;
 using ExtensionLibrary.Exceptions.Helpers;
 using System;
 using System.Windows;
@@ -93,15 +94,15 @@ namespace Education.Application.Views.ExceptionViewer
 			MailHelper.GetExceptionMail(ExceptionId, DateTimeOfException, Exception).Display();
 			App.Minimize();
 		}
-		
+
 		/// <summary>
 		/// Handles the AppBarClick event of the ApplicationBar control.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="RemoteEducationApplication.Shared.ApplicationEventArgs"/> instance containing the event data.</param>
-		private void ApplicationBar_AppBarClick(object sender, ApplicationEventArgs e)
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationBarEventArgs"/> instance containing the event data.</param>
+		private void ApplicationBar_AppBarClick(object sender, ApplicationBarEventArgs e)
 		{
-			ApplicationHelper.ExecuteBasicCommand(e.CommandName, this);
+			ApplicationManager.ExecuteBasicCommand(e.CommandName, this);
 		}
 
 		#endregion
@@ -114,7 +115,7 @@ namespace Education.Application.Views.ExceptionViewer
 		private void FormatDataForDisplay()
 		{
 			string shortDescription = String.Concat(ExceptionHelper.GetShortMessage(Exception), String.Format("\nID greške: ", ExceptionId));
-			ShortDescription = AuthenticationManager.LoggedInUser.IsAdmin() ? shortDescription : String.Empty;
+			ShortDescription = UserProvider.LoggedInUser.IsAdmin() ? shortDescription : String.Empty;
 
 			string messageTemp = String.Format(AppResources.ExceptionWindowMessage, DateTimeOfException.TimeOfDay);
 			Message = messageTemp.Substring(0, messageTemp.IndexOf('.') + 1);

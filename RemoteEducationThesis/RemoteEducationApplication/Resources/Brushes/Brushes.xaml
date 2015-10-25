@@ -6,6 +6,9 @@
     
     <!--Better white-->
     <SolidColorBrush x:Key="BetterWhiteBrush" Color="#EEE" />
+	
+	<!--Better gray-->
+	<SolidColorBrush x:Key="BetterGrayBrush" Color="#BABABA" />
     
     <!--Windows 8 brushes-->
     <SolidColorBrush x:Key="LightGreenWin8Brush" Color="#99B433" />

@@ -11,142 +11,138 @@
                  Width="725"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
 
-    <!-- resources -->
-    <base:WindowBase.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="..\..\..\Resources\Style\Menu\SelectQuestionsMenuStyle.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </base:WindowBase.Resources>
+	<!-- resources -->
+	<base:WindowBase.Resources>
+		<ResourceDictionary Source="..\..\..\Resources\Style\Windows\SelectQuestionsMenuStyle.xaml" />
+	</base:WindowBase.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Background="{DynamicResource BackgroundBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid Background="{DynamicResource BackgroundBrush}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+			<TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
                        Text="{x:Static global:Resources.QuestionSelectWindowTitle}"/>
 
-            <uc:WindowBar Grid.Column="1" 
+			<uc:WindowBar Grid.Column="1" 
                           ApplicationBarVisibility="Collapsed"
                           WindowRole="ApplicationBar" 
                           WindowBarClick="ApplicationBar_AppBarClick"/>
 
-        </Grid>
-        <Grid Grid.Row="1"
+		</Grid>
+		<Grid Grid.Row="1"
 			  Margin="5, 0, 5, 0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="35"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="35"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="35"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="85"/>
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <!-- first row -->
-            <TextBlock Text="{x:Static global:Resources.QuestionSelectSubjectText}"
+			<!-- first row -->
+			<TextBlock Text="{x:Static global:Resources.QuestionSelectSubjectText}"
                        Style="{StaticResource SelectQuestionsTextBlockStyle}"
-				       VerticalAlignment="Center"/>   
+				       VerticalAlignment="Center"/>
 
-            <ComboBox Grid.Column="1"
+			<ComboBox Grid.Column="1"
                       Style="{StaticResource SelectQuestionsComboBoxSubjectStyle}"
                       ItemsSource="{Binding Subjects}"
                       SelectionChanged="ComboBox_Filter_SelectionChanged">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding Name}"/>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
 
-            <!-- second row -->
-            <Grid Grid.Row="1"
+			<!-- second row -->
+			<Grid Grid.Row="1"
                   Grid.ColumnSpan="2"
                   Margin="0, 0, 0, 5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Border BorderThickness="1" 
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Border BorderThickness="1" 
                         BorderBrush="{StaticResource DarkenWin8Brush}" 
                         Grid.ColumnSpan="2"
                         Grid.RowSpan="2">
-                    <Viewbox Stretch="Fill" />
-                </Border>
-                <Label Content="{x:Static global:Resources.QuestionSelectFilter}"
+					<Viewbox Stretch="Fill" />
+				</Border>
+				<Label Content="{x:Static global:Resources.QuestionSelectFilter}"
                        VerticalAlignment="Top"
                        VerticalContentAlignment="Center"
                        Background="{StaticResource BetterWhiteBrush}"
                        Margin="8, -8, 8, 0"
                        FontSize="14"
                        Padding="2, 0, 2, 0"/>
-                
-                <Grid Grid.Row="1"
+
+				<Grid Grid.Row="1"
                       Grid.ColumnSpan="2"
                       VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="85"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="125"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="85"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="125"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
 
-                    <!-- difficulty -->
-                    <TextBlock Text="{x:Static global:Resources.QuestionSelectDifficulty}"
+					<!-- difficulty -->
+					<TextBlock Text="{x:Static global:Resources.QuestionSelectDifficulty}"
                            Style="{StaticResource SelectQuestionsTextBlockStyle}"/>
-                    <ComboBox Grid.Column="1" 
+					<ComboBox Grid.Column="1" 
                           ItemsSource="{Binding Difficulties}"
                           Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
                           Margin="0, 0, 0, 0"
                           SelectionChanged="ComboBox_Filter_SelectionChanged"
                           Tag="{x:Static global:Resources.QuestionDetailsDifficulty}"/>
 
-                    <!-- uploaded by -->
-                    <TextBlock Grid.Column="2" 
+					<!-- uploaded by -->
+					<TextBlock Grid.Column="2" 
                            Text="{x:Static global:Resources.QuestionSelectUploadedBy}"
                            Style="{StaticResource SelectQuestionsTextBlockStyle}"/>
-                    <TextBox Grid.Column="3"
+					<TextBox Grid.Column="3"
                          Style="{StaticResource SelectQuestionsTextBoxStyle}"
                          HorizontalAlignment="Right"
                          Padding="0, 0, -25, -26"
                          TextChanged="TextBox_TextChanged"/>
-                </Grid>
-            </Grid>
+				</Grid>
+			</Grid>
 
-            <!-- third row -->
-            <Grid Grid.Row="2"
+			<!-- third row -->
+			<Grid Grid.Row="2"
                   Grid.ColumnSpan="2"
                   Margin="0, 5, 0, 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Border BorderThickness="1" 
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Border BorderThickness="1" 
                         BorderBrush="{StaticResource DarkenWin8Brush}" 
                         Grid.ColumnSpan="2"
                         Grid.RowSpan="2">
-                    <Viewbox Stretch="Fill" />
-                </Border>
-                <Label Content="{x:Static global:Resources.QuestionSelectSort}"
+					<Viewbox Stretch="Fill" />
+				</Border>
+				<Label Content="{x:Static global:Resources.QuestionSelectSort}"
                        VerticalAlignment="Top"
                        VerticalContentAlignment="Center"
                        Background="{StaticResource BetterWhiteBrush}"
@@ -154,136 +150,136 @@
                        FontSize="14"
                        Padding="2, 0, 2, 0"/>
 
-                <Grid Grid.Row="1"
+				<Grid Grid.Row="1"
                       Grid.ColumnSpan="2"
                       VerticalAlignment="Top">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="85"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="125"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="125"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="85"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="125"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="125"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
 
-                    <TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
+					<TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
                                Text="{x:Static global:Resources.QuestionSelectSortTitle}"/>
-                    <ComboBox Grid.Column="1" 
+					<ComboBox Grid.Column="1" 
                               Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
                               Tag="Title"
                               Margin="0, 0, 0, 0"
                               SelectionChanged="ComboBox_Sort_SelectionChanged">
-                        <ComboBoxItem Content="Asc"
+						<ComboBoxItem Content="Asc"
                                       Tag="Ascending"/>
-                        <ComboBoxItem Content="Desc"
+						<ComboBoxItem Content="Desc"
                                       Tag="Descending"/>
-                    </ComboBox>
+					</ComboBox>
 
-                    <TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
+					<TextBlock Style="{StaticResource SelectQuestionsTextBlockStyle}"
                                Text="{x:Static global:Resources.QuestionSelectSortName}"
                                Grid.Column="2"/>
-                    <ComboBox Grid.Column="3" 
+					<ComboBox Grid.Column="3" 
                               Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
                               Tag="UploadedByUser.FullName"
                               Margin="0, 0, 0, 0"
                               SelectionChanged="ComboBox_Sort_SelectionChanged">
-                        <ComboBoxItem Content="Asc"
+						<ComboBoxItem Content="Asc"
                                       Tag="Ascending"/>
-                        <ComboBoxItem Content="Desc"
+						<ComboBoxItem Content="Desc"
                                       Tag="Descending"/>
-                    </ComboBox>
+					</ComboBox>
 
-                    <TextBlock Grid.Column="4"
+					<TextBlock Grid.Column="4"
                                Style="{StaticResource SelectQuestionsTextBlockStyle}"
                                Text="{x:Static global:Resources.QuestionSelectSortDateCreated}"/>
-                    <ComboBox Grid.Column="5"
+					<ComboBox Grid.Column="5"
                               Style="{StaticResource SelectQuestionsComboBoxDifficultyStyle}"
                               Tag="DateCreated"
                               Margin="0, 0, 0, 0"
                               SelectionChanged="ComboBox_Sort_SelectionChanged">
-                        <ComboBoxItem Content="Asc"
+						<ComboBoxItem Content="Asc"
                                   Tag="Ascending"/>
-                        <ComboBoxItem Content="Desc"
+						<ComboBoxItem Content="Desc"
                                   Tag="Descending"/>
-                    </ComboBox>
+					</ComboBox>
 
-                </Grid>
-            </Grid>
+				</Grid>
+			</Grid>
 
-            <!-- fourth row -->
-            <ScrollViewer Grid.Row="3"
+			<!-- fourth row -->
+			<ScrollViewer Grid.Row="3"
                           Grid.ColumnSpan="2" 
                           VerticalScrollBarVisibility="Visible"
                           Margin="0, 5, 0, 0">
-                <ItemsControl ItemsSource="{Binding SubjectQuestions}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel IsItemsHost="True" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="5, 0, 5, 0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="35" />
-                                    <RowDefinition Height="1"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="55"/>
-                                    <ColumnDefinition Width="95"/>
-                                    <ColumnDefinition Width="20"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Title}"
+				<ItemsControl ItemsSource="{Binding SubjectQuestions}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel IsItemsHost="True" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid Margin="5, 0, 5, 0">
+								<Grid.RowDefinitions>
+									<RowDefinition Height="35" />
+									<RowDefinition Height="1"/>
+								</Grid.RowDefinitions>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="55"/>
+									<ColumnDefinition Width="95"/>
+									<ColumnDefinition Width="20"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock Text="{Binding Title}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="1"
+								<TextBlock Grid.Column="1"
                                            Text="{Binding UploadedByUser.FullName}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="2"
+								<TextBlock Grid.Column="2"
                                            Text="{Binding Difficulty}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <TextBlock Grid.Column="3"
+								<TextBlock Grid.Column="3"
                                            Text="{Binding DateCreated, StringFormat=d}"
                                            ToolTip="{Binding DateCreated}"
                                            Style="{StaticResource SelectQuestionsQuestionTemplateTextBoxStyle}"/>
-                                <RadioButton Grid.Column="4"
+								<RadioButton Grid.Column="4"
                                              GroupName="Questions"
                                              Tag="{Binding ID}"
                                              Checked="RadioButton_Checked"    
                                              VerticalAlignment="Center"
                                              HorizontalAlignment="Right"/>
-                                <Border Grid.Row="1"
+								<Border Grid.Row="1"
                                         Grid.ColumnSpan="5"
                                         Height="1"
                                         Background="{StaticResource LightBlackBrush}" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
 
-            <!-- fifth row -->
-            <StackPanel HorizontalAlignment="Right"
+			<!-- fifth row -->
+			<StackPanel HorizontalAlignment="Right"
                         Grid.Row="4"
                         Grid.Column="1"
-                        Orientation="Horizontal">            
-                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+                        Orientation="Horizontal">
+				<Button Style="{StaticResource SelectQuestionsButtonStyle}"
                         Content="{x:Static global:Resources.QuestionSelectDetails}"
                         Visibility="{Binding DetailsVisibility, FallbackValue=Collapsed}"
                         Margin="0, 0, 15, 0"
                         Click="ButtonDetails_Click"/>
 
-                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+				<Button Style="{StaticResource SelectQuestionsButtonStyle}"
                         Content="{x:Static global:Resources.QuestionSelectEdit}"
                         Visibility="{Binding DetailsVisibility, FallbackValue=Collapsed}"
                         Margin="0, 0, 15, 0" />
 
-                <Button Style="{StaticResource SelectQuestionsButtonStyle}"
+				<Button Style="{StaticResource SelectQuestionsButtonStyle}"
                         Content="{x:Static global:Resources.QuestionSelectSend}"
-                        Click="ButtonSend_Click"/>   
-            </StackPanel>
+                        Click="ButtonSend_Click"/>
+			</StackPanel>
 
-        </Grid>
-    </Grid>
+		</Grid>
+	</Grid>
 </base:WindowBase>

@@ -5,46 +5,46 @@ using ExtensionLibrary.Enums.Extensions;
 
 namespace Education.Application.Client
 {
-    public static class ClientManager
-    {
-        #region Properties
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public static ObservableCollection<ClientHandler> Clients { get; set; }
+	public static class ClientManager
+	{
+		#region Properties
 
-        #endregion
+		/// <summary>
+		/// 
+		/// </summary>
+		public static ObservableCollection<ClientHandler> Clients { get; set; }
 
-        #region DataExchange
+		#endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public static string GetUserIdentification(NetworkStream stream)
-        {
-            int length = stream.ReadByte();
-            byte[] buffer = new byte[length];
+		#region DataExchange
 
-            stream.Read(buffer, 0, length);
-            return buffer.GetString();
-        }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="stream"></param>
+		/// <returns></returns>
+		public static string GetUserIdentification(NetworkStream stream)
+		{
+			int length = stream.ReadByte();
+			byte[] buffer = new byte[length];
 
-        #endregion
+			stream.Read(buffer, 0, length);
+			return buffer.GetString();
+		}
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="clientHandler"></param>
-        /// <returns></returns>
-        public static bool IsClientConnected(this ClientHandler clientHandler)
-        {
-            if (clientHandler.IsClientConnected)
-                return true;
-            else
-                throw new SocketException(SocketError.ConnectionAborted.GetValue());
-        }
-    }
+		#endregion
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="clientHandler"></param>
+		/// <returns></returns>
+		public static bool IsClientConnected(this ClientHandler clientHandler)
+		{
+			if (clientHandler.IsClientConnected)
+				return true;
+			else
+				throw new SocketException(SocketError.ConnectionAborted.GetValue());
+		}
+	}
 }

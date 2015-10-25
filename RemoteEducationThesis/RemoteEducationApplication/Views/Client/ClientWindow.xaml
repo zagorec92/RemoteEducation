@@ -1,77 +1,77 @@
 ﻿<base:WindowBase x:Class="Education.Application.Views.Client.ClientWindow"
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:ext="clr-namespace:Education.Application.Extensions"
+                 xmlns:ext="clr-namespace:WPFFramework.Controls;assembly=WPFFramework"
                  xmlns:base="clr-namespace:Education.Application.Shared"
-                 xmlns:wb="clr-namespace:Education.Application.Views.UserControls"
+                 xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
                  xmlns:global="clr-namespace:Education.Application.Properties"
                  Style="{StaticResource ClientWindowStyle}"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25" />
+			<RowDefinition />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
 
-        <!--menu bar-->
-        <Grid Background="{StaticResource BackgroundBrush}">
-            <TextBlock Style="{StaticResource TextBlockLoginStyle}"
+		<!--menu bar-->
+		<Grid Background="{StaticResource BackgroundBrush}">
+			<TextBlock Style="{StaticResource TextBlockLoginStyle}"
                        HorizontalAlignment="Left"
                        Foreground="{StaticResource BetterWhiteBrush}"
                        Text="{x:Static global:Resources.ApplicationWindowTitle}"
                        Margin="10, 0, 0, 0">
-            </TextBlock>
+			</TextBlock>
 
-            <!--minimize and close-->
-            <wb:WindowBar WindowBarClick="ApplicationBar_AppBarClick"
+			<!--minimize and close-->
+			<uc:WindowBar WindowBarClick="ApplicationBar_AppBarClick"
                           WindowRole="ApplicationBar"/>
 
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Rectangle Style="{StaticResource ClientWindowStatusRectangleStyle}">
-                    <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="../../Resources/Images/client_connect.png" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <TextBlock Grid.Column="1"
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid HorizontalAlignment="Center">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Rectangle Style="{StaticResource ClientWindowStatusRectangleStyle}">
+					<Rectangle.OpacityMask>
+						<ImageBrush ImageSource="../../Resources/Images/client_connect.png" />
+					</Rectangle.OpacityMask>
+				</Rectangle>
+				<TextBlock Grid.Column="1"
                            Style="{StaticResource StatusBarTextBlockStyle}"
                            Foreground="{StaticResource LightBlackBrush}"
                            Text="{Binding ConnectionStatus}"/>
-            </Grid>
+			</Grid>
 
-            <Grid Grid.Row="1" 
+			<Grid Grid.Row="1" 
               HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Rectangle Style="{StaticResource ClientWindowStatusRectangleStyle}">
-                    <Rectangle.OpacityMask>
-                        <ImageBrush ImageSource="../../Resources/Images/client_upload_picture.png" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
-                <TextBlock Grid.Column="1"
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition />
+					<ColumnDefinition />
+				</Grid.ColumnDefinitions>
+				<Rectangle Style="{StaticResource ClientWindowStatusRectangleStyle}">
+					<Rectangle.OpacityMask>
+						<ImageBrush ImageSource="../../Resources/Images/client_upload_picture.png" />
+					</Rectangle.OpacityMask>
+				</Rectangle>
+				<TextBlock Grid.Column="1"
                            Style="{StaticResource StatusBarTextBlockStyle}"
                            Foreground="{StaticResource LightBlackBrush}"
                            Text="{Binding ProcessStatus}"/>
-            </Grid>
-        </Grid>
-        
-        <WebBrowser ext:WebBrowserExtension.BindableSource="{Binding QuestionSource}"
+			</Grid>
+		</Grid>
+
+		<WebBrowser ext:BindableWebBrowserExtension.BindableSource="{Binding QuestionSource}"
                     Grid.Row="2" 
                     Visibility="Collapsed" 
                     Height="300" 
                     Navigated="WebBrowser_Navigated"/>
-    </Grid>
+	</Grid>
 </base:WindowBase>

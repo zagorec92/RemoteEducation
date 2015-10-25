@@ -3,9 +3,9 @@
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                      xmlns:base="clr-namespace:WPFFramework.App.Base;assembly=WPFFramework"
-                     Style="{StaticResource UserControlClockStyle}">
+                     Style="{StaticResource ClockControlStyle}">
     <Grid>
         <TextBlock Text="{Binding Time}" 
-                   Style="{StaticResource UserControlClockTextBlock}"/>
+                   Style="{StaticResource ClockControlTextBlockStyle}"/>
     </Grid>
 </base:WpfUserControl>

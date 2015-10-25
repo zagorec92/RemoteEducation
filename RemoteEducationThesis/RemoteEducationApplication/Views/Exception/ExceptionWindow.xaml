@@ -11,7 +11,7 @@
                  Width="450"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
     <base:WindowBase.Resources>
-        <ResourceDictionary Source="..\..\Resources\Style\Shared\ExceptionWindowStyle.xaml" />
+        <ResourceDictionary Source="..\..\Resources\Style\ExceptionWindowStyle.xaml" />
     </base:WindowBase.Resources>
     <Grid>
         <Grid.RowDefinitions>

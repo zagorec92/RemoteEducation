@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="..\Base\ButtonBaseStyle.xaml" />
-        <ResourceDictionary Source="..\..\Fonts\FontSize.xaml" />
+        <ResourceDictionary Source="Base\ButtonBaseStyle.xaml" />
+        <ResourceDictionary Source="..\Fonts\FontSize.xaml" />
     </ResourceDictionary.MergedDictionaries>
         
     <Style x:Key="ButtonSendMailStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

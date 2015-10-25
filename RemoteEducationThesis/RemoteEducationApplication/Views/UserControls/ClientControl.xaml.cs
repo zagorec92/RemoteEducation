@@ -1,5 +1,5 @@
 ﻿using Education.Application.Shared;
-using ExtensionLibrary.Controls.Extensions;
+using WPFFramework.Controls;
 using WPFFramework.App.Base;
 
 namespace Education.Application.Views.UserControls
@@ -8,17 +8,17 @@ namespace Education.Application.Views.UserControls
 	/// Interaction logic for ClientControl.xaml
 	/// </summary>
 	public partial class ClientControl : WpfUserControl
-    {
-        #region Constructor
+	{
+		#region Constructor
 
-        /// <summary>
-        /// Creates a new instance of the <see cref="Education.Application.Views.UserControls.ClientControl"/> 
-        /// class.
-        /// </summary>
-        public ClientControl()
-        {
-            InitializeComponent();
-        }
+		/// <summary>
+		/// Creates a new instance of the <see cref="Education.Application.Views.UserControls.ClientControl"/> 
+		/// class.
+		/// </summary>
+		public ClientControl()
+		{
+			InitializeComponent();
+		}
 
 		#endregion
 
@@ -28,40 +28,40 @@ namespace Education.Application.Views.UserControls
 		/// 
 		/// </summary>
 		/// <param name="sender">The source of the event</param>
-		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationBarEventArgs"/>
 		/// instance containing the event data.</param>
-		public delegate void ClientClickEventHandler(object sender, ApplicationEventArgs e);
+		public delegate void ClientClickEventHandler(object sender, ApplicationBarEventArgs e);
 
-        /// <summary>
-        /// ClientClickEventHandler handler.
-        /// </summary>
-        public event ClientClickEventHandler ClientClick;
+		/// <summary>
+		/// ClientClickEventHandler handler.
+		/// </summary>
+		public event ClientClickEventHandler ClientClick;
 
-        #endregion
+		#endregion
 
-        #region EventHandling
+		#region EventHandling
 
-        /// <summary>
-        /// Invokes ClientClickEventHandler.
-        /// </summary>
-        /// <param name="clientName">Name of the client.</param>
-        public void OnCloseClick(int clientID, string commandName)
-        {
-            if (ClientClick != null)
-                ClientClick(this, new ApplicationEventArgs(commandName, clientID));
-        }
+		/// <summary>
+		/// Invokes ClientClickEventHandler.
+		/// </summary>
+		/// <param name="clientName">Name of the client.</param>
+		public void OnCloseClick(int clientID, string commandName)
+		{
+			if (ClientClick != null)
+				ClientClick(this, new ApplicationBarEventArgs(commandName, clientID));
+		}
 
 		/// <summary>
 		/// Handles the RectangleClick event of the appBar control.
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
-		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationEventArgs"/>
+		/// <param name="e">The <see cref="Education.Application.Shared.ApplicationBarEventArgs"/>
 		/// instance containing the event data.</param>
-		private void appBar_RectangleClick(object sender, ApplicationEventArgs e)
-        {
-            OnCloseClick(this.GetTag<int>(), e.CommandName);
-        }   
+		private void appBar_RectangleClick(object sender, ApplicationBarEventArgs e)
+		{
+			OnCloseClick(this.GetTag<int>(), e.CommandName);
+		}
 
-        #endregion  
-    }
+		#endregion
+	}
 }

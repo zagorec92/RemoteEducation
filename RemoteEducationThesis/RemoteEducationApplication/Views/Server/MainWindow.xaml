@@ -2,15 +2,15 @@
                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:c="clr-namespace:Education.Application.Converters"
+				 xmlns:fc="clr-namespace:WPFFramework.Converters;assembly=WPFFramework"
                  xmlns:sys="clr-namespace:System;assembly=mscorlib"
                  xmlns:global="clr-namespace:Education.Application.Properties"
                  xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
                  xmlns:base="clr-namespace:Education.Application.Shared"
                  Style="{StaticResource MainWindowStyle}">
     <base:WindowBase.Resources>
-        <c:BoolToVisibilityConverter x:Key="VisibilityConverter" />
-        <c:WindowTagConverter x:Key="WindowTagConverter" />
-    </base:WindowBase.Resources>
+		<fc:BoolToVisibilityConverter x:Key="VisibilityConverter" />
+	</base:WindowBase.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
@@ -77,43 +77,25 @@
                                       Click="SubMenuItem_Click" />
                         </MenuItem>
 
-                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+						<MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                   Header="{x:Static global:Resources.OptionsSubMenuScoreList}"
                                   Tag="ScoreList"
                                   Click="SubMenuItemGeneric_Click">
-                            <!--<MenuItem.Tag>
-                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowScoreList" />
-                                </MultiBinding>
-                            </MenuItem.Tag>-->
                         </MenuItem>
                     </MenuItem>
                     
                     <MenuItem Header="{x:Static global:Resources.MenuHelp}"
                               Style="{StaticResource MainWindowMenuItemStyle}">
-                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+						<MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                   Header="{x:Static global:Resources.MenuHelpViewHelp}"
                                   Tag="Help"
                                   Click="SubMenuItemGeneric_Click">
-                            <!--<MenuItem.Tag>
-                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowHelp" />
-                                </MultiBinding>
-                            </MenuItem.Tag>-->
-                        </MenuItem>
-                        <MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
+						</MenuItem>
+						<MenuItem Style="{StaticResource MainWindowSubMenuItemStyle}"
                                   Header="{x:Static global:Resources.MenuHelpAbout}"
                                   Tag="Help"
                                   Click="SubMenuItemGeneric_Click">
-                            <!--<MenuItem.Tag>
-                                <MultiBinding Converter="{StaticResource WindowTagConverter}">
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowIdentifier" />
-                                    <Binding Source="{x:Static global:Settings.Default}" Path="WindowHelp" />
-                                </MultiBinding>
-                            </MenuItem.Tag>-->
-                        </MenuItem>
+						</MenuItem>
                     </MenuItem>
                 </Menu>
             </Grid>

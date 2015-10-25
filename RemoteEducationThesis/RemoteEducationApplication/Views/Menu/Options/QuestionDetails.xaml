@@ -4,7 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
-                 xmlns:ext="clr-namespace:Education.Application.Extensions"
+                 xmlns:ext="clr-namespace:WPFFramework.Controls;assembly=WPFFramework"
                  xmlns:base="clr-namespace:Education.Application.Shared"
                  xmlns:local="clr-namespace:Education.Application.Views.Menu.Options"
                  xmlns:global="clr-namespace:Education.Application.Properties"
@@ -15,135 +15,135 @@
                  Height="400" 
                  Width="600"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
-    <base:WindowBase.Resources>
-        <ResourceDictionary Source="..\..\..\Resources\Style\Shared\QuestionDetailsWindowStyle.xaml" />
-    </base:WindowBase.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Background="{DynamicResource BackgroundBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+	<base:WindowBase.Resources>
+		<ResourceDictionary Source="..\..\..\Resources\Style\QuestionDetailsWindowStyle.xaml" />
+	</base:WindowBase.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid Background="{DynamicResource BackgroundBrush}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+			<TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
                        Text="{x:Static global:Resources.QuestionDetailsWindowTitle}"/>
 
-            <uc:WindowBar Grid.Column="1"
+			<uc:WindowBar Grid.Column="1"
                           ApplicationBarVisibility="Collapsed"
                           WindowRole="ApplicationBar" 
                           WindowBarClick="ApplicationBar_AppBarClick"/>
 
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="3"/>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="1"/>
-                </Grid.ColumnDefinitions>
-                
-                <TextBlock Text="ID:" 
+		</Grid>
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition Width="3"/>
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition />
+					<ColumnDefinition Width="1"/>
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Text="ID:" 
                            Style="{StaticResource QuestionDetailsTextBlockStyle}"/>
-                <TextBlock Grid.Column="1" 
+				<TextBlock Grid.Column="1" 
                            Text="{Binding ID}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
-                
-                <TextBlock Grid.Row="1" 
+
+				<TextBlock Grid.Row="1" 
                            Style="{StaticResource QuestionDetailsTextBlockStyle}" 
                            Text="{x:Static global:Resources.QuestionDetailsTitle}"/>
-                <TextBlock Grid.Column="1" 
+				<TextBlock Grid.Column="1" 
                            Grid.Row="1"
                            Text="{Binding Title}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
-                
-                <TextBlock Grid.Row="2"
+
+				<TextBlock Grid.Row="2"
                            Style="{StaticResource QuestionDetailsTextBlockStyle}"
                            Text="{x:Static global:Resources.QuestionDetailsDifficulty}"/>
-                <TextBlock Grid.Column="1" 
+				<TextBlock Grid.Column="1" 
                            Grid.Row="2"
                            Text="{Binding Difficulty}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
-                
-                <TextBlock Grid.Row="3"
+
+				<TextBlock Grid.Row="3"
                            Style="{StaticResource QuestionDetailsTextBlockStyle}"
                            Text="{x:Static global:Resources.QuestionDetailsUploadedBy}"/>
-                <TextBlock Grid.Column="1" 
+				<TextBlock Grid.Column="1" 
                            Grid.Row="3"
                            Text="{Binding UploadedByUser.FullName}" 
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
-                              
-                <TextBlock Grid.Row="4"                       
+
+				<TextBlock Grid.Row="4"                       
                            Style="{StaticResource QuestionDetailsTextBlockStyle}"
                            Text="{x:Static global:Resources.QuestionDetailsSubject}"/>
-                <TextBlock Grid.Column="1" 
+				<TextBlock Grid.Column="1" 
                            Grid.Row="4"
                            Text="{Binding Subject.Name}"
                            Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"
                            TextWrapping="Wrap"/>
-                
-                <Grid Grid.Row="5"
+
+				<Grid Grid.Row="5"
                       Grid.ColumnSpan="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource QuestionDetailsTextBlockStyle}"
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<TextBlock Style="{StaticResource QuestionDetailsTextBlockStyle}"
                                Text="{x:Static global:Resources.QuestionDetailsAnswers}"/>
-                    <ScrollViewer Grid.Row="1"
+					<ScrollViewer Grid.Row="1"
                                   VerticalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding Answers}">
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel IsItemsHost="True" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="10, 0, 0, 0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition Width="30"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding Content}" 
+						<ItemsControl ItemsSource="{Binding Answers}">
+							<ItemsControl.ItemsPanel>
+								<ItemsPanelTemplate>
+									<StackPanel IsItemsHost="True" />
+								</ItemsPanelTemplate>
+							</ItemsControl.ItemsPanel>
+							<ItemsControl.ItemTemplate>
+								<DataTemplate>
+									<Grid Margin="10, 0, 0, 0">
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition />
+											<ColumnDefinition Width="30"/>
+										</Grid.ColumnDefinitions>
+										<TextBlock Text="{Binding Content}" 
                                                    ToolTip="{Binding Content}"
                                                    Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"
                                                    TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Grid.Column="1" 
+										<TextBlock Grid.Column="1" 
                                                    Text="{Binding Score}"
                                                    Style="{StaticResource QuestionDetailsNormalTextBlockStyle}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Grid>                
-            </Grid>
-            
-            <GridSplitter Grid.Column="1"
+									</Grid>
+								</DataTemplate>
+							</ItemsControl.ItemTemplate>
+						</ItemsControl>
+					</ScrollViewer>
+				</Grid>
+			</Grid>
+
+			<GridSplitter Grid.Column="1"
                           Width="3"
                           Background="{StaticResource DarkenWin8Brush}"
                           HorizontalAlignment="Center"/>
-            
-            <WebBrowser Grid.Column="2"
-                        ext:WebBrowserExtension.BindableSource="{Binding Content}"/>
-        </Grid>
-    </Grid>
+
+			<WebBrowser Grid.Column="2"
+                        ext:BindableWebBrowserExtension.BindableSource="{Binding Content}"/>
+		</Grid>
+	</Grid>
 </base:WindowBase>

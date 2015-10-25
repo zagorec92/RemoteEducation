@@ -105,23 +105,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Managers\Authentication\AuthenticationManager.cs" />
     <Compile Include="Client\ClientHandler.cs" />
     <Compile Include="Client\ClientManager.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
-    <Compile Include="Extensions\ObservableCollectionExtension.cs" />
-    <Compile Include="Extensions\WebBrowserExtension.cs" />
-    <Compile Include="Helpers\ApplicationHelper.cs" />
-    <Compile Include="Helpers\BaseHelper.cs" />
-    <Compile Include="Helpers\DatabaseHelper.cs" />
     <Compile Include="Helpers\MailHelper.cs" />
     <Compile Include="Helpers\MenuHelper.cs" />
+    <Compile Include="Managers\ApplicationManager.cs" />
+    <Compile Include="Managers\AuthenticationManager.cs" />
     <Compile Include="Managers\LogManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />
-    <Compile Include="Managers\NavigationManager.cs" />
-    <Compile Include="Helpers\ScreenshotHelper.cs" />
-    <Compile Include="Helpers\StyleHelper.cs" />
-    <Compile Include="Helpers\SubjectHelper.cs" />
+    <Compile Include="Managers\StyleManager.cs" />
     <Compile Include="Properties\Resources.hr-HR.Designer.cs">
       <DependentUpon>Resources.hr-HR.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -184,17 +177,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Style\Menu\SelectQuestionsMenuStyle.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resources\Style\ExceptionWindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Style\Shared\ExceptionWindowStyle.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resources\Style\QuestionDetailsWindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Style\Shared\QuestionDetailsWindowStyle.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Style\Theme\Classic.xaml">
       <SubType>Designer</SubType>
@@ -251,6 +240,14 @@
     <Page Include="Resources\Style\Base\WindowBaseStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Style\UserControls\ClockControlStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Style\Windows\SelectQuestionsMenuStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Client\ClientWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

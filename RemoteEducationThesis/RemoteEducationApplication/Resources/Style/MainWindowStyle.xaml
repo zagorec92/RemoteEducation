@@ -7,7 +7,7 @@
         <ResourceDictionary Source="Base\MenuBaseStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="ButtonLoginStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <!--<Style x:Key="ButtonLoginStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Width" Value="80" />
         <Setter Property="Height" Value="25" />
         <Setter Property="VerticalAlignment" Value="Top" />
@@ -17,7 +17,7 @@
                 <SoundPlayerAction Source="C:\Windows\Media\Speech On.wav" />
             </EventTrigger>
         </Style.Triggers>
-    </Style>
+    </Style>-->
     
     <Style x:Key="MainWindowStyle" 
            TargetType="Window" 

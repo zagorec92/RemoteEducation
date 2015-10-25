@@ -5,87 +5,86 @@
                  xmlns:uc="clr-namespace:Education.Application.Views.UserControls"
                  xmlns:global="clr-namespace:Education.Application.Properties"
                  Style="{StaticResource MainWindowStyle}"
-                 Title="ScoreList" 
-                 Height="300" 
-                 Width="300"
+                 Title="ScoreList"
+                 Width="375"
+				 Height="450"
                  WindowState="Normal"
                  MouseLeftButtonDown="WindowBase_MouseLeftButtonDown">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="25" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
 
-        <Grid Background="{DynamicResource BackgroundBrush}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
+		<Grid Background="{DynamicResource BackgroundBrush}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
 
-            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+			<TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
                        Text="{x:Static global:Resources.MenuWindowScoreListTitle}"/>
 
-            <uc:WindowBar Grid.Column="1" 
+			<uc:WindowBar Grid.Column="1" 
                           ApplicationBarVisibility="Collapsed"
                           WindowRole="ApplicationBar" 
                           WindowBarClick="ApplicationBar_AppBarClick"/>
 
-        </Grid>
+		</Grid>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            
-            <TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
+		<Grid Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="25" />
+				<RowDefinition />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="2.5*" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+
+			<TextBlock Style="{StaticResource StatusBarTextBlockStyle}"
                        Foreground="{StaticResource LightBlackBrush}"
                        Text="Učenik"
+					   HorizontalAlignment="Center"
                        Margin="5, 0, 0, 0"/>
-            
-            <TextBlock Grid.Column="1"
+
+			<TextBlock Grid.Column="1"
                        Style="{StaticResource StatusBarTextBlockStyle}"
                        Foreground="{StaticResource LightBlackBrush}"
-                       HorizontalAlignment="Right"
+                       HorizontalAlignment="Left"
                        Margin="0, 0, 5, 0"
                        Text="Rezultat" />
-            
-            <ItemsControl Grid.Row="1"
-                          Grid.ColumnSpan="2"
-                          BorderBrush="{StaticResource LightBlackBrush}"
-                          BorderThickness="0, 1, 0, 0"
-                          ItemsSource="{Binding Scores}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel IsItemsHost="True" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            
-                            <TextBlock Foreground="{StaticResource LightBlackBrush}"
-                                       Text="{Binding User.FullName}"
-                                       Margin="5, 0, 0, 0"/>
-                            
-                            <TextBlock Grid.Column="1" 
-                                       Foreground="{StaticResource LightBlackBrush}"
+
+			<ScrollViewer Grid.Row="1"
+						  Grid.ColumnSpan="2">
+				<ItemsControl BorderBrush="{StaticResource LightBlackBrush}"
+							  BorderThickness="0, 1, 0, 0"
+							  ItemsSource="{Binding Scores}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<StackPanel IsItemsHost="True" />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Grid Background="{StaticResource LightBlackBrush}">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="2.5*" />
+									<ColumnDefinition />
+								</Grid.ColumnDefinitions>
+
+								<TextBlock Grid.Column="1" 
+                                       Foreground="{StaticResource BetterWhiteBrush}"
                                        Text="{Binding TotalScore, StringFormat='0,0.'}" 
-                                       HorizontalAlignment="Right"
+                                       HorizontalAlignment="Center"
+									   VerticalAlignment="Center"
                                        Margin="0, 0, 5, 0"/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>       
-        </Grid>
-        
-    </Grid>
+							</Grid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</ScrollViewer>
+		</Grid>
+
+	</Grid>
 </base:WindowBase>

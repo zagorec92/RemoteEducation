@@ -1,38 +1,58 @@
-﻿using Education.Application.Managers.Authentication;
-using Education.DAL;
-using Education.DAL.Repositories;
-using Education.Model.Entities;
+﻿using Education.DAL;
+using Education.DAL.Providers;
 using ExtensionLibrary.Enums.Extensions;
 using System;
+using System.Diagnostics;
+using LogEntity = Education.Model.Entities.Log;
 
 namespace Education.Application.Managers
 {
 	public static class LogManager
-    {
-        public static int Log(LogRepository.LogType logType, string message, string description, string stackTrace)
-        {
-            int logId = 0;
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="log"></param>
+		[Conditional("LOG")]
+		[Conditional("RELEASE")]
+		public static void Log(LogEntity log)
+		{
+			LogProvider.Save(log);
+		}
 
-            using (EEducationDbContext context = new EEducationDbContext())
-            {
-                LogRepository applicationLogRepository = new LogRepository(context);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logType"></param>
+		/// <param name="message"></param>
+		[Conditional("LOG")]
+		[Conditional("RELEASE")]
+		public static void Log(EnumCollection.LogType logType, string message)
+		{
+			LogEntity log = CreateLog(logType, message, null, null);
+			Log(log);
+		}
 
-                Log log = new Log();
-                log.UserIdentifier = AuthenticationManager.LoggedInUser.Identifier;
-                log.LogTypeID = logType.GetValue();
-                log.Message = message;
-                log.Description = description;
-                log.StackTrace = stackTrace;
-                log.DateModified = DateTime.Now;
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="logType"></param>
+		/// <param name="message"></param>
+		/// <param name="description"></param>
+		/// <param name="stackTrace"></param>
+		/// <returns></returns>
+		public static LogEntity CreateLog(EnumCollection.LogType logType, string message, string description, string stackTrace)
+		{
+			return new LogEntity()
+			{
+				UserIdentifier = UserProvider.LoggedInUser.Identifier,
+				LogTypeID = logType.GetValue(),
+				Message = message,
+				Description = description,
+				StackTrace = stackTrace,
+				DateModified = DateTime.Now
+			};
+		}
 
-                if (applicationLogRepository.InsertOrUpdate(log))
-                    applicationLogRepository.Save();
-
-                if (log.ID != default(int))
-                    logId = log.ID;
-            }
-
-            return logId;
-        }
-    }
+	}
 }

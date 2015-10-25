@@ -34,4 +34,17 @@
         <Setter Property="Fill" Value="{DynamicResource BackgroundBrush}" />
     </Style>
 
+	<!--general-->
+	<Style TargetType="ToolTip">
+		<Setter Property="ContentTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<StackPanel>
+						<TextBlock Text="{Binding}" MaxWidth="400" TextWrapping='Wrap' />
+					</StackPanel>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
 </ResourceDictionary>
